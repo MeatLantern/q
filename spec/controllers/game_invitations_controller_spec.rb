@@ -1,0 +1,104 @@
+require 'spec_helper'
+require 'rails_helper'
+
+describe GameInvitationController do
+  include Devise::TestHelpers
+  before (:each) do
+    @user = FactoryGirl.create(:user)
+    sign_in @user
+  end
+  fixtures :game_invitations
+  describe 'games' do
+    it 'should load index' do
+      get :invitations_screen
+      expect(response).to be_success
+    end
+    it 'should be creatable' do
+      game = game_invitations(:new_invitation)
+      expect(GameInvitation).to receive(:create!).and_return(game)
+      post :new
+      expect(response).to redirect_to(game_invitation_show_path << '?invite=3')
+    end
+    it 'should show if game exists' do
+      game = game_invitations(:new_invitation)
+      expect(GameInvitation).to receive(:find_by_id).with('3').and_return(game)
+      post :show, {:invite => 3}
+    end
+    it 'should redirect if game does not exist' do
+      expect(GameInvitation).to receive(:find_by_id).with('4').and_return(nil)
+      post :show, {:invite => 4}
+      expect(response).to redirect_to(game_rules_path)
+    end
+    it 'cannot destory games you didnt create' do
+      game = game_invitations(:not_full_invitation)
+      expect(GameInvitation).to receive(:find_by_id).with('2').and_return(game)
+      expect(GameInvitation).not_to receive(:destroy).with(game)
+      post :destroy, {:id => 2}
+      expect(GameInvitation).to redirect_to(invitations_screen_path)
+    end
+    it 'can be destroyed if created by you' do
+      game = game_invitations(:new_invitation)
+      expect(GameInvitation).to receive(:find_by_id).with('3').and_return(game)
+      expect(GameInvitation).to receive(:destroy).with(game)
+      post :destroy, {:id => 3}
+      expect(GameInvitation).to redirect_to(invitations_screen_path)
+    end
+  end
+  describe 'choosing characters' do
+    it 'can only choose your own character' do
+      game = game_invitations(:players_no_chars)
+      post :multiplayer_select_character, {:player_name => 'test2'}
+    end
+    it 'can only choose your own character 2' do
+      game = game_invitations(:players_no_chars)
+      post :multiplayer_character_choose, {:player_name => 'test2'}
+      expect(response).to redirect_to(invitations_screen_path)
+    end
+    it 'can choose a character for player 1' do
+      game = game_invitations(:players_no_chars)
+      expect(GameInvitation).to receive(:find_by_id).with('4').and_return(game)
+      post :multiplayer_character_choose, {:invite_id => 4, :name => 'alice', :username => 'test1', :c => 1}
+      expect(game.player1_character).to include("alice")
+      expect(response).to redirect_to(game_invitation_show_path << '?invite=4')
+    end
+    it 'can choose a character for player 2' do
+      game = game_invitations(:full_invitation)
+      expect(GameInvitation).to receive(:find_by_id).with('4').and_return(game)
+      post :multiplayer_character_choose, {:invite_id => 4, :name => 'bob', :username => 'test1', :c => 2}
+      expect(game.player2_character).to include("bob")
+      expect(response).to redirect_to(game_invitation_show_path << '?invite=4')
+    end
+  end
+  describe 'joining and leaving' do
+    it 'can join an invite with empty player2' do
+      game = game_invitations(:new_invitation)
+      expect(GameInvitation).to receive(:find_by_id).with('3').and_return(game)
+      post :join_invite, {:invite_id => 3}
+      expect(game.player2_username).to include("test1")
+    end
+    it 'cant join game youve already joined' do
+      game = game_invitations(:already_joined)
+      expect(GameInvitation).to receive(:find_by_id).with('5').and_return(game)
+      post :join_invite, {:invite_id => 5}
+      expect(flash[:warning]).to include("You have already joined")
+    end
+    it 'cant join full game' do
+      game = game_invitations(:full)
+      expect(GameInvitation).to receive(:find_by_id).with('6').and_return(game)
+      post :join_invite, {:invite_id => 6}
+      expect(flash[:warning]).to include("game is already full")
+    end
+    it 'can leave invite' do
+      game = game_invitations(:already_joined)
+      expect(GameInvitation).to receive(:find_by_id).with('5').and_return(game)
+      post :leave_invite, {:invite_id => 5}
+      expect(game.player2_username).to be_nil
+    end
+    it 'cant leave game you havent joined' do
+      game = game_invitations(:new_invitation)
+      expect(GameInvitation).to receive(:find_by_id).with('3').and_return(game)
+      post :leave_invite, {:invite_id => 3}
+      expect(flash[:warning]).to include("You aren't in this game")
+    end
+  end
+end

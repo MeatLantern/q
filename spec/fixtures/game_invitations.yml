@@ -1,0 +1,32 @@
+full_invitation:
+  id: 1
+  player1_username: test1
+  player2_username: test2
+  player1_character: alice
+  player2_character: bob
+  ready: false
+  
+not_full_invitation:
+  id: 2
+  player1_username: nick
+  player1_character: alice
+  ready: false
+  
+new_invitation:
+  id: 3
+  player1_username: test1
+  
+players_no_chars:
+  id: 4
+  player1_username: test1
+  player2_username: test2
+  
+already_joined:
+  id: 5
+  player1_username: test1
+  player2_username: test1
+  
+full:
+  id: 6
+  player1_username: test2
+  player2_username: test3

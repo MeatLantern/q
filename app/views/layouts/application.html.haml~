@@ -1,0 +1,43 @@
+!!! 5
+%html
+  %head
+    %title Duel Of Champions
+    = stylesheet_link_tag 'application'
+    =stylesheet_link_tag "bootstrap.min"
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+
+  %body
+    .container-fluid
+      %h1.title Duel Of Champions!
+      #main
+        %p.navbar-text.pull-right
+          .row
+            .col-sm-4.col-md-3.col-lg-2{:style => "background-color:#EEEEEE;"}
+              - if user_signed_in?
+                #username
+                  Hello,
+                  %strong= current_user.username
+                #logout-button
+                  = button_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'
+                -if current_user.is_admin
+                  = button_to "Users Admin Controls", users_admin_path, :method => :post
+                  = button_to "Game Admin Controls", game_admin_path, :method => :get
+                -if (session[:current_game].nil?)
+                  #single-game-button
+                    = button_to 'Start Single Player Game',  character_character_select_ai_path, :method => :get, :id => 'new_game'
+                  #multi-game-button
+                    = button_to 'Join a Multiplayer Game', invitations_screen_path, :method => :get
+                -else
+                  #back-game-button
+                    = button_to "Back To Game", game_show_path, :method => :get 
+              - else
+                = button_to "Login", new_user_session_path, :class => 'navbar-link'
+      
+            .col-sm-8.col-md-9.col-lg-10
+              - if notice
+                %p.alert.alert-success= notice
+              - if alert
+                %p.alert.alert-danger= alert
+            
+              = yield

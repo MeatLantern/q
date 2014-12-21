@@ -1,0 +1,57 @@
+%h2 Details about #{@character.name}
+
+= image_tag(@character.main_image)
+
+%ul#details
+   %li 
+      Name:
+      = @character.name
+   %li
+      Maximum HP:
+      = @character.max_hp
+   %li 
+      Maximum MP: 
+      = @character.max_mp
+   %li 
+      Base Attack:
+      = @character.base_attack
+   %li 
+      Base Power:
+      = @character.base_power
+   %li
+      Base Defense:
+      = @character.base_defense
+   %li
+      Base Armor:
+      = @character.base_armor
+
+%p#description= @character.description
+
+%h3 Abilities
+
+%table#characters
+   %thead
+      %tr
+         %th Ability Name
+         %th Ability Type
+         %th Ability Description
+   %tbody
+      %tr
+         %td= @character.action_1_name
+         %td= @character.action_1_rules
+         %td= @character.action_1_flavor
+      %tr
+         %td= @character.action_2_name
+         %td= @character.action_2_rules
+         %td= @character.action_2_flavor
+      %tr
+         %td= @character.action_3_name
+         %td= @character.action_3_rules
+         %td= @character.action_3_flavor
+      %tr
+         %td= @character.action_4_name
+         %td= @character.action_4_rules
+         %td= @character.action_4_flavor
+
+%h4 Transformation Tags
+= @tag_list

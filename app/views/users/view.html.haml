@@ -1,0 +1,24 @@
+%h1 User Page
+
+%h2 Characters Made By #{@username}
+
+%table#characters
+  %thead
+    %tr
+      %th Name  	  
+      %th Character Sheet 
+      %th Update Character
+      %th Update Transformation
+  %tbody
+    - @characters.each do |character|
+      %tr 
+        %td= character.name
+        %td= link_to "#{character.name}'s Character Sheet", characters_path(:name => character.name), :method=> :get
+        %td
+          -if (@current_username == @username) && (session[:current_game].nil?)
+            = link_to "Select #{character.name}", character_edit_path(:name => character.name), :method=> :get
+        %td
+          -if (@current_username == @username) && (session[:current_game].nil?)
+            = link_to "Select #{character.name}", transformation_edit_path(:character_name => character.name), :method=> :get
+%p
+  = button_to 'Create a New Character',  new_character_path, :method => :get, :id => 'new_character'

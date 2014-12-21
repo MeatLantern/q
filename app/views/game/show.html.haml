@@ -1,0 +1,202 @@
+=stylesheet_link_tag "game"
+=stylesheet_link_tag "bootstrap.min"
+= javascript_include_tag 'application.js'
+%div#refreshable
+- #if flash[:results]
+-  #results.message= flash[:results]
+%p
+  %strong
+    = @current_game.flavor_message.html_safe
+%p
+  %strong
+    = @current_game.results_message
+%p
+  %strong
+    = @current_game.tf_message.html_safe
+#PlayerDescription
+  .row
+    .col-sm-6.col-md-6.col-lg-6
+      %h3 Player 1
+
+      %ul#details
+        %div
+          %p
+            Player Name:
+            = @player1
+          %p
+            Character:
+            = @p1_character.name
+          %p
+          #portrait
+            Portrait:
+            = image_tag(@this_game.player1_picture)
+          -if(@this_game.player1_buff == "Summon")
+            %p
+              Summon:
+              = @p1_character.summon_name
+              = image_tag(@p1_character.summon_picture)
+          %p
+            HP:
+            = @p1_hp
+            ="/ #{@p1_character.max_hp}"
+          %p
+            MP:
+            = @p1_mp
+            ="/ #{@p1_character.max_mp}"
+          %p
+            Current Buff:
+            = @this_game.player1_buff
+          %p
+            Current Debuff:
+            = @this_game.player1_debuff
+          %p
+            Transformation Stage:
+            = @this_game.player1_stage
+          %p
+            %h4 Last Transformation
+            = @this_game.player1_last_tf.html_safe
+          %p
+            %h4 Current Description
+            = @this_game.player1_description.html_safe
+          %p
+            %h4 Player 1 Message:
+            %ul
+              = @this_game.player1_message.html_safe
+
+    .col-sm-6.col-md-6.col-lg-6
+      %h3 Player 2
+
+      %ul#details
+        %div
+          %p
+            Player Name:
+            = @player2
+          %p
+            Character:
+            = @p2_character.name
+          %p
+            Portrait:
+            = image_tag(@this_game.player2_picture)
+          -if(@this_game.player2_buff == "Summon")
+            %p
+              Summon:
+              = @p2_character.summon_name
+              = image_tag(@p2_character.summon_picture)
+          %p
+            HP:
+            = @p2_hp
+            ="/ #{@p2_character.max_hp}"
+          %p
+            MP:
+            = @p2_mp
+            ="/ #{@p2_character.max_mp}"
+          %p
+            Current Buff:
+            = @this_game.player2_buff
+          %p
+            Current Debuff:
+            = @this_game.player2_debuff
+          %p
+            Transformation Stage:
+            = @this_game.player2_stage
+          %p
+            %h4 Last Transformation
+            = @this_game.player2_last_tf.html_safe
+          %p
+            %h4 Current Description
+            = @this_game.player2_description.html_safe
+          %p
+            %h4 Player 2 Message:
+            %ul
+              = @this_game.player2_message.html_safe
+  .row
+    .col-sm-12.col-md-12.col-lg-12
+    -if @game_over == "f"
+      -if (((@turn % 2) == 1) && (@player1 == @player_username)) 
+        = form_tag 'game/take_turn' do
+          .row
+            .row
+              = label_tag :choice, 'Attack'
+              = radio_button_tag 'Action', 1
+              = label_tag :choice, 'Guard'
+              = radio_button_tag 'Action', 2
+              = label_tag :choice, 'Focus'
+              = radio_button_tag 'Action', 3
+              - if (@current_game.player1_debuff != "Silence")
+                = label_tag :choice, "#{@p1_character.action_1_name}  (#{@p1_mp_cost1}MP)"
+                = radio_button_tag 'Action', @p1_character.action_1_id
+                = label_tag :choice, "#{@p1_character.action_2_name}  (#{@p1_mp_cost2}MP)" 
+                = radio_button_tag 'Action', @p1_character.action_2_id
+                = label_tag :choice, "#{@p1_character.action_3_name}  (#{@p1_mp_cost3}MP)"
+                = radio_button_tag 'Action', @p1_character.action_3_id
+                = label_tag :choice, "#{@p1_character.action_4_name}  (#{@p1_mp_cost4}MP)"
+                = radio_button_tag 'Action', @p1_character.action_4_id
+              -else
+                %h3 You are Silenced!
+          .row.takeaction
+            .col-sm-5.col-md-5.col-lg-5
+            .col-sm-1.col-md-1.col-lg-1
+              = submit_tag 'Take Action'
+            .col-sm-6.col-md-6.col-lg-6
+      -elsif (@turn % 2 == 0)
+        -if (@player2 == "AI")
+          .col-sm-5.col-md-5.col-lg-5
+          .col-sm-2.col-md-2.col-lg-2
+            = button_to "Opponent Turn", "game/ai_take_turn", :method => :post
+          .col-sm-5.col-md-5.col-lg-5
+        -if @player2 == @player_username
+          = form_tag 'game/take_turn' do
+            %p
+              %attacks.theattacks
+                = label_tag :choice, 'Attack'
+                = radio_button_tag 'Action', 1
+                = label_tag :choice, 'Guard'
+                = radio_button_tag 'Action', 2
+                = label_tag :choice, 'Focus'
+                = radio_button_tag 'Action', 3
+                - if (@current_game.player2_debuff != "Silence")
+                  = label_tag :choice, "#{@p2_character.action_1_name}  (#{@p2_mp_cost1}MP)"
+                  = radio_button_tag 'Action', @p2_character.action_1_id
+                  = label_tag :choice, "#{@p2_character.action_2_name}  (#{@p2_mp_cost2}MP)" 
+                  = radio_button_tag 'Action', @p2_character.action_2_id
+                  = label_tag :choice, "#{@p2_character.action_3_name}  (#{@p2_mp_cost3}MP)"
+                  = radio_button_tag 'Action', @p2_character.action_3_id
+                  = label_tag :choice, "#{@p2_character.action_4_name}  (#{@p2_mp_cost4}MP)"
+                  = radio_button_tag 'Action', @p2_character.action_4_id
+                -else
+                  %h3 You are Silenced!  
+                .row
+                .row
+                  .col-sm-5.col-md-5.col-lg-5
+                  .col-sm-1.col-md-1.col-lg-1
+                    = submit_tag 'Take Action'
+                  .col-sm-6.col-md-6.col-lg-6
+    -else
+      %h1 GAME OVER
+      -if @player2 != "AI"
+        = button_to "Reset Game?", "game/cpu_reset_game", :confirm => "Are you sure you want to restart the game?", :method => :post
+  .row
+    = form_tag 'game/send_message' do
+      %p
+        = label :message, :message, 'Your message:'
+        = text_field :message, 'Your Message'
+        = submit_tag 'Send Message'
+    %p
+      .row
+        .col-sm-4.col-md-4.col-lg-4
+          = button_to "Reload Page", game_show_path, :method => :get
+        -if @player2 == "AI"
+          .col-sm-4.col-md-4.col-lg-4
+            = button_to "Reset Game?", "game/cpu_reset_game", :confirm => "Are you sure you want to restart the game?", :method => :post
+        .col-sm-4.col-md-4.col-lg-4
+          = button_to "Leave Game?", "game/destroy_current_game", :confirm => "Are you sure you want to quit the game? NOTE: You will NOT be able to come back to this game.", :method => :post
+
+
+:javascript
+  function timedRefresh(timeoutPeriod) {
+    setTimeout("location.reload(true);",timeoutPeriod);
+  }
+
+  $(document).ready(function(){
+    timedRefresh(45000);
+  });

@@ -1,0 +1,25 @@
+%h1 Current Games
+
+= flash[:warning]
+
+-if (session[:current_game].nil?)
+  %p
+    You are not currently in a game.
+-else
+  %p
+    WARNING: You are currently in a game. You cannot join a new game until you leave the current one.
+
+%table#characters
+  %thead
+    %tr
+      %th Player 1
+      %th Player 2
+      %th More Info
+  %tbody
+    - @invites.each do |invite|
+      %tr
+        %td= invite.player1_username
+        %td= invite.player2_username
+        %td= link_to "Show Invite", game_invitation_show_path(:invite => invite)
+
+= link_to 'Add New Invitation', new_game_invitation_path

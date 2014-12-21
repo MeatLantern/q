@@ -1,0 +1,27 @@
+%h1 Admin Character Controls
+%h2 Admin Rules
+%p
+	1. On this page you can view characters, view transformations, and most importantly delete characters.
+%p
+	2. DO NOT Delete any characters without , contact the Head Admin at transformation-arena-admin@hotmail.com
+%p
+	3. If you wish to remove Admin Access from a User, please contact the head admin at transformation-arena-admin@hotmail.com first. 
+%p
+	4. If you need to delete a User, you MUST delete any games in which they are participating first. Click on "Game Admin Controls" to see the list of current games, the players, and a delete button. The player should only be in one game at a time, but ensure all games featuring the player (should a glitch occur and they have multiple games in existence) have been deleted before deling a user. Do NOT delete a User without a very good reason. Contact the head admin at transformation.admin@hotmail.com if you have any questions.
+
+%table#characters
+	%thead
+		%tr
+			%th Character Name
+			%th Creator
+			%th View Character Sheet
+			%th View Transformation
+			%th Delete Character
+	%tbody
+		- @characters.each do |character|
+			%tr
+				%td= character.name
+				%td= character.creator
+				%td= link_to "#{character.name}'s Character Sheet", characters_path(:name => character.name), :method=> :get
+				%td= link_to "#{character.name}'s Transformation", transformation_show_path(:name => character.name), :method => :get
+				%td= link_to("delete", characters_destroy_path(:id => character.id), method: :post, data: { :confirm => "Delete #{character.name}?"})

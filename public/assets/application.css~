@@ -1,0 +1,123 @@
+html,body{
+  margin:0;
+  padding:0;
+  background:White;
+  color:DarkSlateGrey;
+  font-family:Times New Roman, Times, serif;
+  font-size:14pt;
+  display: block;
+}
+
+
+
+#column {
+  float:left;
+  width: 22%;
+  background-color: #EEEEEE;
+  padding: 10px;
+}
+
+#username {
+  margin-left: 3px;
+  margin-bottom: 3px;
+  font-size: 17px;
+}
+
+#profile-button {
+  padding: 2px;
+}
+
+
+
+#multi-game-button {
+  padding: 2px;
+}
+
+#single-game-button {
+  padding: 2px;
+}
+
+#back-game-button {
+  padding: 2px;
+}
+
+#therest {
+  float:right;
+  width: 75%;
+  padding-right: 20px;
+}
+
+div#login-button {
+   float: left;
+ }
+
+div#main{
+  margin:0;
+  padding:0 20px 20px
+}
+a{
+  background:transparent;
+  color:green;
+  text-decoration:underline;
+  font-weight:bold
+}
+h1{
+  color:green;
+  font-size:175%;
+  font-style:italic;
+  display:block;
+  width:80%;
+  border-bottom:1px solid DarkSlateGrey
+}
+h1.title{
+  margin:0 0 1em;
+  padding:10px;
+  background-color:green;
+  color:white;
+  border-bottom:4px solid brown;
+  font-size:2em;
+  font-style:normal;
+  width:100%;
+}
+table#characters{
+  margin:10px;
+  border-collapse:collapse;
+  width:100%;
+  border-bottom:2px solid brown
+}
+table#characters th{
+  border:2px solid white;
+  font-weight:bold;
+  background-color:brown;
+  color:#fff
+}
+table#characters th,table#characters td{
+  padding:4px;
+  text-align:left
+}
+table#games{
+  margin:10px;
+  border-collapse:collapse;
+  width:100%;
+  border-bottom:2px solid brown
+}
+table#games th{
+border:2px solid white;
+font-weight:bold;
+background-color:wheat
+}
+table#games th,table#games td{
+  padding:4px;
+  text-align:left
+}
+#notice,#warning{
+background:rosybrown;
+margin:1em 0;
+padding:4px
+}
+form label{
+  display:block;
+  line-height:25px;
+  font-weight:bold;
+  color:green
+}

@@ -1,0 +1,160 @@
+%h1 Current Invitation
+
+= flash[:warning]
+
+%table#characters
+  %thead
+    %tr
+      %th Player 1
+      %th Player 2
+      %th Character 1
+      %th Character 2
+  %tbody
+    %tr
+      %td= @invite.player1_username
+      %td= @invite.player2_username
+      %td= @invite.player1_character
+      %td= @invite.player2_character
+    %tr
+      %td= link_to 'Delete Game Invite ', game_invitation_path(@invite), :method => :delete, :confirm => 'Are you sure you want to delete this game?'
+      %td 
+        -if @invite.player2_username.nil?
+          = link_to ' Join Game ', join_invite_path(:invite_id => @invite.id), :method => :post, :confirm => 'Are you sure you want to join this game?'
+        -elsif @invite.player2_username == @current_username
+          = link_to ' Leave Game ', leave_invite_path(:invite_id => @invite.id), :method => :post, :confirm => 'Are you sure you want to leave this game?'
+        -else
+          Game Filled
+      %td= link_to ' Choose character ', multiplayer_select_character_path(:player_name => @invite.player1_username, :invite_id => @invite.id, :character => 1, :transformation => @tf_hash, :pref => @pref), :method => :get
+      %td= link_to ' Choose character ', multiplayer_select_character_path(:player_name => @invite.player2_username, :invite_id => @invite.id, :character => 2, :transformation => @tf_hash, :pref => @pref), :method => :get
+-if @invite.ready == true
+  = button_to 'Start Game?', multiplayer_start_game_path(:invite_id => @invite.id), :method => :post, :confirm => 'Are you sure you want to start the game?'
+
+%h4 Allowed TF Types:
+= @tag_list
+
+-if @current_username == @invite.player1_username
+  %h3 Select TF Types
+  To prevent a type of TF from appearing in your list, uncheck the box and click "Edit Preferences". For example, if you uncheck "Furry", then neither you nor your opponent will be able to choose any characters that have the "Furry" tag.
+  = form_tag change_pref_path(:invite_id => @invite.id) do
+    %table.table
+      %thead
+        %tr
+          %th Tf Type
+          %th Allowed?
+      %tbody
+        %tr
+          %td
+            = label :transformation, :is_adult, 'Contains Adult Content?'
+          %td 
+            = check_box :transformation, 'is_adult', :checked => @pref.is_adult
+        %tr
+          %td
+            = label :transformation, :is_M2F, 'Contains Male to Female Transformation?'
+          %td 
+            = check_box :transformation, 'is_M2F', :checked => @pref.is_M2F
+        %tr
+          %td
+            = label :transformation, :is_F2M, 'Contains Female to Male Transformation?'
+          %td 
+            = check_box :transformation, 'is_F2M', :checked => @pref.is_F2M
+        %tr
+          %td
+            = label :transformation, :is_race_change, 'Contains Race Change?'
+          %td 
+            = check_box :transformation, 'is_race_change', :checked => @pref.is_race_change
+        %tr
+          %td
+            = label :transformation, :is_age_reg, 'Contains Age Regression?'
+          %td 
+            = check_box :transformation, 'is_age_reg', :checked => @pref.is_age_reg
+        %tr
+          %td
+            = label :transformation, :is_age_pro, 'Contains Age Progression?'
+          %td 
+            = check_box :transformation, 'is_age_pro', :checked => @pref.is_age_pro
+        %tr
+          %td
+            = label :transformation, :is_furry, 'Contains Furry Transformation?'
+          %td 
+            = check_box :transformation, 'is_furry', :checked => @pref.is_furry
+        %tr
+          %td
+            = label :transformation, :is_animal, 'Contains Animal Transformation?'
+          %td 
+            = check_box :transformation, 'is_animal', :checked => @pref.is_animal
+        %tr
+          %td
+            = label :transformation, :is_futa, 'Contains Hermaphrodites?'
+          %td 
+            = check_box :transformation, 'is_futa', :checked => @pref.is_futa
+        %tr
+          %td
+            = label :transformation, :is_mind, 'Contains Mental Change?'
+          %td 
+            = check_box :transformation, 'is_mind', :checked => @pref.is_mind
+        %tr
+          %td
+            = label :transformation, :is_bdsm, 'Contains BDSM or Latex/Rubber Content?'
+          %td 
+            = check_box :transformation, 'is_bdsm', :checked => @pref.is_bdsm
+        %tr
+          %td
+            = label :transformation, :is_pregnant, 'Contains Pregnancy?'
+          %td 
+            = check_box :transformation, 'is_pregnant', :checked => @pref.is_pregnant
+        %tr
+          %td
+            = label :transformation, :is_inanimate, 'Contains Inanimate Transformation?'
+          %td 
+            = check_box :transformation, 'is_inanimate', :checked => @pref.is_inanimate
+        %tr
+          %td
+            = label :transformation, :is_growth, 'Contains Growth Transformation?'
+          %td 
+            = check_box :transformation, 'is_growth', :checked => @pref.is_growth
+        %tr
+          %td
+            = label :transformation, :is_shrink, 'Contains Shrinking Transformation?'
+          %td 
+            = check_box :transformation, 'is_shrink', :checked => @pref.is_shrink
+        %tr
+          %td
+            = label :transformation, :is_weight_gain, 'Contains Weight Gain?'
+          %td 
+            = check_box :transformation, 'is_weight_gain', :checked => @pref.is_weight_gain
+        %tr
+          %td
+            = label :transformation, :is_fantasy, 'Contains Mythical/Fantasy TF?'
+          %td 
+            = check_box :transformation, 'is_fantasy', :checked => @pref.is_fantasy
+        %tr
+          %td
+            = label :transformation, :is_robot, 'Contains Robots or Sci Fi?', :checked => true
+          %td 
+            = check_box :transformation, 'is_robot', :checked => @pref.is_robot
+        %tr
+          %td
+            = label :transformation, :is_bimbo, 'Contains Bimbos?', :checked => true
+          %td 
+            = check_box :transformation, 'is_bimbo', :checked => @pref.is_bimbo
+        %tr
+          %td
+            = label :transformation, :is_monster_girl, 'Contains Monster Girls?', :checked => @pref.is_monster_girl
+          %td 
+            = check_box :transformation, 'is_monster_girl', :checked => @pref.is_monster_girl
+        %tr
+          %td
+            = label :transformation, :is_bizarre, 'Contains Bizarre TF / Other?', :checked => true
+          %td 
+            = check_box :transformation, 'is_bizarre', :checked => @pref.is_bizarre
+
+    = submit_tag 'Edit Preferences'
+
+:javascript
+  function timedRefresh(timeoutPeriod) {
+    setTimeout("location.reload(true);",timeoutPeriod);
+  }
+
+  $(document).ready(function(){
+    timedRefresh(45000);
+  });

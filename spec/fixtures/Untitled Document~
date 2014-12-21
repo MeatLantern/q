@@ -1,0 +1,12 @@
+full_invitation:
+  player1_username: nick
+  player2_username: jack
+  player1_character: alice
+  player2_character: bob
+  
+not_full_invitation:
+  player1_username: nick
+  player2_username: nil
+  player1_character: alice
+  player2_character: nil
+  

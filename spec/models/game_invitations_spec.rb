@@ -1,0 +1,18 @@
+require 'spec_helper'
+require 'rails_helper'
+
+describe GameInvitation do
+  fixtures :game_invitations
+  describe 'check if game ready' do
+    it 'should be ready when players and characters full' do
+      full_invitation = game_invitations(:full_invitation)
+      GameInvitation.check_if_ready(full_invitation)
+      expect(full_invitation.ready).to be_truthy
+    end
+    it 'should not be ready when players and characters are not full' do
+      not_full_invitation = game_invitations(:not_full_invitation)
+      GameInvitation.check_if_ready(not_full_invitation)
+      expect(not_full_invitation.ready).to include('f')
+    end
+  end
+end

@@ -1,0 +1,17 @@
+%h1 Admin Game Controls
+
+%table#games
+	%thead
+		%tr
+			%th Game Name
+			%th Player 1
+			%th Player 2
+			%th End Game
+	%tbody
+		- @games.each do |game|
+			%tr
+				%td= game.game_name
+				%td= game.player1
+				%td= game.player2
+				%td= link_to("delete", game_delete_game_path(:id => game.id), method: :post, data: { :confirm => "Delete #{game.game_name}?"})
+= button_to 'Delete all games', game_delete_all_path, :method => :post, :id => 'delete_all_games'

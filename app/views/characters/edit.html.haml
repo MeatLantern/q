@@ -1,0 +1,149 @@
+%h1 Update Character
+
+%p
+  %h3 Rules for creating a Character
+  %p
+    1. You must fill in all of the below data.  Nothing can be left blank
+  %p
+    2. The sum of the maximum HP and MP must not exceed 150. 
+  %p
+    3. The sum of the base Attack, Power, Defense, and Armor must not exceed 21.
+  %p
+    4. Each of the four attacks must have a different type selected for it.  For more information on the action types, select the link below.
+  %p
+    =link_to "More info on types of Attacks", game_abilities_path, :method=> :get
+
+
+= form_tag character_update_path do
+  
+  NOTE: You may not change the name of your character after they are created.
+
+  %table.table
+    %thead
+      %tr
+        %th Attribute
+        %th Value
+    %tbody
+      %tr
+        %td
+          = label :character, :name, 'Name'
+        %td
+          = text_field :character, 'name', :readonly => true
+      %tr
+        %td
+          = label :character, :description, 'Description'
+        %td
+          = text_area :character, 'description', size: "40x6"
+      %tr
+        %td
+          = label :character, :max_hp, 'Maximum HP'
+        %td
+          = select :character, :max_hp, [40,50,60,70,80,90,100,110]
+      %tr
+        %td
+          = label :character, :max_mp, 'Maximum MP'
+        %td
+          = select :character, :max_mp, [40,50,60,70,80,90,100,110]
+      %tr
+        %td
+          = label :character, :base_attack, 'Base Attack'
+        %td
+          = select :character, :base_attack, [3,4,5,6,7]
+      %tr
+        %td
+          = label :character, :base_power, 'Base Power'
+        %td
+          = select :character, :base_power, [3,4,5,6,7]
+      %tr
+        %td
+          = label :character, :base_defense, 'Base Defense'
+        %td
+          = select :character, :base_defense, [3,4,5,6,7]
+      %tr
+        %td
+          = label :character, :base_armor, 'Base Armor'
+        %td
+          = select :character, :base_armor, [3,4,5,6,7]
+      %tr
+        %td
+          = label :character, :action_1_name, '1st Action Name'
+        %td
+          = text_field :character, 'action_1_name'
+      %tr
+        %td
+          = label :character, :action_1_flavor, '1st Action Description'
+        %td
+          = text_field :character, 'action_1_flavor'
+      %tr
+        %td
+          = label :character, :action_1_rules, '1st Action Type'
+        %td
+          = select :character, :action_1_rules, ['Accurate Attack', 'Powerful Attack', 'Reckless Attack', 'Overwhelming Attack', 'Focusing Action', 'Defense Boost', 'Attack Boost', 'Armor Boost', 'Power Boost', 'Poisoning Attack', 'Silencing Attack', 'Confusing Attack', 'Locking Attack', 'Guard Break Attack', 'Armor Break Attack', 'Attack Break Attack', 'Power Break Attack', 'Charge', 'Summon Ally', 'Heal'] 
+      %tr
+        %td
+          = label :character, :action_2_name, '2nd Action Name'
+        %td
+          = text_field :character, 'action_2_name'
+      %tr
+        %td
+          = label :character, :action_2_flavor, '2nd Action Description'
+        %td
+          = text_field :character, 'action_2_flavor'
+      %tr
+        %td
+          = label :character, :action_2_rules, '2nd Action Type'
+        %td
+          = select :character, :action_2_rules, ['Accurate Attack', 'Powerful Attack', 'Reckless Attack', 'Overwhelming Attack', 'Focusing Action', 'Defense Boost', 'Attack Boost', 'Armor Boost', 'Power Boost', 'Poisoning Attack', 'Silencing Attack', 'Confusing Attack', 'Locking Attack', 'Guard Break Attack', 'Armor Break Attack', 'Attack Break Attack', 'Power Break Attack', 'Charge', 'Summon Ally', 'Heal'] 
+      %tr
+        %td
+          = label :character, :action_3_name, '3rd Action Name'
+        %td
+          = text_field :character, 'action_3_name'
+      %tr
+        %td
+          = label :character, :action_3_flavor, '3rd Action Description'
+        %td
+          = text_field :character, 'action_3_flavor'
+      %tr
+        %td
+          = label :character, :action_3_rules, '3rd Action Type'
+        %td
+          = select :character, :action_3_rules, ['Accurate Attack', 'Powerful Attack', 'Reckless Attack', 'Overwhelming Attack', 'Focusing Action', 'Defense Boost', 'Attack Boost', 'Armor Boost', 'Power Boost', 'Poisoning Attack', 'Silencing Attack', 'Confusing Attack', 'Locking Attack', 'Guard Break Attack', 'Armor Break Attack', 'Attack Break Attack', 'Power Break Attack', 'Charge', 'Summon Ally', 'Heal'] 
+      %tr
+        %td
+          = label :character, :action_4_name, '4th Action Name'
+        %td
+          = text_field :character, 'action_4_name'
+      %tr
+        %td
+          = label :character, :action_4_flavor, '4th Action Description'
+        %td
+          = text_field :character, 'action_4_flavor'
+      %tr
+        %td
+          = label :character, :action_4_rules, '4th Action Type'
+        %td
+          = select :character, :action_4_rules, ['Accurate Attack', 'Powerful Attack', 'Reckless Attack', 'Overwhelming Attack', 'Focusing Action', 'Defense Boost', 'Attack Boost', 'Armor Boost', 'Power Boost', 'Poisoning Attack', 'Silencing Attack', 'Confusing Attack', 'Locking Attack', 'Guard Break Attack', 'Armor Break Attack', 'Attack Break Attack', 'Power Break Attack', 'Charge', 'Summon Ally', 'Heal'] 
+
+      %tr
+        %td
+          = label :character, :main_image, 'URL for Character Image'
+        %td
+          = text_field :character, 'main_image'
+      %tr
+        %td
+          = label :character, :summon_name, 'Name for Summoned Ally (if applicable)'
+        %td
+          = text_field :character, 'summon_name'
+      %tr
+        %td
+          = label :character, :summon_picture, 'URL for picture of Summoned Ally (if applicable)'
+        %td
+          = text_field :character, 'summon_picture'
+      %tr
+        %td
+          = label :character, :summon_attack, 'Description of Attack for Summoned Ally (if applicable)'
+        %td
+          = text_field :character, 'summon_attack'
+
+  = submit_tag 'Update Character'

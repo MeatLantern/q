@@ -1,0 +1,31 @@
+%h1 Admin User Controls
+
+%h2 Admin Rules
+%p
+	1. On this page you can delete users, as well as add or remove Admin Access.
+%p
+	2. DO NOT Grant Admin Access unless you have the express permission of the head admin. If you wish to grant another user Admin Access, contact the Head Admin at transformation-arena-admin@gmail.com
+%p
+	3. If you wish to remove Admin Access from a User, please contact the head admin at transformation-arena-admin@gmail.com first. 
+%p
+	4. If you need to delete a User, you MUST delete any games in which they are participating first. Click on "Game Admin Controls" to see the list of current games, the players, and a delete button. The player should only be in one game at a time, but ensure all games featuring the player (should a glitch occur and they have multiple games in existence) have been deleted before deling a user. Do NOT delete a User without a very good reason. Contact the head admin at transformation-arena-admin@gmail.com if you have any questions.
+
+%table#games
+	%thead
+		%tr
+			%th Username
+			%th Email
+			%th Current Game
+			%th Admin Status
+			%th Delete
+	%tbody
+		- @users.each do |user|
+			%tr
+				%td= user.username
+				%td= user.email
+				%td= user.currentgame
+				-if !user.is_admin
+					%td= link_to("add", users_add_admin_path(:id => user.id), method: :post, data: { :confim => "Add #{user.username} as an admin?"})
+				-else
+					%td= link_to("remove", users_remove_admin_path(:id => user.id), method: :post, data: { :confim => "Remove #{user.username} as an admin?"})
+				%td= link_to("delete", user, method: :delete, data: { :confirm => "Delete #{user.username}?"})

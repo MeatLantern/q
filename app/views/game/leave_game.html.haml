@@ -1,0 +1,10 @@
+%h2 Are You Sure You Want to Quit the Current Game? 
+%h3 It can NOT be returned to if you quit.
+
+= form_tag 'game/destroy_current_game' do
+  %p
+    = radio_button_tag 'Action', 1
+    = label_tag :choice, 'Yes'
+    = radio_button_tag 'Action', 2
+    = label_tag :choice, 'No'
+  = submit_tag "Leave Game?"

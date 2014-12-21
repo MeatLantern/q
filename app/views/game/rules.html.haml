@@ -1,0 +1,104 @@
+-# in app/views/games/rules.html.haml
+= flash[:warning]
+%h1 About
+%p
+  Welcome to Tranformation-Arena! In this game you can choose your hero and engage in tactical turn-based combat against the computer or another player! When a character takes enough damage, they begin to transform into something else. For example, a knight could become a princess, or a soldier could become a dumb bimbo! Players are free to create and customize their own characters or simply play the characters others have made. Have fun!
+%h1 Rules
+%p
+  %h3 Starting a Game Against the Computer
+  %p
+    1. On any page, you'll see the "Start a New Single Player Game" Button, or at the bottom of this Rules page. Click either button to get started.
+    %p
+      NOTE: If you are currently in a multiplayer or singleplayer game, you will NOT be able to see these buttons, nor will you be able to start a new game. Please leave any game you are currently in before trying to make a new one.
+  %p
+    2. You will be brought to the character select screen. You can view every character that has been created, including those by your fellow players! Click on the "Character Sheet" to learn more about the character's stats and abilities. Click on "Select Character" to play as that character.
+  %p
+    3. The game will then automatically send you to the game. Your opponent will be randomly selected from all characters available. Enjoy Playing the Game!
+  %p
+    4. Once the game is started, you may click "Reset Game" to restart the game, setting the game back to the beginning. You may also click "Leave Game", to quit the Single Player game, allowing you to start a new game in single player or Multiplayer.
+  %p
+    %h3 Starting A Multiplayer Game
+  %p
+    1. On any page, you'll see the "Join a Multiplayer Game" Button, or at the bottom of this Rules page. Click either button to get started.
+    %p
+      NOTE: If you are currently in a multiplayer or singleplayer game, you will NOT be able to see these buttons, nor will you be able to start a new game. Please leave any game you are currently in before trying to make a new one.
+  %p
+    2. You will be brought to the "Game Invitations Screen". From here, you can see every currently open game invite, as well as create you own. If you wish to join a previously created game, click on "Show Invite" on the game you wish to join. If you want to create your own invite, click on "Add New Invite". Either way you will be brought to the same screen.
+  %p
+    3. Now, you'll see a table with four links. The links will let you delete the invite, choose characters, or join the game. 
+    %p
+      %b Deleting the Invite: 
+      If you created the invite, you can click on this link to delete it. Note, you can NOT recover the invite if you choose to destroy it. All data on the invite will be lost. If you haven't created the invite, this action will fail.
+    %p
+      %b Join or Leave Game: 
+      If the Player 2 spot is open, you will see "Join Game". If you click it, you will join the invite, allowing you to soon face your opponent! Once you have joined, you'll notice the game will now list you as "Player 2" and the "Join Game" link will change to "Leave Game". If you click "Leave Game", you'll leave the invite and go back to the invitations screen. If the player 2 spot is already filled, it will say "Game Filled", and you must wait and see if player 2 leaves before joining the game. NOTE: If you wish to, you may choose to play as both player 1 and player 2, if you'd rather face yourself than the computer or another opponent.
+    %p
+      %b Choose Characters: 
+      You'll see two "Choose Character" links beneath Character 1 and Character 2. By clicking on these links, you'll be able to select the characters for either Player 1 or Player 2 respectively. If you aren't Player 1, you'll be unable to change Character 1, and if you aren't Player 2, you will be unable to change Character 2. Once you click on the link, you'll be brought to a large table with all of the characters available. Simply click "Select Character" to choose. It will appear on the Game Invite.
+  %p
+    3. Once the game invite has two players, and both players have chosen their characters, a button saying "Start Game?" will appear. You may need to reload the page before this button appears. To start the game, either player simply has to click this button. Once pressed, the player will be brought to the game screen and be able to play! The game invitation will be deleted, so once you start the game you will be unable to change players or characters. If your opponent has already started the game, you will be linked back to the rules page when you try to reload the page. From there simply click "Back to game", and you'll be ready to play!
+  %p
+    4. Once the game has started, simply play the game as normal. You will have to click the "Reload" button to see if your opponent has sent a message or has taken their turn. Once either player has won, you may click "reset game" to restart, restoring HP, MP, and removing all conditions. You will only be able to Restart a game once it is complete. You may leave a game at anytime, though you will NOT be able to return to the game once it is left. It's good manners to inform your opponent through the messages that you wish to leave if the game is not complete.
+
+  %p
+    %h1 Primary Game Rules
+  %p
+    Welcome to the actual game! “Duel of Champions” is a multiplayer turn-based RPG where players take on the roles of mighty heroes and villains and battle for supremacy! Upon choosing your character, you’ll see a variety of statistics and abilities. This guide will explain what all of these abilities do.
+  %p
+    %h2 Statistics
+  %p
+    Each hero has different Attributes that explain how good at fighting they are. Some fighters might hit their opponents more easily, but deal less damage. Others might be hard to kill, but have difficulty dealing damage. To represent how each fighter is different, they have different statistics. Their abilities are described below:
+  %p
+    <b>HP:</b> HP stands for “Health Points”. Your health points represent how much damage you have taken from your opponent. When your HP goes down to 0, you lose the game! HP will be reduced by enemy attacks, and it may be restored by various abilities some characters may have.
+  %p
+    <b>MP:</b> MP stands for “Mana Points”. Each hero has a variety of special attacks and abilities available to them. However, using these special attacks costs a different amount of “MP”. If the ability you’re trying to use costs more MP than you currently have, you’ll be unable to use it. MP can be restored in multiple ways, though most commonly through the “Focus” action.
+  %p
+    <b>Attack:</b> Attack governs how easy it is for your character to hit your opponent. A high attack value means you’ll hit your opponent very easily.
+  %p
+    <b>Defense:</b> Defense is the opposite of attack. Defense governs how hard it is for your opponents attacks to hit you. A hero with high defense will be very difficult to hit.
+  %p
+    <b>Power:</b> Power governs how much Damage your character does to your opponent. When you hit with an attack, your opponent will take a certain amount of damage, making them lose HP. If you have high power, your attacks will deal more damage.
+  %p
+    <b>Armor:</b> Armor is the opposite of Strength. Your Armor value is subtracted from any damage you take. While a high armor value won’t prevent your character from getting hit, instead they will not take very much damage from the attacks.
+  %p
+    %h2 Actions
+  %p
+    When it is your turn, you will have your character take an action. Actions are the core of the game. There are three actions available to all characters. Each character also has their own unique actions available. By combining the “basic” techniques with the character specific attacks, you can lead your hero to victory!
+  %p
+    <b>Attack:</b> This is the “basic attack” of the game. When you press “attack” you make an “attack roll”, and add your character’s Attack Value to it. Your opponent will roll a dice and add their defense value to it. All of these rolls are handled by the computer, you just have to click attack! If your attack value is higher than their defense, then you hit! When you hit, you deal damage to your opponent. This is another random roll, where your character’s “Power” stat is added to it. Your opponent’s “Armor” score will be subtracted from the final result, and then he’ll take damage! Attacking is a key to winning this game.
+  %p
+    <b>Guard:</b> Guard is another useful action. When you guard, you temporarily increase your Defense and Armor stats. This can be useful if, for example, you know your opponent is gearing up for a strong attack.
+  %p
+    <b>Focus:</b> This action restores some of your character’s MP. When you’re low on MP, this action will give some back so you can continue to use your character’s special techniques.
+  %p
+    %h2 Special Attacks
+  %p
+    Each character has a variety of special attacks. Every character has four special attacks. To use a special attack, simply select it like you would any other action. Each special attack has an MP cost associated with it, and if you don’t have enough MP to use the attack, it will fail. Many special attacks are not attacks at all. They may heal your character, give yourself positive conditions, or inflict negative conditions on your opponent.
+  %p
+    %h2 Conditions
+  %p
+    During the game, both you and your opponent will receive something called “conditions”. Conditions are special effects. For example, the “Attack UP” status effect will increase your character’s Attack. You can have one positive condition on your character at any time, and one negative condition as well. Many special attacks inflict conditions on yourself or your opponent. All conditions, also called “Status Effects” are temporary. They will go away with time, both the positive ones and negative ones. A list is shown here.
+  %p
+    <b>Stat UP</b>: If you have a “Stat UP” condition, than one (or more) of your statistics are currently raised. For example, if you have “Attack UP”, your attack is raised, but if you have “Defense UP”, your defense is raised instead. Any of your stats, except for HP and MP, can be affected by this condition.
+  %p
+    <b>Stat DOWN</b>: This is similar to the “Stat UP” condition. While you have a “stat Down” condition, one of your stats is currently reduced. For example, if you have “Armor DOWN”, then your armor will be reduced, allowing your opponent to damage you more easily. Typically, opponents will inflict this condition on you. Any of your stats, except for HP and MP, can be affected by this condition.
+  %p
+    <b>Silence:</b> While you have the silence condition, you may not use any of your special attacks or abilities. You can only use the “Attack”, “Guard”, and “Focus” actions.
+  %p
+    <b>Mana Lock:</b> When your character is inflicted with Mana lock, you will lose a portion of your mana every turn. For example, you may lose 10 mana every turn while you have this condition.
+  %p
+    <b>Mana Regeneration:</b> Similar to Mana lock, but instead you gain mana every turn. For example, every turn you may regain 10 mana with this condition.
+  %p
+    <b>Poison:</b> When you end a turn, you will take damage until the poison is removed.
+  %p
+    <b>Confuse:</b> When you attempt an action, there is a random chance you will either fail or do something completely different.
+  %p
+    <b>Charge:</b> The next Attack you do will deal double damage.
+  %p
+    <b>Summon:</b> Summon is a special condition. While "Summon" is active, the character has a summoned ally out on the battlefield. Every turn the summoned ally will make an attack against the opponent, dealing normal damage. Summon is a powerful effect, but since it is stil a positive condition the character cannot benefit from any other positive conditions while the summon is active.
+
+-if (session[:current_game].nil?)
+  = button_to 'Start a New Game Against the AI',  character_character_select_ai_path, :method => :get, :id => 'new_game'
+  = button_to 'Join a Multiplayer Game', invitations_screen_path, :method => :get
+-else
+  = button_to "Back To Game", game_show_path, :method => :get

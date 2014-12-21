@@ -1,0 +1,131 @@
+/* Simple CSS styling for RottenPotatoes app */
+.row {
+  padding-top: 10px;
+}
+
+.row.takeaction {
+  padding-top: 5px;
+}
+
+input[type="radio"] {
+  float: left;
+  margin-left: 5px;
+}
+
+label {
+  float: left;
+  padding-left: 15px;
+  padding-right: 5px;
+}
+
+img {
+  max-width: 90%;
+  max-height: 300px;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: White;
+  color: DarkSlateGrey;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 10pt;
+}
+div#main {
+  margin: 0;
+  padding: 0 20px 20px;
+}
+a {
+  background: transparent;
+  color: green;
+  text-decoration: underline;
+  font-weight: bold;
+}
+h1 {
+  color: green;
+  font-size: 150%;
+  font-style: italic;
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid DarkSlateGrey;
+}
+h1.title {
+  margin: 0 0 1em;
+  padding: 10px;
+  background-color: green;
+  color: white;
+  border-bottom: 4px solid gold;
+  font-size: 2em;
+  font-style: normal;
+}
+table#characters {
+  margin: 10px;
+  border-collapse: collapse;
+  width: 100%;
+  border-bottom: 2px solid black;
+}
+table#characters th {
+  border: 2px solid white;
+  font-weight: bold;
+  background-color: wheat;
+}
+table#characters th, table#characters td {
+  padding: 4px;
+  text-align: left;
+}
+table#games {
+  margin: 10px;
+  border-collapse: collapse;
+  width: 100%;
+  border-bottom: 2px solid black;
+}
+table#games th {
+  border: 2px solid white;
+  font-weight: bold;
+  background-color: wheat;
+}
+table#games th, table#games td {
+  padding: 4px;
+  text-align: left;
+}
+table#users {
+  margin: 10px;
+  border-collapse: collapse;
+  width: 100%;
+  border-bottom: 2px solid black;
+}
+table#users th {
+  border: 2px solid white;
+  font-weight: bold;
+  background-color: wheat;
+}
+table#users th, table#users td {
+  padding: 4px;
+  text-align: left;
+}
+table#game_invitations {
+  margin: 10px;
+  border-collapse: collapse;
+  width: 100%;
+  border-bottom: 2px solid black;
+}
+table#game_invitations th {
+  border: 2px solid white;
+  font-weight: bold;
+  background-color: wheat;
+}
+table#game_invitations th, table#game_invitations td {
+  padding: 4px;
+  text-align: left;
+}
+#notice, #warning {
+  background: rosybrown;
+  margin: 1em 0;
+  padding: 4px;
+}
+form label {
+  display: block;
+  line-height: 25px;
+  font-weight: bold;
+  color: green;
+}
