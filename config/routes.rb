@@ -39,7 +39,7 @@ DuelOfChampions::Application.routes.draw do
   #get "game/create"
 
   get "game/rules"
-  get "game/show"
+  #get "game/show"
   get "game/admin"
   post "game/delete_game"
   post "game/delete_all"

@@ -30,6 +30,8 @@ class GameController < ApplicationController
 
     #create_hash = {:game_name => "test", :player1 => "testUser1", :player2 => "testUser2", :player1_character => "Alice", :player2_character => "Bob", :player1_message => "Hi!", :player2_message => "Lol this game sucks", :current_turn => 1, :player1_buff => "none", :player1_buff_start => 0, :player2_buff => "Power UP", :player2_buff_start => 1, :player1_debuff => "Poison", :player1_debuff_start => 1, :player2_debuff => "None", :player2_debuff_start => 0, :p1_hp => 50, :p2_hp => 50, :p1_mp => 10, :p2_mp => 5, :game_over => false}
     #Game.create!(create_hash)
+
+
     
     test_game = Game.find_by_game_name(session[:current_game])
 
@@ -37,9 +39,6 @@ class GameController < ApplicationController
     y = User.find(x[0])
     z = y[0]
     @player_username = z["username"]
-
-
-    #binding.pry
 
     #test_game = Game.find_by_game_name("ad;lkfjad;lkfadf")
     #binding.pry
@@ -79,7 +78,7 @@ class GameController < ApplicationController
       #Format Descriptions etc
       #@player1_description = word_wrap(test_game.player1_description)
 
-      #binding.pry
+      
     end
 
   end
@@ -183,21 +182,21 @@ class GameController < ApplicationController
     current_game.player2_debuff_start = -50
 
     #Change to Previous Flavor and Previous Turn
-    current_game.flavor_message = ""
-    current_game.results_message = ""
+    current_game.flavor_message = " "
+    current_game.results_message = " "
     #Change Player 1 and Player 2 Messages
-    current_game.player1_message = ""
-    current_game.player2_message = ""
+    current_game.player1_message = " "
+    current_game.player2_message = " "
 
-    current_game.player1_last_tf = ""
-    current_game.player2_last_tf = ""
+    current_game.player1_last_tf = " "
+    current_game.player2_last_tf = " "
     current_game.player1_description = character1.description
     current_game.player2_description = character2.description
     current_game.player1_stage = 0
     current_game.player2_stage = 0
     current_game.player1_picture = character1.main_image
     current_game.player2_picture = character2.main_image
-    current_game.tf_message = ""
+    current_game.tf_message = " "
     #REMOVE THIS SOON
     #current_game.player1_debuff = "Poison"
     #current_game.player1_debuff_start = 1
@@ -256,7 +255,7 @@ class GameController < ApplicationController
 
     z.save
 
-    create_hash = {:game_name => game_name, :player1 => username, :player2 => "AI", :player1_character => character_choice, :player2_character => opponent_character.name, :player1_message => "", :player2_message => "", :current_turn => 1, :player1_buff => "None", :player1_buff_start => 0, :player2_buff => "None", :player2_buff_start => 0, :player1_debuff => "None", :player1_debuff_start => 0, :player2_debuff => "None", :player2_debuff_start => 0, :p1_hp => player_character.max_hp, :p2_hp => opponent_character.max_hp, :p1_mp => player_character.max_mp, :p2_mp => opponent_character.max_mp, :p1_guard => false, :p2_guard => false, :game_over => false, :player1_description => player_character.description, :player2_description => opponent_character.description, :player1_last_tf => "None",  :player2_last_tf => "None", :player1_stage => 0, :player2_stage => 0, :player1_picture => player_character.main_image, :player2_picture => opponent_character.main_image}
+    create_hash = {:game_name => game_name, :player1 => username, :player2 => "AI", :player1_character => character_choice, :player2_character => opponent_character.name, :player1_message => "", :player2_message => "", :current_turn => 1, :player1_buff => "None", :player1_buff_start => 0, :player2_buff => "None", :player2_buff_start => 0, :player1_debuff => "None", :player1_debuff_start => 0, :player2_debuff => "None", :player2_debuff_start => 0, :p1_hp => player_character.max_hp, :p2_hp => opponent_character.max_hp, :p1_mp => player_character.max_mp, :p2_mp => opponent_character.max_mp, :p1_guard => false, :p2_guard => false, :game_over => false, :player1_description => player_character.description, :player2_description => opponent_character.description, :player1_last_tf => "None",  :player2_last_tf => "None", :player1_stage => 0, :player2_stage => 0, :player1_picture => player_character.main_image, :player2_picture => opponent_character.main_image, :flavor_message => "", :tf_message => ""}
     Game.create!(create_hash)
 
     session[:current_game] = game_name
