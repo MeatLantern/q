@@ -15,16 +15,24 @@ DuelOfChampions::Application.routes.draw do
 
   match 'transformation/show', to: 'transformation#show', via: :get
   match 'transformation/edit', to: 'transformation#edit', via: :get
-
+  match 'transformation/show', to: 'transformation#show', via: :get
+  match 'select_num_stages', to: 'transformation#select_num_stages', via: :get
+  match 'stage_setup', to: 'transformation#stage_setup', via: :post
   match 'change_pref', to: 'invitation_preferences#change', via: :post
 
   resources :transformation
 
   match 'tf', to: 'transformation#new_tf', via: :get
 
+  match 'new_tf3', to: 'transformation#new_tf3', via: :get
+
+  match 'new_tf5', to: 'transformation#new_tf5', via: :get
+
   match 'tf/new', to: 'transformation#new_tf', via: :get
 
   match 'add_to_character', to: 'transformation#add_to_character', via: :post
+  match 'add_to_character3', to: 'transformation#add_to_character3', via: :post
+  match 'add_to_character5', to: 'transformation#add_to_character5', via: :post
 
   get "transformation/new_tf"
 

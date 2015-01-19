@@ -1,0 +1,212 @@
+%h1 Set Transformation Information
+= flash[:error]
+%p
+  %h3 Set Transformation Information/Rules
+  %p
+    1. You must fill in all of the below data.  Nothing can be left blank. It is suggested to copy and paste answers you wish to re-use. It is also suggested to write these descriptions in a separate text/word file. For example, if you dont' want to change the Character Description with every step, the best solution would be to copy the character description from one stage and post it into the other one.
+  %p
+    2. Each stage represents 10% of the character's current health. For example, at 90% health the information from stage 1 is displayed. At 10% health, the information from stage 9 is displayed, at 0% health the information from Stage 10 is displayed (etc)
+  %p
+    3. The "Transformation Description" is a short explanation of what transformations have happened since the last stage. For example, in a Male to Female TF, one such description might be "Bob's shoulders cave in, giving a more feminine body structure". They can be as long and detailed or as brief as you like.
+  %p
+    4. "Character Description" is the longer explanation of the character, their state of mind, their backstory etc. These can stay static, or can change to reflect the character's changing mind, history, and body. These can be as long as you like or as short. A good description should be about a paragraph. As an example for a bimbo tf, "Bob is a policeman." might be the initial description, and "Bobbi is, like, the sexiest bimbo ever!" might be the character description at stage 10. Note: since these tend to be longer and recquire more effort, you're in no way recquired to write them. However, you must put something in the blank, even if it's a single letter.
+  %p
+    5. "Url for Stage X Picture" is a URL for a picture. You may wish to include pictures for your character's transformation. For exmaple, if Bob is meant to be a Male to Female Bimbo Tf, you might have the picture for stage 1 be a normal male, for stage 5 be a realtively normal female, and stage 10 to be a full bimbo. If you don't wish to include pictures for your character, simply input any text you like. The text will displayed instead of the picture. For example, if you have no pictures for Bob, you could instead write "No Pictures" and that text would be displayed.
+  %p
+    6. TF Tags: The last step in character creation is to set up the TF Tags. These Tags allow players to search for your character more quickly and easily. For definitions of the various tags, you can click the link below. To select a tag, simply click on the checkbox. For example, you might have a TF featuring Bob. Bob is originally a caucasian male, and transforms into an African American Bimbo Girl. Bob's TF descriptions feature foul language and some sexual details, so Bob should check the boxes for "Male to Female", "Race Change", "Bimbo", and "Adult". 
+
+= link_to 'Tag Descriptions',  tf_tag_descriptions_path
+
+%h2 Transformations For:
+= @character_name
+
+= form_tag add_to_character5_path(:character_name => @character_name) do
+  %table.table
+    %thead
+      %tr
+        %th Attribute
+        %th Value
+    %tbody
+      %tr
+        %td
+          = label :transformation, :stage1_tf_description, 'Stage 1 Transformation Description'
+        %td
+          = text_field :transformation, 'stage1_tf_description'
+      %tr
+        %td
+          = label :transformation, :stage1_character_description, 'Stage 1 Character Description'
+        %td
+          = text_area :transformation, 'stage1_character_description', :size => "40x4"
+      %tr
+        %td
+          = label :transformation, :stage1_tf_picture, 'URL for Stage 1 Picture'
+        %td
+          = text_field :transformation, 'stage1_tf_picture'
+      %tr
+        %td
+          = label :transformation, :stage2_tf_description, 'Stage 2 Transformation Description'
+        %td
+          = text_field :transformation, 'stage2_tf_description'
+      %tr
+        %td
+          = label :transformation, :stage2_character_description, 'Stage 2 Character Description'
+        %td
+          = text_area :transformation, 'stage2_character_description', :size => "40x4", :size => "40x4"
+      %tr
+        %td
+          = label :transformation, :stage2_tf_picture, 'URL for Stage 2 Picture'
+        %td
+          = text_field :transformation, 'stage2_tf_picture'
+      %tr
+        %td
+          = label :transformation, :stage3_tf_description, 'Stage 3 Transformation Description'
+        %td
+          = text_field :transformation, 'stage3_tf_description'
+      %tr
+        %td
+          = label :transformation, :stage3_character_description, 'Stage 3 Character Description'
+        %td
+          = text_area :transformation, 'stage3_character_description', :size => "40x4", :size => "40x4"
+      %tr
+        %td
+          = label :transformation, :stage3_tf_picture, 'URL for Stage 3 Picture'
+        %td
+          = text_field :transformation, 'stage3_tf_picture'
+      %tr
+        %td
+          = label :transformation, :stage4_tf_description, 'Stage 4 Transformation Description'
+        %td
+          = text_field :transformation, 'stage4_tf_description'
+      %tr
+        %td
+          = label :transformation, :stage4_character_description, 'Stage 4 Character Description'
+        %td
+          = text_area :transformation, 'stage4_character_description', :size => "40x4"
+      %tr
+        %td
+          = label :transformation, :stage4_tf_picture, 'URL for Stage 4 Picture'
+        %td
+          = text_field :transformation, 'stage4_tf_picture'
+      %tr
+        %td
+          = label :transformation, :stage5_tf_description, 'Stage 5 Transformation Description'
+        %td
+          = text_field :transformation, 'stage5_tf_description'
+      %tr
+        %td
+          = label :transformation, :stage5_character_description, 'Stage 5 Character Description'
+        %td
+          = text_area :transformation, 'stage5_character_description', :size => "40x4"
+      %tr
+        %td
+          = label :transformation, :stage5_tf_picture, 'URL for Stage 5 Picture'
+        %td
+          = text_field :transformation, 'stage5_tf_picture'
+      %tr
+        %td
+          = label :transformation, :is_adult, 'Contains Adult Content?'
+        %td 
+          = check_box :transformation, 'is_adult'
+      %tr
+        %td
+          = label :transformation, :is_M2F, 'Contains Male to Female Transformation?'
+        %td 
+          = check_box :transformation, 'is_M2F'
+      %tr
+        %td
+          = label :transformation, :is_F2M, 'Contains Female to Male Transformation?'
+        %td 
+          = check_box :transformation, 'is_F2M'
+      %tr
+        %td
+          = label :transformation, :is_race_change, 'Contains Race Change?'
+        %td 
+          = check_box :transformation, 'is_race_change'
+      %tr
+        %td
+          = label :transformation, :is_age_reg, 'Contains Age Regression?'
+        %td 
+          = check_box :transformation, 'is_age_reg'
+      %tr
+        %td
+          = label :transformation, :is_age_pro, 'Contains Age Progression?'
+        %td 
+          = check_box :transformation, 'is_age_pro'
+      %tr
+        %td
+          = label :transformation, :is_furry, 'Contains Furry Transformation?'
+        %td 
+          = check_box :transformation, 'is_furry'
+      %tr
+        %td
+          = label :transformation, :is_animal, 'Contains Animal Transformation?'
+        %td 
+          = check_box :transformation, 'is_animal'
+      %tr
+        %td
+          = label :transformation, :is_futa, 'Contains Futanari/Hermaphrodite?'
+        %td 
+          = check_box :transformation, 'is_futa'
+      %tr
+        %td
+          = label :transformation, :is_mind, 'Contains Mental Change?'
+        %td 
+          = check_box :transformation, 'is_mind'
+      %tr
+        %td
+          = label :transformation, :is_bdsm, 'Contains BDSM or Latex/Rubber Content?'
+        %td 
+          = check_box :transformation, 'is_bdsm'
+      %tr
+        %td
+          = label :transformation, :is_pregnant, 'Contains Pregnancy?'
+        %td 
+          = check_box :transformation, 'is_pregnant'
+      %tr
+        %td
+          = label :transformation, :is_inanimate, 'Contains Inanimate Transformation?'
+        %td 
+          = check_box :transformation, 'is_inanimate'
+      %tr
+        %td
+          = label :transformation, :is_growth, 'Contains Growth Transformation?'
+        %td 
+          = check_box :transformation, 'is_growth'
+      %tr
+        %td
+          = label :transformation, :is_shrink, 'Contains Shrinking Transformation?'
+        %td 
+          = check_box :transformation, 'is_shrink'
+      %tr
+        %td
+          = label :transformation, :is_weight_gain, 'Contains Weight Gain?'
+        %td 
+          = check_box :transformation, 'is_weight_gain'
+      %tr
+        %td
+          = label :transformation, :is_fantasy, 'Contains Mythical/Fantasy TF?'
+        %td 
+          = check_box :transformation, 'is_fantasy'
+      %tr
+        %td
+          = label :transformation, :is_robot, 'Contains Robots or Sci Fi?'
+        %td 
+          = check_box :transformation, 'is_robot'
+      %tr
+        %td
+          = label :transformation, :is_bimbo, 'Contains Bimbos?'
+        %td 
+          = check_box :transformation, 'is_bimbo'
+      %tr
+        %td
+          = label :transformation, :is_monster_girl, 'Contains Monster Girls?'
+        %td 
+          = check_box :transformation, 'is_monster_girl'
+      %tr
+        %td
+          = label :transformation, :is_bizarre, 'Contains Bizarre TF / Other?'
+        %td 
+          = check_box :transformation, 'is_bizarre'
+
+
+  = submit_tag 'Create Transformations'
