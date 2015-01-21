@@ -135,7 +135,7 @@ class Transformation < ActiveRecord::Base
   		if(game.player1_stage == 0)
   			recent_tf = recent_tf + "#{game.player1_character} has turned back to normal!"
   		else
-  			recent_tf = recent_tf + game.player1_last_tf + " "
+  			recent_tf = recent_tf + game.player1_last_tf + " <br> <br>" 
   		end
   	end
 
@@ -143,7 +143,7 @@ class Transformation < ActiveRecord::Base
 		if(game.player2_stage == 0)
   			recent_tf = recent_tf + "#{game.player2_character} has turned back to normal!"
   		else
-  			recent_tf = recent_tf + game.player2_last_tf + " "
+  			recent_tf = recent_tf + game.player2_last_tf
   		end 
   	end  	
 
