@@ -10,7 +10,128 @@ class TransformationController < ApplicationController
 	end
 
 	def auto_write
+
+		create_hash = {}
+		transformation = params["transformation"]
+		tf = Array.new(10) {|e| e = ""}
+		char = Array.new(4) {|e| e = ""}
+		if(transformation["is_M2F"])
+			results = Transformation::auto_write_tf_text("m2f", params["character_name"])
+			i = 0
+			tf.each do |tf_text|
+				tf_text = tf_text + results[i] + "<br>"
+				i = i + 1
+			end
+			results = Transformation::auto_write_char_text("m2f", params["character_name"])
+			i = 0
+			char.each do |char_text|
+				char_text = char_text + results[i] + "<br>"
+			   i = i + 1
+			end
+			create_hash{:is_M2F => true}
+		end if
+		if(transformation["is_F2M"])
+			results = Transformation::auto_write_tf_text("f2m", params["character_name"])
+			i = 0
+			tf.each do |tf_text|
+				tf_text = tf_text + results[i] + "<br>"
+				i = i + 1
+			end
+			results = Transformation::auto_write_char_text("f2m", params["character_name"])
+			i = 0
+			char.each do |char_text|
+				char_text = char_text + results[i] + "<br>"
+			   i = i + 1
+			end
+			create_hash{:is_F2M => true}
+		end if
+		if(transformation["is_age_reg"])
+			results = Transformation::auto_write_tf_text("age_reg", params["character_name"])
+			i = 0
+			tf.each do |tf_text|
+				tf_text = tf_text + results[i] + "<br>"
+				i = i + 1
+			end
+			results = Transformation::auto_write_char_text("age_reg", params["character_name"])
+			i = 0
+			char.each do |char_text|
+				char_text = char_text + results[i] + "<br>"
+			   i = i + 1
+			end
+			create_hash{:is_age_reg => true}
+		end if
+		if(transformation["is_Furry"])
+			results = Transformation::auto_write_tf_text("furry", params["character_name"])
+			i = 0
+			tf.each do |tf_text|
+				tf_text = tf_text + results[i] + "<br>"
+				i = i + 1
+			end
+			results = Transformation::auto_write_char_text("furry", params["character_name"])
+			i = 0
+			char.each do |char_text|
+				char_text = char_text + results[i] + "<br>"
+			   i = i + 1
+			end
+			create_hash{:is_Furry => true}
+		end if
+		if(transformation["is_Inanimate"])
+			results = Transformation::auto_write_tf_text("inanimate", params["character_name"])
+			i = 0
+			tf.each do |tf_text|
+				tf_text = tf_text + results[i] + "<br>"
+				i = i + 1
+			end
+			results = Transformation::auto_write_char_text("inanimate", params["character_name"])
+			i = 0
+			char.each do |char_text|
+				char_text = char_text + results[i] + "<br>"
+			   i = i + 1
+			end
+			create_hash{:is_Inanimate => true}
+		end if
+
 		
+		create_hash[:character_name] = params["character_name"]
+		create_hash[:stage1_tf_description] = tf[0]
+		create_hash[:stage1_character_description] = char[0]
+		create_hash[:stage1_tf_picture] = "No Picture"
+		create_hash[:stage2_tf_description] = tf[1]
+		create_hash[:stage2_character_description] = char[0]
+		create_hash[:stage2_tf_picture] = "No Picture"
+		create_hash[:stage3_tf_description] = tf[2]
+		create_hash[:stage3_character_description] = char[1]
+		create_hash[:stage3_tf_picture] = "No Picture"
+		create_hash[:stage4_tf_description] = tf[3]
+		create_hash[:stage4_character_description] = char[1]
+		create_hash[:stage4_tf_picture] = "No Picture"
+		create_hash[:stage5_tf_description] = tf[4]
+		create_hash[:stage5_character_description] = char[1]
+		create_hash[:stage5_tf_picture] = "No Picture"
+		create_hash[:stage6_tf_description] = tf[5]
+		create_hash[:stage6_character_description] = char[2]
+		create_hash[:stage6_tf_picture] = "No Picture"
+		create_hash[:stage7_tf_description] = tf[6]
+		create_hash[:stage7_character_description] = char[2]
+		create_hash[:stage7_tf_picture] = "No Picture"
+		create_hash[:stage8_tf_description] = tf[7]
+		create_hash[:stage8_character_description] = char[2]
+		create_hash[:stage8_tf_picture] = "No Picture"
+		create_hash[:stage9_tf_description] = tf[8]
+		create_hash[:stage9_character_description] = char[3]
+		create_hash[:stage9_tf_picture] = "No Picture"
+		create_hash[:stage10_tf_description] = tf[9]
+		create_hash[:stage10_character_description] = char[3]
+		create_hash[:stage10_tf_picture] = "No Picture"
+
+		new_tf = Transformation.create!(create_hash)
+		character = Character.find_by_name(params["character_name"])
+		character.transformation = new_tf
+		character.save
+		new_tf.save
+
+		redirect_to transformation_edit_path(:character_name => params["character_name"])
+
 	end
 
 	def select_num_stages

@@ -32,7 +32,7 @@
       = submit_tag 'Select Number of Stages'
 
 %h2 Generic Writing Segments
-This option allows you to start off your character's Transformation with a lot of text already written. This text is meant to be more of a start point, and will likely not fit your character concept perfectly, if at all. The generic written segments cover a few of the more popular TF genres, but will not cover all of them. If you choose this option, you will be brought to the update Transformation page for your character. Once you are done modifying the text, please place any additional TF Tags on the character. The assumptions for each generic TF are as follows:
+This option allows you to start off your character's Transformation with a lot of text already written. This text is meant to be more of a start point, and will likely not fit your character concept perfectly, if at all. The generic written segments cover a few of the more popular TF genres, but will not cover all of them. If you choose this option, you will be brought to the update Transformation page for your character. There will be 10 stages written for your character. It mainly writes the TF Descriptions. Character descriptions are provided, though they are very simple. It features no pictures, placing "No Picture" for the URL. You may select multiple of the options below and they will be combined, though since the text is simply added together, it is possible the final result won't make a lot of sense. Once you are done modifying the text, please place any additional TF Tags on the character. The assumptions for each generic TF are as follows:
 %p
   %h3 Assumptions
   %p
@@ -43,13 +43,13 @@ This option allows you to start off your character's Transformation with a lot o
       "Girly" woman with a pink dress and long hair to "manly" guy with a Red Shirt and short hair.
   %p
     %h4 Furry: 
-      Furry Anthro, has fur, no animal specified. You must replace the parts that say [INSERT ANIMAL HERE] with the animal of choice. The Furry subtype can also be farily easily modified into a full Animal TF.
+      Furry Anthro, has fur, no animal specified. You must replace the parts that say [INSERT ANIMAL HERE] with the animal of choice. The Furry subtype can also be farily easily modified into a full Animal TF. Character is Male.
   %p
     %h4 Age Regression: 
       Starts with an approximately 35 Year old Woman, ends with a 4 Year old girl.
   %p
     %h4 Inanimate: 
-      Man with T-shirt and Pants to "Girly" woman with long hair and a pink dress.
+      Turned into a stone statue, saluting their opponent. Character is Male.
 
   %p
     For 
@@ -73,8 +73,18 @@ This option allows you to start off your character's Transformation with a lot o
               = check_box :transformation, 'is_F2M'
           %tr
             %td
-              = label :transformation, :is_furry, 'Furry/Anthro Transformation'
+              = label :transformation, :is_age_reg, 'Age Regression Transformation'
             %td 
-              = check_box :transformation, 'is_F2M'
-      = submit_tag 'Select Number of Stages'
+              = check_box :transformation, 'is_age_reg'
+          %tr
+            %td
+              = label :transformation, :is_Furry, 'Furry/Anthro Transformation'
+            %td 
+              = check_box :transformation, 'is_Furry'
+          %tr
+            %td
+              = label :transformation, :is_Inanimate, 'Inanimate Transformation'
+            %td 
+              = check_box :transformation, 'is_Inanimate'
+      = submit_tag 'Auto Generate Writing'
 

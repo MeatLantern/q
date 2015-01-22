@@ -221,7 +221,7 @@ class Transformation < ActiveRecord::Base
       return tf_tags
   end
 
-  def Transformation::auto_write(tag, character_name)
+  def Transformation::auto_write_tf_text(tag, character_name)
     results = []
     if (tag == "m2f")
       results[0] = "#{character_name} feels their body begin to change. He loses a little bit of his height, and his arms, legs, and shoulders begin to slim down slightly. His hair grows in length a little bit."
@@ -234,9 +234,83 @@ class Transformation < ActiveRecord::Base
       results[7] = "#{character_name} changes once again. His manhood has now completely disappeared, replaced with a womanly slit. He is now truly a she. She possesses a very girly and feminine body. However, her changes aren’t over yet. Her clothing is still changing. Her pants are slowly combining into one giant pant leg, and changing color as well. Her red shirt is becoming more pink by the second."
       results[8] = "While #{character_name} is now fully a woman physically, his clothes are now adjusting to his new girly form. His pants had already fused into one long pant leg, but now it is shortening, forming a frilly skirt. Its color is brightening, changing closer to pink. Her hair changes styles, becoming incredibly feminine."
       resuts][9] = "The transformation is now complete. Nothing manly remains of #{character_name}. Her clothes have changed further, becoming an adorable and incredibly feminine pink dress. She now wears beautiful make-up, and looks about ready to visit a royal ball. She is completely a girl now, and has lost the match!"
+    elsif (tag == "f2m")
+      results[0] = "#{character_name} feels a wave of magic overcome her. Her shoulders get a tiny bit wider, as her hips start to narrow slightly. She grows a little larger in height, only about an inch. Still, she’s clearly female, only a tiny bit manlier than she was before."
+      results[1] = "#{character_name} begins to change once again. Her hair becomes a little bit shorter, as her shoulders once again expand. Her face looks a little bit less delicate, as her waist begins to widen. She’s still clearly a woman, but with each change she’s looking more and more manly with each moment."
+      results[2] = "#{character_name} changes once again. Her hair becomes much shorter, though it still retains a feminine style. Oddly enough, an Adam’s Apple appears near her throat, though her neck still appears thin and feminine. Meanwhile, her chest expands and her breasts begin to very slowly deflate, almost like a balloon."
+      results[3] = "#{character_name} changes further. Her breasts continue to grow smaller, while her waist widens. She’s losing her hourglass figure, as her shoulders grow a little bit larger. Her face begins to get thicker, looking less delicate with each passing moment. Her biceps have grown as well."
+      results[4] = "#{character_name} begins to feel a small pressure near her womanhood. It still feels normal but…something’s a little strange. Her breasts continue to shrink, while her hips narrow. Her hair is getting shorter as well. From first glance, she’d be very androgynous. Few could tell her gender exactly, though she is still female."
+      results[5] = "#{character_name}’s chest continues to bulk up, while her hips narrow once again. By now, with her figure most might assume she’s a man, yet her very tiny breasts and womanhood remain. The pressure continues to increase though, almost like something might want to burst out. Her hair is now quite short, and cut in a slightly more masculine style."
+      results[6] = "#{character_name} feels the pressure intensify in her womanhood. In mere moments something might burst out, and with her new fully masculine face she is pretty certain as to what it will be. Her arms begin to bulk up, as do her legs. She no longer looks slender and feminine…in fact, she looks pretty manly."
+      results[7] = "For #{character_name}, the biggest change has finally come. Her breasts finally meld into her skin, becoming manly pecs. Out of her vagina a manhood has grown. With her masculine figure and hair, she is clearly a man now. However, her clothes remain rather feminine."
+      results[8] = "#{character_name} may be a man, but his clothing is still rather feminine, with a pink low cut dress, pink panties and a pink bra. The bra simply disappears, while his panties slowly morph into red boxers. His pink dress separates in two, forming a pink shirt and a pink skirt. Both of their colors are darkening. If he loses any more, his transformation will be complete!"
+      resuts][9] = "#{character_name} is finally done transforming. His pink shirt has become red, while his pink skirt has become simple kakhi shorts. He has short, well-groomed hair styled in a masculine fashion, and with the new clothes looks completely normal. He is now a man forever more!”"
+    elsif (tag == "age_reg")
+      results[0] = "#{character_name} feels her body begin to change. She begins to lose a little bit of height, while some of the small wrinkles on her body begin to disappear. However, she still appears to be mostly the same, only a tad shorter. While she used to be about 35, she looks a little closer to 33 now."
+      results[1] = "#{character_name} feels another change come in. She loses even more height this time, about 3 inches or so. As she loses her height, some of her memories seem to just…disappear. In fact, it’s like the last few years of her life never happened! Still, she’s close to the same age at least…"
+      results[2] = "#{character_name} continues to lose some of their age. Once again she loses some height, a few inches or so. However, by now some other traits are changing. Her breasts are beginning to shrink. Her face appears a little soft, having lost some of the challenges of her life. She appears to be about 25."
+      results[3] = "#{character_name} She loses another inch or so of height. Meanwhile, she seems more…innocent than before. Her skin is clearer, she has a larger smile…it’s as if she has forgotten some of the difficulties of her life. She appears slightly more fit as well, and looks to be about 20 now."
+      results[4] = "#{character_name} no longer looks like she would be going to college…instead she appears to be in high school. Unlike before, she now wears her hair in a ponytail. She has lost a good bit of height, and embarrassingly enough a bit of breast size as well. Meanwhile, her mind seems to be changing…she’s acting far more immature than before."
+      results[5] = "#{character_name} she continues to lose height at a rapid rate. Her breasts have become much smaller now. She seems oddly more cheerful as well. She no longer looks like she should be in high school, she looks about 15 years old."
+      results[6] = "#{character_name} loses even more of her age. As she gets younger and younger, her height is almost exponentially decreasing. She seems far more distracted than before, and it seems more like she wants to play around than win this fight. At only 11 years old, she’s very energetic."
+      results[7] = "#{character_name} is losing more age by the second. She appears to be only 8 years old, and to be frank is pretty adorable. She’s far shorter, lacks any real secondary sexual characteristics, and seems incredibly distracted."
+      results[8] = "#{character_name} is only about 6 years old now. Without any real maturity, she seems to be somewhat selfish, but is very kind at heart. She loves princesses and rainbows and unicorns above all else…and if she loses any more, she’ll be stuck as a 4 year old!"
+      resuts][9] = "#The transformation of {character_name} is complete. She is now about 4 years old, unable to defend herself and still incredibly immature, though she is very curious about the world. She has lost the match, and will have to grow up again before she could fight anyone."
+    elsif (tag == "furry")
+      results[0] = "#{character_name} begins to change. Her hand begins to itch for some reason, and when he looks down it appears a small amount of hair is growing on it! Not only that, but fur seems to be growing out on his legs as well. It’s the same color as a [INSERT ANIMAL HAIR COLOR HERE], oddly enough…"
+      results[1] = "For #{character_name}, the hair on his hands and legs is only growing. It seems to be creeping up his forearm, almost like an infection. His ears begin to feel strange, almost like they’re hot, while the area around his back feels strange as well. Actually, it doesn’t really look like hair, it looks more like the fur of a [INSERT ANIMAL HERE]!"
+      results[2] = "#{character_name} changes further. The fur continues to grow up his arms and legs. Not only that, but he nearly trips as his feet begin to morph. They curl in pain as they slowly change into paws, similar to a [INSERT ANIMAL HERE!]. his shoes naturally break during the transformation, though thankfully he can still stand normally."
+      results[3] = "#{character_name} transforms even more. As the fur continues to creep up his body, he can’t help but groan for a moment. His body feels much warmer than before, and he almost involuntarily takes his shirt off. He can’t help but gasp as he sees some of his chest is covered in fur, just like a [INSERT ANIMAL HERE!]"
+      results[4] = "#{character_name} feels incredibly strange as he changes more. He sees a large flash, and when he can finally see again his eyes have changed to that of a [INSERT ANIMAL HERE!]. His ears that were burning earlier burn far more this time, and meld into the side of his head. After a shrot moment of horror, his ears return to him. However, they are now at the top of his head, just like a [INSERT ANIMAL HERE!]. Despite this, he can hear perfectly fine."
+      results[5] = "Much of #{character_name}’s body is now covered in fur, just like a [INSERT ANIMAL HERE!] . Not only that, but the pain from earlier is now focused into has hands, which become more paw-like. They still retain full human use, fortunately enough. #{character_name} is looking more and more like a [INSERT ANIMAL HERE] as he transforms…"
+      results[6] = "“#{character_name} continues to transform. His nose changes shape, now looking more like the nose of a [INSERT ANMIAL HERE]. It looks kind of bizarre to have the animal nose on a human face. Meanwhile, a tail shoots out of his back, just like the tail of a [INSERT ANIMAL HERE]. Soon enough, #{character_name} will be fully transformed…"
+      results[7] = "#{character_name} changes even further. By now, almost his entire body is completely covered in the fur of a [INSERT ANIMAL HERE]. He looks like a fusion of man and beast, except for the head…but even that’s beginning to change. It is starting to elongate…soon enough, it might form into a muzzle, just like a [INSERT ANIMAL HERE]"
+      results[8] = "#{character_name}’s transformation is almost complete. His face has formed a muzzle, just like a [INSERT ANIMAL HERE]. However, there are still some spots of human skin remaining. If he loses a little more, he will completely turn into a half-man, half-beast creature."
+      resuts][9] = "#{character_name} has completed his transformation. He has completely transformed into a fusion of man and beast, with a [INSERT ANIMAL HERE]-like muzzle, as well as fur covering his whole body. He has been defeated!"
+    elsif (tag == "inanimate")
+      results[0] = "#{character_name} begins to change slightly. His feet start to feel a little bit stiff, though he can still move them fairly easily. Not only are they stiff, but they feel a bit numb as well…regardless, he’s still at full fighting capacity. If he could see though, he’d notice his feet are now covered in small speckles of marble…"
+      results[1] = "#{character_name} can feel his feet stiffen up far more now. They can barely move, almost as if they’re completely stuck in place. Not only that, but his feet feel far heavier than before. Oddly enough he can still fight well enough. In panic, he pulls off his shoes, revealing that his feet are now made of white marble…and that the white marble is slowly crawling his ankles."
+      results[2] = "#{character_name} continues his transformation. The white marble continues to crawl up his legs, now going almost up to his shins. He tries to shake it off, but it’s not simply growing on the skin of his leg…his whole leg is changing. It’s becoming solid marble, which makes it harder to move every second. If he loses this fight, he’ll likely become just a simple statue…"
+      results[3] = "#{character_name} transforms even further. By now, his legs are almost completely marble. He can barely move them. They begin to shift in place, forcing him to stand at attention, like a soldier saluting his superior. He frantically tries to break free from the position, but is unable to."
+      results[4] = "#{character_name} screams for a moment as more of himself turns into marble. His legs are completely stone now, and the marble has managed to reach just above his waist. He can’t move his legs in the slightest. Scarily enough, it doesn’t feel painful…in fact, he can’t feel it at all. He can’t afford to lose more now…"
+      results[5] = "#{character_name} can’t resist the transformation anymore. By now, everything up to his belly button is pure marble. Each movement is harder and harder to make. The rest of his body feels almost intensely hot…or more accurately, his marble body is cold. It’s so cold he can’t really feel it."
+      results[6] = "#{character_name} transformation continues once again. The marble has managed to grow much further, now reaching up to his shoulders. His entire body is almost unable to move, still standing at attention like a loyal soldier. His transformation is getting eerily close to completion…"
+      results[7] = "#{character_name} transformation moves even further. His arms are now fully marble, locked into a salute…it seems his opponent wanted him to be forever saluting his superior opponent. All that remains is his head and neck, still normal human flesh. But for how long?"
+      results[8] = "#{character_name} is almost completely transformed. His neck and the lower half of his face is now transformed into marble. He’s unable to speak, his lips now forever stuck in place. He can still look around, horrified that his whole body has become this white marble statue. In mere moments he may fully become a statue."
+      resuts][9] = "#{character_name} has now completely transformed. His whole body is now completely made of immovable white marble. He appears to be a statue saluting his opponent, made in unbelievable detail. His mind remains, trapped in a statue that will never be able to move. #{character_name} has lost, and will now serve as a trophy to his opponent’s victory."
     end if
 
     return results
+  end
+
+  def Transformation::auto_write_char_text(tag, character_name)
+    results = []
+    if (tag == "m2f")
+      results[0] = "#{character_name} is a fairly masculine man."
+      results[1] = "#{character_name} is a fairly girly man."
+      results[2] = "#{character_name} is androgynous, between man and woman."
+      results[3] = "#{character_name} is a fairly feminine woman."
+    elsif (tag == "f2m")
+      results[0] = "#{character_name} is a fairly feminine woman."
+      results[1] = "#{character_name} is a fairly manly woman."
+      results[2] = "#{character_name} is androgynous, between man and woman."
+      results[3] = "#{character_name} is a fairly masculine man."
+    elsif (tag == "age_reg")
+      results[0] = "#{character_name} is a middle aged woman."
+      results[1] = "#{character_name} is a young woman."
+      results[2] = "#{character_name} is young girl."
+      results[3] = "#{character_name} is barely a toddler."
+    elsif (tag == "furry")
+      results[0] = "#{character_name} is a normal human man."
+      results[1] = "#{character_name} is a human man, with some animal parts."
+      results[2] = "#{character_name} is barely human, with many animal parts."
+      results[3] = "#{character_name} is more similar to an anthro creature than a human."
+    elsif (tag == "inanimate")
+      results[0] = "#{character_name} is a normal human being."
+      results[1] = "#{character_name} is a human, though part of him is stone."
+      results[2] = "#{character_name} is more than partially turned into stone."
+      results[3] = "#{character_name} is no longer a human, now simply a statue."
+    end if
   end
 
 end
