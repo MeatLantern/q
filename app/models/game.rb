@@ -1166,7 +1166,7 @@ class Game < ActiveRecord::Base
           else
             attack_bonus = 5
             damage_bonus = 5
-            results = Game::summon_basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game)
+            results = Game::summon_basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game, active_character)
             current_game.save
           end
       return results
