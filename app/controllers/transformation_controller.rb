@@ -15,81 +15,102 @@ class TransformationController < ApplicationController
 		transformation = params["transformation"]
 		tf = Array.new(10) {|e| e = ""}
 		char = Array.new(4) {|e| e = ""}
-		if(transformation["is_M2F"])
+		if(transformation["is_M2F"] == "1")
 			results = Transformation::auto_write_tf_text("m2f", params["character_name"])
 			i = 0
 			tf.each do |tf_text|
 				tf_text = tf_text + results[i] + "<br>"
+				tf[i] = tf_text
 				i = i + 1
 			end
+			#binding.pry
 			results = Transformation::auto_write_char_text("m2f", params["character_name"])
 			i = 0
 			char.each do |char_text|
 				char_text = char_text + results[i] + "<br>"
+				char[i] = char_text
 			   i = i + 1
 			end
-			create_hash{:is_M2F => true}
-		end if
-		if(transformation["is_F2M"])
+			create_hash[:is_M2F] = true
+		else
+			create_hash[:is_M2F] = true
+		end
+		if(transformation["is_F2M"] == "1")
 			results = Transformation::auto_write_tf_text("f2m", params["character_name"])
 			i = 0
 			tf.each do |tf_text|
 				tf_text = tf_text + results[i] + "<br>"
+				tf[i] = tf_text
 				i = i + 1
 			end
 			results = Transformation::auto_write_char_text("f2m", params["character_name"])
 			i = 0
 			char.each do |char_text|
 				char_text = char_text + results[i] + "<br>"
+				char[i] = char_text
 			   i = i + 1
 			end
-			create_hash{:is_F2M => true}
-		end if
-		if(transformation["is_age_reg"])
+			create_hash[:is_F2M] = true
+		else
+			create_hash[:is_F2M] = false
+		end 
+		if(transformation["is_age_reg"] == "1")
 			results = Transformation::auto_write_tf_text("age_reg", params["character_name"])
 			i = 0
 			tf.each do |tf_text|
 				tf_text = tf_text + results[i] + "<br>"
+				tf[i] = tf_text
 				i = i + 1
 			end
 			results = Transformation::auto_write_char_text("age_reg", params["character_name"])
 			i = 0
 			char.each do |char_text|
 				char_text = char_text + results[i] + "<br>"
+				char[i] = char_text
 			   i = i + 1
 			end
-			create_hash{:is_age_reg => true}
-		end if
-		if(transformation["is_Furry"])
+			create_hash[:is_age_reg] = true
+		else
+			create_hash[:is_age_reg] = false
+		end 
+		if(transformation["is_Furry"] == "1")
 			results = Transformation::auto_write_tf_text("furry", params["character_name"])
 			i = 0
 			tf.each do |tf_text|
 				tf_text = tf_text + results[i] + "<br>"
+				tf[i] = tf_text
 				i = i + 1
 			end
 			results = Transformation::auto_write_char_text("furry", params["character_name"])
 			i = 0
 			char.each do |char_text|
 				char_text = char_text + results[i] + "<br>"
+				char[i] = char_text
 			   i = i + 1
 			end
-			create_hash{:is_Furry => true}
-		end if
-		if(transformation["is_Inanimate"])
+			create_hash[:is_furry] = true
+		else
+			create_hash[:is_furry] = false
+		end 
+		if(transformation["is_Inanimate"] == "1")
 			results = Transformation::auto_write_tf_text("inanimate", params["character_name"])
 			i = 0
 			tf.each do |tf_text|
 				tf_text = tf_text + results[i] + "<br>"
+				tf[i] = tf_text
 				i = i + 1
 			end
 			results = Transformation::auto_write_char_text("inanimate", params["character_name"])
 			i = 0
 			char.each do |char_text|
 				char_text = char_text + results[i] + "<br>"
+				char[i] = char_text
 			   i = i + 1
 			end
-			create_hash{:is_Inanimate => true}
-		end if
+			create_hash[:is_inanimate] = true
+		else
+			create_hash[:is_inanimate] = false
+		end 
 
 		
 		create_hash[:character_name] = params["character_name"]
@@ -123,12 +144,30 @@ class TransformationController < ApplicationController
 		create_hash[:stage10_tf_description] = tf[9]
 		create_hash[:stage10_character_description] = char[3]
 		create_hash[:stage10_tf_picture] = "No Picture"
+		create_hash[:is_adult] = false
+		create_hash[:is_race_change] = false
+		create_hash[:is_age_pro] = false
+		create_hash[:is_animal] = false
+		create_hash[:is_futa] = false
+		create_hash[:is_mind] = false
+		create_hash[:is_bdsm] = false
+		create_hash[:is_pregnant] = false
+		create_hash[:is_growth] = false
+		create_hash[:is_shrink] = false
+		create_hash[:is_weight_gain] = false
+		create_hash[:is_fantasy] = false
+		create_hash[:is_bimbo] = false
+		create_hash[:is_bizarre] = false
+		create_hash[:is_robot] = false
+		create_hash[:is_monster_girl] = false
 
 		new_tf = Transformation.create!(create_hash)
 		character = Character.find_by_name(params["character_name"])
 		character.transformation = new_tf
 		character.save
 		new_tf.save
+
+		#binding.pry
 
 		redirect_to transformation_edit_path(:character_name => params["character_name"])
 
