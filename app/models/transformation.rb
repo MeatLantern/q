@@ -220,4 +220,23 @@ class Transformation < ActiveRecord::Base
       tf_tags.chop!
       return tf_tags
   end
+
+  def Transformation::auto_write(tag, character_name)
+    results = []
+    if (tag == "m2f")
+      results[0] = "#{character_name} feels their body begin to change. He loses a little bit of his height, and his arms, legs, and shoulders begin to slim down slightly. His hair grows in length a little bit."
+      results[1] = "#{character_name} feels their body change even more. His hair has grown even longer, enough that he can now see some of it in between his eyes. His shoulders begin to cave in, and his hips widen slightly, giving him a more feminine appearance. His face softens a little bit. Still, he is clearly a man, albeit a fairly girly one."
+      results[2] = "#{character_name} feels their body change further. His hair grows a tad bit longer, and looks a little more feminine in shape, His shoulders cave in much more, as his waist narrows. His hips widen even further. While his manhood remains, it has shrunk down a bit. By now, he could be mistaken for a girl, but still is somewhat manly."
+      results[3] = "#{character_name} hips get even wider. His hair has grown even longer than before, and is now in a unmistakably feminine style. His body hair slowly recedes into his body, leaving him almost clean shaven from below the neck. His chest feels oddly sensitive, almost as if it is growing. Meanwhile, his manhood is shrinking more and more…he likely won’t be a man for much longer!"
+      results[4] = "#{character_name} feels themselves change. Their manhood is incredibly small, and is only shrinking as they continue to transform. Meanwhile, their chest begins to grow slightly, with the nipples specifically growing as well. Sensitive to the touch, it seems the he might have small breasts. His facial features soften, looking more feminine as well. At this point it’d be hard to tell he was a man from a quick glance, or even a long look."
+      results[5] = "#{character_name} changes even further. The completely tiny breasts begin to grow a bit larger, although they’re still quite small. His hair grows longer, now reaching the middle of his back. His face softens immensely, becoming delicate and more womanly. Even his eyes seem far more feminine than before."
+      results[6] = "#{character_name} continues to change. Their manhood is slowly being sucked completely into their body…if the changes go much further, he’ll truly be a woman. Already his body is completely unrecognizable as man. He has a petite, feminine figure with soft, slender legs and enchantingly beautiful long hair. He still possesses his manly clothing, although his red T-shirt is beginning to brighten, changing a little bit closer to pink."
+      results[7] = "#{character_name} changes once again. His manhood has now completely disappeared, replaced with a womanly slit. He is now truly a she. She possesses a very girly and feminine body. However, her changes aren’t over yet. Her clothing is still changing. Her pants are slowly combining into one giant pant leg, and changing color as well. Her red shirt is becoming more pink by the second."
+      results[8] = "While #{character_name} is now fully a woman physically, his clothes are now adjusting to his new girly form. His pants had already fused into one long pant leg, but now it is shortening, forming a frilly skirt. Its color is brightening, changing closer to pink. Her hair changes styles, becoming incredibly feminine."
+      resuts][9] = "The transformation is now complete. Nothing manly remains of #{character_name}. Her clothes have changed further, becoming an adorable and incredibly feminine pink dress. She now wears beautiful make-up, and looks about ready to visit a royal ball. She is completely a girl now, and has lost the match!"
+    end if
+
+    return results
+  end
+
 end

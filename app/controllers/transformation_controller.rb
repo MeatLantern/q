@@ -9,6 +9,10 @@ class TransformationController < ApplicationController
 
 	end
 
+	def auto_write
+		
+	end
+
 	def select_num_stages
 		@character_name = params["character_name"]
 	end

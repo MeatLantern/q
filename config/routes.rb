@@ -33,6 +33,7 @@ DuelOfChampions::Application.routes.draw do
   match 'add_to_character', to: 'transformation#add_to_character', via: :post
   match 'add_to_character3', to: 'transformation#add_to_character3', via: :post
   match 'add_to_character5', to: 'transformation#add_to_character5', via: :post
+  match 'auto_write', to: 'transformation#auto_write', via: :post
 
   get "transformation/new_tf"
 
