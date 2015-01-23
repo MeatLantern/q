@@ -310,6 +310,7 @@ class GameController < ApplicationController
     if(not x.nil?)
       y = User.find(x[0])
       z = y[0]
+      #binding.pry
       game_name = z["currentgame"]
       #binding.pry
       #binding.pry
@@ -317,7 +318,7 @@ class GameController < ApplicationController
         current_game = Game.find_by_game_name(game_name)
         if(current_game.nil?)
           #redirect_to game_game_not_found_path
-          y.currentgame = nil
+          z.currentgame = nil
           y.save
           session[:current_game] = nil
         else
