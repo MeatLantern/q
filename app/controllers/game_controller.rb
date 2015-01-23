@@ -319,7 +319,7 @@ class GameController < ApplicationController
         if(current_game.nil?)
           #redirect_to game_game_not_found_path
           z.currentgame = nil
-          y.save
+          z.save
           session[:current_game] = nil
         else
           session[:current_game] = current_game.game_name
