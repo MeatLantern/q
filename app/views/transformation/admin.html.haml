@@ -1,0 +1,18 @@
+%h1 Admin Transformation Controls
+
+=flash[:error]
+
+%table#games
+	%thead
+		%tr
+			%th Transformation Id
+			%th Character Name
+			%th View Transformation
+			%th Delete Transformation
+	%tbody
+		- @tfs.each do |tf|
+			%tr
+				%td= tf.id
+				%td= tf.character_name
+				%td= link_to "View Transformation", transformation_show_path(:name => tf.character_name), :method => :get
+				%td= link_to("delete", delete_tf_path(:id => tf.id), method: :post, data: { :confirm => "Delete Transformation?"})

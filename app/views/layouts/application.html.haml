@@ -26,6 +26,7 @@
                   = button_to "Users Admin Controls", users_admin_path, :method => :post
                   = button_to "Game Admin Controls", game_admin_path, :method => :get
                   = button_to "Character Admin Controls", character_admin_path, :method => :get
+                  = button_to "TF Admin Controls", tf_admin_path, :method => :get
                 -if (session[:current_game].nil?)
                   #single-game-button
                     = button_to 'Start Single Player Game',  character_character_select_ai_path, :method => :get, :id => 'new_game'

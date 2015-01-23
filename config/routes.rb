@@ -37,8 +37,11 @@ DuelOfChampions::Application.routes.draw do
 
   get "transformation/new_tf"
 
- 
+  match 'tf_admin', to: 'transformation#admin', via: :get
+
   match 'update_tf', to: 'transformation#update', via: :post
+
+  match 'delete_tf', to: 'transformation#delete_tf', via: :post
 
   #match 'transformation/new', to: 'transformation#new', via: :get
 

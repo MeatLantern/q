@@ -148,21 +148,29 @@
           = form_tag 'game/take_turn' do
             %p
               %attacks.theattacks
-                = label_tag :choice, 'Attack'
-                = radio_button_tag 'Action', 1
-                = label_tag :choice, 'Guard'
-                = radio_button_tag 'Action', 2
-                = label_tag :choice, 'Focus'
-                = radio_button_tag 'Action', 3
+                %p
+                  = label_tag :choice, 'Attack'
+                  = radio_button_tag 'Action', 1
+                %p
+                  = label_tag :choice, 'Guard'
+                  = radio_button_tag 'Action', 2
+                %p
+                  = label_tag :choice, 'Focus'
+                  = radio_button_tag 'Action', 3
                 - if (@current_game.player2_debuff != "Silence")
-                  = label_tag :choice, "#{@p2_character.action_1_name}  (#{@p2_mp_cost1}MP) [#{@p2_character.action_1_rules}]"
-                  = radio_button_tag 'Action', @p2_character.action_1_id
-                  = label_tag :choice, "#{@p2_character.action_2_name}  (#{@p2_mp_cost2}MP) [#{@p2_character.action_2_rules}]" 
-                  = radio_button_tag 'Action', @p2_character.action_2_id
-                  = label_tag :choice, "#{@p2_character.action_3_name}  (#{@p2_mp_cost3}MP) [#{@p2_character.action_3_rules}]"
-                  = radio_button_tag 'Action', @p2_character.action_3_id
-                  = label_tag :choice, "#{@p2_character.action_4_name}  (#{@p2_mp_cost4}MP) [#{@p2_character.action_4_rules}]"
-                  = radio_button_tag 'Action', @p2_character.action_4_id
+                  %p
+                    = label_tag :choice, "#{@p2_character.action_1_name}  (#{@p2_mp_cost1}MP) [#{@p2_character.action_1_rules}]"
+                    = radio_button_tag 'Action', @p2_character.action_1_id
+                    = "<br>".html_safe
+                  %p
+                    = label_tag :choice, "#{@p2_character.action_2_name}  (#{@p2_mp_cost2}MP) [#{@p2_character.action_2_rules}]" 
+                    = radio_button_tag 'Action', @p2_character.action_2_id
+                  %p
+                    = label_tag :choice, "#{@p2_character.action_3_name}  (#{@p2_mp_cost3}MP) [#{@p2_character.action_3_rules}]"
+                    = radio_button_tag 'Action', @p2_character.action_3_id
+                  %p
+                    = label_tag :choice, "#{@p2_character.action_4_name}  (#{@p2_mp_cost4}MP) [#{@p2_character.action_4_rules}]"
+                    = radio_button_tag 'Action', @p2_character.action_4_id
                 -else
                   %h3 You are Silenced!  
                 .row

@@ -9,6 +9,27 @@ class TransformationController < ApplicationController
 
 	end
 
+	def admin
+    	if current_user.is_admin
+      		@tfs = Transformation.all
+      		#render :template => "/game/admin"
+    	else
+      		redirect_to game_rules_path
+    	end
+ 	end
+	
+	def delete_tf
+		if params[:id].nil?
+			flash[:error] = "The Transformation Could Not Be Found."
+			redirect_to tf_admin_path
+		else
+			tf = Transformation.find_by_id(params[:id])
+			Transformation.delete(tf)
+			flash[:error] = "The Transformation has been successfully deleted."
+			redirect_to tf_admin_path
+		end
+	end
+
 	def auto_write
 
 		create_hash = {}
