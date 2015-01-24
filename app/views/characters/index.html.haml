@@ -1,6 +1,9 @@
 %h2 Details about #{@character.name}
 
-= image_tag(@character.main_image)
+Creator:
+= @character.creator
+%p
+   = image_tag(@character.main_image)
 
 %ul#details
    %li 
