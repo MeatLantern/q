@@ -1300,7 +1300,7 @@ class Game < ActiveRecord::Base
    elsif action_id == 16
     return 20
    elsif action_id == 17
-    return 15
+    return 20
    elsif action_id == 18
     return 15
    elsif action_id == 19
