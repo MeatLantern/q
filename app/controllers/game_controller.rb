@@ -251,6 +251,11 @@ class GameController < ApplicationController
 
     game_name = SecureRandom.base64()
 
+    if !(z.currentgame.nil?)
+      delete = Game.find_by_game_name(z.currentgame)
+      Game.delete(delete)
+    end
+
     z.currentgame = game_name
 
     z.save
