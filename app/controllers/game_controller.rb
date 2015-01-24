@@ -282,7 +282,7 @@ class GameController < ApplicationController
         if current_game.player2 != "AI"
           p2 = current_game.player2
         end
-        Game.delete(current_game.id)
+        Game.delete(current_game)
         session[:current_game] = nil
         x = session["warden.user.user.key"]
         y = User.find(x[0])
