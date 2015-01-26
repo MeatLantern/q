@@ -403,7 +403,7 @@ class CharactersController < ApplicationController
           search_hash[key] = false
         end
       end
-      @characters = Transformation.where(search_hash).includes(:character).order("character.upvotes DESC")
+      @characters = Transformation.where(search_hash).order("upvotes ASC")
       #binding.pry
       if @characters.empty?
         flash[:notice] = "No Results Found"

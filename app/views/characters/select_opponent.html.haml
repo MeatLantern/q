@@ -24,7 +24,7 @@
           %td= character.character.upvotes
   %h3 Select TF Types
   To prevent a type of TF from appearing in your list, uncheck the box and click "Edit Preferences"
-  = form_tag character_character_select_ai_path do
+  = form_tag select_opponent_ai_path(:name => @player1_character) do
     %table.table
       %thead
         %tr
