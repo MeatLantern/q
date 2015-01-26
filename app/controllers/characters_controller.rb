@@ -380,7 +380,7 @@ class CharactersController < ApplicationController
       @characters = Transformation.where(search_hash).order("created_at DESC")
       #@characters = Hash[@characters.sort_by{|k,v|}, v[:upvotes]]
      
-      binding.pry
+      #binding.pry
       if @characters.empty?
         flash[:notice] = "No Results Found"
       end
