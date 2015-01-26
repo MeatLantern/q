@@ -30,10 +30,11 @@ class CharactersController < ApplicationController
     all_characters = Character.all
     all_characters.each do |character|
       character.upvotes = 0
-      character.transformation.upvotes = 0
+      if !(character.transformation.nil?)
+        character.transformation.upvotes = 0
+        character.transformation.save
+      end
       character.save
-      character.transformation.save
-    end
     #binding.pry
     redirect_to game_rules_path
   end
