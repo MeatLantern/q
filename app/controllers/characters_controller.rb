@@ -34,9 +34,9 @@ class CharactersController < ApplicationController
       
       else
         character.transformation.upvotes = 0
-        character.save
+        character.transformation.save
       end
-      character.transformation.save
+      character.save
     end
     #binding.pry
     redirect_to game_rules_path
