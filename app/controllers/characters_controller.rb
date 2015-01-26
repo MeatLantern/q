@@ -429,4 +429,5 @@ class CharactersController < ApplicationController
       @tag_list = Transformation::get_tag_list(@character.transformation)
     end
   end
+
 end

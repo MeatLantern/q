@@ -193,7 +193,7 @@ class TransformationController < ApplicationController
 		create_hash[:is_bizarre] = false
 		create_hash[:is_robot] = false
 		create_hash[:is_monster_girl] = false
-		create_hash[:upvotes] => 0
+		create_hash[:upvotes] = 0
 
 		new_tf = Transformation.create!(create_hash)
 		character = Character.find_by_name(params["character_name"])
