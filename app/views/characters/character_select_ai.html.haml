@@ -8,12 +8,18 @@
         %th Name  	  
         %th Character Sheet 
         %th Select Character
+        %th Select Character
+        %th Creator
+        %th Upvotes
     %tbody
       - @characters.each do |character|
         %tr 
           %td= character.character_name
           %td= link_to "#{character.character_name}'s Character Sheet", characters_path(:name => character.character_name), :method=> :get#character/show/?name=#{character.name}',{:controller => "characters", :action => "show", :name => character.name}
-          %td= link_to "Select #{character.character_name}", game_create_ai_game_path(:name => character.character_name, :rules => @rules_hash), :method=> :post
+          %td= link_to "Select #{character.character_name}: Random Opponent", game_create_ai_game_path(:name => character.character_name, :rules => @rules_hash), :method=> :post
+          %td= link_to "Select #{character.character_name}: Choose Opponent", select_opponent_ai_path(:name => character.character_name, :rules => @rules_hash), :method=> :post
+          %td= character.character.creator
+          %td= character.character.upvotes
   %h3 Select TF Types
   To prevent a type of TF from appearing in your list, uncheck the box and click "Edit Preferences"
   = form_tag character_character_select_ai_path do

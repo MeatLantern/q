@@ -4,6 +4,40 @@ class CharactersController < ApplicationController
   def new
   end
 
+  def upvote
+    recent = session[:recent_upvotes]
+    if recent.nil?
+      recent = []
+      session[:recent_upvotes] = recent
+    end
+    c = Character.find_by_name(params[:name])
+    if c.nil?
+      flash[:warning] = "The Character Could not be found."
+      redirect_to game_rules_path
+    else
+      if recent.include?(params[:name])
+        flash[:warning] = "You cannot upvote the same character more than once."
+      else
+        recent.push(params[:name])
+        c.upvotes = c.upvotes + 1
+        c.save
+      end
+      redirect_to characters_path(:name => params[:name])
+    end
+  end
+
+  def set_upvotes_to_0
+    all_characters = Character.all
+    all_characters.each do |character|
+      character.upvotes = 0
+      character.transformation.upvotes = 0
+      character.save
+      character.transformation.save
+    end
+    #binding.pry
+    redirect_to game_rules_path
+  end
+
   def create
 
     x = session["warden.user.user.key"]
@@ -342,7 +376,34 @@ class CharactersController < ApplicationController
           search_hash[key] = false
         end
       end
+      #@characters = Transformation.where(search_hash).order("upvotes DESC")
       @characters = Transformation.where(search_hash).order("created_at DESC")
+      @characters = Hash[@characters.sort_by{|k,v|}, v[:upvotes]]
+     
+      binding.pry
+      if @characters.empty?
+        flash[:notice] = "No Results Found"
+      end
+
+      @rules_hash = search_hash
+      #binding.pry
+    end
+  end
+
+  def select_opponent
+    @player1_character = params[:name]
+    if params["transformation"].nil?
+      @characters = Transformation.all
+    else
+      #@characters = Transformation.all
+      preferences = params["transformation"]
+      search_hash = {}
+      preferences.each do |key, value|
+        if value == "0"
+          search_hash[key] = false
+        end
+      end
+      @characters = Transformation.where(search_hash).includes(:character).order("character.upvotes DESC")
       #binding.pry
       if @characters.empty?
         flash[:notice] = "No Results Found"

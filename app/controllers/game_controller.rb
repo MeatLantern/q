@@ -272,6 +272,51 @@ class GameController < ApplicationController
     redirect_to game_show_path
   end
 
+  def create_choose_ai_game
+     #binding.pry
+
+    x = session["warden.user.user.key"]
+    y = User.find(x[0])
+    z = y[0]
+
+    #binding.pry
+
+    username = z["username"]    
+
+
+    character_choice = params[:player1name]
+    
+    #Get character
+    player_character = Character.find_by_name(character_choice)
+    #opponent_character = Character.offset(rand(Character.count)).first
+    
+
+    opponent_character = Character.find_by_name(params[:player2name])
+
+    #binding.pry
+
+    #opponent_character = Character.find_by_name(opponent_tf.character_name)
+    #binding.pry
+
+    game_name = SecureRandom.base64()
+
+    if !(z.currentgame.nil?)
+      delete = Game.find_by_game_name(z.currentgame)
+      Game.delete(delete)
+    end
+
+    z.currentgame = game_name
+
+    z.save
+
+    create_hash = {:game_name => game_name, :player1 => username, :player2 => "AI", :player1_character => character_choice, :player2_character => opponent_character.name, :player1_message => "", :player2_message => "", :current_turn => 1, :player1_buff => "None", :player1_buff_start => 0, :player2_buff => "None", :player2_buff_start => 0, :player1_debuff => "None", :player1_debuff_start => 0, :player2_debuff => "None", :player2_debuff_start => 0, :p1_hp => player_character.max_hp, :p2_hp => opponent_character.max_hp, :p1_mp => player_character.max_mp, :p2_mp => opponent_character.max_mp, :p1_guard => false, :p2_guard => false, :game_over => false, :player1_description => player_character.description, :player2_description => opponent_character.description, :player1_last_tf => "None",  :player2_last_tf => "None", :player1_stage => 0, :player2_stage => 0, :player1_picture => player_character.main_image, :player2_picture => opponent_character.main_image, :flavor_message => "", :tf_message => ""}
+    Game.create!(create_hash)
+
+    session[:current_game] = game_name
+ 
+    redirect_to game_show_path
+  end
+
   def game_not_found
     flash[:warning] = "Your game was not found. Your opponent may have left the game. Please start a new one."
     redirect_to game_rules_path

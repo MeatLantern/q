@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150123023414) do
+ActiveRecord::Schema.define(:version => 20150126213212) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20150123023414) do
     t.string   "creator"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.integer  "upvotes"
   end
 
   create_table "game_invitations", :force => true do |t|
@@ -94,7 +95,7 @@ ActiveRecord::Schema.define(:version => 20150123023414) do
     t.integer  "player2_stage"
     t.string   "player1_picture"
     t.string   "player2_picture"
-    t.text     "tf_message"
+    t.text     "tf_message",           :limit => 255
   end
 
   create_table "invitation_preferences", :force => true do |t|
@@ -180,6 +181,7 @@ ActiveRecord::Schema.define(:version => 20150123023414) do
     t.datetime "updated_at",                    :null => false
     t.boolean  "is_robot"
     t.boolean  "is_monster_girl"
+    t.integer  "upvotes"
   end
 
   create_table "users", :force => true do |t|

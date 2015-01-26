@@ -1,7 +1,12 @@
 %h2 Details about #{@character.name}
+= flash[:warning]
+%p
+   Creator:
+   = @character.creator
+%p
+   Upvotes:
+   = @character.upvotes
 
-Creator:
-= @character.creator
 %p
    = image_tag(@character.main_image)
 
@@ -58,3 +63,6 @@ Creator:
 
 %h4 Transformation Tags
 = @tag_list
+
+%h3 Upvote Character?
+= button_to 'Upvote?', upvote_character_path(:name => @character.name), :method => :post

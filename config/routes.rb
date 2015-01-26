@@ -45,6 +45,14 @@ DuelOfChampions::Application.routes.draw do
 
   match 'game/about', to: 'game#about', via: :get
 
+  match 'upvote_character', to: 'characters#upvote', via: :post
+
+  match 'set_upvotes_to_0', to: 'characters#set_upvotes_to_0', via: :get
+
+  match 'select_opponent_ai', to: 'characters#select_opponent', via: :post
+
+  match 'select_opponent_game', to: 'game#create_choose_ai_game', via: :post
+
   #match 'transformation/new', to: 'transformation#new', via: :get
 
 
