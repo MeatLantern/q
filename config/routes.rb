@@ -43,6 +43,8 @@ DuelOfChampions::Application.routes.draw do
 
   match 'delete_tf', to: 'transformation#delete_tf', via: :post
 
+  match 'game/about', to: 'game#about', via: :get
+
   #match 'transformation/new', to: 'transformation#new', via: :get
 
 

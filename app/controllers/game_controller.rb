@@ -20,6 +20,10 @@ class GameController < ApplicationController
     #binding.pry
   end
 
+  def about
+
+  end
+
   def authorize_18
     #binding.pry
     session[:is_18] = 10
