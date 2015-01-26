@@ -30,11 +30,14 @@ class CharactersController < ApplicationController
     all_characters = Character.all
     all_characters.each do |character|
       character.upvotes = 0
-      if !(character.transformation.nil?)
+      if character.transformation.nil?
+      
+      else
         character.transformation.upvotes = 0
-        character.transformation.save
+        character.save
       end
-      character.save
+      character.transformation.save
+    end
     #binding.pry
     redirect_to game_rules_path
   end
@@ -107,62 +110,62 @@ class CharactersController < ApplicationController
       @valid = false
       @string15 = "That character already exists"
     else
-	    if(@name.blank?)
-	      @valid = false
-	      @string1 = "A name must be entered;\n"
-	    end
-	    if(@description.blank?)
-	      @valid = false
-	      @string2 = "A description must be entered;\n"
-	    end
-	    if(@action_1_name.blank?)
-	      @valid = false
-	      @string3 = "A 1st Action Name must be entered;\n"
-	    end
-	    if(@action_1_flavor.blank?)
-	      @valid = false
-	      @string4 = "A 1st Action Description must be entered;\n"
-	    end
-	    if(@action_2_name.blank?)
-	      @valid = false
-	      @string5 = "A 2nd Action Name must be entered;\n"
-	    end
-	    if(@action_2_flavor.blank?)
-	      @valid = false
-	      @string6 = "A 2nd Action Description must be entered;\n"
-	    end
-	    if(@action_3_name.blank?)
-	      @valid = false
-	      @string7 = "A 3rd Action Name must be entered;\n"
-	    end
-	    if(@action_3_flavor.blank?)
-	      @valid = false
-	      @string8 = "A 3rd Action Description must be entered;\n"
-	    end
-	    if(@action_4_name.blank?)
-	      @valid = false
-	      @string9 = "A 4th Action Name must be entered;\n"
-	    end
-	    if(@action_4_flavor.blank?)
-	      @valid = false
-	      @string10 = "A 4th Action Description must be entered;\n"
-	    end
-	    if(@main_image.blank?)
-	      @valid = false
-	      @string11 = "A URL for the character image must be entered;\n"
-	    end
-	    if((@max_hp + @max_mp)>150)
-	      @valid = false
-	      @string12 = "Sum of Maximum HP and MP must be less than 150;\n"
-	    end
-	    if((@base_attack + @base_power + @base_defense + @base_armor)>21)
-	      @valid = false
-	      @string13 = "Sum of base power, attack, defense and armor must be less than 21;\n"
-	    end
-	    if(@action_1_rules == @action_2_rules || @action_1_rules == @action_3_rules || @action_1_rules == @action_4_rules || @action_2_rules == @action_3_rules || @action_2_rules == @action_4_rules || @action_3_rules == @action_4_rules)
-	      @valid = false
-	      @string14 = "The rules selected for each action must be different;\n"
-	    end 
+      if(@name.blank?)
+        @valid = false
+        @string1 = "A name must be entered;\n"
+      end
+      if(@description.blank?)
+        @valid = false
+        @string2 = "A description must be entered;\n"
+      end
+      if(@action_1_name.blank?)
+        @valid = false
+        @string3 = "A 1st Action Name must be entered;\n"
+      end
+      if(@action_1_flavor.blank?)
+        @valid = false
+        @string4 = "A 1st Action Description must be entered;\n"
+      end
+      if(@action_2_name.blank?)
+        @valid = false
+        @string5 = "A 2nd Action Name must be entered;\n"
+      end
+      if(@action_2_flavor.blank?)
+        @valid = false
+        @string6 = "A 2nd Action Description must be entered;\n"
+      end
+      if(@action_3_name.blank?)
+        @valid = false
+        @string7 = "A 3rd Action Name must be entered;\n"
+      end
+      if(@action_3_flavor.blank?)
+        @valid = false
+        @string8 = "A 3rd Action Description must be entered;\n"
+      end
+      if(@action_4_name.blank?)
+        @valid = false
+        @string9 = "A 4th Action Name must be entered;\n"
+      end
+      if(@action_4_flavor.blank?)
+        @valid = false
+        @string10 = "A 4th Action Description must be entered;\n"
+      end
+      if(@main_image.blank?)
+        @valid = false
+        @string11 = "A URL for the character image must be entered;\n"
+      end
+      if((@max_hp + @max_mp)>150)
+        @valid = false
+        @string12 = "Sum of Maximum HP and MP must be less than 150;\n"
+      end
+      if((@base_attack + @base_power + @base_defense + @base_armor)>21)
+        @valid = false
+        @string13 = "Sum of base power, attack, defense and armor must be less than 21;\n"
+      end
+      if(@action_1_rules == @action_2_rules || @action_1_rules == @action_3_rules || @action_1_rules == @action_4_rules || @action_2_rules == @action_3_rules || @action_2_rules == @action_4_rules || @action_3_rules == @action_4_rules)
+        @valid = false
+        @string14 = "The rules selected for each action must be different;\n"
+      end 
     end
 
     if(@valid == false)
@@ -429,5 +432,4 @@ class CharactersController < ApplicationController
       @tag_list = Transformation::get_tag_list(@character.transformation)
     end
   end
-
 end
