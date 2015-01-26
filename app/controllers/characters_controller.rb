@@ -378,7 +378,7 @@ class CharactersController < ApplicationController
       end
       #@characters = Transformation.where(search_hash).order("upvotes DESC")
       @characters = Transformation.where(search_hash).order("created_at DESC")
-      @characters = Hash[@characters.sort_by{|k,v|}, v[:upvotes]]
+      #@characters = Hash[@characters.sort_by{|k,v|}, v[:upvotes]]
      
       binding.pry
       if @characters.empty?
