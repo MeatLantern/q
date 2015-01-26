@@ -9,6 +9,18 @@ class TransformationController < ApplicationController
 
 	end
 
+	def clean_up_tf
+		tfs = Transformation.all
+
+		tfs.each do |tf|
+			if tf.character.nil?
+				Transformation.delete(tf)
+			end
+		end
+		flash[:error] = 'TFs Cleaned Up'
+		redirect_to tf_admin_path
+	end
+
 	def admin
     	if current_user.is_admin
       		@tfs = Transformation.all
