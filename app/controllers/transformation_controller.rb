@@ -193,6 +193,7 @@ class TransformationController < ApplicationController
 		create_hash[:is_bizarre] = false
 		create_hash[:is_robot] = false
 		create_hash[:is_monster_girl] = false
+		create_hash[:upvotes] => 0
 
 		new_tf = Transformation.create!(create_hash)
 		character = Character.find_by_name(params["character_name"])
@@ -349,6 +350,7 @@ class TransformationController < ApplicationController
 			create_hash["is_bizarre"] = params["transformation"]["is_bizarre"]
 
 			create_hash["character_name"] = character_name
+			create_hash["upvotes"] = 0
 
 			current_character = Character.find_by_name(character_name)
 			if(Character.nil?)
@@ -449,6 +451,7 @@ class TransformationController < ApplicationController
 			create_hash["is_bizarre"] = params["transformation"]["is_bizarre"]
 
 			create_hash["character_name"] = character_name
+			create_hash["upvotes"] = 0
 
 			current_character = Character.find_by_name(character_name)
 			if(Character.nil?)
@@ -549,6 +552,7 @@ class TransformationController < ApplicationController
 			create_hash["is_bizarre"] = params["transformation"]["is_bizarre"]
 
 			create_hash["character_name"] = character_name
+			create_hash["upvotes"] = 0
 
 			current_character = Character.find_by_name(character_name)
 			if(Character.nil?)
@@ -648,6 +652,7 @@ class TransformationController < ApplicationController
 			create_hash["is_bizarre"] = params["transformation"]["is_bizarre"]
 
 			create_hash["character_name"] = character_name
+			create_hash["upvotes"] = 0
 
 			current_character = Character.find_by_name(character_name)
 			if(Character.nil?)
