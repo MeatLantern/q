@@ -9,6 +9,7 @@
       %th Character Sheet 
       %th Update Character
       %th Update Transformation
+      %th Delete Character
   %tbody
     - @characters.each do |character|
       %tr 
@@ -20,5 +21,7 @@
         %td
           -if (@current_username == @username) && (session[:current_game].nil?)
             = link_to "Select #{character.name}", transformation_edit_path(:character_name => character.name), :method=> :get
+        %td= link_to("delete", characters_destroy_path(:id => character.id), method: :post, data: { :confirm => "Are you sure you want to Delete this Character? This CANNOT be Undone."})
+
 %p
   = button_to 'Create a New Character',  new_character_path, :method => :get, :id => 'new_character'
