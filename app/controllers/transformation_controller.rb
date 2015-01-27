@@ -233,7 +233,7 @@ class TransformationController < ApplicationController
 
 	def show
 		#redirect_to transformation_edit_path(:character_name => params["character_name"])
-		if current_user.is_admin
+		#if current_user.is_admin
       		@tf = Transformation.find_by_character_name(params[:name])
       		if @tf.nil?
       			flash[:notice] = "This Character Does Not Have an Associated Transformation"
@@ -241,9 +241,9 @@ class TransformationController < ApplicationController
     		else
       			@tag_list = Transformation::get_tag_list(@tf)
     		end
-    	else
-      		redirect_to game_rules_path
-    	end
+    	#else
+      		#redirect_to game_rules_path
+    	#end
 		
 	end
 
