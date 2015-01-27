@@ -11,7 +11,7 @@ class Character < ActiveRecord::Base
       @idNum = 6
     elsif(attackString == "Overwhelming Attack")
       @idNum = 7
-    elsif(attackString == "Focusing Attack")
+    elsif(attackString == "Focusing Action")
       @idNum = 8
     elsif(attackString == "Defense Boost")
       @idNum = 9

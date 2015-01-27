@@ -505,6 +505,7 @@ class Game < ActiveRecord::Base
           current_game.player1_buff = "Mana Regeneration"
           current_game.player1_buff_start = current_game.current_turn
           current_game.p1_mp = current_game.p1_mp - 10
+          current_game.save
         else
           action_results = "#{current_game.player1_character} doesn't have enough Mana to activate the power!"
         end
@@ -514,6 +515,7 @@ class Game < ActiveRecord::Base
           current_game.player2_buff = "Mana Regeneration"
           current_game.player2_buff_start = current_game.current_turn
           current_game.p2_mp = current_game.p2_mp - 10
+          current_game.save
         else
           action_results = "#{current_game.player2_character} doesn't have enough Mana to activate the power!"
         end

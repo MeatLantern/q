@@ -187,6 +187,10 @@
                   .col-sm-6.col-md-6.col-lg-6
     -else
       %h1 GAME OVER
+      -if @p1_hp <= 0
+        = link_to "View #{@p1_character.name}'s Full Transformation", transformation_show_path(:name => @p1_character.name), :method => :get
+      -if @p2_hp <= 0
+        = link_to "View #{@p2_character.name}'s Full Transformation", transformation_show_path(:name => @p2_character.name), :method => :get
       -if @player2 != "AI"
         = button_to "Reset Game?", "game/cpu_reset_game", :confirm => "Are you sure you want to restart the game?", :method => :post
   .row

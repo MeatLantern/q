@@ -181,7 +181,7 @@ class CharactersController < ApplicationController
 
   def index
     nm = params[:name]
-  #  #binding.pry
+    #binding.pry
     @character = Character.find_by_name(nm)#
     @tag_list = Transformation::get_tag_list(@character.transformation)
     #binding.pry
