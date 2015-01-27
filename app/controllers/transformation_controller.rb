@@ -321,7 +321,7 @@ class TransformationController < ApplicationController
 		valid = true
 		create_hash.each do |key, value|
 			if value.blank?
-				valid = false
+				create_hash[key] = "No Description"
 			end
 		end
 
@@ -422,7 +422,7 @@ class TransformationController < ApplicationController
 		valid = true
 		create_hash.each do |key, value|
 			if value.blank?
-				valid = false
+				create_hash[key] = "No Description"
 			end
 		end
 
@@ -523,7 +523,7 @@ class TransformationController < ApplicationController
 		valid = true
 		create_hash.each do |key, value|
 			if value.blank?
-				valid = false
+				create_hash[key] = "No Description"
 			end
 		end
 
@@ -623,7 +623,7 @@ class TransformationController < ApplicationController
 		valid = true
 		create_hash.each do |key, value|
 			if value.blank?
-				valid = false
+				create_hash[key] = "No Description"
 			end
 		end
 
