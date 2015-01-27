@@ -1025,7 +1025,7 @@ class Game < ActiveRecord::Base
 
       if (current_game.player1_buff == "Mana Regeneration")   
         duration = current_game.current_turn - current_game.player1_buff_start
-        if duration > 6
+        if duration > 12
           current_game.player1_buff = "None"
           current_game.player1_buff_start = -50
           results = "#{current_game.player1_character} has lost their Mana Regeneration"
