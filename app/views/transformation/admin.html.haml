@@ -5,17 +5,20 @@
 %table#games
 	%thead
 		%tr
-			%th Transformation Id
+			%th Creator
 			%th Character Name
 			%th View Transformation
+			%th Update Transformation
 			%th Delete Transformation
 	%tbody
 		- @tfs.each do |tf|
 			%tr
-				%td= tf.id
+				%td= tf.character.creator
 				%td= tf.character_name
 				%td= link_to "View Transformation", transformation_show_path(:name => tf.character_name), :method => :get
+				%td= link_to "Update #{tf.character_name}", transformation_edit_path(:character_name => tf.character_name), :method=> :get
 				%td= link_to("delete", delete_tf_path(:id => tf.id), method: :post, data: { :confirm => "Delete Transformation?"})
+
 
 = button_to 'Clean Up TF', clean_up_tf_path, :method => :post
 = button_to 'Set Completed and Fully Illustrated to False', set_completed_false_path, :method => :post
