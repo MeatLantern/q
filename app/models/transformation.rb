@@ -216,6 +216,12 @@ class Transformation < ActiveRecord::Base
       if transformation.is_bizarre
         tf_tags = tf_tags + "Bizarre, "
       end
+      if transformation.is_completed
+        tf_tags = tf_tags + "Complete, "
+      end
+      if transformation.is_full_picture
+        tf_tags = tf_tags + "Fully Illustrated, "
+      end
       tf_tags.strip!
       tf_tags.chop!
       return tf_tags

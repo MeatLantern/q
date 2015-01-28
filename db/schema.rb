@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150126213212) do
+ActiveRecord::Schema.define(:version => 20150128031355) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -182,6 +182,8 @@ ActiveRecord::Schema.define(:version => 20150126213212) do
     t.boolean  "is_robot"
     t.boolean  "is_monster_girl"
     t.integer  "upvotes"
+    t.boolean  "is_completed"
+    t.boolean  "is_full_picture"
   end
 
   create_table "users", :force => true do |t|
@@ -200,6 +202,7 @@ ActiveRecord::Schema.define(:version => 20150126213212) do
     t.string   "username"
     t.string   "currentgame"
     t.boolean  "is_admin",               :default => false
+    t.string   "multi_ready"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -67,6 +67,8 @@ class GameInvitationController < ApplicationController
 	def multiplayer_select_character
 		#binding.pry
 	  	if params["transformation"].nil?
+	  		search_hash = {}
+      		search_hash["is_completed"] = true
         	@characters = Transformation.all
       	else
 	      #@characters = Transformation.all
@@ -81,6 +83,14 @@ class GameInvitationController < ApplicationController
 	          @rules[key] = false
 	        end
 	      end
+	      if !(search_hash.has_key?("is_completed"))
+        	search_hash["is_completed"] = true
+      	  end
+      	  if (search_hash.has_key?("is_full_picture"))
+        	search_hash.except!("is_full_picture")
+      	  else
+        	search_hash["is_full_picture"] = true
+      	  end
 	      @characters = Transformation.where(search_hash).order("created_at DESC")
 	      #binding.pry
 	      if @characters.empty?
@@ -210,6 +220,8 @@ class GameInvitationController < ApplicationController
 
 		    player1["currentgame"] = game_name
 		    player2["currentgame"] =  game_name
+		    player1["multi_ready"] = nil
+		    player2["multi_ready"] = nil
 		    player1.save
 		    player2.save
 

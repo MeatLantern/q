@@ -12,6 +12,12 @@ class GameInvitation < ActiveRecord::Base
   		
   	else
   		current_invite.ready = true
+      player1 = User.find_by_username(p1)
+      player2 = User.find_by_username(p2)
+      player1.multi_ready = "Your Multiplayer Game is Ready."
+      player2.multi_ready = "Your Multiplayer Game is Ready."
+      player1.save
+      player2.save
   		current_invite.save
   	end
   end

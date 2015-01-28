@@ -348,6 +348,8 @@ class TransformationController < ApplicationController
 			create_hash["is_robot"] = params["transformation"]["is_robot"]	
 			create_hash["is_monster_girl"] = params["transformation"]["is_monster_girl"]
 			create_hash["is_bizarre"] = params["transformation"]["is_bizarre"]
+			create_hash["is_completed"] = params["transformation"]["is_completed"]
+			create_hash["is_full_picture"] = params["transformation"]["is_full_picture"]
 
 			create_hash["character_name"] = character_name
 			create_hash["upvotes"] = 0
@@ -449,6 +451,8 @@ class TransformationController < ApplicationController
 			create_hash["is_robot"] = params["transformation"]["is_robot"]	
 			create_hash["is_monster_girl"] = params["transformation"]["is_monster_girl"]
 			create_hash["is_bizarre"] = params["transformation"]["is_bizarre"]
+			create_hash["is_completed"] = params["transformation"]["is_completed"]
+			create_hash["is_full_picture"] = params["transformation"]["is_full_picture"]
 
 			create_hash["character_name"] = character_name
 			create_hash["upvotes"] = 0
@@ -550,6 +554,8 @@ class TransformationController < ApplicationController
 			create_hash["is_robot"] = params["transformation"]["is_robot"]	
 			create_hash["is_monster_girl"] = params["transformation"]["is_monster_girl"]
 			create_hash["is_bizarre"] = params["transformation"]["is_bizarre"]
+			create_hash["is_completed"] = params["transformation"]["is_completed"]
+			create_hash["is_full_picture"] = params["transformation"]["is_full_picture"]
 
 			create_hash["character_name"] = character_name
 			create_hash["upvotes"] = 0
@@ -650,6 +656,8 @@ class TransformationController < ApplicationController
 			create_hash["is_robot"] = params["transformation"]["is_robot"]	
 			create_hash["is_monster_girl"] = params["transformation"]["is_monster_girl"]
 			create_hash["is_bizarre"] = params["transformation"]["is_bizarre"]
+			create_hash["is_completed"] = params["transformation"]["is_completed"]
+			create_hash["is_full_picture"] = params["transformation"]["is_full_picture"]
 
 			create_hash["character_name"] = character_name
 			create_hash["upvotes"] = 0
@@ -678,4 +686,15 @@ class TransformationController < ApplicationController
 		flash[:notice] = "#{character_name}'s transformation has been updated successfully!"
 		redirect_to game_rules_path
 	end
+
+	def set_completed_and_fully_illustrated_to_false
+		tfs = Transformation.all
+		tfs.each do |tf|
+			tf.is_completed = false
+			tf.is_full_picture = false
+			tf.save
+		end
+		redirect_to tf_admin_path
+	end
+
 end

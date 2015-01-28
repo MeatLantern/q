@@ -14,6 +14,8 @@
     5. "Url for Stage X Picture" is a URL for a picture. You may wish to include pictures for your character's transformation. For exmaple, if Bob is meant to be a Male to Female Bimbo Tf, you might have the picture for stage 1 be a normal male, for stage 5 be a realtively normal female, and stage 10 to be a full bimbo. If you don't wish to include pictures for your character, simply input any text you like. The text will displayed instead of the picture. For example, if you have no pictures for Bob, you could instead write "No Pictures" and that text would be displayed.
   %p
     6. TF Tags: The last step in character creation is to set up the TF Tags. These Tags allow players to search for your character more quickly and easily. For definitions of the various tags, you can click the link below. To select a tag, simply click on the checkbox. For example, you might have a TF featuring Bob. Bob is originally a caucasian male, and transforms into an African American Bimbo Girl. Bob's TF descriptions feature foul language and some sexual details, so Bob should check the boxes for "Male to Female", "Race Change", "Bimbo", and "Adult". 
+  %p
+    7. There are Two special tags at the bottom of the normal tags. The First is the "Complete" tag. The Complete tag means your character is ready for public release and is (more or less) done. It DOES NOT mean you can't continue to update, improve, or change your character in the slightest. It just means you feel like you have enough text for the character to feel "complete". The Second is the "Fully Illustrated" tag. If your character covers most of their Tf stages with pictures, then they can use the "Fully Illustrated" tag. All stages should have a picture associated with them, although the pictures themselves may be repeated. You DO NOT have to put pictures for your character, however if you don't have any pictures, please don't give your character the "Fully Illustrated" tag.
 
 = link_to 'Tag Descriptions',  tf_tag_descriptions_path
 
@@ -207,6 +209,15 @@
           = label :transformation, :is_bizarre, 'Contains Bizarre TF / Other?'
         %td 
           = check_box :transformation, 'is_bizarre'
-
+      %tr
+        %td
+          = label :transformation, :is_completed, 'Character Complete?'
+        %td 
+          = check_box :transformation, 'is_completed'
+      %tr
+        %td
+          = label :transformation, :is_full_picture, 'Character Fully Illustrated (> 3 Pictures)?'
+        %td 
+          = check_box :transformation, 'is_full_picture'
 
   = submit_tag 'Create Transformations'

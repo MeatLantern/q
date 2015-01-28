@@ -18,6 +18,8 @@
                 #username
                   Hello,
                   %strong= current_user.username
+                  %p
+                    = current_user.multi_ready
                 #logout-button
                   = button_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'
                   = button_to "Rules Page", game_rules_path, :method => :get
@@ -35,6 +37,7 @@
                 -else
                   #back-game-button
                     = button_to "Back To Game", game_show_path, :method => :get 
+
               - else
                 = button_to "Login", new_user_session_path, :class => 'navbar-link'
       

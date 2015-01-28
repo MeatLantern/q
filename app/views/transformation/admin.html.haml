@@ -18,3 +18,4 @@
 				%td= link_to("delete", delete_tf_path(:id => tf.id), method: :post, data: { :confirm => "Delete Transformation?"})
 
 = button_to 'Clean Up TF', clean_up_tf_path, :method => :post
+= button_to 'Set Completed and Fully Illustrated to False', set_completed_false_path, :method => :post

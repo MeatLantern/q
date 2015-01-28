@@ -1151,7 +1151,7 @@ class Game < ActiveRecord::Base
             current_game.save
           else
             attack_bonus = 5
-            damage_bonus = 5
+            damage_bonus = 3
             results = Game::summon_basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game, active_character)
             current_game.save
           end
@@ -1167,7 +1167,7 @@ class Game < ActiveRecord::Base
             current_game.save
           else
             attack_bonus = 5
-            damage_bonus = 5
+            damage_bonus = 3
             results = Game::summon_basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game, active_character)
             current_game.save
           end
@@ -1197,7 +1197,7 @@ class Game < ActiveRecord::Base
   	#binding.pry
 
   	#Check if hit
-  	if(attack_roll > 10 + defense_bonus)
+  	if(attack_roll > 8 + defense_bonus)
   		#Determine Damage
   		damage = 2 + rand(10) + power_bonus - armor_bonus
   		if damage < 0
@@ -1251,7 +1251,7 @@ class Game < ActiveRecord::Base
     #binding.pry
 
     #Check if hit
-    if(attack_roll > 10 + defense_bonus)
+    if(attack_roll > 8 + defense_bonus)
       #Determine Damage
       damage = 2 + rand(10) + power_bonus - armor_bonus
       if damage < 0

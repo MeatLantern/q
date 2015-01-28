@@ -30,6 +30,8 @@ DuelOfChampions::Application.routes.draw do
 
   match 'tf/new', to: 'transformation#new_tf', via: :get
 
+  match 'set_completed_false' , to: 'transformation#set_completed_and_fully_illustrated_to_false', via: :post
+
   match 'add_to_character', to: 'transformation#add_to_character', via: :post
   match 'add_to_character3', to: 'transformation#add_to_character3', via: :post
   match 'add_to_character5', to: 'transformation#add_to_character5', via: :post
@@ -47,7 +49,7 @@ DuelOfChampions::Application.routes.draw do
 
   match 'upvote_character', to: 'characters#upvote', via: :post
 
-  match 'set_upvotes_to_0', to: 'characters#set_upvotes_to_0', via: :get
+  match 'set_upvotes_to_0', to: 'characters#set_upvotes_to_0', via: :post
 
   match 'select_opponent_ai', to: 'characters#select_opponent', via: :post
 

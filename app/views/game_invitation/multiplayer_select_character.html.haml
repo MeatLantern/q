@@ -134,6 +134,16 @@
             = label :transformation, :is_bizarre, 'Contains Bizarre TF / Other?'
           %td 
             = check_box :transformation, 'is_bizarre', :checked =>  @rules[:is_bizarre], :hidden => !@pref.is_bizarre
+        %tr
+          %td
+            = label :transformation, :is_completed, 'Character Complete? (By Unchecking this, you allow incomplete characters)'
+          %td 
+            = check_box :transformation, 'is_completed', :checked => true
+        %tr
+          %td
+            = label :transformation, :is_full_picture, 'Character Fully Illustrated (> 3 Pictures)? (By Checking this, You ONLY allow Fully Illustrated Characters)'
+          %td 
+            = check_box :transformation, 'is_full_picture', :checked => false
 
     = submit_tag 'Edit Preferences'
 -else

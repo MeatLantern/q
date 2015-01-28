@@ -126,12 +126,18 @@ class GameController < ApplicationController
     #  test_game = Game.find(1)
     #end
     ai_character = Character.find_by_name(test_game.player2_character)
-    action_array = ["1","2","3", ai_character.action_1_id, ai_character.action_2_id, ai_character.action_3_id, ai_character.action_4_id]
+    action_array = ["1","2", ai_character.action_1_id, ai_character.action_2_id, ai_character.action_3_id, ai_character.action_4_id]
  	  if (test_game.player2_debuff == "Silence")
-      action_array = ["1", "2", "3"]
+      action_array = ["1", "2"]
     end
    action_temp = action_array.sample
    action = "#{action_temp}"
+  if (action == "23")
+    if (test_game.p2_hp > (ai_character.max_hp - 10))
+      action_temp = action_array.sample
+      action = "#{action_temp}"
+    end
+  end
   if(test_game.p2_mp < 20)
     action = "3"
   end

@@ -370,7 +370,9 @@ class CharactersController < ApplicationController
   def character_select_ai
     #binding.pry
     if params["transformation"].nil?
-      @characters = Transformation.all
+      search_hash = {}
+      search_hash["is_completed"] = true
+      @characters = Transformation.where(search_hash)
     else
       #@characters = Transformation.all
       preferences = params["transformation"]
@@ -379,6 +381,15 @@ class CharactersController < ApplicationController
         if value == "0"
           search_hash[key] = false
         end
+      end
+      #binding.pry
+      if !(search_hash.has_key?("is_completed"))
+        search_hash["is_completed"] = true
+      end
+      if (search_hash.has_key?("is_full_picture"))
+        search_hash.except!("is_full_picture")
+      else
+        search_hash["is_full_picture"] = true
       end
       #@characters = Transformation.where(search_hash).order("upvotes DESC")
       @characters = Transformation.where(search_hash).order("created_at DESC")
@@ -397,7 +408,9 @@ class CharactersController < ApplicationController
   def select_opponent
     @player1_character = params[:name]
     if params["transformation"].nil?
-      @characters = Transformation.all
+      search_hash = {}
+      search_hash["is_completed"] = true
+      @characters = Transformation.where(search_hash)
     else
       #@characters = Transformation.all
       preferences = params["transformation"]
@@ -406,6 +419,14 @@ class CharactersController < ApplicationController
         if value == "0"
           search_hash[key] = false
         end
+      end
+      if !(search_hash.has_key?("is_completed"))
+        search_hash["is_completed"] = true
+      end
+      if (search_hash.has_key?("is_full_picture"))
+        search_hash.except!("is_full_picture")
+      else
+        search_hash["is_full_picture"] = true
       end
       @characters = Transformation.where(search_hash).order("upvotes ASC")
       #binding.pry
