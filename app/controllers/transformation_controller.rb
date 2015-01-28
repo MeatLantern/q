@@ -560,6 +560,8 @@ class TransformationController < ApplicationController
 			create_hash["character_name"] = character_name
 			create_hash["upvotes"] = 0
 
+			puts create_hash
+
 			current_character = Character.find_by_name(character_name)
 			if(Character.nil?)
 				flash[:error] = "ERROR: The Character Your Adding Transformations to Could Not Be Found. "
