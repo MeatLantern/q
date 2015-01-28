@@ -383,7 +383,9 @@ class CharactersController < ApplicationController
         end
       end
       #binding.pry
-      if !(search_hash.has_key?("is_completed"))
+      if (search_hash.has_key?("is_completed"))
+        search_hash.except!("is_completed")
+      else
         search_hash["is_completed"] = true
       end
       if (search_hash.has_key?("is_full_picture"))

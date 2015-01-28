@@ -21,4 +21,13 @@ class GameInvitation < ActiveRecord::Base
   		current_invite.save
   	end
   end
+
+  def GameInvitation::destroy_old_invites
+    invites = GameInvitation.all
+    invites.each do |i|
+      if i.created_at < 3.day.ago
+        GameInvitation.delete(i)
+      end
+    end
+  end
 end

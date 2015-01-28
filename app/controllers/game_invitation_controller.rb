@@ -21,6 +21,7 @@ class GameInvitationController < ApplicationController
     	game = GameInvitation.create!(create_hash)
     	create_hash = {:is_adult => true, :is_M2F => true, :is_F2M => true, :is_race_change => true, :is_age_reg => true, :is_age_pro => true, :is_furry => true, :is_animal => true, :is_futa => true, :is_mind => true, :is_bdsm => true, :is_pregnant => true, :is_inanimate => true, :is_growth => true, :is_shrink => true, :is_weight_gain => true, :is_fantasy => true, :is_bimbo => true, :is_robot => true, :is_monster_girl => true, :is_bizarre => true }
     	game.invitation_preferences = InvitationPreferences.create!(create_hash)
+    	GameInvitation::destroy_old_invites
     	redirect_to game_invitation_show_path(:invite => game.id)
 	end
 
@@ -83,7 +84,9 @@ class GameInvitationController < ApplicationController
 	          @rules[key] = false
 	        end
 	      end
-	      if !(search_hash.has_key?("is_completed"))
+	      if (search_hash.has_key?("is_completed"))
+	      	search_hash.except!("is_completed")
+	      else
         	search_hash["is_completed"] = true
       	  end
       	  if (search_hash.has_key?("is_full_picture"))
