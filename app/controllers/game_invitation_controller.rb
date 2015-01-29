@@ -28,7 +28,7 @@ class GameInvitationController < ApplicationController
 	def show
 		@invite = GameInvitation.find_by_id(params["invite"])
 		if (@invite.nil?)
-			flash[:warning] = "Your game invite could not be found. Your opponent may have started or deleted the game. If it has been started, please click 'Back to Game' to play."
+			flash[:alert] = "Your game invite could not be found. Your opponent may have started or deleted the game. If it has been started, please click 'Back to Game' to play."
 			redirect_to game_rules_path
 		else
 			GameInvitation::check_if_ready(@invite)
@@ -60,7 +60,7 @@ class GameInvitationController < ApplicationController
 			GameInvitation.destroy(invite)
 			redirect_to invitations_screen_path
 		else
-			flash[:warning] = "You cannot delete an invite you didn't create."
+			flash[:alert] = "You cannot delete an invite you didn't create."
 			redirect_to invitations_screen_path
 		end
 	end
@@ -134,7 +134,7 @@ class GameInvitationController < ApplicationController
     	username = z["username"]
 
     	if(username != invite_username)
-    		flash[:warning] = "You are not the player associated with this invite. You cannot change the character."
+    		flash[:alert] = "You are not the player associated with this invite. You cannot change the character."
 			redirect_to invitations_screen_path
 
 		else
@@ -162,14 +162,14 @@ class GameInvitationController < ApplicationController
     		current_invite.player2_username = username
     		current_invite.save
     		if (current_invite.player1_username == current_invite.player2_username)
-    			flash[:warning] = "You have chosen to play a game against yourself. Have fun?"
+    			flash[:notice] = "You have chosen to play a game against yourself. Have fun?"
     		end
     		redirect_to game_invitation_show_path(:invite =>invite_id)
     	elsif (current_invite.player2_username == username)
-    		flash[:warning] = "You have already joined this game invite."
+    		flash[:alert] = "You have already joined this game invite."
     		redirect_to game_invitation_show_path(:invite =>invite_id)
     	else
-    		flash[:warning] = "This game is already full. Please try and join another game."
+    		flash[:alert] = "This game is already full. Please try and join another game."
     		redirect_to invitations_screen_path
     	end
 	end
@@ -182,16 +182,16 @@ class GameInvitationController < ApplicationController
     	invite_id = params["invite_id"]
     	current_invite = GameInvitation.find_by_id(invite_id)
     	if(current_invite.player2_username.nil?)
-    		flash[:warning] = "You aren't in this game yet."
+    		flash[:alert] = "You aren't in this game yet."
     		redirect_to game_invitation_show_path(:invite =>invite_id)
     	elsif (current_invite.player2_username == username)
-    		flash[:warning] = "You have successfully left the game invite."
+    		flash[:alert] = "You have successfully left the game invite."
     		current_invite.player2_username = nil
     		current_invite.player2_character = nil
     		current_invite.save
     		redirect_to invitations_screen_path
     	else
-    		flash[:warning] = "This game is already full. Please try and join another game."
+    		flash[:alert] = "This game is already full. Please try and join another game."
     		redirect_to invitations_screen_path
     	end
 	end
@@ -203,7 +203,7 @@ class GameInvitationController < ApplicationController
     	z = y[0]
     	username = z["username"]
     	if(username != current_invite.player1_username) && (username != current_invite.player2_username)
-			flash[:warning] = "You can only start a game if you have joined it."
+			flash[:alert] = "You can only start a game if you have joined it."
 			redirect_to invitations_screen_path
 		end
 		#Get players
@@ -240,7 +240,7 @@ class GameInvitationController < ApplicationController
 			redirect_to game_show_path
 
 		else
-			flash[:warning] = "One of the players is currently in a game. Both players must leave any current games before starting a new one. Please try again."
+			flash[:alert] = "One of the players is currently in a game. Both players must leave any current games before starting a new one. Please try again."
 			redirect_to game_invitation_show_path(:invite =>params["invite_id"])
 		end
 	end

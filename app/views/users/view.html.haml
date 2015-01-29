@@ -25,3 +25,24 @@
 
 %p
   = button_to 'Create a New Character',  new_character_path, :method => :get, :id => 'new_character'
+
+%h3 Admin Reports
+-if ! (@reports.nil?)
+  %table#characters
+    %thead
+      %tr
+        %th Reported Character
+        %th Report
+        %th Resolved?
+        %th Feedback
+    %tbody
+      - @reports.each do |report|
+        %tr 
+          %td= report.character_name
+          %td= report.report
+          %td
+            -if report.resolved
+              ="Resolved"
+            -else
+              ="Not Resolved Yet"
+          %td= report.feedback

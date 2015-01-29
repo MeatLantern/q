@@ -1,0 +1,75 @@
+%h1 Report Character
+%p
+  Character: 
+  = @character.name
+%p
+  Creator:
+  = @character.creator
+%p
+  Reporter:
+  = @username
+%h2 Rules
+%p
+  This form is used to report a character to the admin. If they have a problem. Problems include, but are not limited to:
+  %li Incorrect Application of TF Tags: For example, if the character has the tag "Male to Female" but the character's text and pictures do NOT include a Male to Female Transformation, then it should not have this tag applied to it.
+  %li Applying the "Complete" Tag when the Character is Incomplete: The "Complete" tag is only meant for completed characters. If the character has many stages without any actual description, or has lots of placeholder text such as "No Description", then they should NOT have the "Complete Tag". NOTE: DO NOT send an alert for poorly written characters or characters that repeat stages. DO NOT say a character is incomplete if they do not have pictures. 
+  %li Applying the "Fully Illustrated" tag for Characters which are NOT Fully Illustrated: The "Fully Illustrated" tag implies that the character has a picture for every stage. These pictures MAY repeat, but all 10 stages need to have a valid picture associated with them. DO NOT report for pictures you don't like. Report if the character is falsely saying they're picture is fully illustrated when they are not.
+  %li Incorrect Application of the Adult Tag: All characters with adult content need to have an "Adult" tag. Any Pornographic pictures, bare nipples or genitals, or sexually explicit actions, whether described or in the pictures, NEED to have the "Adult" tag. As a reference, if the the character's transformation has anything that would be inappropriate in a PG-13 Movie, then it should have the Adult Tag.
+  %li Flagrant Cheating: If the character's stats are somehow higher then they are supposed to be, or other cheating occurs, please report this to the admin.
+  %li Inflammatory or truly Abhorrent Content: While this game allows adult (read Pornographic) pictures and questionable themes, there is some content that will not be tolerated. Content of a Pedophilic nature is NEVER tolerated. Age Regression is perfectly fine, however. In addition, content that is inflammatory to other races, religions, or sexualities is not permitted. While jokes are allowed up to a point, please try to be tolerant of other people's personal interests and beliefs. 
+  %li Art Used Without Permission: If you are an artist and your art was used without your permission, please report this to an admin. The site takes NO responsibility for its content. All pictures and text for the game are provided by the creator of the character. All pictures are obtained with public URLs, and in NO WAY belong to the site itself. DO NOT report this if you did not create the art. You may politely ask the other player in a comment, but DO NOT report it. If your art was used without permission, feel free to send a report so an Admin can hanlde the problem in a calm, polite, and professional matter. The Admin will most likely delete the offending content immediately. If you don't have a problem with how the art it used, then there is no need to send in a report.
+%p
+  This Form MAY NOT be used to Report Personal issues, including but not limited to:
+  %li Dislike of TF Content: It is possible you may not like the theme of a particular TF. Perhaps you don't like Anthro/Furry Tf, or perhaps you don't like Age Regression. DO NOT report a character for containing a particular kind of TF. Please respect other player's interests.
+  %li Poor Writing/Art or Grammatical Mistakes: DO NOT submit a report for grammatical mistakes or poorly written characters, or for poor art. While you may not enjoy playing the character, it is NOT up to the admin to fix these sorts of problems when they arise. Please be respectful. Please use the Comment System instead.
+  %li Balance Issues: DO NOT report balance issues for a character. If a character seems too strong or too weak, it is NOT a problem for the Admins to solve. Please use the Comment System instead.
+  %li Dislike of Creator: If you don't like the creator of the character, don't bring it up to the admin. The report is not meant for drama or entertainment, it is only intended to hanlde legitmate mistakes or abuses. 
+
+= form_tag send_report_path(:character_name => @character.name, :creator => @character.creator, :reporter => @username) do
+  %table.table
+    %thead
+      %tr
+        %th Problem
+        %th Help Needed?
+    %tbody
+      %tr
+        %td
+          = label :transformation, :report, 'Character Report'
+        %td
+          = text_area :transformation, 'Report', :size => "40x4"
+      %tr
+        %td
+          = label :transformation, :tf_tags, 'Incorrect Application of Standard TF Tags'
+        %td 
+          = check_box :transformation, 'tf_tags'
+      %tr
+        %td
+          = label :transformation, :complete, 'Incorrect Application of Complete Tag'
+        %td 
+          = check_box :transformation, 'complete'
+      %tr
+        %td
+          = label :transformation, :adult, 'Incorrect Application of Adult Tag'
+        %td 
+          = check_box :transformation, 'adult'
+      %tr
+        %td
+          = label :transformation, :full_picture, 'Incorrect Application of Fully Illustrated Tag'
+        %td 
+          = check_box :transformation, 'full_picture'
+      %tr
+        %td
+          = label :transformation, :cheating, 'Character is Cheating (Stats too high etc)'
+        %td 
+          = check_box :transformation, 'cheating'
+      %tr
+        %td
+          = label :transformation, :obscene, 'Character contains Inflammatory or Obscene Content)'
+        %td 
+          = check_box :transformation, 'obscene'
+      %tr
+        %td
+          = label :transformation, :other, 'Other Reasons Not Included Above'
+        %td 
+          = check_box :transformation, 'other'
+  = submit_tag 'Report Character'

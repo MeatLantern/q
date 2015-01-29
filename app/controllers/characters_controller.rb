@@ -12,11 +12,11 @@ class CharactersController < ApplicationController
     end
     c = Character.find_by_name(params[:name])
     if c.nil?
-      flash[:warning] = "The Character Could not be found."
+      flash[:alert] = "The Character Could not be found."
       redirect_to game_rules_path
     else
       if recent.include?(params[:name])
-        flash[:warning] = "You cannot upvote the same character more than once."
+        flash[:alert] = "You cannot upvote the same character more than once."
       else
         recent.push(params[:name])
         c.upvotes = c.upvotes + 1
@@ -169,7 +169,7 @@ class CharactersController < ApplicationController
     end
 
     if(@valid == false)
-      flash[:notice] = "ERROR: " + @string1+@string2+@string3+@string4+@string5+@string6+@string7+@string8+@string9+@string10+@string11+@string12+@string13+@string14+@string15
+      flash[:alert] = "ERROR: " + @string1+@string2+@string3+@string4+@string5+@string6+@string7+@string8+@string9+@string10+@string11+@string12+@string13+@string14+@string15
       redirect_to new_character_path 
     else
       create_hash = {:name => @name, :description => @description, :max_hp => @max_hp, :max_mp => @max_mp, :base_attack => @base_attack, :base_power => @base_power, :base_defense => @base_defense, :base_armor => @base_armor, :actions => @actions, :main_image => @main_image, :action_1_id => @action_1_id, :action_1_name => @action_1_name, :action_1_flavor => @action_1_flavor, :action_1_rules => @action_1_rules, :action_2_id => @action_2_id, :action_2_name => @action_2_name, :action_2_flavor => @action_2_flavor, :action_2_rules => @action_2_rules, :action_3_id => @action_3_id, :action_3_name => @action_3_name, :action_3_flavor => @action_3_flavor, :action_3_rules => @action_3_rules, :action_4_id => @action_4_id, :action_4_name => @action_4_name, :action_4_flavor => @action_4_flavor, :action_4_rules => @action_4_rules, :summon_name => @summon_name, :summon_attack => @summon_attack, :summon_picture => @summon_picture, :creator => player1_username, :upvotes => 0}
@@ -314,13 +314,14 @@ class CharactersController < ApplicationController
     end 
 
     if(@valid == false)
-      flash[:notice] = "ERROR: " + @string1+@string2+@string3+@string4+@string5+@string6+@string7+@string8+@string9+@string10+@string11+@string12+@string13+@string14+@string15
+      flash[:alert] = "ERROR: " + @string1+@string2+@string3+@string4+@string5+@string6+@string7+@string8+@string9+@string10+@string11+@string12+@string13+@string14+@string15
       redirect_to character_edit_path 
     else
       create_hash = {:name => @name,:description => @description, :max_hp => @max_hp, :max_mp => @max_mp, :base_attack => @base_attack, :base_power => @base_power, :base_defense => @base_defense, :base_armor => @base_armor, :actions => @actions, :main_image => @main_image, :action_1_id => @action_1_id, :action_1_name => @action_1_name, :action_1_flavor => @action_1_flavor, :action_1_rules => @action_1_rules, :action_2_id => @action_2_id, :action_2_name => @action_2_name, :action_2_flavor => @action_2_flavor, :action_2_rules => @action_2_rules, :action_3_id => @action_3_id, :action_3_name => @action_3_name, :action_3_flavor => @action_3_flavor, :action_3_rules => @action_3_rules, :action_4_id => @action_4_id, :action_4_name => @action_4_name, :action_4_flavor => @action_4_flavor, :action_4_rules => @action_4_rules, :summon_name => @summon_name, :summon_attack => @summon_attack, :summon_picture => @summon_picture, :creator => player1_username}
       #binding.pry
       current_character = Character.find_by_name(@name)
       current_character.update_attributes(create_hash)
+      flash[:notice] = "#{@name} has been updated successfully."
       current_character.save
       redirect_to game_rules_path
     end
@@ -354,7 +355,7 @@ class CharactersController < ApplicationController
       player2.save
       game.destroy
     end
-    flash[:success] = "Character deleted"
+    flash[:notice] = "Character deleted"
     redirect_to character_admin_path 
   end
 

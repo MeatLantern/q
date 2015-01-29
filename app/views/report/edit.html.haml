@@ -1,0 +1,34 @@
+%h1 Edit Report
+
+%h2 Current Report Information
+
+%table#characters
+  %thead
+    %tr
+      %th Reasons
+      %th Character Name
+      %th Creator
+      %th Reporter
+      %th Report
+  %tbody
+    %tr
+      %td= @report.reasons
+      %td= @report.character_name
+      %td= @report.character_creator
+      %td= @report.reporter
+      %td= @report.report
+
+
+= form_tag change_report_path(:id => @report.id) do
+  %table.table
+    %thead
+      %tr
+        %th Prepare to Edit
+        %th Edit
+    %tbody
+      %tr
+        %td
+          = label :transformation, :feedback, 'Feedback'
+        %td
+          = text_area :transformation, 'feedback', :size => "40x4"
+  = submit_tag "Resolve Issue"

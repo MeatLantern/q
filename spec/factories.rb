@@ -1,4 +1,7 @@
-FactoryGirl.define do  factory :invitation_preference, :class => 'InvitationPreferences' do
+FactoryGirl.define do  factory :report do
+    
+  end
+  factory :invitation_preference, :class => 'InvitationPreferences' do
     
   end
   factory :transformation do

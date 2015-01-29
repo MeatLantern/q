@@ -1,0 +1,28 @@
+%h1 Admin Reports
+
+%table#characters
+	%thead
+		%tr
+			%th Reasons
+			%th Character Name
+			%th Reporter
+			%th Report
+			%th View Transformation
+			%th Update Transformation
+			%th Resolved
+			%th Feedback
+			%th Edit Report
+			%th Delete Report
+	%tbody
+		- @reports.each do |report|
+			%tr
+				%td= report.reasons
+				%td= report.character_name
+				%td= report.reporter
+				%td= report.report
+				%td= link_to "#{report.character_name}'s Transformation", transformation_show_path(:name => report.character_name), :method => :get
+				%td= link_to "Select #{report.character_name}", transformation_edit_path(:character_name => report.character_name), :method=> :get
+				%td= report.resolved
+				%td= report.feedback
+				%td= link_to "Resolve Report", edit_report_path(:id => report.id), :method => :get
+				%td= link_to("Delete Report", destroy_report_path(:id => report.id), method: :post, data: { :confirm => "Delete Report?"})

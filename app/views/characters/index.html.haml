@@ -66,3 +66,6 @@
 
 %h3 Upvote Character?
 = button_to 'Upvote?', upvote_character_path(:name => @character.name), :method => :post
+
+%h3 Report Character to Admin?
+= button_to 'Report Character', create_report_path(:name => @character.name), :method => :post

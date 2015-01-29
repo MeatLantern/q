@@ -36,7 +36,8 @@ class UsersController < ApplicationController
       @characters = [x]
     end
 
-    #binding.pry
+    @reports = Report.where(:reporter => @current_username)
+
   end
 
   def edit

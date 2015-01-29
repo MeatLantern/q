@@ -30,6 +30,13 @@ DuelOfChampions::Application.routes.draw do
 
   match 'tf/new', to: 'transformation#new_tf', via: :get
 
+  match 'create_report', to: 'report#create_report', via: :post
+  match 'send_report', to: 'report#send_report', via: :post
+  match 'admin_report', to: 'report#admin', via: :get
+  match 'edit_report', to: 'report#edit', via: :get
+  match 'change_report', to: 'report#change', via: :post
+  match 'destroy_report', to: 'report#destroy', via: :post
+
   match 'set_completed_false' , to: 'transformation#set_completed_and_fully_illustrated_to_false', via: :post
 
   match 'add_to_character', to: 'transformation#add_to_character', via: :post

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150128031355) do
+ActiveRecord::Schema.define(:version => 20150128205900) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -123,6 +123,18 @@ ActiveRecord::Schema.define(:version => 20150128031355) do
     t.boolean  "is_bizarre"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+  end
+
+  create_table "reports", :force => true do |t|
+    t.string   "character_name"
+    t.string   "character_creator"
+    t.string   "reporter"
+    t.text     "report"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "reasons"
+    t.text     "feedback"
+    t.boolean  "resolved"
   end
 
   create_table "transformations", :force => true do |t|

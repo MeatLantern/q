@@ -167,7 +167,7 @@ class GameController < ApplicationController
     game_name = z["currentgame"]
     current_game = Game.find_by_game_name(game_name)
     if(current_game.nil?)
-      flash[:warning] = "Your game was not found. Your opponent may have left the game. Please start a new one."
+      flash[:alert] = "Your game was not found. Your opponent may have left the game. Please start a new one."
  	    redirect_to game_game_not_found_path
     else
       session[:current_game] = current_game
@@ -324,7 +324,7 @@ class GameController < ApplicationController
   end
 
   def game_not_found
-    flash[:warning] = "Your game was not found. Your opponent may have left the game. Please start a new one."
+    flash[:alert] = "Your game was not found. Your opponent may have left the game. Please start a new one."
     redirect_to game_rules_path
   end
 
@@ -409,7 +409,7 @@ class GameController < ApplicationController
     #binding.pry
 
     if(test_game.nil?)
-      flash[:warning] = "Your game could not be found. You or your opponent may have quit the game."
+      flash[:alert] = "Your game could not be found. You or your opponent may have quit the game."
       redirect_to game_rules_path
     else
       if player_username == test_game.player1
@@ -446,7 +446,7 @@ class GameController < ApplicationController
       player2.save
     end
     game.destroy
-    flash[:success] = "Game deleted"
+    flash[:notice] = "Game deleted"
     redirect_to game_admin_path
  end
 
@@ -454,7 +454,7 @@ class GameController < ApplicationController
     Game.all.each do |game|
       game.destroy
     end
-    flash[:success] = "Games deleted"
+    flash[:notice] = "All Games Deleted"
     redirect_to game_admin_path
  end
 end
