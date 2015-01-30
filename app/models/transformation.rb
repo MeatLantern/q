@@ -321,4 +321,44 @@ class Transformation < ActiveRecord::Base
     return results
   end
 
+  def Transformation::initial_button_preferences
+    button_hash = {}
+    button_hash['is_M2F'] = true
+    button_hash['is_F2M'] = true
+    button_hash['is_race_change'] = true
+    button_hash['is_age_reg'] = true
+    button_hash['is_age_pro'] = true
+    button_hash['is_furry'] = true
+    button_hash['is_animal'] = true
+    button_hash['is_futa'] = true
+    button_hash['is_mind'] = true
+    button_hash['is_bdsm'] = true
+    button_hash['is_pregnant'] = true
+    button_hash['is_inanimate'] = true
+    button_hash['is_growth'] = true
+    button_hash['is_shrink'] = true
+    button_hash['is_weight_gain'] = true
+    button_hash['is_fantasy'] = true
+    button_hash['is_bizarre'] = true
+    button_hash['is_robot'] = true
+    button_hash['is_monster_girl'] = true
+    button_hash['is_completed'] = true
+    button_hash['is_full_picture'] = true
+    session["button_pref"] = button_hash
+
+  end
+
+  def Transformation::button_hash_editor(preferences)
+    #binding.pry
+    button_hash = session["button_pref"]
+    preferences.each do |key, value|
+      if value == "0"
+          button_hash[key] = false
+      elsif value == "1"
+          button_hash[key] = true
+      end
+    end
+    session["button_pref"] = button_hash
+  end
+
 end

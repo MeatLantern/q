@@ -144,6 +144,14 @@ class GameController < ApplicationController
   if(test_game.p2_mp < 20 && test_game.player2_debuff != "Mana Lock")
     action = "3"
   end
+  buff_array = ["8","9","10","11","12","21","22"]
+  if !(test_game.player2_buff == "None")
+    buff_array.each do |buff|
+      if action == buff
+        action = "1"
+      end
+    end
+  end
    flavor = Game::get_ability_info(action, test_game.player2_character)
    action_results = Game::take_action(action, test_game)
   #binding.pry

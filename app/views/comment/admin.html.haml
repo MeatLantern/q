@@ -2,7 +2,7 @@
 
 %p
   Shown below are all of the comments that have been flagged by players. Check if they need deleting or editing.
-
+%h2 Flagged Comments
 %table.table
   %thead 
     %tr
@@ -15,6 +15,32 @@
       %th Report
   %tbody
     -@comments.each do |comment|
+      %tr
+        %td= comment.username
+        %td= comment.owner
+        %td= comment.comment
+        %td= link_to "View Page",view_comment_path(:name => comment.character), :method => :get
+        %td
+          -if ((current_user.username == comment.username) || (current_user.is_admin))
+            = link_to "Update", comment_edit_path(:id => comment.id), :method => :get
+        %td
+          -if ((current_user.username == comment.username) || (current_user.is_admin) || (current_user == comment.owner))
+            = link_to "Delete", delete_comment_path(:id => comment.id), :method => :post, data: { :confirm => "Are You Sure You Want to Delete this Comment?"}
+        %td= button_to "Un-Flag Comment", flag_comment_path(:id => comment.id), :method => :post, data: { :confirm => "Are You Sure You Want to Clear the Flag this Comment?"}
+
+%h2 ALL Comments
+%table.table
+  %thead 
+    %tr
+      %th Username
+      %th Character Owner
+      %th Comment
+      %th Comment Page
+      %th Update
+      %th Delete
+      %th Report
+  %tbody
+    -@all_comments.each do |comment|
       %tr
         %td= comment.username
         %td= comment.owner

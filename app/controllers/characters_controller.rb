@@ -370,29 +370,114 @@ class CharactersController < ApplicationController
 
   def character_select_ai
     #binding.pry
-    if params["transformation"].nil?
+    if params["transformation"].nil? && session["preferences"].empty?
       search_hash = {}
       search_hash["is_completed"] = true
       @characters = Transformation.where(search_hash)
+      #Transformation::initial_button_preferences
+      button_hash = {}
+      button_hash['is_adult'] = true
+      button_hash['is_M2F'] = true
+      button_hash['is_F2M'] = true
+      button_hash['is_race_change'] = true
+      button_hash['is_age_reg'] = true
+      button_hash['is_age_pro'] = true
+      button_hash['is_furry'] = true
+      button_hash['is_animal'] = true
+      button_hash['is_futa'] = true
+      button_hash['is_mind'] = true
+      button_hash['is_bdsm'] = true
+      button_hash['is_pregnant'] = true
+      button_hash['is_inanimate'] = true
+      button_hash['is_growth'] = true
+      button_hash['is_shrink'] = true
+      button_hash['is_weight_gain'] = true
+      button_hash['is_fantasy'] = true
+      button_hash['is_bizarre'] = true
+      button_hash['is_bimbo'] = true
+      button_hash['is_robot'] = true
+      button_hash['is_monster_girl'] = true
+      button_hash['is_completed'] = true
+      button_hash['is_full_picture'] = true
+      session["button_pref"] = button_hash
+      @button_hash = button_hash
     else
       #@characters = Transformation.all
-      preferences = params["transformation"]
+      if params["transformation"].nil?
+        preferences = session["preferences"]
+        @pref2 = session["pref2"]
+        params["#{@pref2}"] = @pref2
+        @button_hash = session["button_pref"]
+        if @button_hash.nil?
+          @button_hash = {}
+        end
+        preferences.each do |key, value|
+          if value == "0"
+            @button_hash[key] = false
+          elsif value == "1"
+            @button_hash[key] = true
+          end
+        end
+        session["button_pref"] = button_hash
+      else
+        preferences = params["transformation"]
+        session["preferences"] = preferences
+        #Transformation::button_hash_editor(preferences)
+        if !params["Edit Preferences: Excluding Search"].nil? 
+            session["pref2"] = "Edit Preferences: Excluding Search"
+        elsif !params["Edit Preferences: Excluding Search"].nil? 
+            session["pref2"] = "Edit Preferences: Excluding Search"
+        end
+        @button_hash = session["button_pref"]
+        if @button_hash.nil?
+          @button_hash = {}
+        end
+        preferences.each do |key, value|
+          if value == "0"
+            @button_hash[key] = false
+          elsif value == "1"
+            @button_hash[key] = true
+          end
+        end
+      end
+
       search_hash = {}
+      #
       preferences.each do |key, value|
         if value == "0"
-          search_hash[key] = false
+          if !params["Edit Preferences: Excluding Search"].nil? 
+            search_hash[key] = false
+          end
+        elsif value == "1"
+          if  !params["Edit Preferences: Including Search" ].nil?
+            search_hash[key] = true
+          end
         end
       end
       #binding.pry
-      if (search_hash.has_key?("is_completed"))
-        search_hash.except!("is_completed")
+      if !params["Edit Preferences: Excluding Search"].nil? 
+        if (search_hash.has_key?("is_completed"))
+          search_hash.except!("is_completed")
+        else
+          search_hash["is_completed"] = true
+        end
+        if (search_hash.has_key?("is_full_picture"))
+          search_hash.except!("is_full_picture")
+        else
+          search_hash["is_full_picture"] = true
+        end
       else
-        search_hash["is_completed"] = true
-      end
-      if (search_hash.has_key?("is_full_picture"))
-        search_hash.except!("is_full_picture")
-      else
-        search_hash["is_full_picture"] = true
+        if (search_hash.has_key?("is_completed"))
+          #search_hash.except!("is_completed")
+        else
+          search_hash.except!("is_completed")
+        end
+        if (search_hash.has_key?("is_full_picture"))
+          search_hash.except!("is_full_picture")
+        else
+          search_hash.except!["is_full_picture"]
+          #search_hash["is_full_picture"] = true
+        end
       end
       #@characters = Transformation.where(search_hash).order("upvotes DESC")
       @characters = Transformation.where(search_hash).order("created_at DESC")
@@ -410,28 +495,120 @@ class CharactersController < ApplicationController
 
   def select_opponent
     @player1_character = params[:name]
-    if params["transformation"].nil?
+    #binding.pry
+    if params["transformation"].nil? && session["preferences"].empty?
       search_hash = {}
       search_hash["is_completed"] = true
       @characters = Transformation.where(search_hash)
+      #Transformation::initial_button_preferences
+      button_hash = {}
+      button_hash['is_adult'] = true
+      button_hash['is_M2F'] = true
+      button_hash['is_F2M'] = true
+      button_hash['is_race_change'] = true
+      button_hash['is_age_reg'] = true
+      button_hash['is_age_pro'] = true
+      button_hash['is_furry'] = true
+      button_hash['is_animal'] = true
+      button_hash['is_futa'] = true
+      button_hash['is_mind'] = true
+      button_hash['is_bdsm'] = true
+      button_hash['is_pregnant'] = true
+      button_hash['is_inanimate'] = true
+      button_hash['is_growth'] = true
+      button_hash['is_shrink'] = true
+      button_hash['is_weight_gain'] = true
+      button_hash['is_fantasy'] = true
+      button_hash['is_bizarre'] = true
+      button_hash['is_bimbo'] = true
+      button_hash['is_robot'] = true
+      button_hash['is_monster_girl'] = true
+      button_hash['is_completed'] = true
+      button_hash['is_full_picture'] = true
+      session["button_pref"] = button_hash
+      @button_hash = button_hash
     else
       #@characters = Transformation.all
-      preferences = params["transformation"]
-      search_hash = {}
-      preferences.each do |key, value|
-        if value == "0"
-          search_hash[key] = false
+      if params["transformation"].nil?
+        preferences = session["preferences"]
+        @pref2 = session["pref2"]
+        params["#{@pref2}"] = @pref2
+        @button_hash = session["button_pref"]
+        if @button_hash.nil?
+          @button_hash = {}
+        end
+        preferences.each do |key, value|
+          if value == "0"
+            @button_hash[key] = false
+          elsif value == "1"
+            @button_hash[key] = true
+          end
+        end
+        session["button_pref"] = button_hash
+      else
+        preferences = params["transformation"]
+        session["preferences"] = preferences
+        #Transformation::button_hash_editor(preferences)
+        if !params["Edit Preferences: Excluding Search"].nil? 
+            session["pref2"] = "Edit Preferences: Excluding Search"
+        elsif !params["Edit Preferences: Excluding Search"].nil? 
+            session["pref2"] = "Edit Preferences: Excluding Search"
+        end
+        @button_hash = session["button_pref"]
+        if @button_hash.nil?
+          @button_hash = {}
+        end
+        preferences.each do |key, value|
+          if value == "0"
+            @button_hash[key] = false
+          elsif value == "1"
+            @button_hash[key] = true
+          end
         end
       end
-      if !(search_hash.has_key?("is_completed"))
-        search_hash["is_completed"] = true
+
+      search_hash = {}
+      #
+      preferences.each do |key, value|
+        if value == "0"
+          if !params["Edit Preferences: Excluding Search"].nil? 
+            search_hash[key] = false
+          end
+        elsif value == "1"
+          if  !params["Edit Preferences: Including Search" ].nil?
+            search_hash[key] = true
+          end
+        end
       end
-      if (search_hash.has_key?("is_full_picture"))
-        search_hash.except!("is_full_picture")
+      #binding.pry
+      if !params["Edit Preferences: Excluding Search"].nil? 
+        if (search_hash.has_key?("is_completed"))
+          search_hash.except!("is_completed")
+        else
+          search_hash["is_completed"] = true
+        end
+        if (search_hash.has_key?("is_full_picture"))
+          search_hash.except!("is_full_picture")
+        else
+          search_hash["is_full_picture"] = true
+        end
       else
-        search_hash["is_full_picture"] = true
+        if (search_hash.has_key?("is_completed"))
+          #search_hash.except!("is_completed")
+        else
+          search_hash.except!("is_completed")
+        end
+        if (search_hash.has_key?("is_full_picture"))
+          search_hash.except!("is_full_picture")
+        else
+          search_hash.except!["is_full_picture"]
+          #search_hash["is_full_picture"] = true
+        end
       end
-      @characters = Transformation.where(search_hash).order("upvotes ASC")
+      #@characters = Transformation.where(search_hash).order("upvotes DESC")
+      @characters = Transformation.where(search_hash).order("created_at DESC")
+      #@characters = Hash[@characters.sort_by{|k,v|}, v[:upvotes]]
+     
       #binding.pry
       if @characters.empty?
         flash[:notice] = "No Results Found"

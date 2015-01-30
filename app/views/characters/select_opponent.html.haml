@@ -5,7 +5,16 @@
 
   %p
     %h2 Character Select
-
+-if session['pref2'] == 'Edit Preferences: Excluding Search'
+    %h4
+      Current Search Type: 
+      %strong
+        Excluding
+-if session['pref2'] == 'Edit Preferences: Including Search'
+    %h4
+      Current Search Type: 
+      %strong
+        Including
   %table#characters
     %thead
       %tr
