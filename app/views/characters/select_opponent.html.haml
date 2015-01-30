@@ -1,16 +1,17 @@
 -if (session[:current_game].nil?)
   
   %h3 Your Character:
-  = @player1_character
+  %strong
+    = @player1_character
 
-  %p
-    %h2 Character Select
--if session['pref2'] == 'Edit Preferences: Excluding Search'
+
+  %h2 Character Select
+  -if session['pref2'] == 'Edit Preferences: Excluding Search'
     %h4
       Current Search Type: 
       %strong
         Excluding
--if session['pref2'] == 'Edit Preferences: Including Search'
+  -if session['pref2'] == 'Edit Preferences: Including Search'
     %h4
       Current Search Type: 
       %strong
@@ -31,8 +32,15 @@
           %td= link_to "Select #{character.character_name}", select_opponent_game_path(:player2name => character.character_name, :player1name => @player1_character), :method=> :post
           %td= character.character.creator
           %td= character.character.upvotes
+
   %h3 Select TF Types
-  To prevent a type of TF from appearing in your list, uncheck the box and click "Edit Preferences"
+  %p
+    %strong Excluding Search Type: 
+    For the Excluding Search type, by checking OFF a TF Tag, you get rid of all characters with that TF Tag. For example, if you take off the "Furry" tag, after you click edit preferenes you will remove all characters with the "Furry Tag". If Bob has the tags "Male to Female", and "Furry", he will be removed, even if you allowed "Male to Female" in your list. By putting checking off multiple tags, the restrictions stack. For example, if you checked off "Furry" and "Robot", any characters with the "Furry" tag and any characters with the "Robot" tag, regardless of their other tags, will be removed from the list.
+  %p
+    %strong Including Search Type: 
+    For the Including Search type, by checking on a TF Tag, you are saying you ONLY want character that include that tag. For example, if you click on the "Male to Female" tag, only characters with the "Male to Female" tag will appear in your list. For example, if Bob has the "Male to Female" and "Furry" tags, he will appear in your revised list. NOTE: If you put in multiple tags, the characters must include ALL of the tags. For example, if you choose to include "Male to Female", "Complete", and "Fully Illustrated" as your checks, any character without all THREE tags will not be shown. For example, if Bob has the "Male to Female", "Furry", and Complete" tags, then he will NOT be shown in the list since he doesn't have the "Fully Illustrated" tag.
+
   = form_tag select_opponent_ai_path(:name => @player1_character) do
     %table.table
       %thead
@@ -44,119 +52,120 @@
           %td
             = label :transformation, :is_adult, 'Contains Adult Content?'
           %td 
-            = check_box :transformation, 'is_adult', :checked => true
+            = check_box :transformation, 'is_adult', :checked => @button_hash["is_adult"]
         %tr
           %td
             = label :transformation, :is_M2F, 'Contains Male to Female Transformation?'
           %td 
-            = check_box :transformation, 'is_M2F', :checked => true
+            = check_box :transformation, 'is_M2F', :checked => @button_hash["is_M2F"]
         %tr
           %td
             = label :transformation, :is_F2M, 'Contains Female to Male Transformation?'
           %td 
-            = check_box :transformation, 'is_F2M', :checked => true
+            = check_box :transformation, 'is_F2M', :checked => @button_hash["is_F2M"]
         %tr
           %td
             = label :transformation, :is_race_change, 'Contains Race Change?'
           %td 
-            = check_box :transformation, 'is_race_change', :checked => true
+            = check_box :transformation, 'is_race_change', :checked => @button_hash["is_race_change"]
         %tr
           %td
             = label :transformation, :is_age_reg, 'Contains Age Regression?'
           %td 
-            = check_box :transformation, 'is_age_reg', :checked => true
+            = check_box :transformation, 'is_age_reg', :checked => @button_hash["is_age_reg"]
         %tr
           %td
             = label :transformation, :is_age_pro, 'Contains Age Progression?'
           %td 
-            = check_box :transformation, 'is_age_pro', :checked => true
+            = check_box :transformation, 'is_age_pro', :checked => @button_hash["is_age_pro"]
         %tr
           %td
             = label :transformation, :is_furry, 'Contains Furry Transformation?'
           %td 
-            = check_box :transformation, 'is_furry', :checked => true
+            = check_box :transformation, 'is_furry', :checked => @button_hash["is_furry"]
         %tr
           %td
             = label :transformation, :is_animal, 'Contains Animal Transformation?'
           %td 
-            = check_box :transformation, 'is_animal', :checked => true
+            = check_box :transformation, 'is_animal', :checked => @button_hash["is_animal"]
         %tr
           %td
             = label :transformation, :is_futa, 'Contains Hermaphrodites?'
           %td 
-            = check_box :transformation, 'is_futa', :checked => true
+            = check_box :transformation, 'is_futa', :checked => @button_hash["is_futa"]
         %tr
           %td
             = label :transformation, :is_mind, 'Contains Mental Change?'
           %td 
-            = check_box :transformation, 'is_mind', :checked => true
+            = check_box :transformation, 'is_mind', :checked => @button_hash["is_mind"]
         %tr
           %td
             = label :transformation, :is_bdsm, 'Contains BDSM or Latex/Rubber Content?'
           %td 
-            = check_box :transformation, 'is_bdsm', :checked => true
+            = check_box :transformation, 'is_bdsm', :checked => @button_hash["is_bdsm"]
         %tr
           %td
             = label :transformation, :is_pregnant, 'Contains Pregnancy?'
           %td 
-            = check_box :transformation, 'is_pregnant', :checked => true
+            = check_box :transformation, 'is_pregnant', :checked => @button_hash["is_pregnant"]
         %tr
           %td
             = label :transformation, :is_inanimate, 'Contains Inanimate Transformation?'
           %td 
-            = check_box :transformation, 'is_inanimate', :checked => true
+            = check_box :transformation, 'is_inanimate', :checked => @button_hash["is_inanimate"]
         %tr
           %td
             = label :transformation, :is_growth, 'Contains Growth Transformation?'
           %td 
-            = check_box :transformation, 'is_growth', :checked => true
+            = check_box :transformation, 'is_growth', :checked => @button_hash["is_growth"]
         %tr
           %td
             = label :transformation, :is_shrink, 'Contains Shrinking Transformation?'
           %td 
-            = check_box :transformation, 'is_shrink', :checked => true
+            = check_box :transformation, 'is_shrink', :checked => @button_hash["is_shrink"]
         %tr
           %td
             = label :transformation, :is_weight_gain, 'Contains Weight Gain?'
           %td 
-            = check_box :transformation, 'is_weight_gain', :checked => true
+            = check_box :transformation, 'is_weight_gain', :checked => @button_hash["is_weight_gain"]
         %tr
           %td
             = label :transformation, :is_fantasy, 'Contains Mythical/Fantasy TF?'
           %td 
-            = check_box :transformation, 'is_fantasy', :checked => true
+            = check_box :transformation, 'is_fantasy', :checked => @button_hash["is_fantasy"]
         %tr
           %td
             = label :transformation, :is_robot, 'Contains Robots or Sci Fi?', :checked => true
           %td 
-            = check_box :transformation, 'is_robot', :checked => true
+            = check_box :transformation, 'is_robot', :checked => @button_hash["is_robot"]
         %tr
           %td
             = label :transformation, :is_bimbo, 'Contains Bimbos?', :checked => true
           %td 
-            = check_box :transformation, 'is_bimbo', :checked => true
+            = check_box :transformation, 'is_bimbo', :checked => @button_hash["is_bimbo"]
         %tr
           %td
             = label :transformation, :is_monster_girl, 'Contains Monster Girls?', :checked => true
           %td 
-            = check_box :transformation, 'is_monster_girl', :checked => true
+            = check_box :transformation, 'is_monster_girl', :checked => @button_hash["is_monster_girl"]
         %tr
           %td
             = label :transformation, :is_bizarre, 'Contains Bizarre TF / Other?', :checked => true
           %td 
-            = check_box :transformation, 'is_bizarre', :checked => true
+            = check_box :transformation, 'is_bizarre', :checked => @button_hash["is_bizarre"]
         %tr
           %td
             = label :transformation, :is_completed, 'Character Complete? (By Unchecking this, you allow incomplete characters)'
           %td 
-            = check_box :transformation, 'is_completed', :checked => true
+            = check_box :transformation, 'is_completed', :checked => @button_hash["is_completed"]
         %tr
           %td
             = label :transformation, :is_full_picture, 'Character Fully Illustrated (> 3 Pictures)? (By Checking this, You ONLY allow Fully Illustrated Characters)'
           %td 
-            = check_box :transformation, 'is_full_picture', :checked => false
+            = check_box :transformation, 'is_full_picture', :checked => @button_hash["is_full_picture"]
 
-    = submit_tag 'Edit Preferences'
+    = submit_tag 'Edit Preferences: Excluding Search', name: 'Edit Preferences: Excluding Search' 
+    = submit_tag 'Edit Preferences: Including Search', name: 'Edit Preferences: Including Search'
     
 -else
   %h1 Sorry, but you are currently in a game. Please leave the current game before starting a new one.
