@@ -26,23 +26,23 @@ ActiveRecord::Schema.define(:version => 20150130031324) do
     t.string   "main_image"
     t.integer  "action_1_id"
     t.string   "action_1_name"
-    t.text     "action_1_flavor", :limit => 255
+    t.text     "action_1_flavor"
     t.string   "action_1_rules"
     t.integer  "action_2_id"
     t.string   "action_2_name"
-    t.text     "action_2_flavor", :limit => 255
+    t.text     "action_2_flavor"
     t.string   "action_2_rules"
     t.integer  "action_3_id"
     t.string   "action_3_name"
-    t.text     "action_3_flavor", :limit => 255
+    t.text     "action_3_flavor"
     t.string   "action_3_rules"
     t.integer  "action_4_id"
     t.string   "action_4_name"
-    t.text     "action_4_flavor", :limit => 255
+    t.text     "action_4_flavor"
     t.string   "action_4_rules"
     t.string   "summon_name"
     t.string   "summon_picture"
-    t.text     "summon_attack",   :limit => 255
+    t.text     "summon_attack"
     t.string   "creator"
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(:version => 20150130031324) do
     t.integer  "player2_stage"
     t.string   "player1_picture"
     t.string   "player2_picture"
-    t.text     "tf_message",           :limit => 255
+    t.text     "tf_message"
   end
 
   create_table "invitation_preferences", :force => true do |t|
