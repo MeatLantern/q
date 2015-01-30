@@ -1,0 +1,47 @@
+%h1 Comments for
+%h2
+  = @character.name
+%h3 Comment Rules
+%p
+  Welcome to the comments section! You can use these to discuss whatever you want about the character. Discuss what you like, critque what you don't, say whatever you feel like! That said, there are a few simple guidelines to follow before you comment.
+%p
+  %p
+    1. Be Respectful: Please be respectful in the comments. Critques are perfectly fine, as are pointing out grammatical errors or mechanical problems with a character. That said, please keep all criticism constructive. The creator of each character spent time and effort on it, and just saying "This Character sucks" is neither constructive nor helpful. Please be kind and respectful to everyone while commenting, especially the creator.
+    %p
+      2. Flag Comments: If you think a comment is spam or offensive, feel free to click the "Flag Comment" button. This will alert an Admin to the comment, who will be able to handle it if necessary. Reasons to flag a comment include Spam Comments, Inflammatory Remarks based on Race, Gender, Ethnicity, Politics etc, or Cruel Personal Attacks. If a comment ever makes you feel uncomfortable, don't hesitate to flag the comment. If the issue is more complex, feel free to send in a Report as well. Thanks!
+    %p
+      3. Click the Update button to update your comment. You can only update comments if you made them.
+    %p
+      4. Click on the Delete Button to delete commment. You can only delete a comment if you made the comment. You may also delete the comment if you own the character page, though please refrain from deleting comments unneccesarily.
+    %p 
+      5.Have fun!
+
+%table.table
+  %thead 
+    %tr
+      %th Username
+      %th Comment
+      %th Update
+      %th Delete
+      %th Flag
+  %tbody
+    -@comments.each do |comment|
+      %tr
+        %td= comment.username
+        %td= comment.comment
+        %td
+          -if ((current_user.username == comment.username) || (current_user.is_admin))
+            = link_to "Update", comment_edit_path(:id => comment.id), :method => :get
+        %td
+          -if ((current_user.username == comment.username) || (current_user.is_admin) || (current_user == comment.owner))
+            = link_to "Delete", delete_comment_path(:id => comment.id), :method => :post, data: { :confirm => "Are You Sure You Want to Delete this Comment?"}
+        %td
+          -if comment.flag == true
+            = "Flagged"
+          -else
+            = button_to "Flag", flag_comment_path(:id => comment.id), :method => :post, data: { :confirm => "Are You Sure You Want to Flag this Comment for the Admin?"}
+%h3 Add New Comment
+= form_tag create_comment_path(:character_name => @character.name) do
+  = label :transformation, :comment, 'Comment'
+  = text_area :transformation, 'Comment', :size => "40x4"
+  = submit_tag "Add New Comment"

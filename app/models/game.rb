@@ -745,7 +745,7 @@ class Game < ActiveRecord::Base
           results = "#{current_game.player1_character} has finally overcome the poison!"
           current_game.save
         else
-          poison_damage = 3 + rand(6)
+          poison_damage = 1 + rand(6)
           current_game.p1_hp = current_game.p1_hp - poison_damage
           results = "#{current_game.player1_character} has taken #{poison_damage} from the poison!"
         end
@@ -786,7 +786,7 @@ class Game < ActiveRecord::Base
 
       if (current_game.player1_debuff == "Mana Lock")   
         duration = current_game.current_turn - current_game.player1_debuff_start
-        if duration > 6
+        if duration > 12
           current_game.player1_debuff = "None"
           current_game.player1_debuff_start = -50
           results = "#{current_game.player1_character} has overcome the Mana Lock."
@@ -794,6 +794,7 @@ class Game < ActiveRecord::Base
         else
           max_mp = active_character.max_mp
           mana_regained = max_mp / 10
+          mana_regained = (max_mp * (0.15)).round
           current_game.p1_mp = current_game.p1_mp - mana_regained
           if(current_game.p1_mp < 0)
             current_game.p1_mp = 0
@@ -861,7 +862,7 @@ class Game < ActiveRecord::Base
           current_game.player2_debuff_start = -50
           results = "#{current_game.player2_character} has finally overcome the poison!"
         else
-          poison_damage = 3 + rand(6)
+          poison_damage = 1 + rand(6)
           current_game.p2_hp = current_game.p2_hp - poison_damage
           results = "#{current_game.player2_character} has taken #{poison_damage} damage from the poison!"
         end
@@ -901,7 +902,7 @@ class Game < ActiveRecord::Base
 
       if (current_game.player2_debuff == "Mana Lock")   
         duration = current_game.current_turn - current_game.player2_debuff_start
-        if duration > 6
+        if duration > 12
           current_game.player2_debuff = "None"
           current_game.player2_debuff_start = -50
           results = "#{current_game.player2_character} has overcome the Mana Lock"
@@ -909,6 +910,7 @@ class Game < ActiveRecord::Base
         else
           max_mp = active_character.max_mp
           mana_regained = max_mp / 10
+          mana_regained = (max_mp * (0.15)).round
           current_game.p2_mp = current_game.p2_mp - mana_regained
           if(current_game.p2_mp < 0)
             current_game.p2_mp = 0

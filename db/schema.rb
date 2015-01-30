@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150128205900) do
+ActiveRecord::Schema.define(:version => 20150130031324) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -26,27 +26,37 @@ ActiveRecord::Schema.define(:version => 20150128205900) do
     t.string   "main_image"
     t.integer  "action_1_id"
     t.string   "action_1_name"
-    t.string   "action_1_flavor"
+    t.text     "action_1_flavor", :limit => 255
     t.string   "action_1_rules"
     t.integer  "action_2_id"
     t.string   "action_2_name"
-    t.string   "action_2_flavor"
+    t.text     "action_2_flavor", :limit => 255
     t.string   "action_2_rules"
     t.integer  "action_3_id"
     t.string   "action_3_name"
-    t.string   "action_3_flavor"
+    t.text     "action_3_flavor", :limit => 255
     t.string   "action_3_rules"
     t.integer  "action_4_id"
     t.string   "action_4_name"
-    t.string   "action_4_flavor"
+    t.text     "action_4_flavor", :limit => 255
     t.string   "action_4_rules"
     t.string   "summon_name"
     t.string   "summon_picture"
-    t.string   "summon_attack"
+    t.text     "summon_attack",   :limit => 255
     t.string   "creator"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.integer  "upvotes"
+  end
+
+  create_table "comments", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "username"
+    t.string   "character"
+    t.string   "owner"
+    t.text     "comment"
+    t.boolean  "flag"
   end
 
   create_table "game_invitations", :force => true do |t|

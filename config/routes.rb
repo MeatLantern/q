@@ -19,6 +19,14 @@ DuelOfChampions::Application.routes.draw do
   match 'select_num_stages', to: 'transformation#select_num_stages', via: :get
   match 'stage_setup', to: 'transformation#stage_setup', via: :post
   match 'change_pref', to: 'invitation_preferences#change', via: :post
+  match 'view_comment', to: 'comment#view', via: :get
+  match 'create_comment', to: 'comment#create', via: :post
+  match 'comment/edit', to: 'comment#edit', via: :get
+  match 'update_comment', to: 'comment#update', via: :post
+  match 'delete_comment', to: 'comment#delete', via: :post
+  match 'comment_admin', to: 'comment#admin', via: :get
+  match 'flag_comment', to: 'comment#flag', via: :post
+
 
   resources :transformation
 

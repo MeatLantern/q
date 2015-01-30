@@ -1,4 +1,7 @@
-FactoryGirl.define do  factory :report do
+FactoryGirl.define do  factory :comment do
+    
+  end
+  factory :report do
     
   end
   factory :invitation_preference, :class => 'InvitationPreferences' do

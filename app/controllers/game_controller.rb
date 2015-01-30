@@ -130,6 +130,9 @@ class GameController < ApplicationController
  	  if (test_game.player2_debuff == "Silence")
       action_array = ["1", "2"]
     end
+    if ((test_game.player2_debuff == "Mana Lock") && test_game.p2_mp < 20)
+      action_array = ["1"]
+    end
    action_temp = action_array.sample
    action = "#{action_temp}"
   if (action == "23")
@@ -138,7 +141,7 @@ class GameController < ApplicationController
       action = "#{action_temp}"
     end
   end
-  if(test_game.p2_mp < 20)
+  if(test_game.p2_mp < 20 && test_game.player2_debuff != "Mana Lock")
     action = "3"
   end
    flavor = Game::get_ability_info(action, test_game.player2_character)

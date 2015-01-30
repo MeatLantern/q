@@ -1,0 +1,6 @@
+%h1 Edit Comment
+
+= form_tag update_comment_path(:id => @comment.id) do
+  = label :transformation, :comment, 'Comment'
+  = text_area :transformation, 'Comment', :size => "40x4", :value => @comment.comment
+  = submit_tag "Edit Comment"
