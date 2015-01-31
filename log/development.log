@@ -20443,3 +20443,673 @@ ActionController::RoutingError (No route matches [GET] "/assets/a"):
 
 
   Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.15/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
+
+
+Started GET "/game/show" for 127.0.0.1 at 2015-01-31 04:22:17 -0400
+Processing by GameController#show as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mGame Load (0.3ms)[0m  SELECT "games".* FROM "games" WHERE "games"."game_name" = 'TOGhSdEi8DMxIhHvQR6oUg==' LIMIT 1
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCharacter Load (0.5ms)[0m  SELECT "characters".* FROM "characters" WHERE "characters"."name" = 'Ragnar the Warrior' LIMIT 1
+  [1m[36mCharacter Load (1.8ms)[0m  [1mSELECT "characters".* FROM "characters" WHERE "characters"."name" = 'e' LIMIT 1[0m
+  Rendered game/show.html.haml within layouts/application (16.4ms)
+Completed 200 OK in 346.3ms (Views: 39.2ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/assets/font-awesome.css?body=1" for 127.0.0.1 at 2015-01-31 04:22:17 -0400
+Served asset /font-awesome.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-01-31 04:22:18 -0400
+Served asset /jquery.js - 200 OK (8ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-01-31 04:22:18 -0400
+Served asset /bootstrap.css - 200 OK (13ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-01-31 04:22:18 -0400
+Served asset /jquery_ujs.js - 200 OK (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-01-31 04:22:18 -0400
+Served asset /bootstrap.min.css - 200 OK (4ms)
+
+
+Started GET "/assets/character.js?body=1" for 127.0.0.1 at 2015-01-31 04:22:18 -0400
+Served asset /character.js - 200 OK (3ms)
+
+
+Started GET "/assets/comment.js?body=1" for 127.0.0.1 at 2015-01-31 04:22:18 -0400
+Served asset /comment.js - 200 OK (7ms)
+
+
+Started GET "/assets/game.js?body=1" for 127.0.0.1 at 2015-01-31 04:22:18 -0400
+Served asset /game.js - 200 OK (15ms)
+
+
+Started GET "/assets/game_invitations.js?body=1" for 127.0.0.1 at 2015-01-31 04:22:18 -0400
+Served asset /game_invitations.js - 200 OK (0ms)
+
+
+Started GET "/assets/invitation_preferences.js?body=1" for 127.0.0.1 at 2015-01-31 04:22:18 -0400
+Served asset /invitation_preferences.js - 200 OK (0ms)
+
+
+Started GET "/assets/report.js?body=1" for 127.0.0.1 at 2015-01-31 04:22:18 -0400
+Served asset /report.js - 200 OK (8ms)
+
+
+Started GET "/assets/transformation.js?body=1" for 127.0.0.1 at 2015-01-31 04:22:18 -0400
+Served asset /transformation.js - 200 OK (0ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2015-01-31 04:22:18 -0400
+Served asset /user.js - 200 OK (4ms)
+
+
+Started GET "/assets/game.css?body=1" for 127.0.0.1 at 2015-01-31 04:22:18 -0400
+Served asset /game.css - 200 OK (0ms)
+
+
+Started GET "/assets/a" for 127.0.0.1 at 2015-01-31 04:22:18 -0400
+Served asset /a - 404 Not Found (21ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/a"):
+  actionpack (3.2.15) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.15) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.15) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.15) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.15) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.15) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.15) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.15) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.15) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.15) lib/rails/engine.rb:484:in `call'
+  railties (3.2.15) lib/rails/application.rb:231:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.15) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/saasbook/.rvm/rubies/ruby-1.9.3-p448/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /home/saasbook/.rvm/rubies/ruby-1.9.3-p448/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /home/saasbook/.rvm/rubies/ruby-1.9.3-p448/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.15/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-01-31 04:22:19 -0400
+Served asset /jquery.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-01-31 04:22:19 -0400
+Served asset /jquery_ujs.js - 200 OK (0ms)
+
+
+Started GET "/assets/character.js?body=1" for 127.0.0.1 at 2015-01-31 04:22:19 -0400
+Served asset /character.js - 200 OK (5ms)
+
+
+Started GET "/assets/comment.js?body=1" for 127.0.0.1 at 2015-01-31 04:22:19 -0400
+Served asset /comment.js - 200 OK (0ms)
+
+
+Started GET "/assets/game.js?body=1" for 127.0.0.1 at 2015-01-31 04:22:19 -0400
+Served asset /game.js - 200 OK (0ms)
+
+
+Started GET "/assets/game_invitations.js?body=1" for 127.0.0.1 at 2015-01-31 04:22:19 -0400
+Served asset /game_invitations.js - 200 OK (0ms)
+
+
+Started GET "/assets/invitation_preferences.js?body=1" for 127.0.0.1 at 2015-01-31 04:22:19 -0400
+Served asset /invitation_preferences.js - 200 OK (0ms)
+
+
+Started GET "/assets/report.js?body=1" for 127.0.0.1 at 2015-01-31 04:22:19 -0400
+Served asset /report.js - 200 OK (5ms)
+
+
+Started GET "/assets/transformation.js?body=1" for 127.0.0.1 at 2015-01-31 04:22:19 -0400
+Served asset /transformation.js - 200 OK (0ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2015-01-31 04:22:20 -0400
+Served asset /user.js - 200 OK (3ms)
+
+
+Started GET "/assets/a" for 127.0.0.1 at 2015-01-31 04:22:20 -0400
+Served asset /a - 404 Not Found (8ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/a"):
+  actionpack (3.2.15) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.15) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.15) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.15) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.15) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.15) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.15) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.15) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.15) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.15) lib/rails/engine.rb:484:in `call'
+  railties (3.2.15) lib/rails/application.rb:231:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.15) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/saasbook/.rvm/rubies/ruby-1.9.3-p448/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /home/saasbook/.rvm/rubies/ruby-1.9.3-p448/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /home/saasbook/.rvm/rubies/ruby-1.9.3-p448/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.15/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.9ms)
+
+
+Started GET "/game/show" for 127.0.0.1 at 2015-01-31 04:23:05 -0400
+Processing by GameController#show as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mGame Load (0.3ms)[0m  [1mSELECT "games".* FROM "games" WHERE "games"."game_name" = 'TOGhSdEi8DMxIhHvQR6oUg==' LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCharacter Load (1.3ms)[0m  [1mSELECT "characters".* FROM "characters" WHERE "characters"."name" = 'Ragnar the Warrior' LIMIT 1[0m
+  [1m[35mCharacter Load (0.4ms)[0m  SELECT "characters".* FROM "characters" WHERE "characters"."name" = 'e' LIMIT 1
+  Rendered game/show.html.haml within layouts/application (9.4ms)
+Completed 200 OK in 249.6ms (Views: 32.2ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/assets/font-awesome.css?body=1" for 127.0.0.1 at 2015-01-31 04:23:05 -0400
+Served asset /font-awesome.css - 200 OK (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-01-31 04:23:05 -0400
+Served asset /bootstrap.min.css - 200 OK (38ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-01-31 04:23:05 -0400
+Served asset /bootstrap.css - 200 OK (14ms)
+
+
+Started GET "/assets/character.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:05 -0400
+Served asset /character.js - 200 OK (33ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:06 -0400
+Served asset /jquery.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:06 -0400
+Served asset /jquery_ujs.js - 200 OK (0ms)
+
+
+Started GET "/assets/comment.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:06 -0400
+Served asset /comment.js - 200 OK (0ms)
+
+
+Started GET "/assets/game.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:06 -0400
+Served asset /game.js - 200 OK (8ms)
+
+
+Started GET "/assets/invitation_preferences.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:06 -0400
+Served asset /invitation_preferences.js - 200 OK (0ms)
+
+
+Started GET "/assets/game_invitations.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:06 -0400
+Served asset /game_invitations.js - 200 OK (16ms)
+
+
+Started GET "/assets/report.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:06 -0400
+Served asset /report.js - 200 OK (19ms)
+
+
+Started GET "/assets/transformation.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:06 -0400
+Served asset /transformation.js - 200 OK (5ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:06 -0400
+Served asset /user.js - 200 OK (0ms)
+
+
+Started GET "/assets/game.css?body=1" for 127.0.0.1 at 2015-01-31 04:23:06 -0400
+Served asset /game.css - 200 OK (5ms)
+
+
+Started GET "/assets/a" for 127.0.0.1 at 2015-01-31 04:23:06 -0400
+Served asset /a - 404 Not Found (176ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/a"):
+  actionpack (3.2.15) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.15) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.15) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.15) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.15) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.15) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.15) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.15) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.15) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.15) lib/rails/engine.rb:484:in `call'
+  railties (3.2.15) lib/rails/application.rb:231:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.15) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/saasbook/.rvm/rubies/ruby-1.9.3-p448/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /home/saasbook/.rvm/rubies/ruby-1.9.3-p448/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /home/saasbook/.rvm/rubies/ruby-1.9.3-p448/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.15/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:06 -0400
+Served asset /jquery.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:07 -0400
+Served asset /jquery_ujs.js - 200 OK (0ms)
+
+
+Started GET "/assets/character.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:07 -0400
+Served asset /character.js - 200 OK (0ms)
+
+
+Started GET "/assets/comment.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:07 -0400
+Served asset /comment.js - 200 OK (0ms)
+
+
+Started GET "/assets/game.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:07 -0400
+Served asset /game.js - 200 OK (0ms)
+
+
+Started GET "/assets/game_invitations.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:07 -0400
+Served asset /game_invitations.js - 200 OK (3ms)
+
+
+Started GET "/assets/invitation_preferences.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:07 -0400
+Served asset /invitation_preferences.js - 200 OK (6ms)
+
+
+Started GET "/assets/report.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:07 -0400
+Served asset /report.js - 200 OK (0ms)
+
+
+Started GET "/assets/transformation.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:07 -0400
+Served asset /transformation.js - 200 OK (0ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:07 -0400
+Served asset /user.js - 200 OK (0ms)
+
+
+Started GET "/assets/a" for 127.0.0.1 at 2015-01-31 04:23:07 -0400
+Served asset /a - 404 Not Found (10ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/a"):
+  actionpack (3.2.15) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.15) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.15) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.15) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.15) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.15) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.15) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.15) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.15) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.15) lib/rails/engine.rb:484:in `call'
+  railties (3.2.15) lib/rails/application.rb:231:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.15) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/saasbook/.rvm/rubies/ruby-1.9.3-p448/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /home/saasbook/.rvm/rubies/ruby-1.9.3-p448/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /home/saasbook/.rvm/rubies/ruby-1.9.3-p448/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.15/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started POST "/game/game/destroy_current_game" for 127.0.0.1 at 2015-01-31 04:23:21 -0400
+Processing by GameController#destroy_current_game as HTML
+  Parameters: {"authenticity_token"=>"7B/AsrCBOpcUZ0WjYFnm/qqAU1iCcM/jU0wPViUs/5Y="}
+  [1m[36mUser Load (4.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mGame Load (0.3ms)[0m  SELECT "games".* FROM "games" WHERE "games"."game_name" = 'TOGhSdEi8DMxIhHvQR6oUg==' LIMIT 1
+  [1m[36mSQL (45.8ms)[0m  [1mDELETE FROM "games" WHERE "games"."id" = 70[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE ("users"."username" = 'User1' AND "users"."id" != 1) LIMIT 1
+  [1m[36m (7.1ms)[0m  [1mUPDATE "users" SET "currentgame" = NULL, "updated_at" = '2015-01-31 08:23:21.111288' WHERE "users"."id" = 1[0m
+  [1m[35m (28.8ms)[0m  commit transaction
+Redirected to http://localhost:3000/game/rules
+Completed 302 Found in 116.4ms (ActiveRecord: 87.2ms)
+
+
+Started GET "/game/rules" for 127.0.0.1 at 2015-01-31 04:23:21 -0400
+Processing by GameController#rules as HTML
+  [1m[36mUser Load (2.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered game/rules.html.haml within layouts/application (0.6ms)
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+Completed 200 OK in 34.5ms (Views: 29.4ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/assets/font-awesome.css?body=1" for 127.0.0.1 at 2015-01-31 04:23:21 -0400
+Served asset /font-awesome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-01-31 04:23:21 -0400
+Served asset /bootstrap.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-01-31 04:23:21 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (9ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:21 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/character.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:21 -0400
+Served asset /character.js - 304 Not Modified (8ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:21 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comment.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:21 -0400
+Served asset /comment.js - 304 Not Modified (11ms)
+
+
+Started GET "/assets/game.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:21 -0400
+Served asset /game.js - 304 Not Modified (12ms)
+
+
+Started GET "/assets/game_invitations.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:21 -0400
+Served asset /game_invitations.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/invitation_preferences.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:21 -0400
+Served asset /invitation_preferences.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/transformation.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:21 -0400
+Served asset /transformation.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/report.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:21 -0400
+Served asset /report.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:22 -0400
+Served asset /user.js - 304 Not Modified (14ms)
+
+
+Started GET "/character/character_select_ai" for 127.0.0.1 at 2015-01-31 04:23:26 -0400
+Processing by CharactersController#character_select_ai as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mTransformation Load (2.2ms)[0m  SELECT "transformations".* FROM "transformations" WHERE "transformations"."is_completed" = 't'
+  [1m[36mCharacter Load (0.4ms)[0m  [1mSELECT "characters".* FROM "characters" WHERE "characters"."id" = 15 LIMIT 1[0m
+  [1m[35mCharacter Load (0.3ms)[0m  SELECT "characters".* FROM "characters" WHERE "characters"."id" = 31 LIMIT 1
+  Rendered characters/character_select_ai.html.haml within layouts/application (148.8ms)
+Completed 200 OK in 199.3ms (Views: 172.7ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/assets/font-awesome.css?body=1" for 127.0.0.1 at 2015-01-31 04:23:26 -0400
+Served asset /font-awesome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-01-31 04:23:27 -0400
+Served asset /bootstrap.css - 304 Not Modified (33ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:27 -0400
+Served asset /jquery.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-01-31 04:23:27 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (7ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:27 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (12ms)
+
+
+Started GET "/assets/character.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:27 -0400
+Served asset /character.js - 304 Not Modified (10ms)
+
+
+Started GET "/assets/comment.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:27 -0400
+Served asset /comment.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/game.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:27 -0400
+Served asset /game.js - 304 Not Modified (10ms)
+
+
+Started GET "/assets/game_invitations.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:27 -0400
+Served asset /game_invitations.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/invitation_preferences.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:27 -0400
+Served asset /invitation_preferences.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/report.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:27 -0400
+Served asset /report.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/transformation.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:27 -0400
+Served asset /transformation.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2015-01-31 04:23:27 -0400
+Served asset /user.js - 304 Not Modified (10ms)
+
+
+Started POST "/game/create_ai_game?name=Ragnar+the+Warrior" for 127.0.0.1 at 2015-01-31 04:23:29 -0400
+Processing by GameController#create_ai_game as HTML
+  Parameters: {"authenticity_token"=>"7B/AsrCBOpcUZ0WjYFnm/qqAU1iCcM/jU0wPViUs/5Y=", "name"=>"Ragnar the Warrior"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCharacter Load (0.3ms)[0m  [1mSELECT "characters".* FROM "characters" WHERE "characters"."name" = 'Ragnar the Warrior' LIMIT 1[0m
+  [1m[35mTransformation Load (0.5ms)[0m  SELECT "transformations".* FROM "transformations" WHERE "transformations"."completed" = 't'
+SQLite3::SQLException: no such column: transformations.completed: SELECT "transformations".* FROM "transformations"  WHERE "transformations"."completed" = 't'
+Completed 500 Internal Server Error in 18.4ms
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such column: transformations.completed: SELECT "transformations".* FROM "transformations"  WHERE "transformations"."completed" = 't'):
+  app/controllers/game_controller.rb:271:in `create_ai_game'
+
+
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.15/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.15/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.2ms)
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.15/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (39.4ms)
+
+
+Started POST "/game/create_ai_game?name=Ragnar+the+Warrior" for 127.0.0.1 at 2015-01-31 04:25:21 -0400
+Processing by GameController#create_ai_game as HTML
+  Parameters: {"authenticity_token"=>"7B/AsrCBOpcUZ0WjYFnm/qqAU1iCcM/jU0wPViUs/5Y=", "name"=>"Ragnar the Warrior"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCharacter Load (0.3ms)[0m  [1mSELECT "characters".* FROM "characters" WHERE "characters"."name" = 'Ragnar the Warrior' LIMIT 1[0m
+  [1m[35mTransformation Load (0.8ms)[0m  SELECT "transformations".* FROM "transformations" WHERE "transformations"."is_completed" = 't'
+  [1m[36mCharacter Load (0.4ms)[0m  [1mSELECT "characters".* FROM "characters" WHERE "characters"."name" = 'y' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE ("users"."username" = 'User1' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35m (6.4ms)[0m  UPDATE "users" SET "currentgame" = 'TaiNrnDjuiVv6Rg0SVXxqQ==', "updated_at" = '2015-01-31 08:25:22.151585' WHERE "users"."id" = 1
+  [1m[36m (39.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "games" ("created_at", "current_turn", "flavor_message", "game_name", "game_over", "p1_guard", "p1_hp", "p1_mp", "p2_guard", "p2_hp", "p2_mp", "player1", "player1_buff", "player1_buff_start", "player1_character", "player1_debuff", "player1_debuff_start", "player1_description", "player1_last_tf", "player1_message", "player1_picture", "player1_stage", "player2", "player2_buff", "player2_buff_start", "player2_character", "player2_debuff", "player2_debuff_start", "player2_description", "player2_last_tf", "player2_message", "player2_picture", "player2_stage", "results_message", "tf_message", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", Sat, 31 Jan 2015 08:25:22 UTC +00:00], ["current_turn", 1], ["flavor_message", ""], ["game_name", "TaiNrnDjuiVv6Rg0SVXxqQ=="], ["game_over", false], ["p1_guard", false], ["p1_hp", 90], ["p1_mp", 60], ["p2_guard", false], ["p2_hp", 40], ["p2_mp", 40], ["player1", "User1"], ["player1_buff", "None"], ["player1_buff_start", 0], ["player1_character", "Ragnar the Warrior"], ["player1_debuff", "None"], ["player1_debuff_start", 0], ["player1_description", "Ragnar is a mighty Knight, loyal to the throne and dedicated to the people of\r\nthe land. His greatest foes are the vicious Orcs, and he hates their debase and\r\ncruel actions with truly burning passion. When not fighting the good fight,\r\nRagnar enjoys jousting, horseback riding, and wrestling. With sword in hand, he\r\nwill surely bring victory to his king and his people!"], ["player1_last_tf", "None"], ["player1_message", ""], ["player1_picture", "http://i228.photobucket.com/albums/ee203/Odachi65/Ragnar0.png"], ["player1_stage", 0], ["player2", "AI"], ["player2_buff", "None"], ["player2_buff_start", 0], ["player2_character", "y"], ["player2_debuff", "None"], ["player2_debuff_start", 0], ["player2_description", "y"], ["player2_last_tf", "None"], ["player2_message", ""], ["player2_picture", "a"], ["player2_stage", 0], ["results_message", nil], ["tf_message", ""], ["updated_at", Sat, 31 Jan 2015 08:25:22 UTC +00:00]]
+  [1m[35m (26.3ms)[0m  commit transaction
+Redirected to http://localhost:3000/game/show
+Completed 302 Found in 333.8ms (ActiveRecord: 77.0ms)
+
+
+Started GET "/game/show" for 127.0.0.1 at 2015-01-31 04:25:22 -0400
+Processing by GameController#show as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mGame Load (0.3ms)[0m  SELECT "games".* FROM "games" WHERE "games"."game_name" = 'TaiNrnDjuiVv6Rg0SVXxqQ==' LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCharacter Load (0.3ms)[0m  SELECT "characters".* FROM "characters" WHERE "characters"."name" = 'Ragnar the Warrior' LIMIT 1
+  [1m[36mCharacter Load (0.3ms)[0m  [1mSELECT "characters".* FROM "characters" WHERE "characters"."name" = 'y' LIMIT 1[0m
+  Rendered game/show.html.haml within layouts/application (24.1ms)
+Completed 200 OK in 67.7ms (Views: 51.4ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/assets/font-awesome.css?body=1" for 127.0.0.1 at 2015-01-31 04:25:22 -0400
+Served asset /font-awesome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-01-31 04:25:22 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (43ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-01-31 04:25:22 -0400
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-01-31 04:25:22 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-01-31 04:25:22 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (11ms)
+
+
+Started GET "/assets/character.js?body=1" for 127.0.0.1 at 2015-01-31 04:25:22 -0400
+Served asset /character.js - 304 Not Modified (26ms)
+
+
+Started GET "/assets/comment.js?body=1" for 127.0.0.1 at 2015-01-31 04:25:23 -0400
+Served asset /comment.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/game.js?body=1" for 127.0.0.1 at 2015-01-31 04:25:23 -0400
+Served asset /game.js - 304 Not Modified (13ms)
+
+
+Started GET "/assets/game_invitations.js?body=1" for 127.0.0.1 at 2015-01-31 04:25:23 -0400
+Served asset /game_invitations.js - 304 Not Modified (14ms)
+
+
+Started GET "/assets/invitation_preferences.js?body=1" for 127.0.0.1 at 2015-01-31 04:25:23 -0400
+Served asset /invitation_preferences.js - 304 Not Modified (11ms)
+
+
+Started GET "/assets/report.js?body=1" for 127.0.0.1 at 2015-01-31 04:25:23 -0400
+Served asset /report.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/transformation.js?body=1" for 127.0.0.1 at 2015-01-31 04:25:23 -0400
+Served asset /transformation.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2015-01-31 04:25:23 -0400
+Served asset /user.js - 304 Not Modified (11ms)
+
+
+Started GET "/assets/game.css?body=1" for 127.0.0.1 at 2015-01-31 04:25:23 -0400
+Served asset /game.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/a" for 127.0.0.1 at 2015-01-31 04:25:23 -0400
+Served asset /a - 404 Not Found (15ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/a"):
+  actionpack (3.2.15) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.15) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.15) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.15) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.15) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.15) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.15) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.15) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.15) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.15) lib/rails/engine.rb:484:in `call'
+  railties (3.2.15) lib/rails/application.rb:231:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.15) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/saasbook/.rvm/rubies/ruby-1.9.3-p448/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /home/saasbook/.rvm/rubies/ruby-1.9.3-p448/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /home/saasbook/.rvm/rubies/ruby-1.9.3-p448/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.15/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.4ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-01-31 04:25:23 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-01-31 04:25:23 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/character.js?body=1" for 127.0.0.1 at 2015-01-31 04:25:24 -0400
+Served asset /character.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comment.js?body=1" for 127.0.0.1 at 2015-01-31 04:25:24 -0400
+Served asset /comment.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/game.js?body=1" for 127.0.0.1 at 2015-01-31 04:25:24 -0400
+Served asset /game.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/game_invitations.js?body=1" for 127.0.0.1 at 2015-01-31 04:25:24 -0400
+Served asset /game_invitations.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/invitation_preferences.js?body=1" for 127.0.0.1 at 2015-01-31 04:25:24 -0400
+Served asset /invitation_preferences.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/report.js?body=1" for 127.0.0.1 at 2015-01-31 04:25:24 -0400
+Served asset /report.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/transformation.js?body=1" for 127.0.0.1 at 2015-01-31 04:25:24 -0400
+Served asset /transformation.js - 304 Not Modified (12ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2015-01-31 04:25:24 -0400
+Served asset /user.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/a" for 127.0.0.1 at 2015-01-31 04:25:24 -0400
+Served asset /a - 404 Not Found (10ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/a"):
+  actionpack (3.2.15) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.15) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.15) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.15) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.15) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.15) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.15) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.15) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.15) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.15) lib/rails/engine.rb:484:in `call'
+  railties (3.2.15) lib/rails/application.rb:231:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.15) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/saasbook/.rvm/rubies/ruby-1.9.3-p448/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /home/saasbook/.rvm/rubies/ruby-1.9.3-p448/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /home/saasbook/.rvm/rubies/ruby-1.9.3-p448/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.15/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)

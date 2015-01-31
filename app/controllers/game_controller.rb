@@ -247,7 +247,7 @@ class GameController < ApplicationController
     #opponent_character = Character.offset(rand(Character.count)).first
     search_hash = {}
     if(params[:rules].nil?)
-
+      
     else
       preferences = params[:rules]
       search_hash = {}
@@ -258,13 +258,13 @@ class GameController < ApplicationController
       end
    end
 
-   search_hash["completed"] = true
+   search_hash["is_completed"] = true
 
-    if params[:rules].nil?
-      valid_characters = Transformation.all
-    else
+    #if params[:rules].nil?
+    #  valid_characters = Transformation.all
+    #else
       valid_characters = Transformation.where(search_hash)
-    end
+    #end
 
 
 
