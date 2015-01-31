@@ -257,11 +257,15 @@ class GameController < ApplicationController
       end
    end
 
+   search_hash["completed"] = true
+
     if params[:rules].nil?
       valid_characters = Transformation.all
     else
       valid_characters = Transformation.where(search_hash)
     end
+
+
 
     opponent_tf = valid_characters.sample
 
