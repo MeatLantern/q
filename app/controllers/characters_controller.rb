@@ -496,7 +496,7 @@ class CharactersController < ApplicationController
   def select_opponent
     @player1_character = params[:name]
     #binding.pry
-    if params["transformation"].nil? && session["preferences"].empty?
+    if params["transformation"].nil? && session["preferences"].nil?
       search_hash = {}
       search_hash["is_completed"] = true
       @characters = Transformation.where(search_hash)
