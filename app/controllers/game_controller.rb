@@ -245,6 +245,7 @@ class GameController < ApplicationController
     #Get character
     player_character = Character.find_by_name(character_choice)
     #opponent_character = Character.offset(rand(Character.count)).first
+    search_hash = {}
     if(params[:rules].nil?)
 
     else
