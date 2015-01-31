@@ -135,7 +135,8 @@ class Transformation < ActiveRecord::Base
   		if(game.player1_stage == 0)
   			recent_tf = recent_tf + "#{game.player1_character} has turned back to normal!"
   		else
-  			recent_tf = recent_tf + game.player1_last_tf + " <br> <br>" 
+  			#recent_tf = recent_tf + game.player1_last_tf + " <br> <br>" 
+        recent_tf = Transformation::multiple_step_assembler(character1.transformation, previous_p1_stage, game.player1_stage)
   		end
   	end
 
@@ -143,11 +144,37 @@ class Transformation < ActiveRecord::Base
 		if(game.player2_stage == 0)
   			recent_tf = recent_tf + "#{game.player2_character} has turned back to normal!"
   		else
-  			recent_tf = recent_tf + game.player2_last_tf
+  			#recent_tf = recent_tf + game.player2_last_tf
+        recent_tf = Transformation::multiple_step_assembler(character2.transformation, previous_p2_stage, game.player2_stage)
   		end 
   	end  	
 
   	return recent_tf
+  end
+
+  def Transformation::multiple_step_assembler(transformation, stage1, stage2)
+    array = Array.new(10)
+    array[0] = transformation.stage1_tf_description
+    array[1] = transformation.stage2_tf_description
+    array[2] = transformation.stage3_tf_description
+    array[3] = transformation.stage4_tf_description
+    array[4] = transformation.stage5_tf_description
+    array[5] = transformation.stage6_tf_description
+    array[6] = transformation.stage7_tf_description
+    array[7] = transformation.stage8_tf_description
+    array[8] = transformation.stage9_tf_description
+    array[9] = transformation.stage10_tf_description
+    s1 = stage1
+    s2 = stage2 -1
+    range = (stage1..s2)
+    tf_message = ""
+    range.each do |i|
+      if !(tf_message).include? array[i]
+        tf_message = tf_message + array[i] + "<br><br>"
+      end
+    end
+    return tf_message
+
   end
 
   def Transformation::get_tag_list(transformation)
