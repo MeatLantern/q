@@ -794,7 +794,7 @@ class Game < ActiveRecord::Base
         else
           max_mp = active_character.max_mp
           mana_regained = max_mp / 10
-          mana_regained = (max_mp * (0.15)).round
+          #mana_regained = (max_mp * (0.15)).round
           current_game.p1_mp = current_game.p1_mp - mana_regained
           if(current_game.p1_mp < 0)
             current_game.p1_mp = 0
@@ -910,7 +910,7 @@ class Game < ActiveRecord::Base
         else
           max_mp = active_character.max_mp
           mana_regained = max_mp / 10
-          mana_regained = (max_mp * (0.15)).round
+          #mana_regained = (max_mp * (0.15)).round
           current_game.p2_mp = current_game.p2_mp - mana_regained
           if(current_game.p2_mp < 0)
             current_game.p2_mp = 0
