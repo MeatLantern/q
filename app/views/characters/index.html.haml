@@ -63,11 +63,12 @@
 
 %h4 Transformation Tags
 = @tag_list
-
--if session[:currentgame].nil?
-  %h3 Play as Character?
-  = button_to "Random Opponent", game_create_ai_game_path(:name => @character.name), :method=> :post
-  = button_to "Choose Opponent", select_opponent_ai_path(:name => @character.name), :method=> :post
+%h3 Play as Character?
+-if session[:current_game].nil?
+   = button_to "Random Opponent", game_create_ai_game_path(:name => @character.name), :method=> :post
+   = button_to "Choose Opponent", select_opponent_ai_path(:name => @character.name), :method=> :post
+-else
+   Currently in Game: Please Finish Your Current Game Before Starting a New One
 
 %h3 Upvote Character?
 = button_to 'Upvote?', upvote_character_path(:name => @character.name), :method => :post
