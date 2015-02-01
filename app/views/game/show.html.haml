@@ -25,7 +25,7 @@
             = @player1
           %p
             Character:
-            = @p1_character.name
+            = @p1_name
           %p
           #portrait
             Portrait:
@@ -33,8 +33,8 @@
           -if(@this_game.player1_buff == "Summon")
             %p
               Summon:
-              = @p1_character.summon_name
-              = image_tag(@p1_character.summon_picture)
+              = @p1_summon
+              = image_tag(@p1_summon_picture)
           %p
             HP:
             = @p1_hp
@@ -73,15 +73,15 @@
             = @player2
           %p
             Character:
-            = @p2_character.name
+            = @p2_name
           %p
             Portrait:
             = image_tag(@this_game.player2_picture)
           -if(@this_game.player2_buff == "Summon")
             %p
               Summon:
-              = @p2_character.summon_name
-              = image_tag(@p2_character.summon_picture)
+              = @p2_summon
+              = image_tag(@p2_summon_picture)
           %p
             HP:
             = @p2_hp
@@ -127,16 +127,16 @@
                 = radio_button_tag 'Action', 3
               - if (@current_game.player1_debuff != "Silence")
                 .row
-                  = label_tag :choice, "#{@p1_character.action_1_name}  (#{@p1_mp_cost1}MP) [#{@p1_character.action_1_rules}]"
+                  = label_tag :choice, "#{@p1_action1}  (#{@p1_mp_cost1}MP) [#{@p1_character.action_1_rules}]"
                   = radio_button_tag 'Action', @p1_character.action_1_id
                 .row
-                  = label_tag :choice, "#{@p1_character.action_2_name}  (#{@p1_mp_cost2}MP) [#{@p1_character.action_2_rules}]" 
+                  = label_tag :choice, "#{@p1_action2}  (#{@p1_mp_cost2}MP) [#{@p1_character.action_2_rules}]" 
                   = radio_button_tag 'Action', @p1_character.action_2_id
                 .row
-                  = label_tag :choice, "#{@p1_character.action_3_name}  (#{@p1_mp_cost3}MP) [#{@p1_character.action_3_rules}]"
+                  = label_tag :choice, "#{@p1_action3}  (#{@p1_mp_cost3}MP) [#{@p1_character.action_3_rules}]"
                   = radio_button_tag 'Action', @p1_character.action_3_id
                 .row
-                  = label_tag :choice, "#{@p1_character.action_4_name}  (#{@p1_mp_cost4}MP) [#{@p1_character.action_4_rules}]"
+                  = label_tag :choice, "#{@p1_action4}  (#{@p1_mp_cost4}MP) [#{@p1_character.action_4_rules}]"
                   = radio_button_tag 'Action', @p1_character.action_4_id
               -else
                 %h3 You are Silenced!
@@ -166,16 +166,16 @@
                   = radio_button_tag 'Action', 3
                 - if (@current_game.player2_debuff != "Silence")
                   .row
-                    = label_tag :choice, "#{@p2_character.action_1_name}  (#{@p2_mp_cost1}MP) [#{@p2_character.action_1_rules}]"
+                    = label_tag :choice, "#{@p2_action1}  (#{@p2_mp_cost1}MP) [#{@p2_character.action_1_rules}]"
                     = radio_button_tag 'Action', @p2_character.action_1_id
                   .row
-                    = label_tag :choice, "#{@p2_character.action_2_name}  (#{@p2_mp_cost2}MP) [#{@p2_character.action_2_rules}]" 
+                    = label_tag :choice, "#{@p2_action2}  (#{@p2_mp_cost2}MP) [#{@p2_character.action_2_rules}]" 
                     = radio_button_tag 'Action', @p2_character.action_2_id
                   .row
-                    = label_tag :choice, "#{@p2_character.action_3_name}  (#{@p2_mp_cost3}MP) [#{@p2_character.action_3_rules}]"
+                    = label_tag :choice, "#{@p2_action3}  (#{@p2_mp_cost3}MP) [#{@p2_character.action_3_rules}]"
                     = radio_button_tag 'Action', @p2_character.action_3_id
                   .row
-                    = label_tag :choice, "#{@p2_character.action_4_name}  (#{@p2_mp_cost4}MP) [#{@p2_character.action_4_rules}]"
+                    = label_tag :choice, "#{@p2_action4}  (#{@p2_mp_cost4}MP) [#{@p2_character.action_4_rules}]"
                     = radio_button_tag 'Action', @p2_character.action_4_id
                 -else
                   %h3 You are Silenced!  
@@ -188,8 +188,16 @@
     -else
       %h1 GAME OVER
       -if @p1_hp <= 0
+        -if @p1_character.transformation.epilogue != "No Description"
+          %h2 Character Epilogue
+          %strong
+            = @p1_character.transformation.epilogue
         = link_to "View #{@p1_character.name}'s Full Transformation", transformation_show_path(:name => @p1_character.name), :method => :get
       -if @p2_hp <= 0
+        -if @p2_character.transformation.epilogue != "No Description"
+          %h2 Character Epilogue
+          %strong
+            = @p2_character.transformation.epilogue
         = link_to "View #{@p2_character.name}'s Full Transformation", transformation_show_path(:name => @p2_character.name), :method => :get
       -if @player2 != "AI"
         = button_to "Reset Game?", "game/cpu_reset_game", :confirm => "Are you sure you want to restart the game?", :method => :post

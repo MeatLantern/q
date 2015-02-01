@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150130031324) do
+ActiveRecord::Schema.define(:version => 20150201084619) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(:version => 20150130031324) do
     t.string   "summon_picture"
     t.text     "summon_attack"
     t.string   "creator"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.integer  "upvotes"
   end
 
@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(:version => 20150130031324) do
     t.integer  "player2_stage"
     t.string   "player1_picture"
     t.string   "player2_picture"
-    t.text     "tf_message"
+    t.text     "tf_message",           :limit => 255
   end
 
   create_table "invitation_preferences", :force => true do |t|
@@ -206,6 +206,20 @@ ActiveRecord::Schema.define(:version => 20150130031324) do
     t.integer  "upvotes"
     t.boolean  "is_completed"
     t.boolean  "is_full_picture"
+    t.text     "epilogue"
+    t.string   "alt_name"
+    t.string   "alt_attack1_name"
+    t.string   "alt_attack2_name"
+    t.string   "alt_attack3_name"
+    t.string   "alt_attack4_name"
+    t.text     "alt_attack1_description"
+    t.text     "alt_attack2_description"
+    t.text     "alt_attack3_description"
+    t.text     "alt_attack4_description"
+    t.integer  "alt_stage"
+    t.string   "alt_summon_name"
+    t.text     "alt_summon_attack"
+    t.string   "alt_summon_picture"
   end
 
   create_table "users", :force => true do |t|

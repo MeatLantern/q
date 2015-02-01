@@ -62,6 +62,40 @@ class GameController < ApplicationController
       @player2 = test_game.player2
       @p1_character = Character.find_by_name(test_game.player1_character)
       @p2_character = Character.find_by_name(test_game.player2_character)
+      if test_game.player1_stage < @p1_character.transformation.alt_stage
+        @p1_name = @p1_character.name
+        @p1_action1 = @p1_character.action_1_name
+        @p1_action2 = @p1_character.action_2_name
+        @p1_action3 = @p1_character.action_3_name
+        @p1_action4 = @p1_character.action_4_name
+        @p1_summon = @p1_character.summon_name
+        @p1_summon_picture = @p1_character.summon_picture
+      else
+        @p1_name = @p1_character.transformation.alt_name
+        @p1_action1 = @p1_character.transformation.alt_attack1_name
+        @p1_action2 = @p1_character.transformation.alt_attack2_name
+        @p1_action3 = @p1_character.transformation.alt_attack3_name
+        @p1_action4 = @p1_character.transformation.alt_attack4_name
+        @p1_summon = @p1_character.transformation.alt_summon_name
+        @p1_summon_picture = @p1_character.transformation.alt_summon_picture
+      end
+      if test_game.player2_stage < @p2_character.transformation.alt_stage
+        @p2_name = @p2_character.name
+        @p2_action1 = @p2_character.action_1_name
+        @p2_action2 = @p2_character.action_2_name
+        @p2_action3 = @p2_character.action_3_name
+        @p2_action4 = @p2_character.action_4_name
+        @p2_summon = @p2_character.summon_name
+        @p2_summon_picture = @p2_character.summon_picture
+      else
+        @p2_name = @p1_character.transformation.alt_name
+        @p2_action1 = @p2_character.transformation.alt_attack1_name
+        @p2_action2 = @p2_character.transformation.alt_attack2_name
+        @p2_action3 = @p2_character.transformation.alt_attack3_name
+        @p2_action4 = @p2_character.transformation.alt_attack4_name
+        @p2_summon = @p2_character.transformation.alt_summon_name
+        @p2_summon_picture = @p2_character.transformation.alt_summon_picture
+      end
       @p1_hp = test_game.p1_hp
       @p1_mp = test_game.p1_mp
       @p2_hp = test_game.p2_hp
@@ -104,8 +138,20 @@ class GameController < ApplicationController
         character_name = test_game.player2_character
       end
 
-      flavor = Game::get_ability_info(action_id, character_name)
+      character = Character.find_by_name(character_name)
+
+      if test_game.player1_stage < character.transformation.alt_stage
+        alt = false
+      else
+        alt = true
+      end
+
+
+      flavor = Game::get_ability_info(action_id, character_name, alt)
       action_results = Game::take_action(action_id, test_game)
+      if test_game.player1_stage > character.transformation.alt_stage
+        character_name = character.transformation.alt_name
+      end
       #binding.pry
     	 flavor_string = "#{character_name} uses #{flavor["ability_name"]}! #{flavor["ability_flavor"]}"
        results_string = "#{action_results}"
@@ -152,10 +198,22 @@ class GameController < ApplicationController
       end
     end
   end
-   flavor = Game::get_ability_info(action, test_game.player2_character)
+
+   character = Character.find_by_name(test_game.player2_character)
+   character_name = test_game.player2_character
+
+    if test_game.player1_stage < character.transformation.alt_stage
+      alt = false
+    else
+      alt = true
+      character_name = character.transformation.alt_name
+    end
+
+
+   flavor = Game::get_ability_info(action, test_game.player2_character, alt)
    action_results = Game::take_action(action, test_game)
   #binding.pry
-   flavor_string = "#{test_game.player2_character} uses #{flavor["ability_name"]}! #{flavor["ability_flavor"]}"
+   flavor_string = "#{character_name} uses #{flavor["ability_name"]}! #{flavor["ability_flavor"]}"
    results_string = "#{action_results}"
    #flash[:results] = results_string
    test_game.flavor_message = flavor_string

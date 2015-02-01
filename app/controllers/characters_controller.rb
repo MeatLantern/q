@@ -184,6 +184,11 @@ class CharactersController < ApplicationController
     #binding.pry
     @character = Character.find_by_name(nm)#
     @tag_list = Transformation::get_tag_list(@character.transformation)
+    search_hash = {}
+    search_hash[:character] = @character.name
+    @comments = Comment.where(search_hash).limit(5)
+    @comments = @comments.order('created_at DESC')
+    #binding.pry
     #binding.pry
     #redirect_to characters_show_path(:name => nm)
     #binding.pry

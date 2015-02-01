@@ -101,6 +101,11 @@
           = text_area :transformation, 'stage5_character_description', :size => "40x4"
       %tr
         %td
+          = label :transformation, :epilogue, 'Character Epilogue'
+        %td
+          = text_area :transformation, 'epilogue', :size => "40x4"
+      %tr
+        %td
           = label :transformation, :stage5_tf_picture, 'URL for Stage 5 Picture'
         %td
           = text_field :transformation, 'stage5_tf_picture'
@@ -219,5 +224,70 @@
           = label :transformation, :is_full_picture, 'Character Fully Illustrated (> 3 Pictures)?'
         %td 
           = check_box :transformation, 'is_full_picture'
+      %tr
+        %td
+          = label :transformation, :alt_stage, 'Switch Stage'
+        %td
+          = select :transformation, :alt_stage, [3,4,5,6,7]
+      %tr
+        %td
+          = label :transformation, :alt_name, 'Alternate Name for Character'
+        %td
+          = text_field :transformation, 'alt_name'
+      %tr
+        %td
+          = label :transformation, :alt_attack1_name, 'Alternate Name for Attack 1'
+        %td
+          = text_field :transformation, 'alt_attack1_name'
+      %tr
+        %td
+          = label :transformation, :alt_attack1_description, 'Alternate Description for Attack 1'
+        %td
+          = text_area :transformation, 'alt_attack1_description', :size => "40x4"
+      %tr
+        %td
+          = label :transformation, :alt_attack2_name, 'Alternate Name for Attack 2'
+        %td
+          = text_field :transformation, 'alt_attack2_name'
+      %tr
+        %td
+          = label :transformation, :alt_attack2_description, 'Alternate Description for Attack 2'
+        %td
+          = text_area :transformation, 'alt_attack2_description', :size => "40x4"
+      %tr
+        %td
+          = label :transformation, :alt_attack3_name, 'Alternate Name for Attack 3'
+        %td
+          = text_field :transformation, 'alt_attack3_name'
+      %tr
+        %td
+          = label :transformation, :alt_attack3_description, 'Alternate Description for Attack 3'
+        %td
+          = text_area :transformation, 'alt_attack3_description', :size => "40x4"
+      %tr
+        %td
+          = label :transformation, :alt_attack4_name, 'Alternate Name for Attack 4'
+        %td
+          = text_field :transformation, 'alt_attack4_name'
+      %tr
+        %td
+          = label :transformation, :alt_attack4_description, 'Alternate Description for Attack 4'
+        %td
+          = text_area :transformation, 'alt_attack4_description', :size => "40x4"
+      %tr
+        %td
+          = label :transformation, :alt_summon_name, 'Alternate Summon Name (if Applicable)'
+        %td
+          = text_field :transformation, 'alt_summon_name'
+      %tr
+        %td
+          = label :transformation, :alt_attack4_description, 'Alternate Summon Attack Description (if Applicable)'
+        %td
+          = text_area :transformation, 'alt_summon_attack', :size => "40x4"
+      %tr
+        %td
+          = label :transformation, :alt_summon_picture, 'Alternate Summon Picture URL (if Applicable)'
+        %td
+          = text_field :transformation, 'alt_summon_picture'
 
   = submit_tag 'Create Transformations'

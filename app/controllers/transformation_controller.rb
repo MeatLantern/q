@@ -9,6 +9,26 @@ class TransformationController < ApplicationController
 
 	end
 
+	def set_alts_to_original_abilities
+		tfs = Transformation.all
+  		tfs.each do |tf|
+  			tf.epilogue = "No Epilogue"
+  			tf.alt_name = tf.character_name
+  			character = Character.find_by_name(tf.character_name)
+  			tf.alt_attack1_name = character.action_1_name
+  			tf.alt_attack1_description = character.action_1_flavor
+  			tf.alt_attack2_name = character.action_2_name
+  			tf.alt_attack2_description = character.action_2_flavor
+  			tf.alt_attack3_name = character.action_3_name
+  			tf.alt_attack3_description = character.action_3_flavor
+  			tf.alt_attack4_name = character.action_4_name
+  			tf.alt_attack4_description = character.action_4_flavor
+  			tf.alt_stage = 5
+  			tf.save
+  		end
+  		redirect_to tf_admin_path
+    end
+
 	def clean_up_tf
 		tfs = Transformation.all
 
@@ -318,11 +338,73 @@ class TransformationController < ApplicationController
 		create_hash["stage10_tf_description"] = word_wrap(params["transformation"]["stage10_tf_description"])
 		create_hash["stage10_tf_picture"] = params["transformation"]["stage10_tf_picture"]
 
+		create_hash["epilogue"] = params["transformation"]["epilogue"]
+		create_hash["alt_name"] = params["transformation"]["alt_name"]
+		create_hash["alt_attack1_name"] = params["transformation"]["alt_attack1_name"]
+		create_hash["alt_attack1_description"] = params["transformation"]["alt_attack1_description"]
+		create_hash["alt_attack2_name"] = params["transformation"]["alt_attack2_name"]
+		create_hash["alt_attack2_description"] = params["transformation"]["alt_attack2_description"]
+		create_hash["alt_attack3_name"] = params["transformation"]["alt_attack3_name"]
+		create_hash["alt_attack3_description"] = params["transformation"]["alt_attack3_description"]
+		create_hash["alt_attack4_name"] = params["transformation"]["alt_attack4_name"]
+		create_hash["alt_attack4_description"] = params["transformation"]["alt_attack4_description"]
+		create_hash["alt_summon_name"] = params["transformation"]["alt_summon_name"]
+		create_hash["alt_summon_attack"] = params["transformation"]["alt_summon_attack"]
+		create_hash["alt_summon_picture"] = params["transformation"]["alt_summon_picture"]
+			
 		valid = true
 		create_hash.each do |key, value|
 			if value.blank?
 				create_hash[key] = "No Description"
 			end
+		end
+
+		if create_hash["alt_name"] == "No Description"
+			create_hash["alt_name"] = current_character.name
+		end
+
+		if create_hash["alt_attack1_name"] == "No Description"
+			create_hash["alt_attack1_name"] = current_character.action_1_name
+		end
+
+		if create_hash["alt_attack1_description"] == "No Description"
+			create_hash["alt_attack1_name"] = current_character.action_1_flavor
+		end
+
+		if create_hash["alt_attack2_name"] == "No Description"
+			create_hash["alt_attack2_name"] = current_character.action_2_name
+		end
+
+		if create_hash["alt_attack2_description"] == "No Description"
+			create_hash["alt_attack2_name"] = current_character.action_2_flavor
+		end
+
+		if create_hash["alt_attack3_name"] == "No Description"
+			create_hash["alt_attack3_name"] = current_character.action_3_name
+		end
+
+		if create_hash["alt_attack3_description"] == "No Description"
+			create_hash["alt_attack3_name"] = current_character.action_3_flavor
+		end
+
+		if create_hash["alt_attack1_name"] == "No Description"
+			create_hash["alt_attack1_name"] = current_character.action_1_name
+		end
+
+		if create_hash["alt_attack4_description"] == "No Description"
+			create_hash["alt_attack4_name"] = current_character.action_4_flavor
+		end
+
+		if create_hash["alt_summon_name"] == "No Description"
+			create_hash["alt_summon_name"] = current_character.summon_name
+		end
+
+		if create_hash["alt_summon_attack"] == "No Description"
+			create_hash["alt_summon_attack"] = current_character.summon_attack
+		end
+
+		if create_hash["alt_summon_picture"] == "No Description"
+			create_hash["alt_summon_picture"] = current_character.summon_picture
 		end
 
 		if(valid)
@@ -421,11 +503,75 @@ class TransformationController < ApplicationController
 		create_hash["stage10_tf_description"] = word_wrap(params["transformation"]["stage3_tf_description"])
 		create_hash["stage10_tf_picture"] = params["transformation"]["stage3_tf_picture"]
 
+		create_hash["epilogue"] = params["transformation"]["epilogue"]
+		create_hash["alt_name"] = params["transformation"]["alt_name"]
+		create_hash["alt_attack1_name"] = params["transformation"]["alt_attack1_name"]
+		create_hash["alt_attack1_description"] = params["transformation"]["alt_attack1_description"]
+		create_hash["alt_attack2_name"] = params["transformation"]["alt_attack2_name"]
+		create_hash["alt_attack2_description"] = params["transformation"]["alt_attack2_description"]
+		create_hash["alt_attack3_name"] = params["transformation"]["alt_attack3_name"]
+		create_hash["alt_attack3_description"] = params["transformation"]["alt_attack3_description"]
+		create_hash["alt_attack4_name"] = params["transformation"]["alt_attack4_name"]
+		create_hash["alt_attack4_description"] = params["transformation"]["alt_attack4_description"]
+		create_hash["alt_summon_name"] = params["transformation"]["alt_summon_name"]
+		create_hash["alt_summon_attack"] = params["transformation"]["alt_summon_attack"]
+		create_hash["alt_summon_picture"] = params["transformation"]["alt_summon_picture"]
+		
+		
+		
 		valid = true
 		create_hash.each do |key, value|
 			if value.blank?
 				create_hash[key] = "No Description"
 			end
+		end
+
+		if create_hash["alt_name"] == "No Description"
+			create_hash["alt_name"] = current_character.name
+		end
+
+		if create_hash["alt_attack1_name"] == "No Description"
+			create_hash["alt_attack1_name"] = current_character.action_1_name
+		end
+
+		if create_hash["alt_attack1_description"] == "No Description"
+			create_hash["alt_attack1_name"] = current_character.action_1_flavor
+		end
+
+		if create_hash["alt_attack2_name"] == "No Description"
+			create_hash["alt_attack2_name"] = current_character.action_2_name
+		end
+
+		if create_hash["alt_attack2_description"] == "No Description"
+			create_hash["alt_attack2_name"] = current_character.action_2_flavor
+		end
+
+		if create_hash["alt_attack3_name"] == "No Description"
+			create_hash["alt_attack3_name"] = current_character.action_3_name
+		end
+
+		if create_hash["alt_attack3_description"] == "No Description"
+			create_hash["alt_attack3_name"] = current_character.action_3_flavor
+		end
+
+		if create_hash["alt_attack1_name"] == "No Description"
+			create_hash["alt_attack1_name"] = current_character.action_1_name
+		end
+
+		if create_hash["alt_attack4_description"] == "No Description"
+			create_hash["alt_attack4_name"] = current_character.action_4_flavor
+		end
+
+		if create_hash["alt_summon_name"] == "No Description"
+			create_hash["alt_summon_name"] = current_character.summon_name
+		end
+
+		if create_hash["alt_summon_attack"] == "No Description"
+			create_hash["alt_summon_attack"] = current_character.summon_attack
+		end
+
+		if create_hash["alt_summon_picture"] == "No Description"
+			create_hash["alt_summon_picture"] = current_character.summon_picture
 		end
 
 		if(valid)
@@ -524,11 +670,75 @@ class TransformationController < ApplicationController
 		create_hash["stage10_tf_description"] = word_wrap(params["transformation"]["stage5_tf_description"])
 		create_hash["stage10_tf_picture"] = params["transformation"]["stage5_tf_picture"]
 
+		create_hash["epilogue"] = params["transformation"]["epilogue"]
+		create_hash["alt_name"] = params["transformation"]["alt_name"]
+		create_hash["alt_attack1_name"] = params["transformation"]["alt_attack1_name"]
+		create_hash["alt_attack1_description"] = params["transformation"]["alt_attack1_description"]
+		create_hash["alt_attack2_name"] = params["transformation"]["alt_attack2_name"]
+		create_hash["alt_attack2_description"] = params["transformation"]["alt_attack2_description"]
+		create_hash["alt_attack3_name"] = params["transformation"]["alt_attack3_name"]
+		create_hash["alt_attack3_description"] = params["transformation"]["alt_attack3_description"]
+		create_hash["alt_attack4_name"] = params["transformation"]["alt_attack4_name"]
+		create_hash["alt_attack4_description"] = params["transformation"]["alt_attack4_description"]
+		create_hash["alt_summon_name"] = params["transformation"]["alt_summon_name"]
+		create_hash["alt_summon_attack"] = params["transformation"]["alt_summon_attack"]
+		create_hash["alt_summon_picture"] = params["transformation"]["alt_summon_picture"]
+		
+		
+		
 		valid = true
 		create_hash.each do |key, value|
 			if value.blank?
 				create_hash[key] = "No Description"
 			end
+		end
+
+		if create_hash["alt_name"] == "No Description"
+			create_hash["alt_name"] = current_character.name
+		end
+
+		if create_hash["alt_attack1_name"] == "No Description"
+			create_hash["alt_attack1_name"] = current_character.action_1_name
+		end
+
+		if create_hash["alt_attack1_description"] == "No Description"
+			create_hash["alt_attack1_name"] = current_character.action_1_flavor
+		end
+
+		if create_hash["alt_attack2_name"] == "No Description"
+			create_hash["alt_attack2_name"] = current_character.action_2_name
+		end
+
+		if create_hash["alt_attack2_description"] == "No Description"
+			create_hash["alt_attack2_name"] = current_character.action_2_flavor
+		end
+
+		if create_hash["alt_attack3_name"] == "No Description"
+			create_hash["alt_attack3_name"] = current_character.action_3_name
+		end
+
+		if create_hash["alt_attack3_description"] == "No Description"
+			create_hash["alt_attack3_name"] = current_character.action_3_flavor
+		end
+
+		if create_hash["alt_attack1_name"] == "No Description"
+			create_hash["alt_attack1_name"] = current_character.action_1_name
+		end
+
+		if create_hash["alt_attack4_description"] == "No Description"
+			create_hash["alt_attack4_name"] = current_character.action_4_flavor
+		end
+
+		if create_hash["alt_summon_name"] == "No Description"
+			create_hash["alt_summon_name"] = current_character.summon_name
+		end
+
+		if create_hash["alt_summon_attack"] == "No Description"
+			create_hash["alt_summon_attack"] = current_character.summon_attack
+		end
+
+		if create_hash["alt_summon_picture"] == "No Description"
+			create_hash["alt_summon_picture"] = current_character.summon_picture
 		end
 
 		if(valid)
@@ -586,6 +796,7 @@ class TransformationController < ApplicationController
 				#binding.pry
 		#Get Character Name
 		character_name = params["character_name"]
+		current_character = Character.find_by_name(character_name)
 
 		create_hash = {}
 		#Get Text/Picture URLS
@@ -628,11 +839,76 @@ class TransformationController < ApplicationController
 		create_hash["stage10_character_description"] = word_wrap(params["transformation"]["stage10_character_description"])
 		create_hash["stage10_tf_description"] = word_wrap(params["transformation"]["stage10_tf_description"])
 		create_hash["stage10_tf_picture"] = params["transformation"]["stage10_tf_picture"]
+
+		create_hash["epilogue"] = params["transformation"]["epilogue"]
+		create_hash["alt_name"] = params["transformation"]["alt_name"]
+		create_hash["alt_attack1_name"] = params["transformation"]["alt_attack1_name"]
+		create_hash["alt_attack1_description"] = params["transformation"]["alt_attack1_description"]
+		create_hash["alt_attack2_name"] = params["transformation"]["alt_attack2_name"]
+		create_hash["alt_attack2_description"] = params["transformation"]["alt_attack2_description"]
+		create_hash["alt_attack3_name"] = params["transformation"]["alt_attack3_name"]
+		create_hash["alt_attack3_description"] = params["transformation"]["alt_attack3_description"]
+		create_hash["alt_attack4_name"] = params["transformation"]["alt_attack4_name"]
+		create_hash["alt_attack4_description"] = params["transformation"]["alt_attack4_description"]
+		create_hash["alt_summon_name"] = params["transformation"]["alt_summon_name"]
+		create_hash["alt_summon_attack"] = params["transformation"]["alt_summon_attack"]
+		create_hash["alt_summon_picture"] = params["transformation"]["alt_summon_picture"]
+		
+		
+		
 		valid = true
 		create_hash.each do |key, value|
 			if value.blank?
 				create_hash[key] = "No Description"
 			end
+		end
+
+		if create_hash["alt_name"] == "No Description"
+			create_hash["alt_name"] = current_character.name
+		end
+
+		if create_hash["alt_attack1_name"] == "No Description"
+			create_hash["alt_attack1_name"] = current_character.action_1_name
+		end
+
+		if create_hash["alt_attack1_description"] == "No Description"
+			create_hash["alt_attack1_name"] = current_character.action_1_flavor
+		end
+
+		if create_hash["alt_attack2_name"] == "No Description"
+			create_hash["alt_attack2_name"] = current_character.action_2_name
+		end
+
+		if create_hash["alt_attack2_description"] == "No Description"
+			create_hash["alt_attack2_name"] = current_character.action_2_flavor
+		end
+
+		if create_hash["alt_attack3_name"] == "No Description"
+			create_hash["alt_attack3_name"] = current_character.action_3_name
+		end
+
+		if create_hash["alt_attack3_description"] == "No Description"
+			create_hash["alt_attack3_name"] = current_character.action_3_flavor
+		end
+
+		if create_hash["alt_attack1_name"] == "No Description"
+			create_hash["alt_attack1_name"] = current_character.action_1_name
+		end
+
+		if create_hash["alt_attack4_description"] == "No Description"
+			create_hash["alt_attack4_name"] = current_character.action_4_flavor
+		end
+
+		if create_hash["alt_summon_name"] == "No Description"
+			create_hash["alt_summon_name"] = current_character.summon_name
+		end
+
+		if create_hash["alt_summon_attack"] == "No Description"
+			create_hash["alt_summon_attack"] = current_character.summon_attack
+		end
+
+		if create_hash["alt_summon_picture"] == "No Description"
+			create_hash["alt_summon_picture"] = current_character.summon_picture
 		end
 
 		if(valid)
@@ -664,7 +940,7 @@ class TransformationController < ApplicationController
 			create_hash["character_name"] = character_name
 			create_hash["upvotes"] = 0
 
-			current_character = Character.find_by_name(character_name)
+			
 			if(Character.nil?)
 				flash[:error] = "ERROR: The Character Your Adding Transformations to Could Not Be Found. "
 				redirect_to transformation_edit_path(:character_name => character_name)

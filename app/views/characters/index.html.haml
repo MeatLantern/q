@@ -7,13 +7,12 @@
 %p
    Creator:
    %strong
-     = @character.creator
+      = @character.creator
 %p
    Upvotes:
    %strong
-     = @character.upvotes
-%h3 Upvote Character?
-= button_to 'Upvote?', upvote_character_path(:name => @character.name), :method => :post
+      = @character.upvotes
+      = button_to 'Upvote?', upvote_character_path(:name => @character.name), :method => :post
 
 %p
    = image_tag(@character.main_image)
@@ -76,8 +75,26 @@
    = button_to "Choose Opponent", select_opponent_ai_path(:name => @character.name), :method=> :post
 -else
    Currently in Game: Please Finish Your Current Game Before Starting a New One
+%h3 Recent Comments
+%table.table
+   %thead 
+      %tr
+         %th Username
+         %th Comment
+   %tbody
+      -@comments.each do |comment|
+         %tr
+            %td= comment.username
+            %td= comment.comment
+%h3 Add New Comment
+= form_tag create_comment_path(:character_name => @character.name) do
+   = label :transformation, :comment, 'Comment'
+   = text_area :transformation, 'Comment', :size => "40x2"
+   = submit_tag "Add New Comment"
 
-%h3 View Comments
+
+%h3 View More Comments
+%h4 (Includes Rules and Editing/Deleting Comments)
 = link_to 'View Comments', view_comment_path(:name => @character.name), :method => :get
 
 %h3 Report Character to Admin?

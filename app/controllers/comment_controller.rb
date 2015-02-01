@@ -9,6 +9,7 @@ class CommentController < ApplicationController
 		search_hash = {}
 		search_hash[:character] = @character.name
 		@comments = Comment.where(search_hash)
+		@comments = @comments.order("created_at DESC")
 		#binding.pry
 	end
 

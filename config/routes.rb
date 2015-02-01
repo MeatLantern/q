@@ -16,6 +16,7 @@ DuelOfChampions::Application.routes.draw do
   match 'transformation/show', to: 'transformation#show', via: :get
   match 'transformation/edit', to: 'transformation#edit', via: :get
   match 'transformation/show', to: 'transformation#show', via: :get
+  match 'set_alts_to_original_abilities', to: 'transformation#set_alts_to_original_abilities', via: :post
   match 'select_num_stages', to: 'transformation#select_num_stages', via: :get
   match 'stage_setup', to: 'transformation#stage_setup', via: :post
   match 'change_pref', to: 'invitation_preferences#change', via: :post

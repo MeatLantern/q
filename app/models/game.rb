@@ -982,7 +982,11 @@ class Game < ActiveRecord::Base
         if duration > 6
           current_game.player1_buff = "None"
           current_game.player1_buff_start = -50
-          results = "#{current_game.player1_character}'s attack has returned to normal."
+          if current_game.player1_stage < active_character.transformation.alt_stage
+            results = "#{current_game.player1_character}'s attack has returned to normal."
+          else
+            results = "#{active_character.transformation.alt_name}'s attack has returned to normal."
+          end
           current_game.save
         else
           results = "#{current_game.player1_character}'s' attack is strengthened."
@@ -994,7 +998,11 @@ class Game < ActiveRecord::Base
         if duration > 6
           current_game.player1_buff = "None"
           current_game.player1_buff_start = -50
-          results = "#{current_game.player1_character}'s defense has returned to normal."
+          if current_game.player1_stage < active_character.transformation.alt_stage
+            results = "#{current_game.player1_character}'s defense has returned to normal."
+          else
+            results = "#{active_character.transformation.alt_name}'s defense has returned to normal."
+          end
           current_game.save
         else
           results = "#{current_game.player1_character}'s' defense is strengthened."
@@ -1006,7 +1014,11 @@ class Game < ActiveRecord::Base
         if duration > 6
           current_game.player1_buff = "None"
           current_game.player1_buff_start = -50
-          results = "#{current_game.player1_character}'s power has returned to normal."
+          if current_game.player1_stage < active_character.transformation.alt_stage
+            results = "#{current_game.player1_character}'s power has returned to normal."
+          else
+            results = "#{active_character.transformation.alt_name}'s power has returned to normal."
+          end
           current_game.save
         else
           results = "#{current_game.player1_character}'s' power is strengthened."
@@ -1018,7 +1030,11 @@ class Game < ActiveRecord::Base
         if duration > 6
           current_game.player1_buff = "None"
           current_game.player1_buff_start = -50
-          results = "#{current_game.player1_character}'s armor has returned to normal."
+          if current_game.player1_stage < active_character.transformation.alt_stage
+            results = "#{current_game.player1_character}'s Armor has returned to normal."
+          else
+            results = "#{active_character.transformation.alt_name}'s Armor has returned to normal."
+          end
           current_game.save
         else
           results = "#{current_game.player1_character}'s' armor is strengthened."
@@ -1149,7 +1165,11 @@ class Game < ActiveRecord::Base
           if duration > 10
             current_game.player1_buff = "None"
             current_game.player1_buff_start = -50
-            results = "#{current_game.player1_character}'s summon has been dismissed."
+            if current_game.player1_stage < active_character.transformation.alt_stage
+              results = "#{current_game.player1_character}'s summon has been dismissed."
+            else
+              results = "#{active_character.transformation.alt_name}'s summon has been dismissed."
+            end
             current_game.save
           else
             attack_bonus = 5
@@ -1165,7 +1185,11 @@ class Game < ActiveRecord::Base
           if duration > 10
             current_game.player2_buff = "None"
             current_game.player2_buff_start = -50
-            results = "#{current_game.player2_character}'s summon has been dismissed."
+            if current_game.player2_stage < active_character.transformation.alt_stage
+              results = "#{current_game.player2_character}'s summon has been dismissed."
+            else
+              results = "#{active_character.transformation.alt_name}'s summon has been dismissed."
+            end
             current_game.save
           else
             attack_bonus = 5
@@ -1233,7 +1257,7 @@ class Game < ActiveRecord::Base
 
     #Get Characters
     #player1_character = Character.find_by_name(current_game.player1_character)
-    #player2_character = Character.find_by_name(current_game.player2_character)
+    #playe_character = Character.find_by_name(current_game.player2_character)
     #Make Attack Roll
     attack_roll = 1 + rand(20) + attack_bonus
 
@@ -1262,10 +1286,19 @@ class Game < ActiveRecord::Base
       #Apply damage
       if(p1_turn)
          current_game.p2_hp = current_game.p2_hp - damage
-         results = "#{active_character.summon_attack} The Summon's Attack was Successful! #{damage} damage dealt!"
+         if current_game.player1_stage < active_character.transformation.alt_stage
+              results = "#{active_character.summon_attack} The Summon's Attack was Successful! #{damage} damage dealt!"
+         else
+              results = results = "#{active_character.transformation.alt_summon_attack} The Summon's Attack was Successful! #{damage} damage dealt!"
+         end
+         
       else
          current_game.p1_hp = current_game.p1_hp - damage
-         results = "#{active_character.summon_attack} The Summon's Attack was Successful! #{damage} damage dealt!"
+         if current_game.player2_stage < active_character.transformation.alt_stage
+              results = "#{active_character.summon_attack} The Summon's Attack was Successful! #{damage} damage dealt!"
+         else
+              results = results = "#{active_character.transformation.alt_summon_attack} The Summon's Attack was Successful! #{damage} damage dealt!"
+         end
       end
       
     else
@@ -1320,29 +1353,45 @@ class Game < ActiveRecord::Base
    end     
  end
 
- def Game::get_ability_info (action_id, character_name)
+ def Game::get_ability_info (action_id, character_name, alt)
   current_character = Character.find_by_name(character_name)
   answer = Hash.new()
 
   #binding.pry
 
   if "#{current_character.action_1_id}" == "#{action_id}"
-    answer = {"ability_name" => current_character.action_1_name, "ability_flavor" => current_character.action_1_flavor}
+    if alt == false
+      answer = {"ability_name" => current_character.action_1_name, "ability_flavor" => current_character.action_1_flavor}
+    else
+       answer = {"ability_name" => current_character.transformation.alt_attack1_name, "ability_flavor" => current_character.transformation.alt_attack1_description}
+    end
     return answer
   end
    
   if "#{current_character.action_2_id}" == "#{action_id}"
-    answer = {"ability_name" => current_character.action_2_name, "ability_flavor" => current_character.action_2_flavor}
+    if alt == false
+      answer = {"ability_name" => current_character.action_2_name, "ability_flavor" => current_character.action_2_flavor}
+    else
+       answer = {"ability_name" => current_character.transformation.alt_attack2_name, "ability_flavor" => current_character.transformation.alt_attack2_description}
+    end
     return answer
   end
 
   if "#{current_character.action_3_id}" == "#{action_id}"
-    answer = {"ability_name" => current_character.action_3_name, "ability_flavor" => current_character.action_3_flavor}
+    if alt == false
+      answer = {"ability_name" => current_character.action_3_name, "ability_flavor" => current_character.action_3_flavor}
+    else
+       answer = {"ability_name" => current_character.transformation.alt_attack3_name, "ability_flavor" => current_character.transformation.alt_attack4_description}
+    end
     return answer
   end
 
   if "#{current_character.action_4_id}" == "#{action_id}"
-    answer = {"ability_name" => current_character.action_4_name, "ability_flavor" => current_character.action_4_flavor}
+    if alt == false
+      answer = {"ability_name" => current_character.action_4_name, "ability_flavor" => current_character.action_4_flavor}
+    else
+       answer = {"ability_name" => current_character.transformation.alt_attack1_name, "ability_flavor" => current_character.transformation.alt_attack1_description}
+    end
     return answer
   end
 
