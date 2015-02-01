@@ -9,6 +9,19 @@ class TransformationController < ApplicationController
 
 	end
 
+	def set_summon_to_original
+		tfs = Transformation.all
+  		tfs.each do |tf|
+  			character = Character.find_by_name(tf.character_name)
+  			tf.alt_summon_name = character.summon_name
+  			tf.alt_summon_attack = character.summon_attack
+  			tf.alt_summon_picture = character.summon_picture
+  			tf.save
+  		end
+  		flash[:notice] = "All Summons Set to Original?"
+  		redirect_to tf_admin_path
+	end
+
 	def equalize_upvotes
 		tfs = Transformation.all
 		tfs.each do |tf|

@@ -83,6 +83,8 @@ DuelOfChampions::Application.routes.draw do
 
   match 'clean_up_tf', to: 'transformation#clean_up_tf', via: :get
   match 'clean_up_tf', to: 'transformation#clean_up_tf', via: :post
+  match 'set_summon_to_original', to: 'transformation#set_summon_to_original', via: :post
+  match 'set_summon_to_original', to: 'transformation#set_summon_to_original', via: :get
 
   #match 'transformation/new', to: 'transformation#new', via: :get
 
