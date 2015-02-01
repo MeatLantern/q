@@ -4,6 +4,11 @@
 %h4 Transformation Tags
 = @tag_list
 
+-if (current_user.username == @character.creator) || current_user.is_admin
+   %h3 View Transformation
+   This is Only Visible to the Creator of the Character. This allows you to make sure your HTML and Pictures are Functioning Correctly. It's also shown when the character loses a match. Use this to check if your character is working correctly. Thanks!
+   = link_to "View Transformation", transformation_show_path(:name => @character.name), :method => :get
+
 %p
    Creator:
    %strong
