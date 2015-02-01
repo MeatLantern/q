@@ -1,13 +1,37 @@
 -# in app/views/games/rules.html.haml
 = flash[:warning]
-%h1 News Update: IMPORTANT
+%h1 News Updates
 %p
-  There has been a change to the character creation system. Two New Tags have been added: Complete and Fully Illustrated. ALL CURRENT CHARACTERS HAVE BOTH SET TO FALSE. If your character is ready for public release, please go to View Profile, and Update your character to have the "Complete" Tag set to True. If your character is fully illustrated (all or most of the stages have a picture), please Update that Tag as well. Other tweaks include some improvements to enemy AI (They won't take the focus action nearly as much anymore and won't heal at max health), as well as a small increase in accuracy for all attacks. Also, there is now a link displayed under the "Game Over" message, allowing you to see the full transformation of the losing character. In addition you will now be notified if you have a multiplayer game ready to begin. Any game invitations that have lasted over 3 days will now be automatically deleted, to thin the ranks of unsued Game Invites. Thanks for your patience as I slowly make improvements to the system.
-%p
-  With the newest Update, Comments have been added! By visiting a "Character Sheet", click the link "View Comments" to view all comments about the character, as well as add your own. Feel free to talk about what you like (or dislike) about the character there. Have fun!
+  IMPORTANT CHANGES
+  %p
+    1. Recently, 2 Critical Tags were Added: "Complete" and "Fully Illustrated". If you're character is ready for public release, please use the "Complete Tag". If your character has pictures for every stage (the pictures MAY repeat) please apply the "Fully Illustrated" tag to your character. You may update your character when you are not in a game by clicking "View Profile" and then "Update Transformation" on the character of your choice.
+  %p
+    2. New Optional Features have been added to the Transformation Edit and Creation. They are as follows:
+    %p
+      a.) Character Epilogues: There is now a field for you to write a Character Epilogue. This Epilogue will be displayed whenever that character loses the game. If you leave it blank (which will become "No Description"), then it will not appear on the game screen.
+    %p
+      b.) "Mutating" Ability Names/Descriptions: You now have the option to create Alternate Character Names, Ability Names, and Ability Descriptions that will change when your character reaches a certain TF stage. For example, if the Bob is a Knight that turns into a Female Fighter, Bob's Creator may decide that at Stage 5 his abilities will change from "Sword Strike, Shield Bash, Knight Charge, Summon Squire" to "Fireball, Freeze, Orb of Darkness, Summon Elemental", and he will change all of the descriptions accordingly. In addition, Bob's name will then be displayed as "Barbara". This can be done at Character Creation or from the Transformation Editing Menu. If you leave the entries blank, they will automatically be filled with the previous data. For example, if Bob left the entries blank, his abilities and name simply would not change. 
+    %p
+      All Current Characters will have their Transformations set to disregard these changes Automatically. The "Character Epilogue", will say "No Description", and the "Alt Name", "Alt Attack 1" etc will be filled with the character's normal name, normal attack 1 etc. Sorry for the inconvenience, and hopefully some might enjoy the new features!
 %h1 About
 %p
   Welcome to Tranformation-Arena! In this game you can choose your hero and engage in tactical turn-based combat against the computer or another player! When a character takes enough damage, they begin to transform into something else. For example, a knight could become a princess, or a soldier could become a dumb bimbo! Players are free to create and customize their own characters or simply play the characters others have made. Have fun!
+%h2 Suggestion Box!
+%p
+  Do you have a suggestion for the game? Feel free to send an anonymous Suggestion to the Admin through the Suggesstion Box! Simply put your suggestion in the field below and click submit! It's that easy.
+  Appropriate topics for suggestions include, but are not limited to:
+  %p
+    %p
+      1.Suggestions for New Features
+    %p 
+      2.Game Balance Problems or Suggestions (for example X ability is too strong, y ability takes too much mana etc)
+    %p
+      3.Game Bug Reports
+  DO NOT try to suggest Character Concepts/Ideas for the Admin to create. This isn't the place for that. This is for suggestions about the game itself. Feel free to give whatever feedback you want!
+= form_tag create_suggestion_path do
+  = label :transformation, :suggestion, 'Suggestion'
+  = text_area :transformation, 'suggestion', :size => "40x4"
+  = submit_tag "Submit Suggestion"
 %h2 Chatroom and Discussion Board
 %p
   Having trouble finding an opponent? Have a suggestion for a feature or a bug to report? Feel free to check out the Deviantart Chatroom I have set up, or the Discussion thread at TFGamessite.com. You can discuss whatever you please, whether it be finding an opponent, talking about a particular fun battle or character, or discuss balance concerns. The discussion thread and chatroom are there for whatever you want to use them for. Click on the links below if you're interested.

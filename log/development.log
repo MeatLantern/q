@@ -470,3 +470,45 @@ Migrating to AddCreatorToTransformation (20150201133232)
   [1m[35m (3.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20150201133232')
   [1m[36m (62.3ms)[0m  [1mcommit transaction[0m
   [1m[35m (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (4.5ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20141102012922)
+Migrating to CreateGames (20141102213355)
+Migrating to CreateCharacters (20141102213410)
+Migrating to AddDeviseToUsers (20141106012922)
+Migrating to AddUsernameToUsers (20141106015155)
+Migrating to AddCurrentgameToUsers (20141107002736)
+Migrating to CreateGameInvitations (20141201044534)
+Migrating to AddIsAdminToUsers (20141211204536)
+Migrating to ChangeDefaultAdmin (20141212100936)
+Migrating to CreateTransformations (20141217022647)
+Migrating to AddRobotsAndMonsterGirlsToTransformations (20141217071613)
+Migrating to AddTransformationsToGame (20141217173933)
+Migrating to AddStagesToGames (20141217175832)
+Migrating to AddPicturesToGames (20141217181411)
+Migrating to AddTfMessageToGames (20141217230338)
+Migrating to ChangeNameOfTag (20141219210805)
+Migrating to CreateInvitationPreferences (20141219214621)
+Migrating to ChangeTfMessageToText (20150123023414)
+Migrating to AddUpvotes (20150126195538)
+Migrating to AddUpvotesToTransformation (20150126213212)
+Migrating to AddCompleteFullPicturesMultiReady (20150128030349)
+Migrating to RenameCompletedAndFullPictures (20150128031355)
+Migrating to CreateReports (20150128195147)
+Migrating to AddReasonsToReport (20150128203017)
+Migrating to AddResolvedAndFeedbackToReport (20150128205900)
+Migrating to CreateComments (20150129014417)
+Migrating to ChangeDescriptionsToText (20150130030002)
+Migrating to AddContentToComments (20150130031324)
+Migrating to AddEpilogueAndNameAndAbilityChange (20150201073933)
+Migrating to AddAltSummonOptions (20150201084619)
+Migrating to AddCreatorToTransformation (20150201133232)
+Migrating to CreateSuggestions (20150201142147)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (13.3ms)[0m  CREATE TABLE "suggestions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar(255), "suggestion" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20150201142147')[0m
+  [1m[35m (60.6ms)[0m  commit transaction
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m

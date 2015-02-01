@@ -1,0 +1,16 @@
+%h1 Suggestions!
+
+%table.table
+   %thead 
+      %tr
+         %th Username
+         %th Suggestion
+         %th Delete
+   %tbody
+      -@suggestions.each do |comment|
+         %tr
+            %td= comment.username
+            %td= comment.suggestion
+            %td= link_to "Delete", delete_suggestion_path(:id => comment.id), :method => :post
+
+= button_to "Delete All Suggestions", delete_all_suggestions_path, :method => :post, :data => {:confirm => "Are you sure you want to Delete All Suggestions"}

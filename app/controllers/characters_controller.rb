@@ -4,6 +4,10 @@ class CharactersController < ApplicationController
   def new
   end
 
+  def example
+    @character = Character.find_by_name("Ragnar the Warrior")
+  end
+
   def change_order
     if params[:order_type].nil? || params[:origin].nil?
       flash[:alert] = "There was an Problem with Switching the Order. Please Try Again."

@@ -306,6 +306,8 @@ class TransformationController < ApplicationController
 		#Get Character Name
 		character_name = params["character_name"]
 
+		current_character = Character.find_by_name(character_name)
+
 		create_hash = {}
 		#Get Text/Picture URLS
 		create_hash["stage1_character_description"] = word_wrap(params["transformation"]["stage1_character_description"])
@@ -379,7 +381,7 @@ class TransformationController < ApplicationController
 		end
 
 		if create_hash["alt_attack1_description"] == "No Description"
-			create_hash["alt_attack1_name"] = current_character.action_1_flavor
+			create_hash["alt_attack1_description"] = current_character.action_1_flavor
 		end
 
 		if create_hash["alt_attack2_name"] == "No Description"
@@ -387,7 +389,7 @@ class TransformationController < ApplicationController
 		end
 
 		if create_hash["alt_attack2_description"] == "No Description"
-			create_hash["alt_attack2_name"] = current_character.action_2_flavor
+			create_hash["alt_attack2_description"] = current_character.action_2_flavor
 		end
 
 		if create_hash["alt_attack3_name"] == "No Description"
@@ -395,7 +397,7 @@ class TransformationController < ApplicationController
 		end
 
 		if create_hash["alt_attack3_description"] == "No Description"
-			create_hash["alt_attack3_name"] = current_character.action_3_flavor
+			create_hash["alt_attack3_description"] = current_character.action_3_flavor
 		end
 
 		if create_hash["alt_attack1_name"] == "No Description"
@@ -403,7 +405,7 @@ class TransformationController < ApplicationController
 		end
 
 		if create_hash["alt_attack4_description"] == "No Description"
-			create_hash["alt_attack4_name"] = current_character.action_4_flavor
+			create_hash["alt_attack4_description"] = current_character.action_4_flavor
 		end
 
 		if create_hash["alt_summon_name"] == "No Description"
@@ -550,7 +552,7 @@ class TransformationController < ApplicationController
 		end
 
 		if create_hash["alt_attack1_description"] == "No Description"
-			create_hash["alt_attack1_name"] = current_character.action_1_flavor
+			create_hash["alt_attack1_description"] = current_character.action_1_flavor
 		end
 
 		if create_hash["alt_attack2_name"] == "No Description"
@@ -558,7 +560,7 @@ class TransformationController < ApplicationController
 		end
 
 		if create_hash["alt_attack2_description"] == "No Description"
-			create_hash["alt_attack2_name"] = current_character.action_2_flavor
+			create_hash["alt_attack2_description"] = current_character.action_2_flavor
 		end
 
 		if create_hash["alt_attack3_name"] == "No Description"
@@ -566,7 +568,7 @@ class TransformationController < ApplicationController
 		end
 
 		if create_hash["alt_attack3_description"] == "No Description"
-			create_hash["alt_attack3_name"] = current_character.action_3_flavor
+			create_hash["alt_attack3_description"] = current_character.action_3_flavor
 		end
 
 		if create_hash["alt_attack1_name"] == "No Description"
@@ -574,7 +576,7 @@ class TransformationController < ApplicationController
 		end
 
 		if create_hash["alt_attack4_description"] == "No Description"
-			create_hash["alt_attack4_name"] = current_character.action_4_flavor
+			create_hash["alt_attack4_description"] = current_character.action_4_flavor
 		end
 
 		if create_hash["alt_summon_name"] == "No Description"
@@ -721,7 +723,7 @@ class TransformationController < ApplicationController
 		end
 
 		if create_hash["alt_attack1_description"] == "No Description"
-			create_hash["alt_attack1_name"] = current_character.action_1_flavor
+			create_hash["alt_attack1_description"] = current_character.action_1_flavor
 		end
 
 		if create_hash["alt_attack2_name"] == "No Description"
@@ -729,7 +731,7 @@ class TransformationController < ApplicationController
 		end
 
 		if create_hash["alt_attack2_description"] == "No Description"
-			create_hash["alt_attack2_name"] = current_character.action_2_flavor
+			create_hash["alt_attack2_description"] = current_character.action_2_flavor
 		end
 
 		if create_hash["alt_attack3_name"] == "No Description"
@@ -737,7 +739,7 @@ class TransformationController < ApplicationController
 		end
 
 		if create_hash["alt_attack3_description"] == "No Description"
-			create_hash["alt_attack3_name"] = current_character.action_3_flavor
+			create_hash["alt_attack3_description"] = current_character.action_3_flavor
 		end
 
 		if create_hash["alt_attack1_name"] == "No Description"
@@ -745,7 +747,7 @@ class TransformationController < ApplicationController
 		end
 
 		if create_hash["alt_attack4_description"] == "No Description"
-			create_hash["alt_attack4_name"] = current_character.action_4_flavor
+			create_hash["alt_attack4_description"] = current_character.action_4_flavor
 		end
 
 		if create_hash["alt_summon_name"] == "No Description"
@@ -895,7 +897,7 @@ class TransformationController < ApplicationController
 		end
 
 		if create_hash["alt_attack1_description"] == "No Description"
-			create_hash["alt_attack1_name"] = current_character.action_1_flavor
+			create_hash["alt_attack1_description"] = current_character.action_1_flavor
 		end
 
 		if create_hash["alt_attack2_name"] == "No Description"
@@ -903,7 +905,7 @@ class TransformationController < ApplicationController
 		end
 
 		if create_hash["alt_attack2_description"] == "No Description"
-			create_hash["alt_attack2_name"] = current_character.action_2_flavor
+			create_hash["alt_attack2_description"] = current_character.action_2_flavor
 		end
 
 		if create_hash["alt_attack3_name"] == "No Description"
@@ -911,7 +913,7 @@ class TransformationController < ApplicationController
 		end
 
 		if create_hash["alt_attack3_description"] == "No Description"
-			create_hash["alt_attack3_name"] = current_character.action_3_flavor
+			create_hash["alt_attack3_description"] = current_character.action_3_flavor
 		end
 
 		if create_hash["alt_attack1_name"] == "No Description"
@@ -919,7 +921,7 @@ class TransformationController < ApplicationController
 		end
 
 		if create_hash["alt_attack4_description"] == "No Description"
-			create_hash["alt_attack4_name"] = current_character.action_4_flavor
+			create_hash["alt_attack4_description"] = current_character.action_4_flavor
 		end
 
 		if create_hash["alt_summon_name"] == "No Description"

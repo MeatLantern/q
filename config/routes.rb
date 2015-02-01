@@ -12,6 +12,13 @@ DuelOfChampions::Application.routes.draw do
   match 'users/admin', to: 'users#admin', via: :post
 
   resources :characters
+  match 'create_suggestion', to: 'suggestion#create', via: :post
+  match 'view_suggestion', to: 'suggestion#view', via: :get
+  match 'delete_suggestion', to: 'suggestion#delete', via: :post
+  match 'create_suggestion', to: 'suggestion#create', via: :post
+  match 'delete_all_suggestions', to: 'suggestion#delete_all_suggestions', via: :post
+
+  #match 'transformation_example', to: 'transformation#example', via: :get
 
   match 'change_order', to: 'characters#change_order', via: :post
   match 'equalize_upvotes', to: 'transformation#equalize_upvotes', via: :post
