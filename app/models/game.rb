@@ -21,10 +21,23 @@ class Game < ActiveRecord::Base
       passive_character = Character.find_by_name(current_game.player1_character)
     end
 
+    if p1_turn
+      if current_game.player1_stage < active_character.transformation.alt_stage
+        character_name = active_character.name
+      else
+        character_name = active_character.transformation.alt_name
+      end
+    else
+      if current_game.player2_stage < active_character.transformation.alt_stage
+        character_name = active_character.name
+      else
+        character_name = active_character.transformation.alt_name
+      end
+    end
 
-    buff_results = Game::handle_buff_effects(current_game, p1_turn, active_character)
+    buff_results = Game::handle_buff_effects(current_game, p1_turn, active_character, character_name)
 
-    debuff_results = Game::handle_debuff_effects(current_game, p1_turn, action_id, active_character)
+    debuff_results = Game::handle_debuff_effects(current_game, p1_turn, action_id, active_character, character_name)
 
     #Handle Confusion
     if(p1_turn)
@@ -132,7 +145,7 @@ class Game < ActiveRecord::Base
           current_game.p2_mp = active_character.max_mp
         end
       end
-      action_results = "#{active_character.name} focuses, gaining #{mana_regained} mana."
+      action_results = "#{character_name} focuses, gaining #{mana_regained} mana."
       current_game.save
       #action_results = Game::basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game)
     end
@@ -145,23 +158,23 @@ class Game < ActiveRecord::Base
       #armor_bonus = passive_character.base_armor
       #defense_bonus = passive_character.base_defense
       if(p1_turn)
-        action_results = "#{active_character.name} uses a more accurate attack!"
+        action_results = "#{character_name} uses a more accurate attack!"
         #Check if Player has enough mana.
         if current_game.p1_mp >= 10
           attack_bonus = attack_bonus + 3
           action_results = action_results + Game::basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game)
           current_game.p1_mp = current_game.p1_mp - 10
         else
-          action_results = action_results + "Action Failed! #{active_character.name} doesn't have enough Mana to activate the power!"
+          action_results = action_results + "Action Failed! #{character_name} doesn't have enough Mana to activate the power!"
         end
       else
-         action_results = "#{active_character.name} uses a more accurate attack!"
+         action_results = "#{character_name} uses a more accurate attack!"
          if current_game.p2_mp >= 10
           attack_bonus = attack_bonus + 3
           action_results = action_results + Game::basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game)
           current_game.p2_mp = current_game.p2_mp - 10
         else
-          action_results = action_results + "Action Failed! #{active_character.name} doesn't have enough Mana to activate the power!"
+          action_results = action_results + "Action Failed! #{character_name} doesn't have enough Mana to activate the power!"
         end
       end
       #Subtract Mana
@@ -175,23 +188,23 @@ class Game < ActiveRecord::Base
       #armor_bonus = passive_character.base_armor
       #defense_bonus = passive_character.base_defense
        if(p1_turn)
-        action_results = "#{active_character.name} uses a more damaging attack!"
+        action_results = "#{character_name} uses a more damaging attack!"
         #Check if Player has enough mana.
         if current_game.p1_mp >= 10
           damage_bonus = damage_bonus + 3
           action_results = action_results + Game::basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game)
           current_game.p1_mp = current_game.p1_mp - 10
         else
-          action_results = action_results + "Action Failed! #{active_character.name} doesn't have enough Mana to activate the power!"
+          action_results = action_results + "Action Failed! #{character_name} doesn't have enough Mana to activate the power!"
         end
       else
-         action_results = "#{active_character.name} uses a more damaging attack!"
+         action_results = "#{character_name} uses a more damaging attack!"
          if current_game.p2_mp >= 10
           damage_bonus = damage_bonus + 3
           action_results = action_results + Game::basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game)
           current_game.p2_mp = current_game.p2_mp - 10
         else
-          action_results = action_results + "Action Failed! #{active_character.name} doesn't have enough Mana to activate the power!"
+          action_results = action_results + "Action Failed! #{character_name} doesn't have enough Mana to activate the power!"
         end
       end
     end
@@ -203,7 +216,7 @@ class Game < ActiveRecord::Base
       #armor_bonus = passive_character.base_armor
       #defense_bonus = passive_character.base_defense
        if(p1_turn)
-        action_results = "#{active_character.name} attacks recklessly!"
+        action_results = "#{character_name} attacks recklessly!"
         #Check if Player has enough mana.
         if current_game.p1_mp >= 10
           damage_bonus = damage_bonus + 5
@@ -211,17 +224,17 @@ class Game < ActiveRecord::Base
           action_results = action_results + Game::basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game)
           current_game.p1_mp = current_game.p1_mp - 10
         else
-          action_results = action_results + "Action Failed! #{active_character.name} doesn't have enough Mana to activate the power!"
+          action_results = action_results + "Action Failed! #{character_name} doesn't have enough Mana to activate the power!"
         end
       else
-         action_results = "#{active_character.name} attacks recklessly!"
+         action_results = "#{character_name} attacks recklessly!"
          if current_game.p2_mp >= 10
           damage_bonus = damage_bonus + 5
           attack_bonus = attack_bonus - 2
           action_results = action_results + Game::basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game)
           current_game.p2_mp = current_game.p2_mp - 10
         else
-          action_results = action_results + "Action Failed! #{active_character.name} doesn't have enough Mana to activate the power!"
+          action_results = action_results + "Action Failed! #{character_name} doesn't have enough Mana to activate the power!"
         end
       end
     end
@@ -234,7 +247,7 @@ class Game < ActiveRecord::Base
       #armor_bonus = passive_character.base_armor
       #defense_bonus = passive_character.base_defense
        if(p1_turn)
-        action_results = "#{active_character.name} uses an overwhelming attack!"
+        action_results = "#{character_name} uses an overwhelming attack!"
         #Check if Player has enough mana.
         if current_game.p1_mp >= 20
           damage_bonus = damage_bonus + 4
@@ -242,17 +255,17 @@ class Game < ActiveRecord::Base
           action_results = action_results + Game::basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game)
           current_game.p1_mp = current_game.p1_mp - 20
         else
-          action_results = action_results + "Action Failed! #{active_character.name} doesn't have enough Mana to activate the power!"
+          action_results = action_results + "Action Failed! #{character_name} doesn't have enough Mana to activate the power!"
         end
       else
-         action_results = "#{active_character.name} uses an overwhelming attack!"
+         action_results = "#{character_name} uses an overwhelming attack!"
          if current_game.p2_mp >= 20
           damage_bonus = damage_bonus + 4
           attack_bonus = attack_bonus + 3
           action_results = action_results + Game::basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game)
           current_game.p2_mp = current_game.p2_mp - 20
         else
-          action_results = action_results + "Action Failed! #{active_character.name} doesn't have enough Mana to activate the power!"
+          action_results = action_results + "Action Failed! #{character_name} doesn't have enough Mana to activate the power!"
         end
       end
     end
@@ -260,7 +273,7 @@ class Game < ActiveRecord::Base
     #Action 13: Poisoning Attack
     if(action_id == "13")
       if(p1_turn)
-        action_results = "#{active_character.name} uses a poisoning attack!"
+        action_results = "#{character_name} uses a poisoning attack!"
         #Check if Player has enough mana.
         if current_game.p1_mp >= 20
           action_results = action_results + Game::basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game)
@@ -270,10 +283,10 @@ class Game < ActiveRecord::Base
           end
           current_game.p1_mp = current_game.p1_mp - 20
         else
-          action_results = action_results + "Action Failed! #{active_character.name} doesn't have enough Mana to activate the power!"
+          action_results = action_results + "Action Failed! #{character_name} doesn't have enough Mana to activate the power!"
         end
       else
-         action_results = "#{active_character.name} uses a poisoning attack!"
+         action_results = "#{character_name} uses a poisoning attack!"
          if current_game.p2_mp >= 20
           action_results = action_results + Game::basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game)
           if (action_results.include? "Successful")
@@ -282,7 +295,7 @@ class Game < ActiveRecord::Base
           end
           current_game.p2_mp = current_game.p2_mp - 20
         else
-          action_results = action_results + "Action Failed! #{active_character.name} doesn't have enough Mana to activate the power!"
+          action_results = action_results + "Action Failed! #{character_name} doesn't have enough Mana to activate the power!"
         end
       end
     end
@@ -290,7 +303,7 @@ class Game < ActiveRecord::Base
     #Action 14: Silencing Attack
     if(action_id == "14")
       if(p1_turn)
-        action_results = "#{active_character.name} uses a silencing attack!"
+        action_results = "#{character_name} uses a silencing attack!"
         #Check if Player has enough mana.
         if current_game.p1_mp >= 20
           action_results = action_results + Game::basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game)
@@ -300,10 +313,10 @@ class Game < ActiveRecord::Base
           end
           current_game.p1_mp = current_game.p1_mp - 20
         else
-          action_results = action_results + "Action Failed! #{active_character.name} doesn't have enough Mana to activate the power!"
+          action_results = action_results + "Action Failed! #{character_name} doesn't have enough Mana to activate the power!"
         end
       else
-         action_results = "#{active_character.name} uses a silencing attack!"
+         action_results = "#{character_name} uses a silencing attack!"
          if current_game.p2_mp >= 20
           action_results = action_results + Game::basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game)
           if (action_results.include? "Successful")
@@ -312,7 +325,7 @@ class Game < ActiveRecord::Base
           end
           current_game.p2_mp = current_game.p2_mp - 20
         else
-          action_results = action_results + "Action Failed! #{active_character.name} doesn't have enough Mana to activate the power!"
+          action_results = action_results + "Action Failed! #{character_name} doesn't have enough Mana to activate the power!"
         end
       end
     end
@@ -320,7 +333,7 @@ class Game < ActiveRecord::Base
      #Action 15: Confusing Attack
     if(action_id == "15")
       if(p1_turn)
-        action_results = "#{active_character.name} uses a Confusion-inducing attack!"
+        action_results = "#{character_name} uses a Confusion-inducing attack!"
         #Check if Player has enough mana.
         if current_game.p1_mp >= 20
           action_results = action_results + Game::basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game)
@@ -330,10 +343,10 @@ class Game < ActiveRecord::Base
           end
           current_game.p1_mp = current_game.p1_mp - 20
         else
-          action_results = action_results + "Action Failed! #{active_character.name} doesn't have enough Mana to activate the power!"
+          action_results = action_results + "Action Failed! #{character_name} doesn't have enough Mana to activate the power!"
         end
       else
-         action_results = "#{active_character.name} uses a Confusion-inducing attack!"
+         action_results = "#{character_name} uses a Confusion-inducing attack!"
          if current_game.p2_mp >= 20
           action_results = action_results + Game::basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game)
           if (action_results.include? "Successful")
@@ -342,7 +355,7 @@ class Game < ActiveRecord::Base
           end
           current_game.p2_mp = current_game.p2_mp - 20
         else
-          action_results = action_results + "Action Failed! #{active_character.name} doesn't have enough Mana to activate the power!"
+          action_results = action_results + "Action Failed! #{character_name} doesn't have enough Mana to activate the power!"
         end
       end
     end
@@ -350,7 +363,7 @@ class Game < ActiveRecord::Base
     #Action 16: Locking Attack
     if(action_id == "16")
       if(p1_turn)
-        action_results = "#{active_character.name} uses a mana locking attack!"
+        action_results = "#{character_name} uses a mana locking attack!"
         #Check if Player has enough mana.
         if current_game.p1_mp >= 20
           action_results = action_results + Game::basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game)
@@ -360,10 +373,10 @@ class Game < ActiveRecord::Base
           end
           current_game.p1_mp = current_game.p1_mp - 20
         else
-          action_results = action_results + "Action Failed! #{active_character.name} doesn't have enough Mana to activate the power!"
+          action_results = action_results + "Action Failed! #{character_name} doesn't have enough Mana to activate the power!"
         end
       else
-         action_results = "#{active_character.name} uses a mana locking attack!"
+         action_results = "#{character_name} uses a mana locking attack!"
          if current_game.p2_mp >= 20
           action_results = action_results + Game::basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game)
           if (action_results.include? "Successful")
@@ -372,7 +385,7 @@ class Game < ActiveRecord::Base
           end
           current_game.p2_mp = current_game.p2_mp - 20
         else
-          action_results = action_results + "Action Failed! #{active_character.name} doesn't have enough Mana to activate the power!"
+          action_results = action_results + "Action Failed! #{character_name} doesn't have enough Mana to activate the power!"
         end
       end
     end
@@ -380,7 +393,7 @@ class Game < ActiveRecord::Base
      #Action 16: Defense Break Attack
     if(action_id == "17")
       if(p1_turn)
-        action_results = "#{active_character.name} uses a defense breaking attack!"
+        action_results = "#{character_name} uses a defense breaking attack!"
         #Check if Player has enough mana.
         if current_game.p1_mp >= 20
           action_results = action_results + Game::basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game)
@@ -390,10 +403,10 @@ class Game < ActiveRecord::Base
           end
           current_game.p1_mp = current_game.p1_mp - 20
         else
-          action_results = action_results + "Action Failed! #{active_character.name} doesn't have enough Mana to activate the power!"
+          action_results = action_results + "Action Failed! #{character_name} doesn't have enough Mana to activate the power!"
         end
       else
-         action_results = "#{active_character.name} uses a defense breaking attack!"
+         action_results = "#{character_name} uses a defense breaking attack!"
          if current_game.p2_mp >= 20
           action_results = action_results + Game::basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game)
           if (action_results.include? "Successful")
@@ -402,7 +415,7 @@ class Game < ActiveRecord::Base
           end
           current_game.p2_mp = current_game.p2_mp - 20
         else
-          action_results = action_results + "Action Failed! #{active_character.name} doesn't have enough Mana to activate the power!"
+          action_results = action_results + "Action Failed! #{character_name} doesn't have enough Mana to activate the power!"
         end
       end
     end
@@ -410,7 +423,7 @@ class Game < ActiveRecord::Base
      #Action 18: Armor Break Attack
     if(action_id == "18")
       if(p1_turn)
-        action_results = "#{active_character.name} uses an armor breaking attack!"
+        action_results = "#{character_name} uses an armor breaking attack!"
         #Check if Player has enough mana.
         if current_game.p1_mp >= 20
           action_results = action_results + Game::basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game)
@@ -420,10 +433,10 @@ class Game < ActiveRecord::Base
           end
           current_game.p1_mp = current_game.p1_mp - 20
         else
-          action_results = action_results + "Action Failed! #{active_character.name} doesn't have enough Mana to activate the power!"
+          action_results = action_results + "Action Failed! #{character_name} doesn't have enough Mana to activate the power!"
         end
       else
-         action_results = "#{active_character.name} uses an armor breaking attack!"
+         action_results = "#{character_name} uses an armor breaking attack!"
          if current_game.p2_mp >= 20
           action_results = action_results + Game::basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game)
           if (action_results.include? "Successful")
@@ -432,7 +445,7 @@ class Game < ActiveRecord::Base
           end
           current_game.p2_mp = current_game.p2_mp - 20
         else
-          action_results = action_results + "Action Failed! #{active_character.name} doesn't have enough Mana to activate the power!"
+          action_results = action_results + "Action Failed! #{character_name} doesn't have enough Mana to activate the power!"
         end
       end
     end
@@ -440,7 +453,7 @@ class Game < ActiveRecord::Base
      #Action 19: Attack Break Attack
     if(action_id == "19")
       if(p1_turn)
-        action_results = "#{active_character.name} uses an attack-breaking attack!"
+        action_results = "#{character_name} uses an attack-breaking attack!"
         #Check if Player has enough mana.
         if current_game.p1_mp >= 20
           action_results = action_results + Game::basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game)
@@ -450,10 +463,10 @@ class Game < ActiveRecord::Base
           end
           current_game.p1_mp = current_game.p1_mp - 20
         else
-          action_results = action_results + "Action Failed! #{active_character.name} doesn't have enough Mana to activate the power!"
+          action_results = action_results + "Action Failed! #{character_name} doesn't have enough Mana to activate the power!"
         end
       else
-         action_results = "#{active_character.name} uses an attack-breaking attack!"
+         action_results = "#{character_name} uses an attack-breaking attack!"
          if current_game.p2_mp >= 20
           action_results = action_results + Game::basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game)
           if (action_results.include? "Successful")
@@ -462,7 +475,7 @@ class Game < ActiveRecord::Base
           end
           current_game.p2_mp = current_game.p2_mp - 20
         else
-          action_results = action_results + "Action Failed! #{active_character.name} doesn't have enough Mana to activate the power!"
+          action_results = action_results + "Action Failed! #{character_name} doesn't have enough Mana to activate the power!"
         end
       end
     end
@@ -470,7 +483,7 @@ class Game < ActiveRecord::Base
      #Action 16: Defense Break Attack
     if(action_id == "20")
       if(p1_turn)
-        action_results = "#{active_character.name} uses a power breaking attack!"
+        action_results = "#{character_name} uses a power breaking attack!"
         #Check if Player has enough mana.
         if current_game.p1_mp >= 20
           action_results = action_results + Game::basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game)
@@ -480,10 +493,10 @@ class Game < ActiveRecord::Base
           end
           current_game.p1_mp = current_game.p1_mp - 20
         else
-          action_results = action_results + "Action Failed! #{active_character.name} doesn't have enough Mana to activate the power!"
+          action_results = action_results + "Action Failed! #{character_name} doesn't have enough Mana to activate the power!"
         end
       else
-         action_results = "#{active_character.name} uses a power breaking attack!"
+         action_results = "#{character_name} uses a power breaking attack!"
          if current_game.p2_mp >= 20
           action_results = action_results + Game::basic_attack(attack_bonus, defense_bonus, damage_bonus, armor_bonus, p1_turn, current_game)
           if (action_results.include? "Successful")
@@ -492,7 +505,7 @@ class Game < ActiveRecord::Base
           end
           current_game.p2_mp = current_game.p2_mp - 20
         else
-          action_results = action_results + "Action Failed! #{active_character.name} doesn't have enough Mana to activate the power!"
+          action_results = action_results + "Action Failed! #{character_name} doesn't have enough Mana to activate the power!"
         end
       end
     end
@@ -501,23 +514,23 @@ class Game < ActiveRecord::Base
     if(action_id == "8")
       if(p1_turn)
         if(current_game.p1_mp >= 10)
-          action_results = "#{current_game.player1_character} will now gain mana every turn."
+          action_results = "#{character_name} will now gain mana every turn."
           current_game.player1_buff = "Mana Regeneration"
           current_game.player1_buff_start = current_game.current_turn
           current_game.p1_mp = current_game.p1_mp - 10
           current_game.save
         else
-          action_results = "#{current_game.player1_character} doesn't have enough Mana to activate the power!"
+          action_results = "#{character_name} doesn't have enough Mana to activate the power!"
         end
       else
         if(current_game.p2_mp >= 10)
-          action_results = "#{current_game.player2_character} will now gain mana every turn."
+          action_results = "#{character_name} will now gain mana every turn."
           current_game.player2_buff = "Mana Regeneration"
           current_game.player2_buff_start = current_game.current_turn
           current_game.p2_mp = current_game.p2_mp - 10
           current_game.save
         else
-          action_results = "#{current_game.player2_character} doesn't have enough Mana to activate the power!"
+          action_results = "#{character_name} doesn't have enough Mana to activate the power!"
         end
       end
     end
@@ -526,21 +539,21 @@ class Game < ActiveRecord::Base
     if(action_id == "9")
       if(p1_turn)
         if(current_game.p1_mp >= 10)
-          action_results = "#{current_game.player1_character} has increased defense."
+          action_results = "#{character_name} has increased defense."
           current_game.player1_buff = "Defense UP"
           current_game.player1_buff_start = current_game.current_turn
           current_game.p1_mp = current_game.p1_mp - 10
         else
-          action_results = "#{current_game.player1_character} doesn't have enough Mana to activate the power!"
+          action_results = "#{character_name} doesn't have enough Mana to activate the power!"
         end
       else
         if(current_game.p2_mp >= 10)
-          action_results = "#{current_game.player2_character} has increased defense."
+          action_results = "#{character_name} has increased defense."
           current_game.player2_buff = "Defense UP"
           current_game.player2_buff_start = current_game.current_turn
           current_game.p2_mp = current_game.p2_mp - 10
         else
-          action_results = "#{current_game.player2_character} doesn't have enough Mana to activate the power!"
+          action_results = "#{character_name} doesn't have enough Mana to activate the power!"
         end
       end
     end
@@ -549,21 +562,21 @@ class Game < ActiveRecord::Base
     if(action_id == "10")
       if(p1_turn)
         if(current_game.p1_mp >= 10)
-          action_results = "#{current_game.player1_character} has increased attack."
+          action_results = "#{character_name} has increased attack."
           current_game.player1_buff = "Attack UP"
           current_game.player1_buff_start = current_game.current_turn
           current_game.p1_mp = current_game.p1_mp - 10
         else
-          action_results = "#{current_game.player1_character} doesn't have enough Mana to activate the power!"
+          action_results = "#{character_name} doesn't have enough Mana to activate the power!"
         end
       else
         if(current_game.p2_mp >= 10)
-          action_results = "#{current_game.player2_character} has increased attack."
+          action_results = "#{character_name} has increased attack."
           current_game.player2_buff = "Attack UP"
           current_game.player2_buff_start = current_game.current_turn
           current_game.p2_mp = current_game.p2_mp - 10
         else
-          action_results = "#{current_game.player2_character} doesn't have enough Mana to activate the power!"
+          action_results = "#{character_name} doesn't have enough Mana to activate the power!"
         end
       end
     end
@@ -572,21 +585,21 @@ class Game < ActiveRecord::Base
     if(action_id == "11")
       if(p1_turn)
         if(current_game.p1_mp >= 10)
-          action_results = "#{current_game.player1_character} has increased armor."
+          action_results = "#{character_name} has increased armor."
           current_game.player1_buff = "Armor UP"
           current_game.player1_buff_start = current_game.current_turn
           current_game.p1_mp = current_game.p1_mp - 10
         else
-          action_results = "#{current_game.player1_character} doesn't have enough Mana to activate the power!"
+          action_results = "#{character_name} doesn't have enough Mana to activate the power!"
         end
       else
         if(current_game.p2_mp >= 10)
-          action_results = "#{current_game.player2_character} has increased armor."
+          action_results = "#{character_name} has increased armor."
           current_game.player2_buff = "Armor UP"
           current_game.player2_buff_start = current_game.current_turn
           current_game.p2_mp = current_game.p2_mp - 10
         else
-          action_results = "#{current_game.player2_character} doesn't have enough Mana to activate the power!"
+          action_results = "#{character_name} doesn't have enough Mana to activate the power!"
         end
       end
     end
@@ -595,21 +608,21 @@ class Game < ActiveRecord::Base
     if(action_id == "12")
       if(p1_turn)
         if(current_game.p1_mp >= 10)
-          action_results = "#{current_game.player1_character} has increased damage."
+          action_results = "#{character_name} has increased damage."
           current_game.player1_buff = "Power UP"
           current_game.player1_buff_start = current_game.current_turn
           current_game.p1_mp = current_game.p1_mp - 10
         else
-          action_results = "#{current_game.player1_character} doesn't have enough Mana to activate the power!"
+          action_results = "#{character_name} doesn't have enough Mana to activate the power!"
         end
       else
         if(current_game.p2_mp >= 10)
-          action_results = "#{current_game.player2_character} has increased damage."
+          action_results = "#{character_name} has increased damage."
           current_game.player2_buff = "Power UP"
           current_game.player2_buff_start = current_game.current_turn
           current_game.p2_mp = current_game.p2_mp - 10
         else
-          action_results = "#{current_game.player2_character} doesn't have enough Mana to activate the power!"
+          action_results = "#{character_name} doesn't have enough Mana to activate the power!"
         end
       end
     end
@@ -618,21 +631,21 @@ class Game < ActiveRecord::Base
     if(action_id == "21")
       if(p1_turn)
         if(current_game.p1_mp >= 20)
-          action_results = "#{current_game.player1_character} has charged up their attack. Their next attack's damage will be doubled!"
+          action_results = "#{character_name} has charged up their attack. Their next attack's damage will be doubled!"
           current_game.player1_buff = "Charge"
           current_game.player1_buff_start = current_game.current_turn
           current_game.p1_mp = current_game.p1_mp - 20
         else
-          action_results = "#{current_game.player1_character} doesn't have enough Mana to activate the power!"
+          action_results = "#{character_name} doesn't have enough Mana to activate the power!"
         end
       else
         if(current_game.p2_mp >= 20)
-          action_results = "#{current_game.player2_character} has  has charged up their attack. Their next attack's damage will be doubled!"
+          action_results = "#{character_name} has  has charged up their attack. Their next attack's damage will be doubled!"
           current_game.player2_buff = "Charge"
           current_game.player2_buff_start = current_game.current_turn
           current_game.p2_mp = current_game.p2_mp - 20
         else
-          action_results = "#{current_game.player2_character} doesn't have enough Mana to activate the power!"
+          action_results = "#{character_name} doesn't have enough Mana to activate the power!"
         end
       end
     end
@@ -641,21 +654,21 @@ class Game < ActiveRecord::Base
     if(action_id == "22")
       if(p1_turn)
         if(current_game.p1_mp >= 20)
-          action_results = "#{current_game.player1_character} has summoned an ally!"
+          action_results = "#{character_name} has summoned an ally!"
           current_game.player1_buff = "Summon"
           current_game.player1_buff_start = current_game.current_turn
           current_game.p1_mp = current_game.p1_mp - 20
         else
-          action_results = "#{current_game.player1_character} doesn't have enough Mana to activate the power!"
+          action_results = "#{character_name} doesn't have enough Mana to activate the power!"
         end
       else
         if(current_game.p2_mp >= 20)
-          action_results = "#{current_game.player2_character} has summoned an ally!"
+          action_results = "#{character_name} has summoned an ally!"
           current_game.player2_buff = "Summon"
           current_game.player2_buff_start = current_game.current_turn
           current_game.p2_mp = current_game.p2_mp - 20
         else
-          action_results = "#{current_game.player2_character} doesn't have enough Mana to activate the power!"
+          action_results = "#{character_name} doesn't have enough Mana to activate the power!"
         end
       end
     end
@@ -666,25 +679,25 @@ class Game < ActiveRecord::Base
       if (p1_turn)
         if (current_game.p1_mp >= 20)
           current_game.p1_hp = current_game.p1_hp + health_regained
-          action_results = "#{active_character.name} heals, gaining #{health_regained} Hit Points."
+          action_results = "#{character_name} heals, gaining #{health_regained} Hit Points."
           if (current_game.p1_hp > active_character.max_hp)
             current_game.p1_hp = active_character.max_hp
           end
           current_game.p1_mp = current_game.p1_mp - 20
         else
-          action_results = "#{current_game.player1_character} doesn't have enough Mana to activate the power!"
+          action_results = "#{character_name} doesn't have enough Mana to activate the power!"
         end
 
       else
         if (current_game.p2_mp >= 20)
           current_game.p2_hp = current_game.p2_hp + health_regained
-          action_results = "#{active_character.name} heals, gaining #{health_regained} Hit Points."
+          action_results = "#{character_name} heals, gaining #{health_regained} Hit Points."
           if (current_game.p2_hp > active_character.max_hp)
             current_game.p2_hp = active_character.max_hp
           end
           current_game.p2_mp = current_game.p2_mp - 20
         else
-          action_results = "#{current_game.player2_character} doesn't have enough Mana to activate the power!"
+          action_results = "#{character_name} doesn't have enough Mana to activate the power!"
         end
       end
      
@@ -732,7 +745,7 @@ class Game < ActiveRecord::Base
 
   end
 
-  def Game::handle_debuff_effects(current_game, p1_turn, action_id, active_character)
+  def Game::handle_debuff_effects(current_game, p1_turn, action_id, active_character, character_name)
 
     if (p1_turn)
       #Handle Poison Status Effect
@@ -742,12 +755,12 @@ class Game < ActiveRecord::Base
         if duration > 5
           current_game.player1_debuff = "None"
           current_game.player1_debuff_start = -50
-          results = "#{current_game.player1_character} has finally overcome the poison!"
+          results = "#{character_name} has finally overcome the poison!"
           current_game.save
         else
           poison_damage = 1 + rand(6)
           current_game.p1_hp = current_game.p1_hp - poison_damage
-          results = "#{current_game.player1_character} has taken #{poison_damage} from the poison!"
+          results = "#{character_name} has taken #{poison_damage} from the poison!"
         end
 
       end
@@ -759,15 +772,15 @@ class Game < ActiveRecord::Base
         if duration > 6
           current_game.player1_debuff = "None"
           current_game.player1_debuff_start = -50
-          results = "#{current_game.player1_character} is no longer confused!"
+          results = "#{character_name} is no longer confused!"
         else
           c_rating = 1 + rand(10)
           if(c_rating < 2)
-            results = "#{current_game.player1_character} dances around like a lunatic."
+            results = "#{character_name} dances around like a lunatic."
           elsif (c_rating < 8)
-            results = "Due to #{current_game.player1_character}'s Confusion they took a random action!"
+            results = "Due to #{character_name}'s Confusion they took a random action!"
           else
-            results = "#{current_game.player1_character}'s confusion didn't affect the action."
+            results = "#{character_name}'s confusion didn't affect the action."
           end
         end
       end
@@ -777,10 +790,10 @@ class Game < ActiveRecord::Base
         if duration > 4
           current_game.player1_debuff = "None"
           current_game.player1_debuff_start = -50
-          results = "#{current_game.player1_character} is no longer silenced!"
+          results = "#{character_name} is no longer silenced!"
           current_game.save
         else
-          results = "#{current_game.player1_character} is silenced and unable to use special attacks!"
+          results = "#{character_name} is silenced and unable to use special attacks!"
         end
       end
 
@@ -789,7 +802,7 @@ class Game < ActiveRecord::Base
         if duration > 12
           current_game.player1_debuff = "None"
           current_game.player1_debuff_start = -50
-          results = "#{current_game.player1_character} has overcome the Mana Lock."
+          results = "#{character_name} has overcome the Mana Lock."
           current_game.save
         else
           max_mp = active_character.max_mp
@@ -799,7 +812,7 @@ class Game < ActiveRecord::Base
           if(current_game.p1_mp < 0)
             current_game.p1_mp = 0
           end
-          results = "#{current_game.player1_character} has lost #{mana_regained} mana from the Mana Lock!"
+          results = "#{character_name} has lost #{mana_regained} mana from the Mana Lock!"
           current_game.save
         end
       end
@@ -809,10 +822,10 @@ class Game < ActiveRecord::Base
         if duration > 6
           current_game.player1_debuff = "None"
           current_game.player1_debuff_start = -50
-          results = "#{current_game.player1_character}'s attack has returned to normal."
+          results = "#{character_name}'s attack has returned to normal."
           current_game.save
         else
-          results = "#{current_game.player1_character}'s' attack is weakened."
+          results = "#{character_name}'s' attack is weakened."
         end
       end
 
@@ -821,10 +834,10 @@ class Game < ActiveRecord::Base
         if duration > 6
           current_game.player1_debuff = "None"
           current_game.player1_debuff_start = -50
-          results = "#{current_game.player1_character}'s defense has returned to normal."
+          results = "#{character_name}'s defense has returned to normal."
           current_game.save
         else
-          results = "#{current_game.player1_character}'s' defense is weakened."
+          results = "#{character_name}'s' defense is weakened."
         end
       end
 
@@ -833,10 +846,10 @@ class Game < ActiveRecord::Base
         if duration > 6
           current_game.player1_debuff = "None"
           current_game.player1_debuff_start = -50
-          results = "#{current_game.player1_character}'s power has returned to normal."
+          results = "#{character_name}'s power has returned to normal."
           current_game.save
         else
-          results = "#{current_game.player1_character}'s' power is weakened."
+          results = "#{character_name}'s' power is weakened."
         end
       end
 
@@ -845,10 +858,10 @@ class Game < ActiveRecord::Base
         if duration > 6
           current_game.player1_debuff = "None"
           current_game.player1_debuff_start = -50
-          results = "#{current_game.player1_character}'s armor has returned to normal."
+          results = "#{character_name}'s armor has returned to normal."
           current_game.save
         else
-          results = "#{current_game.player1_character}'s' armor is weakened."
+          results = "#{character_name}'s' armor is weakened."
         end
       end
 
@@ -860,11 +873,11 @@ class Game < ActiveRecord::Base
         if duration > 5
           current_game.player2_debuff = "None"
           current_game.player2_debuff_start = -50
-          results = "#{current_game.player2_character} has finally overcome the poison!"
+          results = "#{character_name} has finally overcome the poison!"
         else
           poison_damage = 1 + rand(6)
           current_game.p2_hp = current_game.p2_hp - poison_damage
-          results = "#{current_game.player2_character} has taken #{poison_damage} damage from the poison!"
+          results = "#{character_name} has taken #{poison_damage} damage from the poison!"
         end
 
       end
@@ -875,15 +888,15 @@ class Game < ActiveRecord::Base
         if duration > 5
           current_game.player2_debuff = "None"
           current_game.player2_debuff_start = -50
-          results = "#{current_game.player2_character} is no longer confused!"
+          results = "#{character_name} is no longer confused!"
         else
           c_rating = 1 + rand(10)
           if(c_rating < 2)
-            results = "#{current_game.player2_character} dances around like a lunatic."
+            results = "#{character_name} dances around like a lunatic."
           elsif (c_rating < 8)
-            results = "Due to #{current_game.player2_character}'s Confusion they took a random action!"
+            results = "Due to #{character_name}'s Confusion they took a random action!"
           else
-            results = "#{current_game.player2_character}'s confusion didn't affect the action."
+            results = "#{character_name}'s confusion didn't affect the action."
           end
         end
       end
@@ -893,10 +906,10 @@ class Game < ActiveRecord::Base
         if duration > 4
           current_game.player2_debuff = "None"
           current_game.player2_debuff_start = -50
-          results = "#{current_game.player2_character} is no longer silenced!"
+          results = "#{character_name} is no longer silenced!"
           current_game.save
         else
-          results = "#{current_game.player2_character} is silenced and unable to use special attacks!"
+          results = "#{character_name} is silenced and unable to use special attacks!"
         end
       end
 
@@ -905,7 +918,7 @@ class Game < ActiveRecord::Base
         if duration > 12
           current_game.player2_debuff = "None"
           current_game.player2_debuff_start = -50
-          results = "#{current_game.player2_character} has overcome the Mana Lock"
+          results = "#{character_name} has overcome the Mana Lock"
           current_game.save
         else
           max_mp = active_character.max_mp
@@ -915,7 +928,7 @@ class Game < ActiveRecord::Base
           if(current_game.p2_mp < 0)
             current_game.p2_mp = 0
           end
-          results = "#{current_game.player2_character} has lost #{mana_regained} mana from the Mana Lock!"
+          results = "#{character_name} has lost #{mana_regained} mana from the Mana Lock!"
           current_game.save
         end
       end
@@ -925,10 +938,10 @@ class Game < ActiveRecord::Base
         if duration > 6
           current_game.player2_debuff = "None"
           current_game.player2_debuff_start = -50
-          results = "#{current_game.player2_character}'s attack has returned to normal."
+          results = "#{character_name}'s attack has returned to normal."
           current_game.save
         else
-          results = "#{current_game.player2_character}'s' attack is weakened."
+          results = "#{character_name}'s' attack is weakened."
         end
       end
 
@@ -937,10 +950,10 @@ class Game < ActiveRecord::Base
         if duration > 6
           current_game.player2_debuff = "None"
           current_game.player2_debuff_start = -50
-          results = "#{current_game.player2_character}'s defense has returned to normal."
+          results = "#{character_name}'s defense has returned to normal."
           current_game.save
         else
-          results = "#{current_game.player2_character}'s' defense is weakened."
+          results = "#{character_name}'s' defense is weakened."
         end
       end
 
@@ -949,10 +962,10 @@ class Game < ActiveRecord::Base
         if duration > 6
           current_game.player2_debuff = "None"
           current_game.player2_debuff_start = -50
-          results = "#{current_game.player2_character}'s power has returned to normal."
+          results = "#{character_name}'s power has returned to normal."
           current_game.save
         else
-          results = "#{current_game.player2_character}'s' power is weakened."
+          results = "#{character_name}'s' power is weakened."
         end
       end
 
@@ -961,10 +974,10 @@ class Game < ActiveRecord::Base
         if duration > 6
           current_game.player2_debuff = "None"
           current_game.player2_debuff_start = -50
-          results = "#{current_game.player2_character}'s armor has returned to normal."
+          results = "#{character_name}'s armor has returned to normal."
           current_game.save
         else
-          results = "#{current_game.player2_character}'s' armor is weakened."
+          results = "#{character_name}'s' armor is weakened."
         end
       end
 
@@ -974,7 +987,7 @@ class Game < ActiveRecord::Base
     return results
   end
 
-  def Game::handle_buff_effects(current_game, p1_turn, active_character)
+  def Game::handle_buff_effects(current_game, p1_turn, active_character, character_name)
     if p1_turn
 
       if (current_game.player1_buff == "Attack UP")   
@@ -982,14 +995,10 @@ class Game < ActiveRecord::Base
         if duration > 6
           current_game.player1_buff = "None"
           current_game.player1_buff_start = -50
-          if current_game.player1_stage < active_character.transformation.alt_stage
-            results = "#{current_game.player1_character}'s attack has returned to normal."
-          else
-            results = "#{active_character.transformation.alt_name}'s attack has returned to normal."
-          end
+          results = "#{character_name}'s attack has returned to normal."
           current_game.save
         else
-          results = "#{current_game.player1_character}'s' attack is strengthened."
+          results = "#{character_name}'s' attack is strengthened."
         end
       end
 
@@ -998,14 +1007,10 @@ class Game < ActiveRecord::Base
         if duration > 6
           current_game.player1_buff = "None"
           current_game.player1_buff_start = -50
-          if current_game.player1_stage < active_character.transformation.alt_stage
-            results = "#{current_game.player1_character}'s defense has returned to normal."
-          else
-            results = "#{active_character.transformation.alt_name}'s defense has returned to normal."
-          end
+          results = "#{character_name}'s defense has returned to normal."
           current_game.save
         else
-          results = "#{current_game.player1_character}'s' defense is strengthened."
+          results = "#{character_name}'s defense is strengthened."
         end
       end
 
@@ -1014,14 +1019,10 @@ class Game < ActiveRecord::Base
         if duration > 6
           current_game.player1_buff = "None"
           current_game.player1_buff_start = -50
-          if current_game.player1_stage < active_character.transformation.alt_stage
-            results = "#{current_game.player1_character}'s power has returned to normal."
-          else
-            results = "#{active_character.transformation.alt_name}'s power has returned to normal."
-          end
+          results = "#{character_name}'s power has returned to normal."
           current_game.save
         else
-          results = "#{current_game.player1_character}'s' power is strengthened."
+          results = "#{character_name}'s' power is strengthened."
         end
       end
 
@@ -1030,14 +1031,10 @@ class Game < ActiveRecord::Base
         if duration > 6
           current_game.player1_buff = "None"
           current_game.player1_buff_start = -50
-          if current_game.player1_stage < active_character.transformation.alt_stage
-            results = "#{current_game.player1_character}'s Armor has returned to normal."
-          else
-            results = "#{active_character.transformation.alt_name}'s Armor has returned to normal."
-          end
+          results = "#{character_name}'s Armor has returned to normal."
           current_game.save
         else
-          results = "#{current_game.player1_character}'s' armor is strengthened."
+          results = "#{character_name}'s armor is strengthened."
         end
       end
 
@@ -1046,7 +1043,7 @@ class Game < ActiveRecord::Base
         if duration > 12
           current_game.player1_buff = "None"
           current_game.player1_buff_start = -50
-          results = "#{current_game.player1_character} has lost their Mana Regeneration"
+          results = "#{character_name} has lost their Mana Regeneration"
           current_game.save
         else
           max_mp = active_character.max_mp
@@ -1055,7 +1052,7 @@ class Game < ActiveRecord::Base
           if(current_game.p1_mp > max_mp)
             current_game.p1_mp = max_mp
           end
-          results = "#{current_game.player1_character} has regained #{mana_regained} mana."
+          results = "#{character_name} has regained #{mana_regained} mana."
           current_game.save
         end
       end
@@ -1065,10 +1062,10 @@ class Game < ActiveRecord::Base
         if duration > 2
           current_game.player1_buff = "None"
           current_game.player1_buff_start = -50
-          results = "#{current_game.player1_character} has lost their power charge."
+          results = "#{character_name} has lost their power charge."
           current_game.save
         else
-          results = "#{current_game.player1_character} is charged up!"
+          results = "#{character_name} is charged up!"
         end
       end
 
@@ -1080,10 +1077,10 @@ class Game < ActiveRecord::Base
         if duration > 6
           current_game.player2_buff = "None"
           current_game.player2_buff_start = -50
-          results = "#{current_game.player2_character}'s attack has returned to normal."
+          results = "#{character_name}'s attack has returned to normal."
           current_game.save
         else
-          results = "#{current_game.player2_character}'s' attack is strengthened."
+          results = "#{character_name}'s' attack is strengthened."
         end
       end
 
@@ -1092,10 +1089,10 @@ class Game < ActiveRecord::Base
         if duration > 6
           current_game.player2_buff = "None"
           current_game.player2_buff_start = -50
-          results = "#{current_game.player2_character}'s defense has returned to normal."
+          results = "#{character_name}'s defense has returned to normal."
           current_game.save
         else
-          results = "#{current_game.player2_character}'s' defense is strengthened."
+          results = "#{character_name}'s' defense is strengthened."
         end
       end
 
@@ -1104,10 +1101,10 @@ class Game < ActiveRecord::Base
         if duration > 6
           current_game.player2_buff = "None"
           current_game.player2_buff_start = -50
-          results = "#{current_game.player2_character}'s power has returned to normal."
+          results = "#{character_name}'s power has returned to normal."
           current_game.save
         else
-          results = "#{current_game.player2_character}'s' power is strengthened."
+          results = "#{character_name}'s' power is strengthened."
         end
       end
 
@@ -1116,10 +1113,10 @@ class Game < ActiveRecord::Base
         if duration > 6
           current_game.player2_buff = "None"
           current_game.player2_buff_start = -50
-          results = "#{current_game.player2_character}'s armor has returned to normal."
+          results = "#{character_name}'s armor has returned to normal."
           current_game.save
         else
-          results = "#{current_game.player2_character}'s' armor is strengthened."
+          results = "#{character_name}'s' armor is strengthened."
         end
       end
 
@@ -1128,7 +1125,7 @@ class Game < ActiveRecord::Base
         if duration > 6
           current_game.player2_buff = "None"
           current_game.player2_buff_start = -50
-          results = "#{current_game.player2_character} has lost their Mana Regeneration."
+          results = "#{character_name} has lost their Mana Regeneration."
           current_game.save
         else
           max_mp = active_character.max_mp
@@ -1137,7 +1134,7 @@ class Game < ActiveRecord::Base
           if(current_game.p2_mp > max_mp)
             current_game.p2_mp = max_mp
           end
-          results = "#{current_game.player2_character} has regained #{mana_regained} mana."
+          results = "#{character_name} has regained #{mana_regained} mana."
           current_game.save
         end
       end
@@ -1147,10 +1144,10 @@ class Game < ActiveRecord::Base
         if duration > 2
           current_game.player2_buff = "None"
           current_game.player2_buff_start = -50
-          results = "#{current_game.player2_character} has lost their charge."
+          results = "#{character_name} has lost their charge."
           current_game.save
         else
-          results = "#{current_game.player2_character} is charged up!"
+          results = "#{character_name} is charged up!"
         end
       end
 

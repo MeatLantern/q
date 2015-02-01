@@ -351,6 +351,7 @@ class TransformationController < ApplicationController
 		create_hash["alt_summon_name"] = params["transformation"]["alt_summon_name"]
 		create_hash["alt_summon_attack"] = params["transformation"]["alt_summon_attack"]
 		create_hash["alt_summon_picture"] = params["transformation"]["alt_summon_picture"]
+		create_hash["alt_stage"] = params["transformation"]["alt_stage"]
 			
 		valid = true
 		create_hash.each do |key, value|
@@ -516,6 +517,7 @@ class TransformationController < ApplicationController
 		create_hash["alt_summon_name"] = params["transformation"]["alt_summon_name"]
 		create_hash["alt_summon_attack"] = params["transformation"]["alt_summon_attack"]
 		create_hash["alt_summon_picture"] = params["transformation"]["alt_summon_picture"]
+		create_hash["alt_stage"] = params["transformation"]["alt_stage"]
 		
 		
 		
@@ -683,6 +685,7 @@ class TransformationController < ApplicationController
 		create_hash["alt_summon_name"] = params["transformation"]["alt_summon_name"]
 		create_hash["alt_summon_attack"] = params["transformation"]["alt_summon_attack"]
 		create_hash["alt_summon_picture"] = params["transformation"]["alt_summon_picture"]
+		create_hash["alt_stage"] = params["transformation"]["alt_stage"]
 		
 		
 		
@@ -853,6 +856,7 @@ class TransformationController < ApplicationController
 		create_hash["alt_summon_name"] = params["transformation"]["alt_summon_name"]
 		create_hash["alt_summon_attack"] = params["transformation"]["alt_summon_attack"]
 		create_hash["alt_summon_picture"] = params["transformation"]["alt_summon_picture"]
+		create_hash["alt_stage"] = params["transformation"]["alt_stage"]
 		
 		
 		
