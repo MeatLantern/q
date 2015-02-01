@@ -7,10 +7,16 @@ class AddCreatorToTransformation < ActiveRecord::Migration
   		  
       else
         #Transformation.delete(tf)
-        tf.creator = tf.character.creator
-        upvotes = tf.character.upvotes
-        tf.upvotes = upvotes
-        tf.save
+        if tf.character.nil?
+          #Transformation.delte(tf)
+        else
+          creator = tf.character.creator
+          tf.creator = creator
+          upvotes = tf.character.upvotes
+          tf.upvotes = upvotes
+          tf.save
+        end
+ 
       end
   	end
   end
