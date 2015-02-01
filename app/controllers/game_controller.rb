@@ -88,7 +88,7 @@ class GameController < ApplicationController
         @p2_summon = @p2_character.summon_name
         @p2_summon_picture = @p2_character.summon_picture
       else
-        @p2_name = @p1_character.transformation.alt_name
+        @p2_name = @p2_character.transformation.alt_name
         @p2_action1 = @p2_character.transformation.alt_attack1_name
         @p2_action2 = @p2_character.transformation.alt_attack2_name
         @p2_action3 = @p2_character.transformation.alt_attack3_name
