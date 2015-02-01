@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150201084619) do
+ActiveRecord::Schema.define(:version => 20150201133232) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -220,6 +220,7 @@ ActiveRecord::Schema.define(:version => 20150201084619) do
     t.string   "alt_summon_name"
     t.text     "alt_summon_attack"
     t.string   "alt_summon_picture"
+    t.string   "creator"
   end
 
   create_table "users", :force => true do |t|

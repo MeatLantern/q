@@ -13,6 +13,8 @@ DuelOfChampions::Application.routes.draw do
 
   resources :characters
 
+  match 'change_order', to: 'characters#change_order', via: :post
+  match 'equalize_upvotes', to: 'transformation#equalize_upvotes', via: :post
   match 'transformation/show', to: 'transformation#show', via: :get
   match 'transformation/edit', to: 'transformation#edit', via: :get
   match 'transformation/show', to: 'transformation#show', via: :get
@@ -68,6 +70,7 @@ DuelOfChampions::Application.routes.draw do
   match 'set_upvotes_to_0', to: 'characters#set_upvotes_to_0', via: :post
 
   match 'select_opponent_ai', to: 'characters#select_opponent', via: :post
+   match 'select_opponent_ai', to: 'characters#select_opponent', via: :get
 
   match 'select_opponent_game', to: 'game#create_choose_ai_game', via: :post
 

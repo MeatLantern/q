@@ -9,6 +9,16 @@ class TransformationController < ApplicationController
 
 	end
 
+	def equalize_upvotes
+		tfs = Transformation.all
+		tfs.each do |tf|
+			upvotes = tf.character.upvotes
+			tf.upvotes = upvotes
+			tf.save
+		end
+		redirect_to tf_admin_path
+	end
+
 	def set_alts_to_original_abilities
 		tfs = Transformation.all
   		tfs.each do |tf|
@@ -444,6 +454,9 @@ class TransformationController < ApplicationController
 			else
 				tf = Transformation.create!(create_hash)
 				current_character.transformation = tf
+				current_character.save
+				tf.creator = current_character.creator
+				tf.save
 			end
 
 		else
@@ -612,6 +625,9 @@ class TransformationController < ApplicationController
 			else
 				tf = Transformation.create!(create_hash)
 				current_character.transformation = tf
+				current_character.save
+				tf.creator = current_character.creator
+				tf.save
 			end
 
 		else
@@ -782,6 +798,9 @@ class TransformationController < ApplicationController
 			else
 				tf = Transformation.create!(create_hash)
 				current_character.transformation = tf
+				current_character.save
+				tf.creator = current_character.creator
+				tf.save
 			end
 
 		else
@@ -956,6 +975,8 @@ class TransformationController < ApplicationController
 					tf.update_attributes(create_hash)
 				end
 				current_character.transformation = tf
+				tf.creator = current_character.creator
+				tf.save
 			end
 
 		else

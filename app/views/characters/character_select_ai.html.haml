@@ -15,7 +15,27 @@
       Current Search Type: 
       %strong
         Including
-
+ 
+  .row
+    %div{:style => "float:left;"}
+      %div{:style => "float:left;"}
+        Descending:
+      %div{:style => "float:left;"}
+        = button_to "Creation Date",change_order_path(:order_type => "created_at DESC", :origin => "single")
+      %div{:style => "float:left;"}
+        = button_to "Creator",change_order_path(:order_type => "creator DESC", :origin => "single")
+      %div{:style => "float:left;"}
+        = button_to "Upvotes",change_order_path(:order_type => "upvotes DESC", :origin => "single")
+  .row
+    %div{:style => "float:left;"}
+      %div{:style => "float:left;"}
+        Ascending:
+      %div{:style => "float:left;"}
+        = button_to "Creation Date",change_order_path(:order_type => "created_at ASC", :origin => "single")
+      %div{:style => "float:left;"}
+        = button_to "Creator",change_order_path(:order_type => "creator ASC", :origin => "single")
+      %div{:style => "float:left;"}
+        = button_to "Upvotes",change_order_path(:order_type => "upvotes ASC", :origin => "single")
   %table#characters
     %thead
       %tr

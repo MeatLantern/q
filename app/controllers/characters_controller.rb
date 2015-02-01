@@ -4,6 +4,24 @@ class CharactersController < ApplicationController
   def new
   end
 
+  def change_order
+    if params[:order_type].nil? || params[:origin].nil?
+      flash[:alert] = "There was an Problem with Switching the Order. Please Try Again."
+      redirect_to game_rules_path
+    else
+      session[:order] = params[:order_type]
+      origin = params[:origin]
+      if (origin == "single")
+        redirect_to character_character_select_ai_path
+      elsif (origin == "choose_opponent")
+        redirect_to select_opponent_ai_path(:name => params[:name]), :method => :post
+      else
+        flash[:alert] = "There was a Problem with Switching the Order. Please Try Again."
+        redirect_to game_rules_path
+      end
+    end
+  end
+
   def upvote
     recent = session[:recent_upvotes]
     if recent.nil?
@@ -20,6 +38,7 @@ class CharactersController < ApplicationController
       else
         recent.push(params[:name])
         c.upvotes = c.upvotes + 1
+        c.transformation.upvotes + 1
         c.save
       end
       redirect_to characters_path(:name => params[:name])
@@ -485,7 +504,12 @@ class CharactersController < ApplicationController
         end
       end
       #@characters = Transformation.where(search_hash).order("upvotes DESC")
-      @characters = Transformation.where(search_hash).order("created_at DESC")
+      @characters = Transformation.where(search_hash)
+      if session[:order].nil?
+        session[:order] = "created_at DESC"
+      end
+      @characters = @characters.reorder(session[:order])
+      #binding.pry
       #@characters = Hash[@characters.sort_by{|k,v|}, v[:upvotes]]
      
       #binding.pry
@@ -613,7 +637,10 @@ class CharactersController < ApplicationController
       #@characters = Transformation.where(search_hash).order("upvotes DESC")
       @characters = Transformation.where(search_hash).order("created_at DESC")
       #@characters = Hash[@characters.sort_by{|k,v|}, v[:upvotes]]
-     
+      if session[:order].nil?
+        session[:order] = "created_at DESC"
+      end
+      @characters = @characters.reorder(session[:order])
       #binding.pry
       if @characters.empty?
         flash[:notice] = "No Results Found"
