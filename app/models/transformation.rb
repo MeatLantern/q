@@ -173,6 +173,10 @@ class Transformation < ActiveRecord::Base
         tf_message = tf_message + array[i] + "<br><br>"
       end
     end
+
+    if (stage2 - stage1) < 0
+      tf_message = "#{transformation.character_name} has reversed some of their transformation!"
+    end
     return tf_message
 
   end

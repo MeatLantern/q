@@ -79,7 +79,7 @@ class Game < ActiveRecord::Base
     armor_bonus = passive_character.base_armor
     if p1_turn
       if(current_game.player2_buff == "Armor UP")
-        armor_bonus = armork_bonus + 2
+        armor_bonus = armor_bonus + 2
       elsif (current_game.player2_debuff == "Armor DOWN")
         armor_bonus = armor_bonus -2
       end
