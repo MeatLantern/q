@@ -19,6 +19,8 @@ class CharactersController < ApplicationController
         redirect_to character_character_select_ai_path
       elsif (origin == "choose_opponent")
         redirect_to select_opponent_ai_path(:name => params[:name]), :method => :post
+      elsif (origin == "multiplayer")
+        redirect_to multiplayer_select_character_path(:player_name => params[:player_name], :invite_id => params[:invite_id], :character => params[:character], :rules => params[:rules], :pref => params[:pref])
       else
         flash[:alert] = "There was a Problem with Switching the Order. Please Try Again."
         redirect_to game_rules_path

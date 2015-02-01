@@ -3,10 +3,42 @@
   %h3 Decision for: 
   = @name
 
+  %h2 Can't Find Your Character?
   %p
-    = @warning
+    There was a recent change to the game, adding two new Tags: "Completed" and "Fully Illustrated". All characters had their "Completed" tag set to false. Characters without the "Complete" tag will not appear on the character select screen unless the option is checked below. If your character is ready for public release, please go to "View Profile" and Update your transformation to include the "Complete" tag. If your character has pictures for all or most stages, please update the "Fully Illustrated" Tag as well. Sorry for the inconvenience as improvements are made to the system. You can visit the Rules Page for more information.
 
   %h2 Character Select
+  -if session['pref2'] == 'Edit Preferences: Excluding Search'
+    %h4
+      Current Search Type: 
+      %strong
+        Excluding
+  -if session['pref2'] == 'Edit Preferences: Including Search'
+    %h4
+      Current Search Type: 
+      %strong
+        Including
+ 
+  .row
+    %div{:style => "float:left;"}
+      %div{:style => "float:left;"}
+        Descending:
+      %div{:style => "float:left;"}
+        = button_to "Creation Date",change_order_path(:order_type => "created_at DESC", :origin => "multiplayer", :player_name => @name, :invite_id => @invite_id, :character => @c, :rules => @rules, :pref => @pref)
+      %div{:style => "float:left;"}
+        = button_to "Creator",change_order_path(:order_type => "creator DESC", :origin => "multiplayer", :player_name => @name, :invite_id => @invite_id, :character => @c, :rules => @rules, :pref => @pref)
+      %div{:style => "float:left;"}
+        = button_to "Upvotes",change_order_path(:order_type => "upvotes DESC", :origin => "multiplayer", :player_name => @name, :invite_id => @invite_id, :character => @c, :rules => @rules, :pref => @pref)
+  .row
+    %div{:style => "float:left;"}
+      %div{:style => "float:left;"}
+        Ascending:
+      %div{:style => "float:left;"}
+        = button_to "Creation Date",change_order_path(:order_type => "created_at ASC", :origin => "multiplayer", :player_name => @name, :invite_id => @invite_id, :character => @c, :rules => @rules, :pref => @pref)
+      %div{:style => "float:left;"}
+        = button_to "Creator",change_order_path(:order_type => "creator ASC", :origin => "multiplayer", :player_name => @name, :invite_id => @invite_id, :character => @c, :rules => @rules, :pref => @pref)
+      %div{:style => "float:left;"}
+        = button_to "Upvotes",change_order_path(:order_type => "upvotes ASC", :origin => "multiplayer", :player_name => @name, :invite_id => @invite_id, :character => @c, :rules => @rules, :pref => @pref)
 
   %table#characters
     %thead
@@ -14,12 +46,16 @@
         %th Name  	  
         %th Character Sheet 
         %th Select Character
+        %th Creator
+        %th Upvotes
     %tbody
       - @characters.each do |character|
         %tr 
           %td= character.character_name
           %td= link_to "#{character.character_name}'s Character Sheet", characters_path(:name => character.character_name), :method=> :get#character/show/?name=#{character.name}',{:controller => "characters", :action => "show", :name => character.name}
           %td= link_to "Select #{character.character_name}", multiplayer_character_choose_path(:name => character.character_name, :username => @name, :invite_id => @invite_id, :c => @c), :method=> :post
+          %td= character.creator
+          %td= character.upvotes
   %h3 Select TF Types
   To prevent a type of TF from appearing in your list, uncheck the box and click "Edit Preferences"
   = form_tag multiplayer_select_character_path(:player_name => @name, :invite_id => @invite_id, :character => @c, :rules => @rules, :pref => @pref) do
@@ -33,119 +69,120 @@
           %td
             = label :transformation, :is_adult, 'Contains Adult Content?'
           %td 
-            = check_box :transformation, 'is_adult', :checked =>  @rules[:is_adult], :hidden => !@pref.is_adult
+            = check_box :transformation, 'is_adult', :checked => @button_hash["is_adult"]
         %tr
           %td
             = label :transformation, :is_M2F, 'Contains Male to Female Transformation?'
           %td 
-            = check_box :transformation, 'is_M2F', :checked =>  @rules[:is_M2F], :hidden => !@pref.is_M2F
+            = check_box :transformation, 'is_M2F', :checked => @button_hash["is_M2F"]
         %tr
           %td
             = label :transformation, :is_F2M, 'Contains Female to Male Transformation?'
           %td 
-            = check_box :transformation, 'is_F2M', :checked =>  @rules[:is_F2M], :hidden => !@pref.is_F2M
+            = check_box :transformation, 'is_F2M', :checked => @button_hash["is_F2M"]
         %tr
           %td
             = label :transformation, :is_race_change, 'Contains Race Change?'
           %td 
-            = check_box :transformation, 'is_race_change', :checked =>  @rules[:is_race_change], :hidden => !@pref.is_race_change
+            = check_box :transformation, 'is_race_change', :checked => @button_hash["is_race_change"]
         %tr
           %td
             = label :transformation, :is_age_reg, 'Contains Age Regression?'
           %td 
-            = check_box :transformation, 'is_age_reg', :checked =>  @rules[:is_age_reg], :hidden => !@pref.is_age_reg
+            = check_box :transformation, 'is_age_reg', :checked => @button_hash["is_age_reg"]
         %tr
           %td
             = label :transformation, :is_age_pro, 'Contains Age Progression?'
           %td 
-            = check_box :transformation, 'is_age_pro', :checked =>  @rules[:is_age_pro], :hidden => !@pref.is_age_pro
+            = check_box :transformation, 'is_age_pro', :checked => @button_hash["is_age_pro"]
         %tr
           %td
             = label :transformation, :is_furry, 'Contains Furry Transformation?'
           %td 
-            = check_box :transformation, 'is_furry', :checked =>  @rules[:is_furry], :hidden => !@pref.is_furry
+            = check_box :transformation, 'is_furry', :checked => @button_hash["is_furry"]
         %tr
           %td
             = label :transformation, :is_animal, 'Contains Animal Transformation?'
           %td 
-            = check_box :transformation, 'is_animal', :checked =>  @rules[:is_animal], :hidden => !@pref.is_animal
+            = check_box :transformation, 'is_animal', :checked => @button_hash["is_animal"]
         %tr
           %td
             = label :transformation, :is_futa, 'Contains Hermaphrodites?'
           %td 
-            = check_box :transformation, 'is_futa', :checked =>  @rules[:is_futa], :hidden => !@pref.is_futa
+            = check_box :transformation, 'is_futa', :checked => @button_hash["is_futa"]
         %tr
           %td
             = label :transformation, :is_mind, 'Contains Mental Change?'
           %td 
-            = check_box :transformation, 'is_mind', :checked =>  @rules[:is_mind], :hidden => !@pref.is_mind
+            = check_box :transformation, 'is_mind', :checked => @button_hash["is_mind"]
         %tr
           %td
             = label :transformation, :is_bdsm, 'Contains BDSM or Latex/Rubber Content?'
           %td 
-            = check_box :transformation, 'is_bdsm', :checked =>  @rules[:is_bdsm], :hidden => !@pref.is_bdsm
+            = check_box :transformation, 'is_bdsm', :checked => @button_hash["is_bdsm"]
         %tr
           %td
             = label :transformation, :is_pregnant, 'Contains Pregnancy?'
           %td 
-            = check_box :transformation, 'is_pregnant', :checked =>  @rules[:is_pregnant], :hidden => !@pref.is_pregnant
+            = check_box :transformation, 'is_pregnant', :checked => @button_hash["is_pregnant"]
         %tr
           %td
             = label :transformation, :is_inanimate, 'Contains Inanimate Transformation?'
           %td 
-            = check_box :transformation, 'is_inanimate', :checked =>  @rules[:is_inanimate], :hidden => !@pref.is_inanimate
+            = check_box :transformation, 'is_inanimate', :checked => @button_hash["is_inanimate"]
         %tr
           %td
             = label :transformation, :is_growth, 'Contains Growth Transformation?'
           %td 
-            = check_box :transformation, 'is_growth', :checked =>  @rules[:is_growth], :hidden => !@pref.is_growth
+            = check_box :transformation, 'is_growth', :checked => @button_hash["is_growth"]
         %tr
           %td
             = label :transformation, :is_shrink, 'Contains Shrinking Transformation?'
           %td 
-            = check_box :transformation, 'is_shrink', :checked =>  @rules[:is_shrink], :hidden => !@pref.is_shrink
+            = check_box :transformation, 'is_shrink', :checked => @button_hash["is_shrink"]
         %tr
           %td
             = label :transformation, :is_weight_gain, 'Contains Weight Gain?'
           %td 
-            = check_box :transformation, 'is_weight_gain', :checked =>  @rules[:is_weight_gain], :hidden => !@pref.is_weight_gain
+            = check_box :transformation, 'is_weight_gain', :checked => @button_hash["is_weight_gain"]
         %tr
           %td
             = label :transformation, :is_fantasy, 'Contains Mythical/Fantasy TF?'
           %td 
-            = check_box :transformation, 'is_fantasy', :checked =>  @rules[:is_fantasy], :hidden => !@pref.is_fantasy
+            = check_box :transformation, 'is_fantasy', :checked => @button_hash["is_fantasy"]
         %tr
           %td
-            = label :transformation, :is_robot, 'Contains Robots or Sci Fi?'
+            = label :transformation, :is_robot, 'Contains Robots or Sci Fi?', :checked => true
           %td 
-            = check_box :transformation, 'is_robot', :checked =>  @rules[:is_robot], :hidden => !@pref.is_robot
+            = check_box :transformation, 'is_robot', :checked => @button_hash["is_robot"]
         %tr
           %td
-            = label :transformation, :is_bimbo, 'Contains Bimbos?'
+            = label :transformation, :is_bimbo, 'Contains Bimbos?', :checked => true
           %td 
-            = check_box :transformation, 'is_bimbo', :checked =>  @rules[:is_bimbo], :hidden => !@pref.is_bimbo
+            = check_box :transformation, 'is_bimbo', :checked => @button_hash["is_bimbo"]
         %tr
           %td
-            = label :transformation, :is_monster_girl, 'Contains Monster Girls?'
+            = label :transformation, :is_monster_girl, 'Contains Monster Girls?', :checked => true
           %td 
-            = check_box :transformation, 'is_monster_girl', :checked =>  @rules[:is_monster_girl], :hidden => !@pref.is_monster_girl
+            = check_box :transformation, 'is_monster_girl', :checked => @button_hash["is_monster_girl"]
         %tr
           %td
-            = label :transformation, :is_bizarre, 'Contains Bizarre TF / Other?'
+            = label :transformation, :is_bizarre, 'Contains Bizarre TF / Other?', :checked => true
           %td 
-            = check_box :transformation, 'is_bizarre', :checked =>  @rules[:is_bizarre], :hidden => !@pref.is_bizarre
+            = check_box :transformation, 'is_bizarre', :checked => @button_hash["is_bizarre"]
         %tr
           %td
             = label :transformation, :is_completed, 'Character Complete? (By Unchecking this, you allow incomplete characters)'
           %td 
-            = check_box :transformation, 'is_completed', :checked => true
+            = check_box :transformation, 'is_completed', :checked => @button_hash["is_completed"]
         %tr
           %td
             = label :transformation, :is_full_picture, 'Character Fully Illustrated (> 3 Pictures)? (By Checking this, You ONLY allow Fully Illustrated Characters)'
           %td 
-            = check_box :transformation, 'is_full_picture', :checked => false
+            = check_box :transformation, 'is_full_picture', :checked => @button_hash["is_full_picture"]
 
-    = submit_tag 'Edit Preferences'
+    = submit_tag 'Edit Preferences: Excluding Search', name: 'Edit Preferences: Excluding Search' 
+    = submit_tag 'Edit Preferences: Including Search', name: 'Edit Preferences: Including Search'
 -else
   %h1 Sorry, but you are currently in a game. Please leave the current game before starting a new one.
   = button_to "Back to Current Game", game_show_path, :method => :get
