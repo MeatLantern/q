@@ -81,6 +81,7 @@ DuelOfChampions::Application.routes.draw do
 
   match 'select_opponent_game', to: 'game#create_choose_ai_game', via: :post
 
+  match 'clean_up_tf', to: 'transformation#clean_up_tf', via: :get
   match 'clean_up_tf', to: 'transformation#clean_up_tf', via: :post
 
   #match 'transformation/new', to: 'transformation#new', via: :get
