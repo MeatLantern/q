@@ -202,7 +202,7 @@ class GameController < ApplicationController
    character = Character.find_by_name(test_game.player2_character)
    character_name = test_game.player2_character
 
-    if test_game.player1_stage < character.transformation.alt_stage
+    if test_game.player2_stage < character.transformation.alt_stage
       alt = false
     else
       alt = true
