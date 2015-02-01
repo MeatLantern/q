@@ -476,6 +476,7 @@ class TransformationController < ApplicationController
 		#binding.pry
 		#Get Character Name
 		character_name = params["character_name"]
+		current_character = Character.find_by_name(character_name)
 
 		create_hash = {}
 		#Get Text/Picture URLS
@@ -647,6 +648,8 @@ class TransformationController < ApplicationController
 		#binding.pry
 		#Get Character Name
 		character_name = params["character_name"]
+
+		current_character = Character.find_by_name(character_name)
 
 		create_hash = {}
 		#Get Text/Picture URLS
