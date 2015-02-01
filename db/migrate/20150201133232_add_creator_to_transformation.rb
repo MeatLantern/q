@@ -3,13 +3,14 @@ class AddCreatorToTransformation < ActiveRecord::Migration
   	add_column :transformations, :creator, :string
   	tfs = Transformation.all
   	tfs.each do |tf|
-      if tf.character != nil?
-  		  tf.creator = tf.character.creator
-  		  upvotes = tf.character.upvotes
-  		  tf.upvotes = upvotes
-  		  tf.save
+      if tf.nil?
+  		  
       else
-        Transformation.delete(tf)
+        #Transformation.delete(tf)
+        tf.creator = tf.character.creator
+        upvotes = tf.character.upvotes
+        tf.upvotes = upvotes
+        tf.save
       end
   	end
   end
