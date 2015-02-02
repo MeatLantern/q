@@ -104,3 +104,6 @@
 
 %h3 Report Character to Admin?
 = button_to 'Report Character', create_report_path(:name => @character.name), :method => :post
+
+-if current_user.is_admin
+   = button_to 'Edit Creator', edit_creator_path(:name => @character.name), :method => :post

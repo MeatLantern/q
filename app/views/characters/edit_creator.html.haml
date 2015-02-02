@@ -1,0 +1,7 @@
+%h1 Edit Creator
+Current Creator:
+= @character.creator
+= form_tag update_creator_path(:name => @character.name) do
+  = label :transformation, :creator, 'New Creator'
+  = text_field :transformation, 'creator'
+  = submit_tag "Change Creator"

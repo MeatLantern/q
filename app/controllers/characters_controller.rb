@@ -4,6 +4,17 @@ class CharactersController < ApplicationController
   def new
   end
 
+  def edit_creator
+    @character = Character.find_by_name(params[:name])
+  end
+
+  def update_creator
+    character = Character.find_by_name(params[:name])
+    character.creator = params[:transformation]["creator"]
+    character.save
+    redirect_to characters_path(:name => character.name)
+  end
+
   def example
     @character = Character.find_by_name("Ragnar the Warrior")
   end
@@ -347,7 +358,7 @@ class CharactersController < ApplicationController
       flash[:alert] = "ERROR: " + @string1+@string2+@string3+@string4+@string5+@string6+@string7+@string8+@string9+@string10+@string11+@string12+@string13+@string14+@string15
       redirect_to character_edit_path 
     else
-      create_hash = {:name => @name,:description => @description, :max_hp => @max_hp, :max_mp => @max_mp, :base_attack => @base_attack, :base_power => @base_power, :base_defense => @base_defense, :base_armor => @base_armor, :actions => @actions, :main_image => @main_image, :action_1_id => @action_1_id, :action_1_name => @action_1_name, :action_1_flavor => @action_1_flavor, :action_1_rules => @action_1_rules, :action_2_id => @action_2_id, :action_2_name => @action_2_name, :action_2_flavor => @action_2_flavor, :action_2_rules => @action_2_rules, :action_3_id => @action_3_id, :action_3_name => @action_3_name, :action_3_flavor => @action_3_flavor, :action_3_rules => @action_3_rules, :action_4_id => @action_4_id, :action_4_name => @action_4_name, :action_4_flavor => @action_4_flavor, :action_4_rules => @action_4_rules, :summon_name => @summon_name, :summon_attack => @summon_attack, :summon_picture => @summon_picture, :creator => player1_username}
+      create_hash = {:name => @name,:description => @description, :max_hp => @max_hp, :max_mp => @max_mp, :base_attack => @base_attack, :base_power => @base_power, :base_defense => @base_defense, :base_armor => @base_armor, :actions => @actions, :main_image => @main_image, :action_1_id => @action_1_id, :action_1_name => @action_1_name, :action_1_flavor => @action_1_flavor, :action_1_rules => @action_1_rules, :action_2_id => @action_2_id, :action_2_name => @action_2_name, :action_2_flavor => @action_2_flavor, :action_2_rules => @action_2_rules, :action_3_id => @action_3_id, :action_3_name => @action_3_name, :action_3_flavor => @action_3_flavor, :action_3_rules => @action_3_rules, :action_4_id => @action_4_id, :action_4_name => @action_4_name, :action_4_flavor => @action_4_flavor, :action_4_rules => @action_4_rules, :summon_name => @summon_name, :summon_attack => @summon_attack, :summon_picture => @summon_picture}
       #binding.pry
       current_character = Character.find_by_name(@name)
       current_character.update_attributes(create_hash)

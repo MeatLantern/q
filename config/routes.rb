@@ -86,6 +86,9 @@ DuelOfChampions::Application.routes.draw do
   match 'set_summon_to_original', to: 'transformation#set_summon_to_original', via: :post
   match 'set_summon_to_original', to: 'transformation#set_summon_to_original', via: :get
 
+  match 'edit_creator', to: "characters#edit_creator", via: :post
+  match 'update_creator', to: "characters#update_creator", via: :post
+
   #match 'transformation/new', to: 'transformation#new', via: :get
 
 
