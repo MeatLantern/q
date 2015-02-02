@@ -9,6 +9,17 @@ class TransformationController < ApplicationController
 
 	end
 
+	def set_tf_creator_to_character_creator
+		tfs = Transformation.all
+  		tfs.each do |tf|
+  			character = Character.find_by_name(tf.character_name)
+  			tf.creator = character.creator
+  			tf.save
+  		end
+  		flash[:notice] = "All Tf Creators Synched with Character Creators."
+  		redirect_to tf_admin_path
+	end
+
 	def set_summon_to_original
 		tfs = Transformation.all
   		tfs.each do |tf|

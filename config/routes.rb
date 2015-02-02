@@ -89,6 +89,8 @@ DuelOfChampions::Application.routes.draw do
   match 'edit_creator', to: "characters#edit_creator", via: :post
   match 'update_creator', to: "characters#update_creator", via: :post
 
+  match 'set_tf_creator_to_character_creator', to: "transformation#set_tf_creator_to_character_creator", via: :post
+
   #match 'transformation/new', to: 'transformation#new', via: :get
 
 
