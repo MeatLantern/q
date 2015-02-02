@@ -11,6 +11,7 @@ class CharactersController < ApplicationController
   def update_creator
     character = Character.find_by_name(params[:name])
     character.creator = params[:transformation]["creator"]
+    character.transformation.creator = params[:transformation]["creator"]
     character.save
     redirect_to characters_path(:name => character.name)
   end

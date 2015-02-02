@@ -461,6 +461,7 @@ class TransformationController < ApplicationController
 
 			create_hash["character_name"] = character_name
 			create_hash["upvotes"] = 0
+			create_hash["creator"] = current_user.username
 
 			current_character = Character.find_by_name(character_name)
 			if(Character.nil?)
@@ -633,6 +634,7 @@ class TransformationController < ApplicationController
 
 			create_hash["character_name"] = character_name
 			create_hash["upvotes"] = 0
+			create_hash["creator"] = current_user.username
 
 			current_character = Character.find_by_name(character_name)
 			if(Character.nil?)
@@ -806,6 +808,7 @@ class TransformationController < ApplicationController
 
 			create_hash["character_name"] = character_name
 			create_hash["upvotes"] = 0
+			create_hash["creator"] = current_user.username
 
 			puts create_hash
 
