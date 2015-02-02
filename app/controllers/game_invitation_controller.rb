@@ -170,7 +170,7 @@ class GameInvitationController < ApplicationController
           search_hash.except!("is_completed")
         end
         if (search_hash.has_key?("is_full_picture"))
-          search_hash.except!("is_full_picture")
+          #search_hash.except!("is_full_picture")
         else
           search_hash.except!["is_full_picture"]
           #search_hash["is_full_picture"] = true

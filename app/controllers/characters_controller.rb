@@ -467,8 +467,8 @@ class CharactersController < ApplicationController
         #Transformation::button_hash_editor(preferences)
         if !params["Edit Preferences: Excluding Search"].nil? 
             session["pref2"] = "Edit Preferences: Excluding Search"
-        elsif !params["Edit Preferences: Excluding Search"].nil? 
-            session["pref2"] = "Edit Preferences: Excluding Search"
+        elsif !params["Edit Preferences: Including Search"].nil? 
+            session["pref2"] = "Edit Preferences: Including Search"
         end
         @button_hash = session["button_pref"]
         if @button_hash.nil?
@@ -515,7 +515,7 @@ class CharactersController < ApplicationController
           search_hash.except!("is_completed")
         end
         if (search_hash.has_key?("is_full_picture"))
-          search_hash.except!("is_full_picture")
+          #search_hash.except!("is_full_picture")
         else
           search_hash.except!["is_full_picture"]
           #search_hash["is_full_picture"] = true
@@ -646,7 +646,7 @@ class CharactersController < ApplicationController
           search_hash.except!("is_completed")
         end
         if (search_hash.has_key?("is_full_picture"))
-          search_hash.except!("is_full_picture")
+          #search_hash.except!("is_full_picture")
         else
           search_hash.except!["is_full_picture"]
           #search_hash["is_full_picture"] = true
