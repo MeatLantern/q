@@ -41,10 +41,10 @@ class CharactersController < ApplicationController
   end
 
   def upvote
-    recent = session[:recent_upvotes]
+    recent = current_user.upvote_checker
     if recent.nil?
-      recent = []
-      session[:recent_upvotes] = recent
+      recent = ""
+      current_user.upvote_checker = ""
     end
     c = Character.find_by_name(params[:name])
     if c.nil?
@@ -54,7 +54,9 @@ class CharactersController < ApplicationController
       if recent.include?(params[:name])
         flash[:alert] = "You cannot upvote the same character more than once."
       else
-        recent.push(params[:name])
+        recent = recent + " #{params[:name]}"
+        current_user.upvote_checker = recent
+        current_user.save
         c.upvotes = c.upvotes + 1
         c.transformation.upvotes = c.transformation.upvotes + 1
         c.transformation.save

@@ -512,3 +512,1076 @@ Migrating to CreateSuggestions (20150201142147)
   [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20150201142147')[0m
   [1m[35m (60.6ms)[0m  commit transaction
   [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (12.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20141102012922)
+Migrating to CreateGames (20141102213355)
+Migrating to CreateCharacters (20141102213410)
+Migrating to AddDeviseToUsers (20141106012922)
+Migrating to AddUsernameToUsers (20141106015155)
+Migrating to AddCurrentgameToUsers (20141107002736)
+Migrating to CreateGameInvitations (20141201044534)
+Migrating to AddIsAdminToUsers (20141211204536)
+Migrating to ChangeDefaultAdmin (20141212100936)
+Migrating to CreateTransformations (20141217022647)
+Migrating to AddRobotsAndMonsterGirlsToTransformations (20141217071613)
+Migrating to AddTransformationsToGame (20141217173933)
+Migrating to AddStagesToGames (20141217175832)
+Migrating to AddPicturesToGames (20141217181411)
+Migrating to AddTfMessageToGames (20141217230338)
+Migrating to ChangeNameOfTag (20141219210805)
+Migrating to CreateInvitationPreferences (20141219214621)
+Migrating to ChangeTfMessageToText (20150123023414)
+Migrating to AddUpvotes (20150126195538)
+Migrating to AddUpvotesToTransformation (20150126213212)
+Migrating to AddCompleteFullPicturesMultiReady (20150128030349)
+Migrating to RenameCompletedAndFullPictures (20150128031355)
+Migrating to CreateReports (20150128195147)
+Migrating to AddReasonsToReport (20150128203017)
+Migrating to AddResolvedAndFeedbackToReport (20150128205900)
+Migrating to CreateComments (20150129014417)
+Migrating to ChangeDescriptionsToText (20150130030002)
+Migrating to AddContentToComments (20150130031324)
+Migrating to AddEpilogueAndNameAndAbilityChange (20150201073933)
+Migrating to AddAltSummonOptions (20150201084619)
+Migrating to AddCreatorToTransformation (20150201133232)
+Migrating to CreateSuggestions (20150201142147)
+Migrating to AddUpvoteCheckerToUser (20150203191531)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (2.0ms)[0m  ALTER TABLE "users" ADD "upvote_checker" text
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20150203191531')[0m
+  [1m[35m (39.7ms)[0m  commit transaction
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+
+
+Started GET "/game/show" for 127.0.0.1 at 2015-02-03 15:19:31 -0400
+Processing by GameController#show as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (5.0ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = '2015-01-31 04:21:52.349347', "current_sign_in_at" = '2015-02-03 19:19:31.858175', "sign_in_count" = 12, "updated_at" = '2015-02-03 19:19:31.859782' WHERE "users"."id" = 1[0m
+  [1m[35m (65.2ms)[0m  commit transaction
+Redirected to http://localhost:3000/check_18
+Filter chain halted as :check_18! rendered or redirected
+Completed 302 Found in 321.3ms (ActiveRecord: 71.8ms)
+
+
+Started GET "/check_18" for 127.0.0.1 at 2015-02-03 15:19:32 -0400
+Processing by GameController#check_18 as HTML
+  Rendered game/check_18.html.haml within layouts/application (46.8ms)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+Completed 200 OK in 627.4ms (Views: 625.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/font-awesome.css?body=1" for 127.0.0.1 at 2015-02-03 15:19:32 -0400
+Served asset /font-awesome.css - 200 OK (105ms)
+
+
+Started GET "/assets/character.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:32 -0400
+Served asset /character.js - 200 OK (25ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-02-03 15:19:32 -0400
+Served asset /bootstrap.min.css - 200 OK (10ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-03 15:19:32 -0400
+Served asset /bootstrap.css - 200 OK (25ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:33 -0400
+Served asset /jquery.js - 200 OK (20ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:33 -0400
+Served asset /jquery_ujs.js - 200 OK (31ms)
+
+
+Started GET "/assets/comment.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:33 -0400
+Served asset /comment.js - 200 OK (4ms)
+
+
+Started GET "/assets/game_invitations.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:33 -0400
+Served asset /game_invitations.js - 200 OK (17ms)
+
+
+Started GET "/assets/game.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:33 -0400
+Served asset /game.js - 200 OK (9ms)
+
+
+Started GET "/assets/invitation_preferences.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:33 -0400
+Served asset /invitation_preferences.js - 200 OK (12ms)
+
+
+Started GET "/assets/report.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:33 -0400
+Served asset /report.js - 200 OK (10ms)
+
+
+Started GET "/assets/suggestion.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:33 -0400
+Served asset /suggestion.js - 200 OK (21ms)
+
+
+Started GET "/assets/transformation.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:33 -0400
+Served asset /transformation.js - 200 OK (12ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:33 -0400
+Served asset /user.js - 200 OK (14ms)
+
+
+Started POST "/authorize_18" for 127.0.0.1 at 2015-02-03 15:19:35 -0400
+Processing by GameController#authorize_18 as HTML
+  Parameters: {"authenticity_token"=>"bB4vPitFfA7EVJI6G+9+su+IuMUxkFu9KT+e2Xg30ZE="}
+Redirected to http://localhost:3000/game/rules
+Completed 302 Found in 1.5ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/game/rules" for 127.0.0.1 at 2015-02-03 15:19:35 -0400
+Processing by GameController#rules as HTML
+  [1m[35mUser Load (58.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mGame Load (0.3ms)[0m  [1mSELECT "games".* FROM "games" WHERE "games"."game_name" = 'wMP/xE1X+gf1tPZg9PQVOg==' LIMIT 1[0m
+  Rendered game/rules.html.haml within layouts/application (17.0ms)
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+Completed 200 OK in 134.8ms (Views: 39.5ms | ActiveRecord: 59.2ms)
+
+
+Started GET "/assets/font-awesome.css?body=1" for 127.0.0.1 at 2015-02-03 15:19:35 -0400
+Served asset /font-awesome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-03 15:19:35 -0400
+Served asset /bootstrap.css - 304 Not Modified (10ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-02-03 15:19:35 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (14ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:35 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:35 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/character.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:35 -0400
+Served asset /character.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comment.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:35 -0400
+Served asset /comment.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/game.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:35 -0400
+Served asset /game.js - 304 Not Modified (18ms)
+
+
+Started GET "/assets/game_invitations.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:36 -0400
+Served asset /game_invitations.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/invitation_preferences.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:36 -0400
+Served asset /invitation_preferences.js - 304 Not Modified (11ms)
+
+
+Started GET "/assets/report.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:36 -0400
+Served asset /report.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/suggestion.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:36 -0400
+Served asset /suggestion.js - 304 Not Modified (11ms)
+
+
+Started GET "/assets/transformation.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:36 -0400
+Served asset /transformation.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:36 -0400
+Served asset /user.js - 304 Not Modified (0ms)
+
+
+Started POST "/view" for 127.0.0.1 at 2015-02-03 15:19:40 -0400
+Processing by UsersController#view as HTML
+  Parameters: {"authenticity_token"=>"bB4vPitFfA7EVJI6G+9+su+IuMUxkFu9KT+e2Xg30ZE="}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCharacter Load (0.7ms)[0m  [1mSELECT "characters".* FROM "characters" WHERE "characters"."creator" = 'User1'[0m
+  [1m[35mReport Load (0.2ms)[0m  SELECT "reports".* FROM "reports" WHERE "reports"."reporter" = 'User1'
+  Rendered users/view.html.haml within layouts/application (109.0ms)
+Completed 200 OK in 159.8ms (Views: 125.6ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/assets/font-awesome.css?body=1" for 127.0.0.1 at 2015-02-03 15:19:40 -0400
+Served asset /font-awesome.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:40 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:40 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-02-03 15:19:40 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-03 15:19:40 -0400
+Served asset /bootstrap.css - 304 Not Modified (14ms)
+
+
+Started GET "/assets/character.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:40 -0400
+Served asset /character.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comment.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:40 -0400
+Served asset /comment.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/game.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:40 -0400
+Served asset /game.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/game_invitations.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:41 -0400
+Served asset /game_invitations.js - 304 Not Modified (20ms)
+
+
+Started GET "/assets/invitation_preferences.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:41 -0400
+Served asset /invitation_preferences.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/report.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:41 -0400
+Served asset /report.js - 304 Not Modified (12ms)
+
+
+Started GET "/assets/suggestion.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:41 -0400
+Served asset /suggestion.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/transformation.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:41 -0400
+Served asset /transformation.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:41 -0400
+Served asset /user.js - 304 Not Modified (0ms)
+
+
+Started GET "/characters?name=Ragnar+the+Warrior" for 127.0.0.1 at 2015-02-03 15:19:42 -0400
+Processing by CharactersController#index as HTML
+  Parameters: {"authenticity_token"=>"bB4vPitFfA7EVJI6G+9+su+IuMUxkFu9KT+e2Xg30ZE=", "name"=>"Ragnar the Warrior"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mCharacter Load (0.3ms)[0m  SELECT "characters".* FROM "characters" WHERE "characters"."name" = 'Ragnar the Warrior' LIMIT 1
+  [1m[36mTransformation Load (0.6ms)[0m  [1mSELECT "transformations".* FROM "transformations" WHERE "transformations"."character_id" = 15 LIMIT 1[0m
+  [1m[35mComment Load (0.4ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."character" = 'Ragnar the Warrior' ORDER BY created_at DESC LIMIT 5
+  Rendered characters/index.html.haml within layouts/application (68.8ms)
+Completed 200 OK in 366.6ms (Views: 101.2ms | ActiveRecord: 10.9ms)
+
+
+Started GET "/assets/font-awesome.css?body=1" for 127.0.0.1 at 2015-02-03 15:19:43 -0400
+Served asset /font-awesome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:43 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-02-03 15:19:43 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (9ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-03 15:19:43 -0400
+Served asset /bootstrap.css - 304 Not Modified (7ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:43 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/character.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:43 -0400
+Served asset /character.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comment.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:43 -0400
+Served asset /comment.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/game.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:43 -0400
+Served asset /game.js - 304 Not Modified (15ms)
+
+
+Started GET "/assets/game_invitations.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:43 -0400
+Served asset /game_invitations.js - 304 Not Modified (11ms)
+
+
+Started GET "/assets/invitation_preferences.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:43 -0400
+Served asset /invitation_preferences.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/report.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:43 -0400
+Served asset /report.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/suggestion.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:43 -0400
+Served asset /suggestion.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:43 -0400
+Served asset /user.js - 304 Not Modified (8ms)
+
+
+Started GET "/assets/transformation.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:43 -0400
+Served asset /transformation.js - 304 Not Modified (0ms)
+
+
+Started POST "/upvote_character?name=Ragnar+the+Warrior" for 127.0.0.1 at 2015-02-03 15:19:46 -0400
+Processing by CharactersController#upvote as HTML
+  Parameters: {"authenticity_token"=>"bB4vPitFfA7EVJI6G+9+su+IuMUxkFu9KT+e2Xg30ZE=", "name"=>"Ragnar the Warrior"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mCharacter Load (0.7ms)[0m  SELECT "characters".* FROM "characters" WHERE "characters"."name" = 'Ragnar the Warrior' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE ("users"."username" = 'User1' AND "users"."id" != 1) LIMIT 1
+  [1m[36m (1.2ms)[0m  [1mUPDATE "users" SET "upvote_checker" = ' Ragnar the Warrior', "updated_at" = '2015-02-03 19:19:46.488181' WHERE "users"."id" = 1[0m
+  [1m[35m (40.7ms)[0m  commit transaction
+  [1m[36mTransformation Load (1.1ms)[0m  [1mSELECT "transformations".* FROM "transformations" WHERE "transformations"."character_id" = 15 LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  begin transaction
+  [1m[36m (6.5ms)[0m  [1mUPDATE "transformations" SET "upvotes" = 3, "updated_at" = '2015-02-03 19:19:46.541683' WHERE "transformations"."id" = 9[0m
+  [1m[35m (29.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  UPDATE "characters" SET "upvotes" = 3, "updated_at" = '2015-02-03 19:19:46.582404' WHERE "characters"."id" = 15
+  [1m[36m (24.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/characters?name=Ragnar+the+Warrior
+Completed 302 Found in 237.0ms (ActiveRecord: 105.2ms)
+
+
+Started GET "/characters?name=Ragnar+the+Warrior" for 127.0.0.1 at 2015-02-03 15:19:46 -0400
+Processing by CharactersController#index as HTML
+  Parameters: {"name"=>"Ragnar the Warrior"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mCharacter Load (0.3ms)[0m  [1mSELECT "characters".* FROM "characters" WHERE "characters"."name" = 'Ragnar the Warrior' LIMIT 1[0m
+  [1m[35mTransformation Load (0.3ms)[0m  SELECT "transformations".* FROM "transformations" WHERE "transformations"."character_id" = 15 LIMIT 1
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."character" = 'Ragnar the Warrior' ORDER BY created_at DESC LIMIT 5[0m
+  Rendered characters/index.html.haml within layouts/application (12.7ms)
+Completed 200 OK in 53.7ms (Views: 40.1ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/assets/font-awesome.css?body=1" for 127.0.0.1 at 2015-02-03 15:19:46 -0400
+Served asset /font-awesome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:46 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:47 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-02-03 15:19:47 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (16ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-03 15:19:47 -0400
+Served asset /bootstrap.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/character.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:47 -0400
+Served asset /character.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/comment.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:47 -0400
+Served asset /comment.js - 304 Not Modified (24ms)
+
+
+Started GET "/assets/game.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:47 -0400
+Served asset /game.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/game_invitations.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:47 -0400
+Served asset /game_invitations.js - 304 Not Modified (16ms)
+
+
+Started GET "/assets/report.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:47 -0400
+Served asset /report.js - 304 Not Modified (22ms)
+
+
+Started GET "/assets/invitation_preferences.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:47 -0400
+Served asset /invitation_preferences.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/suggestion.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:47 -0400
+Served asset /suggestion.js - 304 Not Modified (8ms)
+
+
+Started GET "/assets/transformation.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:47 -0400
+Served asset /transformation.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:47 -0400
+Served asset /user.js - 304 Not Modified (2ms)
+
+
+Started POST "/upvote_character?name=Ragnar+the+Warrior" for 127.0.0.1 at 2015-02-03 15:19:49 -0400
+Processing by CharactersController#upvote as HTML
+  Parameters: {"authenticity_token"=>"bB4vPitFfA7EVJI6G+9+su+IuMUxkFu9KT+e2Xg30ZE=", "name"=>"Ragnar the Warrior"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mCharacter Load (0.3ms)[0m  [1mSELECT "characters".* FROM "characters" WHERE "characters"."name" = 'Ragnar the Warrior' LIMIT 1[0m
+Redirected to http://localhost:3000/characters?name=Ragnar+the+Warrior
+Completed 302 Found in 13.1ms (ActiveRecord: 0.7ms)
+
+
+Started GET "/characters?name=Ragnar+the+Warrior" for 127.0.0.1 at 2015-02-03 15:19:49 -0400
+Processing by CharactersController#index as HTML
+  Parameters: {"name"=>"Ragnar the Warrior"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mCharacter Load (0.2ms)[0m  [1mSELECT "characters".* FROM "characters" WHERE "characters"."name" = 'Ragnar the Warrior' LIMIT 1[0m
+  [1m[35mTransformation Load (0.5ms)[0m  SELECT "transformations".* FROM "transformations" WHERE "transformations"."character_id" = 15 LIMIT 1
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."character" = 'Ragnar the Warrior' ORDER BY created_at DESC LIMIT 5[0m
+  Rendered characters/index.html.haml within layouts/application (11.8ms)
+Completed 200 OK in 49.3ms (Views: 38.9ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/assets/font-awesome.css?body=1" for 127.0.0.1 at 2015-02-03 15:19:49 -0400
+Served asset /font-awesome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:49 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:49 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-03 15:19:49 -0400
+Served asset /bootstrap.css - 304 Not Modified (21ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-02-03 15:19:49 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (14ms)
+
+
+Started GET "/assets/character.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:49 -0400
+Served asset /character.js - 304 Not Modified (113ms)
+
+
+Started GET "/assets/comment.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:49 -0400
+Served asset /comment.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/game.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:49 -0400
+Served asset /game.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/game_invitations.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:49 -0400
+Served asset /game_invitations.js - 304 Not Modified (24ms)
+
+
+Started GET "/assets/invitation_preferences.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:49 -0400
+Served asset /invitation_preferences.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/report.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:49 -0400
+Served asset /report.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/suggestion.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:49 -0400
+Served asset /suggestion.js - 304 Not Modified (17ms)
+
+
+Started GET "/assets/transformation.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:49 -0400
+Served asset /transformation.js - 304 Not Modified (12ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:49 -0400
+Served asset /user.js - 304 Not Modified (0ms)
+
+
+Started POST "/upvote_character?name=Ragnar+the+Warrior" for 127.0.0.1 at 2015-02-03 15:19:51 -0400
+Processing by CharactersController#upvote as HTML
+  Parameters: {"authenticity_token"=>"bB4vPitFfA7EVJI6G+9+su+IuMUxkFu9KT+e2Xg30ZE=", "name"=>"Ragnar the Warrior"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mCharacter Load (0.3ms)[0m  [1mSELECT "characters".* FROM "characters" WHERE "characters"."name" = 'Ragnar the Warrior' LIMIT 1[0m
+Redirected to http://localhost:3000/characters?name=Ragnar+the+Warrior
+Completed 302 Found in 9.4ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/characters?name=Ragnar+the+Warrior" for 127.0.0.1 at 2015-02-03 15:19:51 -0400
+Processing by CharactersController#index as HTML
+  Parameters: {"name"=>"Ragnar the Warrior"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mCharacter Load (0.4ms)[0m  [1mSELECT "characters".* FROM "characters" WHERE "characters"."name" = 'Ragnar the Warrior' LIMIT 1[0m
+  [1m[35mTransformation Load (0.6ms)[0m  SELECT "transformations".* FROM "transformations" WHERE "transformations"."character_id" = 15 LIMIT 1
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."character" = 'Ragnar the Warrior' ORDER BY created_at DESC LIMIT 5[0m
+  Rendered characters/index.html.haml within layouts/application (5.2ms)
+Completed 200 OK in 31.7ms (Views: 23.2ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/assets/font-awesome.css?body=1" for 127.0.0.1 at 2015-02-03 15:19:51 -0400
+Served asset /font-awesome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:51 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:51 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-02-03 15:19:51 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (15ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-03 15:19:51 -0400
+Served asset /bootstrap.css - 304 Not Modified (16ms)
+
+
+Started GET "/assets/character.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:51 -0400
+Served asset /character.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/game.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:51 -0400
+Served asset /game.js - 304 Not Modified (13ms)
+
+
+Started GET "/assets/comment.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:51 -0400
+Served asset /comment.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/game_invitations.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:51 -0400
+Served asset /game_invitations.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/invitation_preferences.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:51 -0400
+Served asset /invitation_preferences.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/report.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:51 -0400
+Served asset /report.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/suggestion.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:51 -0400
+Served asset /suggestion.js - 304 Not Modified (16ms)
+
+
+Started GET "/assets/transformation.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:51 -0400
+Served asset /transformation.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:51 -0400
+Served asset /user.js - 304 Not Modified (8ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2015-02-03 15:19:55 -0400
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"bB4vPitFfA7EVJI6G+9+su+IuMUxkFu9KT+e2Xg30ZE="}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.4ms)[0m  UPDATE "users" SET "remember_created_at" = NULL, "updated_at" = '2015-02-03 19:19:55.957843' WHERE "users"."id" = 1
+  [1m[36m (36.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 81.2ms (ActiveRecord: 37.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-02-03 15:19:56 -0400
+
+
+Started GET "/game/rules" for 127.0.0.1 at 2015-02-03 15:19:56 -0400
+Processing by GameController#rules as HTML
+Redirected to http://localhost:3000/check_18
+Filter chain halted as :check_18! rendered or redirected
+Completed 302 Found in 0.9ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/check_18" for 127.0.0.1 at 2015-02-03 15:19:56 -0400
+Processing by GameController#check_18 as HTML
+  Rendered game/check_18.html.haml within layouts/application (0.7ms)
+Completed 200 OK in 17.0ms (Views: 16.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/font-awesome.css?body=1" for 127.0.0.1 at 2015-02-03 15:19:56 -0400
+Served asset /font-awesome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-03 15:19:56 -0400
+Served asset /bootstrap.css - 304 Not Modified (34ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-02-03 15:19:56 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:56 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/character.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:56 -0400
+Served asset /character.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:56 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comment.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:56 -0400
+Served asset /comment.js - 304 Not Modified (32ms)
+
+
+Started GET "/assets/game.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:56 -0400
+Served asset /game.js - 304 Not Modified (16ms)
+
+
+Started GET "/assets/game_invitations.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:56 -0400
+Served asset /game_invitations.js - 304 Not Modified (15ms)
+
+
+Started GET "/assets/invitation_preferences.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:56 -0400
+Served asset /invitation_preferences.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/report.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:56 -0400
+Served asset /report.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/suggestion.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:56 -0400
+Served asset /suggestion.js - 304 Not Modified (124ms)
+
+
+Started GET "/assets/transformation.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:56 -0400
+Served asset /transformation.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:56 -0400
+Served asset /user.js - 304 Not Modified (1ms)
+
+
+Started POST "/authorize_18" for 127.0.0.1 at 2015-02-03 15:19:58 -0400
+Processing by GameController#authorize_18 as HTML
+  Parameters: {"authenticity_token"=>"NBe7F8JaKN+RVBWe6ZoL7d26dV/QtHTZRCM6kAIJEOk="}
+Redirected to http://localhost:3000/game/rules
+Completed 302 Found in 1.2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/game/rules" for 127.0.0.1 at 2015-02-03 15:19:58 -0400
+Processing by GameController#rules as HTML
+  Rendered game/rules.html.haml within layouts/application (9.5ms)
+Completed 200 OK in 27.5ms (Views: 27.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/font-awesome.css?body=1" for 127.0.0.1 at 2015-02-03 15:19:58 -0400
+Served asset /font-awesome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:58 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:58 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-02-03 15:19:58 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-03 15:19:58 -0400
+Served asset /bootstrap.css - 304 Not Modified (17ms)
+
+
+Started GET "/assets/character.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:58 -0400
+Served asset /character.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/comment.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:58 -0400
+Served asset /comment.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/game.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:58 -0400
+Served asset /game.js - 304 Not Modified (21ms)
+
+
+Started GET "/assets/game_invitations.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:58 -0400
+Served asset /game_invitations.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/invitation_preferences.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:58 -0400
+Served asset /invitation_preferences.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/report.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:58 -0400
+Served asset /report.js - 304 Not Modified (11ms)
+
+
+Started GET "/assets/suggestion.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:58 -0400
+Served asset /suggestion.js - 304 Not Modified (10ms)
+
+
+Started GET "/assets/transformation.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:58 -0400
+Served asset /transformation.js - 304 Not Modified (11ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2015-02-03 15:19:58 -0400
+Served asset /user.js - 304 Not Modified (2ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2015-02-03 15:19:59 -0400
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"NBe7F8JaKN+RVBWe6ZoL7d26dV/QtHTZRCM6kAIJEOk="}
+Completed 401 Unauthorized in 1.4ms
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"authenticity_token"=>"NBe7F8JaKN+RVBWe6ZoL7d26dV/QtHTZRCM6kAIJEOk="}
+  Rendered devise/shared/_links.html.erb (1.5ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (68.6ms)
+Completed 200 OK in 104.9ms (Views: 97.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/font-awesome.css?body=1" for 127.0.0.1 at 2015-02-03 15:20:00 -0400
+Served asset /font-awesome.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:00 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:00 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-02-03 15:20:00 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (14ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-03 15:20:00 -0400
+Served asset /bootstrap.css - 304 Not Modified (20ms)
+
+
+Started GET "/assets/character.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:00 -0400
+Served asset /character.js - 304 Not Modified (22ms)
+
+
+Started GET "/assets/comment.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:00 -0400
+Served asset /comment.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/game.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:00 -0400
+Served asset /game.js - 304 Not Modified (8ms)
+
+
+Started GET "/assets/game_invitations.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:00 -0400
+Served asset /game_invitations.js - 304 Not Modified (15ms)
+
+
+Started GET "/assets/invitation_preferences.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:00 -0400
+Served asset /invitation_preferences.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/report.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:00 -0400
+Served asset /report.js - 304 Not Modified (21ms)
+
+
+Started GET "/assets/suggestion.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:00 -0400
+Served asset /suggestion.js - 304 Not Modified (14ms)
+
+
+Started GET "/assets/transformation.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:00 -0400
+Served asset /transformation.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:00 -0400
+Served asset /user.js - 304 Not Modified (0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2015-02-03 15:20:09 -0400
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"NBe7F8JaKN+RVBWe6ZoL7d26dV/QtHTZRCM6kAIJEOk=", "user"=>{"email"=>"person@hotmail.com", "password"=>"[FILTERED]", "remember_me"=>"1"}, "commit"=>"Log in"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'person@hotmail.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.5ms)[0m  UPDATE "users" SET "remember_created_at" = '2015-02-03 19:20:09.868326', "updated_at" = '2015-02-03 19:20:09.869394' WHERE "users"."id" = 1
+  [1m[36m (33.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (5.0ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = '2015-02-03 19:19:31.858175', "current_sign_in_at" = '2015-02-03 19:20:09.906466', "sign_in_count" = 13, "updated_at" = '2015-02-03 19:20:09.907315' WHERE "users"."id" = 1[0m
+  [1m[35m (22.9ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 297.4ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-02-03 15:20:10 -0400
+
+
+Started GET "/game/rules" for 127.0.0.1 at 2015-02-03 15:20:10 -0400
+Processing by GameController#rules as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mGame Load (0.4ms)[0m  SELECT "games".* FROM "games" WHERE "games"."game_name" = 'wMP/xE1X+gf1tPZg9PQVOg==' LIMIT 1
+  Rendered game/rules.html.haml within layouts/application (1.6ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+Completed 200 OK in 28.9ms (Views: 25.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/font-awesome.css?body=1" for 127.0.0.1 at 2015-02-03 15:20:10 -0400
+Served asset /font-awesome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:10 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-02-03 15:20:10 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (12ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:10 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-03 15:20:10 -0400
+Served asset /bootstrap.css - 304 Not Modified (13ms)
+
+
+Started GET "/assets/character.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:10 -0400
+Served asset /character.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comment.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:10 -0400
+Served asset /comment.js - 304 Not Modified (25ms)
+
+
+Started GET "/assets/game.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:10 -0400
+Served asset /game.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/game_invitations.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:10 -0400
+Served asset /game_invitations.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/invitation_preferences.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:10 -0400
+Served asset /invitation_preferences.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/report.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:10 -0400
+Served asset /report.js - 304 Not Modified (18ms)
+
+
+Started GET "/assets/suggestion.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:10 -0400
+Served asset /suggestion.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/transformation.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:10 -0400
+Served asset /transformation.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:10 -0400
+Served asset /user.js - 304 Not Modified (9ms)
+
+
+Started POST "/view" for 127.0.0.1 at 2015-02-03 15:20:11 -0400
+Processing by UsersController#view as HTML
+  Parameters: {"authenticity_token"=>"6M6rRndhQVrqNNj1JxcGjiYUaBI7Akg2MMtwlRMdG8M="}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCharacter Load (0.6ms)[0m  SELECT "characters".* FROM "characters" WHERE "characters"."creator" = 'User1'
+  [1m[36mReport Load (0.2ms)[0m  [1mSELECT "reports".* FROM "reports" WHERE "reports"."reporter" = 'User1'[0m
+  Rendered users/view.html.haml within layouts/application (23.3ms)
+Completed 200 OK in 102.3ms (Views: 96.6ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/assets/font-awesome.css?body=1" for 127.0.0.1 at 2015-02-03 15:20:12 -0400
+Served asset /font-awesome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-02-03 15:20:12 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (34ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-03 15:20:12 -0400
+Served asset /bootstrap.css - 304 Not Modified (9ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:12 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/character.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:12 -0400
+Served asset /character.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:12 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comment.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:12 -0400
+Served asset /comment.js - 304 Not Modified (16ms)
+
+
+Started GET "/assets/game.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:12 -0400
+Served asset /game.js - 304 Not Modified (8ms)
+
+
+Started GET "/assets/game_invitations.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:12 -0400
+Served asset /game_invitations.js - 304 Not Modified (17ms)
+
+
+Started GET "/assets/invitation_preferences.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:12 -0400
+Served asset /invitation_preferences.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/report.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:12 -0400
+Served asset /report.js - 304 Not Modified (17ms)
+
+
+Started GET "/assets/suggestion.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:12 -0400
+Served asset /suggestion.js - 304 Not Modified (12ms)
+
+
+Started GET "/assets/transformation.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:12 -0400
+Served asset /transformation.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:12 -0400
+Served asset /user.js - 304 Not Modified (8ms)
+
+
+Started GET "/characters?name=Ragnar+the+Warrior" for 127.0.0.1 at 2015-02-03 15:20:13 -0400
+Processing by CharactersController#index as HTML
+  Parameters: {"authenticity_token"=>"6M6rRndhQVrqNNj1JxcGjiYUaBI7Akg2MMtwlRMdG8M=", "name"=>"Ragnar the Warrior"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mCharacter Load (1.6ms)[0m  [1mSELECT "characters".* FROM "characters" WHERE "characters"."name" = 'Ragnar the Warrior' LIMIT 1[0m
+  [1m[35mTransformation Load (0.5ms)[0m  SELECT "transformations".* FROM "transformations" WHERE "transformations"."character_id" = 15 LIMIT 1
+  [1m[36mComment Load (0.4ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."character" = 'Ragnar the Warrior' ORDER BY created_at DESC LIMIT 5[0m
+  Rendered characters/index.html.haml within layouts/application (5.7ms)
+Completed 200 OK in 37.9ms (Views: 25.2ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/assets/font-awesome.css?body=1" for 127.0.0.1 at 2015-02-03 15:20:14 -0400
+Served asset /font-awesome.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:14 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:14 -0400
+Served asset /jquery.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-02-03 15:20:14 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-03 15:20:14 -0400
+Served asset /bootstrap.css - 304 Not Modified (7ms)
+
+
+Started GET "/assets/comment.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:14 -0400
+Served asset /comment.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/character.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:14 -0400
+Served asset /character.js - 304 Not Modified (11ms)
+
+
+Started GET "/assets/game.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:14 -0400
+Served asset /game.js - 304 Not Modified (14ms)
+
+
+Started GET "/assets/game_invitations.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:14 -0400
+Served asset /game_invitations.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/invitation_preferences.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:14 -0400
+Served asset /invitation_preferences.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/report.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:14 -0400
+Served asset /report.js - 304 Not Modified (14ms)
+
+
+Started GET "/assets/suggestion.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:14 -0400
+Served asset /suggestion.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/transformation.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:14 -0400
+Served asset /transformation.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:14 -0400
+Served asset /user.js - 304 Not Modified (4ms)
+
+
+Started POST "/upvote_character?name=Ragnar+the+Warrior" for 127.0.0.1 at 2015-02-03 15:20:16 -0400
+Processing by CharactersController#upvote as HTML
+  Parameters: {"authenticity_token"=>"6M6rRndhQVrqNNj1JxcGjiYUaBI7Akg2MMtwlRMdG8M=", "name"=>"Ragnar the Warrior"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mCharacter Load (0.2ms)[0m  [1mSELECT "characters".* FROM "characters" WHERE "characters"."name" = 'Ragnar the Warrior' LIMIT 1[0m
+Redirected to http://localhost:3000/characters?name=Ragnar+the+Warrior
+Completed 302 Found in 16.0ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/characters?name=Ragnar+the+Warrior" for 127.0.0.1 at 2015-02-03 15:20:16 -0400
+Processing by CharactersController#index as HTML
+  Parameters: {"name"=>"Ragnar the Warrior"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mCharacter Load (0.3ms)[0m  [1mSELECT "characters".* FROM "characters" WHERE "characters"."name" = 'Ragnar the Warrior' LIMIT 1[0m
+  [1m[35mTransformation Load (0.4ms)[0m  SELECT "transformations".* FROM "transformations" WHERE "transformations"."character_id" = 15 LIMIT 1
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."character" = 'Ragnar the Warrior' ORDER BY created_at DESC LIMIT 5[0m
+  Rendered characters/index.html.haml within layouts/application (5.4ms)
+Completed 200 OK in 32.5ms (Views: 26.1ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/assets/font-awesome.css?body=1" for 127.0.0.1 at 2015-02-03 15:20:16 -0400
+Served asset /font-awesome.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2015-02-03 15:20:16 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (21ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2015-02-03 15:20:16 -0400
+Served asset /bootstrap.css - 304 Not Modified (14ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:16 -0400
+Served asset /jquery.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:16 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/character.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:16 -0400
+Served asset /character.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/comment.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:16 -0400
+Served asset /comment.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/game.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:16 -0400
+Served asset /game.js - 304 Not Modified (17ms)
+
+
+Started GET "/assets/game_invitations.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:16 -0400
+Served asset /game_invitations.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/invitation_preferences.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:16 -0400
+Served asset /invitation_preferences.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/report.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:16 -0400
+Served asset /report.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/suggestion.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:16 -0400
+Served asset /suggestion.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/transformation.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:16 -0400
+Served asset /transformation.js - 304 Not Modified (110ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2015-02-03 15:20:17 -0400
+Served asset /user.js - 304 Not Modified (3ms)
