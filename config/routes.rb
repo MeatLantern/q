@@ -108,6 +108,7 @@ DuelOfChampions::Application.routes.draw do
   match 'users/index', to: 'users#index', via: :post
 
   match 'tf_tag_descriptions', to: 'transformation#tf_tag_descriptions', via: :get
+  match 'game_clear_message', to: 'game#clear_message', via: :post
 
   match 'game/', to: 'game#show', via: :get
   match 'game/show', to: 'game#show', via: :get

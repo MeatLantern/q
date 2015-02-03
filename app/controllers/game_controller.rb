@@ -32,11 +32,6 @@ class GameController < ApplicationController
 
   def show
 
-    #create_hash = {:game_name => "test", :player1 => "testUser1", :player2 => "testUser2", :player1_character => "Alice", :player2_character => "Bob", :player1_message => "Hi!", :player2_message => "Lol this game sucks", :current_turn => 1, :player1_buff => "none", :player1_buff_start => 0, :player2_buff => "Power UP", :player2_buff_start => 1, :player1_debuff => "Poison", :player1_debuff_start => 1, :player2_debuff => "None", :player2_debuff_start => 0, :p1_hp => 50, :p2_hp => 50, :p1_mp => 10, :p2_mp => 5, :game_over => false}
-    #Game.create!(create_hash)
-
-
-    
     test_game = Game.find_by_game_name(session[:current_game])
 
     x = session["warden.user.user.key"]
@@ -97,9 +92,26 @@ class GameController < ApplicationController
         @p2_summon_picture = @p2_character.transformation.alt_summon_picture
       end
       @p1_hp = test_game.p1_hp
+      max_hp = @p1_character.max_hp
+      @p1_hp_percent = @p1_hp.fdiv(max_hp) * 100
+      @p1_hp_percent = @p1_hp_percent.round
+
       @p1_mp = test_game.p1_mp
+      max_mp = @p1_character.max_mp
+      @p1_mp_percent = @p1_mp.fdiv(max_mp) * 100
+      @p1_mp_percent = @p1_mp_percent.round
+      #binding.pry
+     
       @p2_hp = test_game.p2_hp
+      max_hp = @p2_character.max_hp
+      @p2_hp_percent = @p2_hp.fdiv(max_hp) * 100
+      @p2_hp_percent = @p2_hp_percent.round
+
       @p2_mp = test_game.p2_mp
+      max_mp = @p2_character.max_mp
+      @p2_mp_percent = @p2_mp.fdiv(max_mp) * 100
+      @p2_mp_percent = @p2_mp_percent.round
+
       @game_over = test_game.game_over
       @this_game = test_game
       @turn = test_game.current_turn
@@ -487,15 +499,24 @@ class GameController < ApplicationController
       redirect_to game_rules_path
     else
       if player_username == test_game.player1
-        test_game.player1_message = params["message"]["Your Message"]
+        new_message = test_game.player1_message + "<b>" + params["message"]["Your Message"] + "</b><br>"
+        test_game.player1_message = new_message
         test_game.save
         redirect_to game_show_path
       elsif player_username == test_game.player2
-        test_game.player2_message = params["message"]["Your Message"]
+        new_message = test_game.player1_message + "<i>" + params["message"]["Your Message"] + "</i><br>"
+        test_game.player1_message = new_message
         test_game.save
         redirect_to game_show_path
       end
     end
+ end
+
+ def clear_message
+   test_game = Game.find_by_game_name(session[:current_game])
+   test_game.player1_message = " "
+   test_game.save
+   redirect_to game_show_path
  end
 
  def admin

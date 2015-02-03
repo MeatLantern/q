@@ -4,6 +4,58 @@
 %div#refreshable
 - #if flash[:results]
 -  #results.message= flash[:results]
+=#%div{:style => "position: absolute; left: -100px; top: 300px;"}
+-if @game_over == "f"
+  - if (((@turn % 2) == 1) && (@player1 == @player_username)) 
+    .container-fluid 
+      %p.navbar-text.pull-right
+        .row
+          %table#characters
+            %tr
+              %td Basic Actions:
+              %td= button_to 'Attack', game_take_turn_path("Action" => "1")
+              %td= button_to 'Guard', game_take_turn_path("Action" => "2")
+              %td= button_to 'Focus', game_take_turn_path("Action" => "3")
+              %td= button_to "Reload Page", game_show_path, :method => :get
+            -if (@current_game.player1_debuff != "Silence")
+              %tr
+                %td Special Actions:
+                %td= button_to @p1_action1, game_take_turn_path("Action" => @p1_character.action_1_id)
+                %td= button_to @p1_action2, game_take_turn_path("Action" => @p1_character.action_2_id)
+                %td= button_to @p1_action3, game_take_turn_path("Action" => @p1_character.action_3_id)
+                %td= button_to @p1_action4, game_take_turn_path("Action" => @p1_character.action_4_id)
+  - elsif (((@turn % 2) == 0) && (@player2 == "AI"))
+    .container-fluid 
+      %p.navbar-text.pull-right
+        .row
+          %table#characters
+            %tr
+              %td= button_to "Opponent Turn", "game/ai_take_turn", :method => :post
+  - elsif ((@player2 == @player_username) && (@turn %2 == 0))
+    .container-fluid 
+      %p.navbar-text.pull-right
+        .row
+          %table#characters
+            %tr
+              %td Basic Actions:
+              %td= button_to 'Attack', game_take_turn_path("Action" => "1")
+              %td= button_to 'Guard', game_take_turn_path("Action" => "2")
+              %td= button_to 'Focus', game_take_turn_path("Action" => "3")
+              %td= button_to "Reload Page", game_show_path, :method => :get
+            -if (@current_game.player2_debuff != "Silence")
+              %tr
+                %td Special Actions:
+                %td= button_to @p2_action1, game_take_turn_path("Action" => @p2_character.action_1_id)
+                %td= button_to @p2_action2, game_take_turn_path("Action" => @p2_character.action_2_id)
+                %td= button_to @p2_action3, game_take_turn_path("Action" => @p2_character.action_3_id)
+                %td= button_to @p2_action4, game_take_turn_path("Action" => @p2_character.action_4_id)
+  - else
+    .container-fluid 
+      %p.navbar-text.pull-right
+        .row
+          %table#characters
+            %tr
+              %td= button_to "Reload Page", game_show_path, :method => :get
 %p
   %strong
     = @current_game.flavor_message.html_safe
@@ -27,6 +79,14 @@
             Character:
             = @p1_name
           %p
+            %div.progress
+              %div.progress.progress-bar.progress-bar-danger{:style => "width: #{@p1_hp_percent}%;min-width:5em;"}
+                = "#{@p1_hp} \\ #{@p1_character.max_hp} HP"
+          %p
+            %div.progress
+              %div.progress.progress-bar{:style => "width: #{@p1_mp_percent}%;min-width:5em;"}
+                = "#{@p1_mp} \\ #{@p1_character.max_mp} MP"
+          %p
           #portrait
             Portrait:
             = image_tag(@this_game.player1_picture)
@@ -35,20 +95,15 @@
               Summon:
               = @p1_summon
               = image_tag(@p1_summon_picture)
-          %p
-            HP:
-            = @p1_hp
-            ="/ #{@p1_character.max_hp}"
-          %p
-            MP:
-            = @p1_mp
-            ="/ #{@p1_character.max_mp}"
-          %p
-            Current Buff:
-            = @this_game.player1_buff
-          %p
-            Current Debuff:
-            = @this_game.player1_debuff
+          %table.table
+            %thead
+              %tr
+                %th Buff
+                %th Debuff
+            %tbody
+              %tr
+                %td= @this_game.player1_buff
+                %td= @this_game.player1_debuff
           %p
             Transformation Stage:
             = @this_game.player1_stage
@@ -58,10 +113,6 @@
           %p
             %h4 Current Description
             = @this_game.player1_description.html_safe
-          %p
-            %h4 Player 1 Message:
-            %ul
-              = @this_game.player1_message.html_safe
 
     .col-sm-6.col-md-6.col-lg-6
       %h3 Player 2
@@ -75,6 +126,14 @@
             Character:
             = @p2_name
           %p
+            %div.progress
+              %div.progress.progress-bar.progress-bar-danger{:style => "width: #{@p2_hp_percent}%;min-width:5em;"}
+                = "#{@p2_hp} \\ #{@p2_character.max_hp} HP"
+          %p
+            %div.progress
+              %div.progress.progress-bar{:style => "width: #{@p2_mp_percent}%;min-width:5em;"}
+                = "#{@p2_mp} \\ #{@p2_character.max_mp} MP"
+          %p
             Portrait:
             = image_tag(@this_game.player2_picture)
           -if(@this_game.player2_buff == "Summon")
@@ -82,20 +141,15 @@
               Summon:
               = @p2_summon
               = image_tag(@p2_summon_picture)
-          %p
-            HP:
-            = @p2_hp
-            ="/ #{@p2_character.max_hp}"
-          %p
-            MP:
-            = @p2_mp
-            ="/ #{@p2_character.max_mp}"
-          %p
-            Current Buff:
-            = @this_game.player2_buff
-          %p
-            Current Debuff:
-            = @this_game.player2_debuff
+          %table.table
+            %thead
+              %tr
+                %th Buff
+                %th Debuff
+            %tbody
+              %tr
+                %td= @this_game.player2_buff
+                %td= @this_game.player2_debuff
           %p
             Transformation Stage:
             = @this_game.player2_stage
@@ -105,86 +159,10 @@
           %p
             %h4 Current Description
             = @this_game.player2_description.html_safe
-          %p
-            %h4 Player 2 Message:
-            %ul
-              = @this_game.player2_message.html_safe
   .row
     .col-sm-12.col-md-12.col-lg-12
     -if @game_over == "f"
-      -if (((@turn % 2) == 1) && (@player1 == @player_username)) 
-        = form_tag 'game/take_turn' do
-          .row
-            .row
-              .row
-                = label_tag :choice, 'Attack'
-                = radio_button_tag 'Action', 1
-              .row
-                = label_tag :choice, 'Guard'
-                = radio_button_tag 'Action', 2
-              .row
-                = label_tag :choice, 'Focus'
-                = radio_button_tag 'Action', 3
-              - if (@current_game.player1_debuff != "Silence")
-                .row
-                  = label_tag :choice, "#{@p1_action1}  (#{@p1_mp_cost1}MP) [#{@p1_character.action_1_rules}]"
-                  = radio_button_tag 'Action', @p1_character.action_1_id
-                .row
-                  = label_tag :choice, "#{@p1_action2}  (#{@p1_mp_cost2}MP) [#{@p1_character.action_2_rules}]" 
-                  = radio_button_tag 'Action', @p1_character.action_2_id
-                .row
-                  = label_tag :choice, "#{@p1_action3}  (#{@p1_mp_cost3}MP) [#{@p1_character.action_3_rules}]"
-                  = radio_button_tag 'Action', @p1_character.action_3_id
-                .row
-                  = label_tag :choice, "#{@p1_action4}  (#{@p1_mp_cost4}MP) [#{@p1_character.action_4_rules}]"
-                  = radio_button_tag 'Action', @p1_character.action_4_id
-              -else
-                %h3 You are Silenced!
-          .row.takeaction
-            .col-sm-5.col-md-5.col-lg-5
-            .col-sm-1.col-md-1.col-lg-1
-              = submit_tag 'Take Action'
-            .col-sm-6.col-md-6.col-lg-6
-      -elsif (@turn % 2 == 0)
-        -if (@player2 == "AI")
-          .col-sm-5.col-md-5.col-lg-5
-          .col-sm-2.col-md-2.col-lg-2
-            = button_to "Opponent Turn", "game/ai_take_turn", :method => :post
-          .col-sm-5.col-md-5.col-lg-5
-        -if @player2 == @player_username
-          = form_tag 'game/take_turn' do
-            %p
-              %attacks.theattacks
-                .row
-                  = label_tag :choice, 'Attack'
-                  = radio_button_tag 'Action', 1
-                .row
-                  = label_tag :choice, 'Guard'
-                  = radio_button_tag 'Action', 2
-                .row
-                  = label_tag :choice, 'Focus'
-                  = radio_button_tag 'Action', 3
-                - if (@current_game.player2_debuff != "Silence")
-                  .row
-                    = label_tag :choice, "#{@p2_action1}  (#{@p2_mp_cost1}MP) [#{@p2_character.action_1_rules}]"
-                    = radio_button_tag 'Action', @p2_character.action_1_id
-                  .row
-                    = label_tag :choice, "#{@p2_action2}  (#{@p2_mp_cost2}MP) [#{@p2_character.action_2_rules}]" 
-                    = radio_button_tag 'Action', @p2_character.action_2_id
-                  .row
-                    = label_tag :choice, "#{@p2_action3}  (#{@p2_mp_cost3}MP) [#{@p2_character.action_3_rules}]"
-                    = radio_button_tag 'Action', @p2_character.action_3_id
-                  .row
-                    = label_tag :choice, "#{@p2_action4}  (#{@p2_mp_cost4}MP) [#{@p2_character.action_4_rules}]"
-                    = radio_button_tag 'Action', @p2_character.action_4_id
-                -else
-                  %h3 You are Silenced!  
-                .row
-                .row
-                  .col-sm-5.col-md-5.col-lg-5
-                  .col-sm-1.col-md-1.col-lg-1
-                    = submit_tag 'Take Action'
-                  .col-sm-6.col-md-6.col-lg-6
+
     -else
       %h1 GAME OVER
       -if @p1_hp <= 0
@@ -204,21 +182,78 @@
       -if @player2 != "AI"
         = button_to "Reset Game?", "game/cpu_reset_game", :confirm => "Are you sure you want to restart the game?", :method => :post
   .row
-    = form_tag 'game/send_message' do
+    -if @player_username == @player1
+      %table#games
+        %thead
+          %tr
+            %th Ability Name
+            %th Ability Type
+            %th MP Cost
+        %tbody
+          %tr
+            %td= @p1_action1
+            %td= @p1_character.action_1_rules
+            %td= @p1_mp_cost1
+          %tr
+            %td= @p1_action2
+            %td= @p1_character.action_2_rules
+            %td= @p1_mp_cost2
+          %tr
+            %td= @p1_action3
+            %td= @p1_character.action_3_rules
+            %td= @p1_mp_cost3
+          %tr
+            %td= @p1_action4
+            %td= @p1_character.action_4_rules
+            %td= @p1_mp_cost1
+    -else
+      %table#games
+        %thead
+          %tr
+            %th Ability Name
+            %th Ability Type
+            %th MP Cost
+        %tbody
+          %tr
+            %td= @p2_action1
+            %td= @p2_character.action_1_rules
+            %td= @p2_mp_cost1
+          %tr
+            %td= @p2_action2
+            %td= @p2_character.action_2_rules
+            %td= @p2_mp_cost2
+          %tr
+            %td= @p2_action3
+            %td= @p2_character.action_3_rules
+            %td= @p2_mp_cost3
+          %tr
+            %td= @p2_action4
+            %td= @p2_character.action_4_rules
+            %td= @p2_mp_cost1
+  %p
+    .row
+      .col-sm-4.col-md-4.col-lg-4
+        = button_to "Reload Page", game_show_path, :method => :get
+      -if @player2 == "AI"
+        .col-sm-4.col-md-4.col-lg-4
+          = button_to "Reset Game?", "game/cpu_reset_game", :confirm => "Are you sure you want to restart the game?", :method => :post
+      .col-sm-4.col-md-4.col-lg-4
+        = button_to "Leave Game?", "game/destroy_current_game", :confirm => "Are you sure you want to quit the game? NOTE: You will NOT be able to come back to this game.", :method => :post
+  .row
+    %table.table
+      %thead
+        %tr
+          %th Player Messages
+      %tbody
+        %tr
+          %td= @this_game.player1_message.html_safe
+  .row
+    = form_tag game_send_message_path(:username => @player_username) do
       %p
         = label :message, :message, 'Your message:'
         = text_field :message, 'Your Message'
         = submit_tag 'Send Message'
-    %p
-      .row
-        .col-sm-4.col-md-4.col-lg-4
-          = button_to "Reload Page", game_show_path, :method => :get
-        -if @player2 == "AI"
-          .col-sm-4.col-md-4.col-lg-4
-            = button_to "Reset Game?", "game/cpu_reset_game", :confirm => "Are you sure you want to restart the game?", :method => :post
-        .col-sm-4.col-md-4.col-lg-4
-          = button_to "Leave Game?", "game/destroy_current_game", :confirm => "Are you sure you want to quit the game? NOTE: You will NOT be able to come back to this game.", :method => :post
-
+    = button_to "Clear All Messages", game_clear_message_path, :confirm => "Are You Sure You Want to Clear All Messages?"
 
 :javascript
   function timedRefresh(timeoutPeriod) {
@@ -227,5 +262,5 @@
 
   $(document).ready(function(){
     document.title = "Transformation-Arena Game"
-    timedRefresh(45000);
+    timedRefresh(120000);
   });
