@@ -26,6 +26,10 @@
 %p
   = button_to 'Create a New Character',  new_character_path, :method => :get, :id => 'new_character'
 
+%p 
+  Characters Upvoted: 
+  = current_user.upvote_checker
+
 %h3 Admin Reports
 -if ! (@reports.nil?)
   %table#characters
