@@ -59,6 +59,7 @@ class CharactersController < ApplicationController
         c.transformation.upvotes = c.transformation.upvotes + 1
         c.transformation.save
         c.save
+        flash[:notice] = "#{c.name} Upvoted!"
       end
       redirect_to characters_path(:name => params[:name])
     end
