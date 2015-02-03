@@ -56,7 +56,8 @@ class CharactersController < ApplicationController
       else
         recent.push(params[:name])
         c.upvotes = c.upvotes + 1
-        c.transformation.upvotes + 1
+        c.transformation.upvotes = c.transformation.upvotes + 1
+        c.transformation.save
         c.save
       end
       redirect_to characters_path(:name => params[:name])
