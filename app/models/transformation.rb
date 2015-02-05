@@ -392,4 +392,50 @@ class Transformation < ActiveRecord::Base
     session["button_pref"] = button_hash
   end
 
+  def Transformation::replace_html_tag_with_bb_code(string)
+    string = string.gsub('<br>', '')
+    string = string.gsub('<i>', '[i]')
+    string = string.gsub('</i>', '[/i]')
+    string = string.gsub('<b>', '[b]')
+    string = string.gsub('</b>', '[/b]')
+    string = string.gsub('<br />', '')
+
+    #string = string.gsub('<br>', '')
+    #string = string.gsub('[i]', '<i>')
+    #string = string.gsub('[/i]', '</i>')
+    #string = string.gsub('[b]', '<b>')
+    #string = string.gsub('[/b]', '<b>')
+    #string = string.gsub('<br />', '')
+    return string
+  end
+
+  def Transformation::sanitize_text(tf)
+    character = Character.find_by_name(tf.character_name)
+      if !(character.nil?)
+        character.description = Sanitize.fragment(character.description, Sanitize::Config::BASIC)
+      end
+      tf.stage1_tf_description = Sanitize.fragment(tf.stage1_tf_description, Sanitize::Config::BASIC)
+      tf.stage1_character_description = Sanitize.fragment(tf.stage1_character_description, Sanitize::Config::BASIC) 
+      tf.stage2_tf_description = Sanitize.fragment(tf.stage2_tf_description, Sanitize::Config::BASIC)
+      tf.stage2_character_description = Transformation::Sanitize.fragment(tf.stage2_character_description, Sanitize::Config::BASIC) 
+      tf.stage3_tf_description = Sanitize.fragment(tf.stage3_tf_description, Sanitize::Config::BASIC)
+      tf.stage3_character_description = Transformation::Sanitize.fragment(tf.stage3_character_description, Sanitize::Config::BASIC) 
+      tf.stage4_tf_description = Sanitize.fragment(tf.stage4_tf_description, Sanitize::Config::BASIC)
+      tf.stage4_character_description = Sanitize.fragment(tf.stage4_character_description, Sanitize::Config::BASIC) 
+      tf.stage5_tf_description = Sanitize.fragment(tf.stage5_tf_description, Sanitize::Config::BASIC)
+      tf.stage5_character_description = Sanitize.fragment(tf.stage5_character_description, Sanitize::Config::BASIC) 
+      tf.stage6_tf_description = Sanitize.fragment(tf.stage6_tf_description, Sanitize::Config::BASIC)
+      tf.stage6_character_description = Sanitize.fragment(tf.stage6_character_description, Sanitize::Config::BASIC) 
+      tf.stage7_tf_description = Sanitize.fragment(tf.stage7_tf_description, Sanitize::Config::BASIC)
+      tf.stage7_character_description = Sanitize.fragment(tf.stage7_character_description, Sanitize::Config::BASIC) 
+      tf.stage8_tf_description = Sanitize.fragment(tf.stage8_tf_description, Sanitize::Config::BASIC)
+      tf.stage8_character_description = Sanitize.fragment(tf.stage8_character_description, Sanitize::Config::BASIC) 
+      tf.stage9_tf_description = Sanitize.fragment(tf.stage9_tf_description, Sanitize::Config::BASIC)
+      tf.stage9_character_description = Sanitize.fragment(tf.stage9_character_description, Sanitize::Config::BASIC) 
+      tf.stage10_tf_description = Sanitize.fragment(tf.stage10_tf_description, Sanitize::Config::BASIC)
+      tf.stage10_character_description = Sanitize.fragment(tf.stage10_character_description, Sanitize::Config::BASIC) 
+      tf.epilogue = Sanitize.fragment(tf.epilogue, Sanitize::Config::BASIC)
+      tf.save
+  end
+
 end

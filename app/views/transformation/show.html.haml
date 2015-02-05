@@ -1,5 +1,10 @@
 %h1 Show Transformation
 
+-if current_user.username == @tf.creator
+  %p
+    %h3 Update Character (Only Visible to Creators)
+    = link_to "Update Character", transformation_edit_path(:character_name => @tf.character_name), :method=> :get
+
 %p
   %h2 Start
   %p
@@ -131,6 +136,10 @@
   %p
     %h4 Transformation Description
     = @tf.stage10_tf_description.html_safe
+%p
+  %h2 Epilogue
+  %p
+    = @tf.epilogue.html_safe
 
 %p
   %h3 Transformation Tags

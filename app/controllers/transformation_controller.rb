@@ -71,7 +71,7 @@ class TransformationController < ApplicationController
 				Transformation.delete(tf)
 			end
 		end
-		flash[:error] = 'TFs Cleaned Up'
+		flash[:notice] = 'TFs Cleaned Up'
 		redirect_to tf_admin_path
 	end
 
@@ -484,6 +484,7 @@ class TransformationController < ApplicationController
 				current_character.save
 				tf.creator = current_character.creator
 				tf.save
+				Transformation::sanitize_text(tf)
 			end
 
 		else
@@ -657,6 +658,7 @@ class TransformationController < ApplicationController
 				current_character.save
 				tf.creator = current_character.creator
 				tf.save
+				Transformation::sanitize_text(tf)
 			end
 
 		else
@@ -833,6 +835,7 @@ class TransformationController < ApplicationController
 				current_character.save
 				tf.creator = current_character.creator
 				tf.save
+				Transformation::sanitize_text(tf)
 			end
 
 		else
@@ -1009,6 +1012,7 @@ class TransformationController < ApplicationController
 				current_character.transformation = tf
 				tf.creator = current_character.creator
 				tf.save
+				Transformation::sanitize_text(tf)
 			end
 
 		else
@@ -1019,7 +1023,7 @@ class TransformationController < ApplicationController
 
 		#binding.pry
 		flash[:notice] = "#{character_name}'s transformation has been updated successfully!"
-		redirect_to game_rules_path
+		redirect_to view_path(:current => true), :method => :post
 	end
 
 	def set_completed_and_fully_illustrated_to_false
@@ -1029,6 +1033,108 @@ class TransformationController < ApplicationController
 			tf.is_full_picture = false
 			tf.save
 		end
+		redirect_to tf_admin_path
+	end
+
+	def remove_all_html_tags_and_replace_with_bb_tags
+		tfs = Transformation.all
+		tfs.each do |tf|
+			character = Character.find_by_name(tf.character_name)
+			if !(character.nil?)
+			  character.description = Transformation::replace_html_tag_with_bb_code(character.description)
+			end
+			tf.stage1_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage1_tf_description)
+			tf.stage1_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage1_character_description) 
+			tf.stage2_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage2_tf_description)
+			tf.stage2_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage2_character_description) 
+			tf.stage3_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage3_tf_description)
+			tf.stage3_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage3_character_description) 
+			tf.stage4_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage4_tf_description)
+			tf.stage4_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage4_character_description) 
+			tf.stage5_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage5_tf_description)
+			tf.stage5_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage5_character_description) 
+			tf.stage6_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage6_tf_description)
+			tf.stage6_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage6_character_description) 
+			tf.stage7_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage7_tf_description)
+			tf.stage7_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage7_character_description) 
+			tf.stage8_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage8_tf_description)
+			tf.stage8_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage8_character_description) 
+			tf.stage9_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage9_tf_description)
+			tf.stage9_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage9_character_description) 
+			tf.stage10_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage10_tf_description)
+			tf.stage10_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage10_character_description) 
+			tf.epilogue = Transformation::replace_html_tag_with_bb_code(tf.epilogue)
+			tf.save
+		end
+		flash[:notice] = "All HTML Tags Removed and Replaced with BB Code Tags"
+		redirect_to tf_admin_path
+	end
+
+	def remove_all_html_tags_and_replace_with_bb_tags
+		tfs = Transformation.all
+		tfs.each do |tf|
+			character = Character.find_by_name(tf.character_name)
+			if !(character.nil?)
+			  character.description = Transformation::replace_html_tag_with_bb_code(character.description)
+			end
+			tf.stage1_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage1_tf_description)
+			tf.stage1_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage1_character_description) 
+			tf.stage2_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage2_tf_description)
+			tf.stage2_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage2_character_description) 
+			tf.stage3_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage3_tf_description)
+			tf.stage3_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage3_character_description) 
+			tf.stage4_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage4_tf_description)
+			tf.stage4_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage4_character_description) 
+			tf.stage5_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage5_tf_description)
+			tf.stage5_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage5_character_description) 
+			tf.stage6_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage6_tf_description)
+			tf.stage6_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage6_character_description) 
+			tf.stage7_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage7_tf_description)
+			tf.stage7_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage7_character_description) 
+			tf.stage8_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage8_tf_description)
+			tf.stage8_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage8_character_description) 
+			tf.stage9_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage9_tf_description)
+			tf.stage9_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage9_character_description) 
+			tf.stage10_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage10_tf_description)
+			tf.stage10_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage10_character_description) 
+			tf.epilogue = Transformation::replace_html_tag_with_bb_code(tf.epilogue)
+			tf.save
+		end
+		flash[:notice] = "All HTML Tags Removed and Replaced with BB Code Tags"
+		redirect_to tf_admin_path
+	end
+
+		def sanitize_all
+		tfs = Transformation.all
+		tfs.each do |tf|
+			character = Character.find_by_name(tf.character_name)
+			if !(character.nil?)
+			  character.description = Sanitize.fragment(character.description, Sanitize::Config::RESTRICTED)
+			end
+			tf.stage1_tf_description = Sanitize.fragment(tf.stage1_tf_description, Sanitize::Config::RESTRICTED)
+			tf.stage1_character_description = Sanitize.fragment(tf.stage1_character_description, Sanitize::Config::RESTRICTED) 
+			tf.stage2_tf_description = Sanitize.fragment(tf.stage2_tf_description, Sanitize::Config::RESTRICTED)
+			tf.stage2_character_description = Transformation::Sanitize.fragment(tf.stage2_character_description, Sanitize::Config::RESTRICTED) 
+			tf.stage3_tf_description = Sanitize.fragment(tf.stage3_tf_description, Sanitize::Config::RESTRICTED)
+			tf.stage3_character_description = Transformation::Sanitize.fragment(tf.stage3_character_description, Sanitize::Config::RESTRICTED) 
+			tf.stage4_tf_description = Sanitize.fragment(tf.stage4_tf_description, Sanitize::Config::RESTRICTED)
+			tf.stage4_character_description = Sanitize.fragment(tf.stage4_character_description, Sanitize::Config::RESTRICTED) 
+			tf.stage5_tf_description = Sanitize.fragment(tf.stage5_tf_description, Sanitize::Config::RESTRICTED)
+			tf.stage5_character_description = Sanitize.fragment(tf.stage5_character_description, Sanitize::Config::RESTRICTED) 
+			tf.stage6_tf_description = Sanitize.fragment(tf.stage6_tf_description, Sanitize::Config::RESTRICTED)
+			tf.stage6_character_description = Sanitize.fragment(tf.stage6_character_description, Sanitize::Config::RESTRICTED) 
+			tf.stage7_tf_description = Sanitize.fragment(tf.stage7_tf_description, Sanitize::Config::RESTRICTED)
+			tf.stage7_character_description = Sanitize.fragment(tf.stage7_character_description, Sanitize::Config::RESTRICTED) 
+			tf.stage8_tf_description = Sanitize.fragment(tf.stage8_tf_description, Sanitize::Config::RESTRICTED)
+			tf.stage8_character_description = Sanitize.fragment(tf.stage8_character_description, Sanitize::Config::RESTRICTED) 
+			tf.stage9_tf_description = Sanitize.fragment(tf.stage9_tf_description, Sanitize::Config::RESTRICTED)
+			tf.stage9_character_description = Sanitize.fragment(tf.stage9_character_description, Sanitize::Config::RESTRICTED) 
+			tf.stage10_tf_description = Sanitize.fragment(tf.stage10_tf_description, Sanitize::Config::RESTRICTED)
+			tf.stage10_character_description = Sanitize.fragment(tf.stage10_character_description, Sanitize::Config::RESTRICTED) 
+			tf.epilogue = Sanitize.fragment(tf.epilogue, Sanitize::Config::RESTRICTED)
+			tf.save
+		end
+		flash[:notice] = "All Text Has Been Sanitized"
 		redirect_to tf_admin_path
 	end
 

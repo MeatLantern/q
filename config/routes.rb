@@ -105,10 +105,13 @@ DuelOfChampions::Application.routes.draw do
   post "game/delete_all"
   #resources :games 
   match 'view', to: 'users#view', via: :post
+  match 'view', to: 'users#view', via: :get
   match 'users/index', to: 'users#index', via: :post
 
   match 'tf_tag_descriptions', to: 'transformation#tf_tag_descriptions', via: :get
   match 'game_clear_message', to: 'game#clear_message', via: :post
+  match 'remove_all_html_tags_and_replace_with_bb_tags', to: 'transformation#remove_all_html_tags_and_replace_with_bb_tags', via: :post
+  match 'sanitize_all', to: 'transformation#sanitize_all', via: :post
 
   match 'game/', to: 'game#show', via: :get
   match 'game/show', to: 'game#show', via: :get

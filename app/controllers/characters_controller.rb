@@ -380,7 +380,7 @@ class CharactersController < ApplicationController
       current_character.update_attributes(create_hash)
       flash[:notice] = "#{@name} has been updated successfully."
       current_character.save
-      redirect_to game_rules_path
+      redirect_to  view_path(:current => true)
     end
   end
 

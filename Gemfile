@@ -49,6 +49,10 @@ gem 'haml'
 # Use pry for Debugging
 gem 'pry'
 
+gem 'sanitize'
+
+gem 'ruby-bbcode'
+
 gem 'jquery-rails'
 gem "font-awesome-rails"
 gem 'turbolinks'
