@@ -17,6 +17,7 @@
 			%th View Character Sheet
 			%th View Transformation
 			%th Update Character
+			%th Add Transformation
 			%th Delete Character
 	%tbody
 		- @characters.each do |character|
@@ -26,4 +27,5 @@
 				%td= link_to "#{character.name}'s Character Sheet", characters_path(:name => character.name), :method=> :get
 				%td= link_to "#{character.name}'s Transformation", transformation_show_path(:name => character.name), :method => :get
 				%td= link_to "Select #{character.name}", character_edit_path(:name => character.name), :method=> :get
+				%td= link_to "Add/Edit Transformation", transformation_edit_path(:character_name => character.name), :method => :get
 				%td= link_to("delete", characters_destroy_path(:id => character.id), method: :post, data: { :confirm => "Delete Character?"})

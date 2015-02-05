@@ -4,7 +4,7 @@
 %h4 Transformation Tags
 = @tag_list
 
--if (current_user.username == @character.creator) || current_user.is_admin
+-if ((current_user.username == @character.creator) && !(@character.transformation.nil?)) || current_user.is_admin
    %h3 View Transformation
    This is Only Visible to the Creator of the Character. This allows you to make sure your HTML and Pictures are Functioning Correctly. It's also shown when the character loses a match. Use this to check if your character is working correctly. Thanks!
    = link_to "View Transformation", transformation_show_path(:name => @character.name), :method => :get
@@ -75,9 +75,12 @@
 
 
 %h3 Play as Character?
--if session[:current_game].nil?
-   = button_to "Random Opponent", game_create_ai_game_path(:name => @character.name), :method=> :post
-   = button_to "Choose Opponent", select_opponent_ai_path(:name => @character.name), :method=> :post
+-if session[:current_game].nil? 
+   -if !(@character.transformation.nil?)
+      = button_to "Random Opponent", game_create_ai_game_path(:name => @character.name), :method=> :post
+      = button_to "Choose Opponent", select_opponent_ai_path(:name => @character.name), :method=> :post
+   -else
+      This Character has No Transformation, and thus cannot be used in games until there is one. If you are the creator, please go to "View Profile" and click "Update Transformation" to add a transformation.
 -else
    Currently in Game: Please Finish Your Current Game Before Starting a New One
 %h3 Recent Comments

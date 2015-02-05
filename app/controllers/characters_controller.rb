@@ -224,11 +224,22 @@ class CharactersController < ApplicationController
     nm = params[:name]
     #binding.pry
     @character = Character.find_by_name(nm)#
-    @tag_list = Transformation::get_tag_list(@character.transformation)
-    search_hash = {}
-    search_hash[:character] = @character.name
-    @comments = Comment.where(search_hash).limit(5)
-    @comments = @comments.order('created_at DESC')
+    if @character.nil?
+      flash[:alert] = "The Character Could Not be Found."
+      redirect_to game_rules_path
+    else
+      if (@character.transformation.nil?)
+        flash[:alert] = "This Character Has No Associated Transformation. He cannot be played until he does. Thank you!"
+        @tag_list = "THIS CHARACTER HAS NO ASSOCIATED TRANSFORMATION!!! If you are the Creator, please click 'View Profile' and then 'Update Transformation' to give him a Transformation. Thank you!"
+      else
+        @tag_list = Transformation::get_tag_list(@character.transformation)
+      end
+      search_hash = {}
+      search_hash[:character] = @character.name
+      @comments = Comment.where(search_hash).limit(5)
+      @comments = @comments.order('created_at DESC')
+    end
+
     #binding.pry
     #binding.pry
     #redirect_to characters_show_path(:name => nm)
