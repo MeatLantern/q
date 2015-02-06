@@ -52,6 +52,7 @@ gem 'pry'
 gem 'sanitize'
 
 gem 'ruby-bbcode'
+gem 'bb-ruby'
 
 gem 'jquery-rails'
 gem "font-awesome-rails"

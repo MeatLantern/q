@@ -12,7 +12,7 @@
     = image_tag(@tf.character.main_image)
   %p
     %h4 Character Description
-    = @tf.character.description.html_safe
+    = @tf.character.description.bbcode_to_html.html_safe
   %p
     %h4 Transformation Description
     None Yet
@@ -24,10 +24,11 @@
     = image_tag(@tf.stage1_tf_picture)
   %p
     %h4 Character Description
-    = @tf.stage1_character_description.html_safe
+    = #@tf.stage1_character_description.bbcode_show_error
+    = @tf.stage1_character_description.bbcode_to_html.html_safe
   %p
     %h4 Transformation Description
-    = @tf.stage1_tf_description.html_safe
+    = @tf.stage1_tf_description.bbcode_to_html.html_safe
 
 %p
   %h2 Stage 2
@@ -36,10 +37,10 @@
     = image_tag(@tf.stage2_tf_picture)
   %p
     %h4 Character Description
-    = @tf.stage2_character_description.html_safe
+    = @tf.stage2_character_description.bbcode_to_html.html_safe
   %p
     %h4 Transformation Description
-    = @tf.stage2_tf_description.html_safe
+    = @tf.stage2_tf_description.bbcode_to_html.html_safe
 
 %p
   %h2 Stage 3
@@ -48,10 +49,10 @@
     = image_tag(@tf.stage3_tf_picture)
   %p
     %h4 Character Description
-    = @tf.stage3_character_description.html_safe
+    = @tf.stage3_character_description.bbcode_to_html.html_safe
   %p
     %h4 Transformation Description
-    = @tf.stage3_tf_description.html_safe
+    = @tf.stage3_tf_description.bbcode_to_html.html_safe
 
 %p
   %h2 Stage 4
@@ -60,10 +61,10 @@
     = image_tag(@tf.stage4_tf_picture)
   %p
     %h4 Character Description
-    = @tf.stage4_character_description.html_safe
+    = @tf.stage4_character_description.bbcode_to_html.html_safe
   %p
     %h4 Transformation Description
-    = @tf.stage4_tf_description.html_safe
+    = @tf.stage4_tf_description.bbcode_to_html.html_safe
 
 %p
   %h2 Stage 5
@@ -72,10 +73,10 @@
     = image_tag(@tf.stage5_tf_picture)
   %p
     %h4 Character Description
-    = @tf.stage5_character_description.html_safe
+    = @tf.stage5_character_description.bbcode_to_html.html_safe
   %p
     %h4 Transformation Description
-    = @tf.stage5_tf_description.html_safe
+    = @tf.stage5_tf_description.bbcode_to_html.html_safe
 
 %p
   %h2 Stage 6
@@ -84,10 +85,10 @@
     = image_tag(@tf.stage6_tf_picture)
   %p
     %h4 Character Description
-    = @tf.stage6_character_description.html_safe
+    = @tf.stage6_character_description.bbcode_to_html.html_safe
   %p
     %h4 Transformation Description
-    = @tf.stage6_tf_description.html_safe
+    = @tf.stage6_tf_description.bbcode_to_html.html_safe
 
 %p
   %h2 Stage 7
@@ -96,10 +97,10 @@
     = image_tag(@tf.stage7_tf_picture)
   %p
     %h4 Character Description
-    = @tf.stage7_character_description.html_safe
+    = @tf.stage7_character_description.bbcode_to_html.html_safe
   %p
     %h4 Transformation Description
-    = @tf.stage7_tf_description.html_safe
+    = @tf.stage7_tf_description.bbcode_to_html.html_safe
 
 %p
   %h2 Stage 8
@@ -108,10 +109,10 @@
     = image_tag(@tf.stage8_tf_picture)
   %p
     %h4 Character Description
-    = @tf.stage8_character_description.html_safe
+    = @tf.stage8_character_description.bbcode_to_html.html_safe
   %p
     %h4 Transformation Description
-    = @tf.stage8_tf_description.html_safe
+    = @tf.stage8_tf_description.bbcode_to_html.html_safe
 
 %p
   %h2 Stage 9
@@ -120,10 +121,10 @@
     = image_tag(@tf.stage9_tf_picture)
   %p
     %h4 Character Description
-    = @tf.stage9_character_description.html_safe
+    = @tf.stage9_character_description.bbcode_to_html.html_safe
   %p
     %h4 Transformation Description
-    = @tf.stage9_tf_description.html_safe
+    = @tf.stage9_tf_description.bbcode_to_html.html_safe
 
 %p
   %h2 Stage 10
@@ -132,14 +133,14 @@
     = image_tag(@tf.stage10_tf_picture)
   %p
     %h4 Character Description
-    = @tf.stage10_character_description.html_safe
+    = @tf.stage10_character_description.bbcode_to_html.html_safe
   %p
     %h4 Transformation Description
-    = @tf.stage10_tf_description.html_safe
+    = @tf.stage10_tf_description.bbcode_to_html.html_safe
 %p
   %h2 Epilogue
   %p
-    = @tf.epilogue.html_safe
+    = @tf.epilogue.bbcode_to_html.html_safe
 
 %p
   %h3 Transformation Tags

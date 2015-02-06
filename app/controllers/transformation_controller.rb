@@ -295,6 +295,8 @@ class TransformationController < ApplicationController
     		else
       			@tag_list = Transformation::get_tag_list(@tf)
     		end
+
+    		#binding.pry
     	#else
       		#redirect_to game_rules_path
     	#end
@@ -334,44 +336,44 @@ class TransformationController < ApplicationController
 
 		create_hash = {}
 		#Get Text/Picture URLS
-		create_hash["stage1_character_description"] = word_wrap(params["transformation"]["stage1_character_description"])
-		create_hash["stage1_tf_description"] = word_wrap(params["transformation"]["stage1_tf_description"])
+		create_hash["stage1_character_description"] = (params["transformation"]["stage1_character_description"])
+		create_hash["stage1_tf_description"] = (params["transformation"]["stage1_tf_description"])
 		create_hash["stage1_tf_picture"] = params["transformation"]["stage1_tf_picture"]
 
-		create_hash["stage2_character_description"] = word_wrap(params["transformation"]["stage2_character_description"])
-		create_hash["stage2_tf_description"] = word_wrap(params["transformation"]["stage2_tf_description"])
+		create_hash["stage2_character_description"] = (params["transformation"]["stage2_character_description"])
+		create_hash["stage2_tf_description"] = (params["transformation"]["stage2_tf_description"])
 		create_hash["stage2_tf_picture"] = params["transformation"]["stage2_tf_picture"]
 
-		create_hash["stage3_character_description"] = word_wrap(params["transformation"]["stage3_character_description"])
-		create_hash["stage3_tf_description"] = word_wrap(params["transformation"]["stage3_tf_description"])
-		create_hash["stage3_tf_picture"] = word_wrap(params["transformation"]["stage3_tf_picture"])
+		create_hash["stage3_character_description"] = (params["transformation"]["stage3_character_description"])
+		create_hash["stage3_tf_description"] = (params["transformation"]["stage3_tf_description"])
+		create_hash["stage3_tf_picture"] = (params["transformation"]["stage3_tf_picture"])
 
-		create_hash["stage4_character_description"] = word_wrap(params["transformation"]["stage4_character_description"])
-		create_hash["stage4_tf_description"] = word_wrap(params["transformation"]["stage4_tf_description"])
+		create_hash["stage4_character_description"] = (params["transformation"]["stage4_character_description"])
+		create_hash["stage4_tf_description"] = (params["transformation"]["stage4_tf_description"])
 		create_hash["stage4_tf_picture"] = params["transformation"]["stage4_tf_picture"]
 
-		create_hash["stage5_character_description"] = word_wrap(params["transformation"]["stage5_character_description"])
-		create_hash["stage5_tf_description"] = word_wrap(params["transformation"]["stage5_tf_description"])
-		create_hash["stage5_tf_picture"] = word_wrap(params["transformation"]["stage5_tf_picture"])
+		create_hash["stage5_character_description"] = (params["transformation"]["stage5_character_description"])
+		create_hash["stage5_tf_description"] = (params["transformation"]["stage5_tf_description"])
+		create_hash["stage5_tf_picture"] = (params["transformation"]["stage5_tf_picture"])
 
-		create_hash["stage6_character_description"] = word_wrap(params["transformation"]["stage6_character_description"])
-		create_hash["stage6_tf_description"] = word_wrap(params["transformation"]["stage6_tf_description"])
+		create_hash["stage6_character_description"] = (params["transformation"]["stage6_character_description"])
+		create_hash["stage6_tf_description"] = (params["transformation"]["stage6_tf_description"])
 		create_hash["stage6_tf_picture"] = params["transformation"]["stage6_tf_picture"]
 
-		create_hash["stage7_character_description"] = word_wrap(params["transformation"]["stage7_character_description"])
-		create_hash["stage7_tf_description"] = word_wrap(params["transformation"]["stage7_tf_description"])
+		create_hash["stage7_character_description"] = (params["transformation"]["stage7_character_description"])
+		create_hash["stage7_tf_description"] = (params["transformation"]["stage7_tf_description"])
 		create_hash["stage7_tf_picture"] = params["transformation"]["stage7_tf_picture"]
 
-		create_hash["stage8_character_description"] = word_wrap(params["transformation"]["stage8_character_description"])
-		create_hash["stage8_tf_description"] = word_wrap(params["transformation"]["stage8_tf_description"])
+		create_hash["stage8_character_description"] = (params["transformation"]["stage8_character_description"])
+		create_hash["stage8_tf_description"] = (params["transformation"]["stage8_tf_description"])
 		create_hash["stage8_tf_picture"] = params["transformation"]["stage8_tf_picture"]
 
-		create_hash["stage9_character_description"] = word_wrap(params["transformation"]["stage9_character_description"])
-		create_hash["stage9_tf_description"] = word_wrap(params["transformation"]["stage9_tf_description"])
+		create_hash["stage9_character_description"] = (params["transformation"]["stage9_character_description"])
+		create_hash["stage9_tf_description"] = (params["transformation"]["stage9_tf_description"])
 		create_hash["stage9_tf_picture"] = params["transformation"]["stage9_tf_picture"]
 
-		create_hash["stage10_character_description"] = word_wrap(params["transformation"]["stage10_character_description"])
-		create_hash["stage10_tf_description"] = word_wrap(params["transformation"]["stage10_tf_description"])
+		create_hash["stage10_character_description"] = (params["transformation"]["stage10_character_description"])
+		create_hash["stage10_tf_description"] = (params["transformation"]["stage10_tf_description"])
 		create_hash["stage10_tf_picture"] = params["transformation"]["stage10_tf_picture"]
 
 		create_hash["epilogue"] = params["transformation"]["epilogue"]
@@ -506,44 +508,44 @@ class TransformationController < ApplicationController
 
 		create_hash = {}
 		#Get Text/Picture URLS
-		create_hash["stage1_character_description"] = word_wrap(params["transformation"]["stage1_character_description"])
-		create_hash["stage1_tf_description"] = word_wrap(params["transformation"]["stage1_tf_description"])
+		create_hash["stage1_character_description"] = (params["transformation"]["stage1_character_description"])
+		create_hash["stage1_tf_description"] = (params["transformation"]["stage1_tf_description"])
 		create_hash["stage1_tf_picture"] = params["transformation"]["stage1_tf_picture"]
 
-		create_hash["stage2_character_description"] = word_wrap(params["transformation"]["stage1_character_description"])
-		create_hash["stage2_tf_description"] = word_wrap(params["transformation"]["stage1_tf_description"])
+		create_hash["stage2_character_description"] = (params["transformation"]["stage1_character_description"])
+		create_hash["stage2_tf_description"] = (params["transformation"]["stage1_tf_description"])
 		create_hash["stage2_tf_picture"] = params["transformation"]["stage1_tf_picture"]
 
-		create_hash["stage3_character_description"] = word_wrap(params["transformation"]["stage1_character_description"])
-		create_hash["stage3_tf_description"] = word_wrap(params["transformation"]["stage1_tf_description"])
-		create_hash["stage3_tf_picture"] = word_wrap(params["transformation"]["stage1_tf_picture"])
+		create_hash["stage3_character_description"] = (params["transformation"]["stage1_character_description"])
+		create_hash["stage3_tf_description"] = (params["transformation"]["stage1_tf_description"])
+		create_hash["stage3_tf_picture"] = (params["transformation"]["stage1_tf_picture"])
 
-		create_hash["stage4_character_description"] = word_wrap(params["transformation"]["stage2_character_description"])
-		create_hash["stage4_tf_description"] = word_wrap(params["transformation"]["stage2_tf_description"])
+		create_hash["stage4_character_description"] = (params["transformation"]["stage2_character_description"])
+		create_hash["stage4_tf_description"] = (params["transformation"]["stage2_tf_description"])
 		create_hash["stage4_tf_picture"] = params["transformation"]["stage2_tf_picture"]
 
-		create_hash["stage5_character_description"] = word_wrap(params["transformation"]["stage2_character_description"])
-		create_hash["stage5_tf_description"] = word_wrap(params["transformation"]["stage2_tf_description"])
-		create_hash["stage5_tf_picture"] = word_wrap(params["transformation"]["stage2_tf_picture"])
+		create_hash["stage5_character_description"] = (params["transformation"]["stage2_character_description"])
+		create_hash["stage5_tf_description"] = (params["transformation"]["stage2_tf_description"])
+		create_hash["stage5_tf_picture"] = (params["transformation"]["stage2_tf_picture"])
 
-		create_hash["stage6_character_description"] = word_wrap(params["transformation"]["stage2_character_description"])
-		create_hash["stage6_tf_description"] = word_wrap(params["transformation"]["stage2_tf_description"])
+		create_hash["stage6_character_description"] = (params["transformation"]["stage2_character_description"])
+		create_hash["stage6_tf_description"] = (params["transformation"]["stage2_tf_description"])
 		create_hash["stage6_tf_picture"] = params["transformation"]["stage2_tf_picture"]
 
-		create_hash["stage7_character_description"] = word_wrap(params["transformation"]["stage2_character_description"])
-		create_hash["stage7_tf_description"] = word_wrap(params["transformation"]["stage2_tf_description"])
+		create_hash["stage7_character_description"] = (params["transformation"]["stage2_character_description"])
+		create_hash["stage7_tf_description"] = (params["transformation"]["stage2_tf_description"])
 		create_hash["stage7_tf_picture"] = params["transformation"]["stage2_tf_picture"]
 
-		create_hash["stage8_character_description"] = word_wrap(params["transformation"]["stage3_character_description"])
-		create_hash["stage8_tf_description"] = word_wrap(params["transformation"]["stage3_tf_description"])
+		create_hash["stage8_character_description"] = (params["transformation"]["stage3_character_description"])
+		create_hash["stage8_tf_description"] = (params["transformation"]["stage3_tf_description"])
 		create_hash["stage8_tf_picture"] = params["transformation"]["stage3_tf_picture"]
 
-		create_hash["stage9_character_description"] = word_wrap(params["transformation"]["stage3_character_description"])
-		create_hash["stage9_tf_description"] = word_wrap(params["transformation"]["stage3_tf_description"])
+		create_hash["stage9_character_description"] = (params["transformation"]["stage3_character_description"])
+		create_hash["stage9_tf_description"] = (params["transformation"]["stage3_tf_description"])
 		create_hash["stage9_tf_picture"] = params["transformation"]["stage3_tf_picture"]
 
-		create_hash["stage10_character_description"] = word_wrap(params["transformation"]["stage3_character_description"])
-		create_hash["stage10_tf_description"] = word_wrap(params["transformation"]["stage3_tf_description"])
+		create_hash["stage10_character_description"] = (params["transformation"]["stage3_character_description"])
+		create_hash["stage10_tf_description"] = (params["transformation"]["stage3_tf_description"])
 		create_hash["stage10_tf_picture"] = params["transformation"]["stage3_tf_picture"]
 
 		create_hash["epilogue"] = params["transformation"]["epilogue"]
@@ -681,44 +683,44 @@ class TransformationController < ApplicationController
 
 		create_hash = {}
 		#Get Text/Picture URLS
-		create_hash["stage1_character_description"] = word_wrap(params["transformation"]["stage1_character_description"])
-		create_hash["stage1_tf_description"] = word_wrap(params["transformation"]["stage1_tf_description"])
+		create_hash["stage1_character_description"] = (params["transformation"]["stage1_character_description"])
+		create_hash["stage1_tf_description"] = (params["transformation"]["stage1_tf_description"])
 		create_hash["stage1_tf_picture"] = params["transformation"]["stage1_tf_picture"]
 
-		create_hash["stage2_character_description"] = word_wrap(params["transformation"]["stage1_character_description"])
-		create_hash["stage2_tf_description"] = word_wrap(params["transformation"]["stage1_tf_description"])
+		create_hash["stage2_character_description"] = (params["transformation"]["stage1_character_description"])
+		create_hash["stage2_tf_description"] = (params["transformation"]["stage1_tf_description"])
 		create_hash["stage2_tf_picture"] = params["transformation"]["stage1_tf_picture"]
 
-		create_hash["stage3_character_description"] = word_wrap(params["transformation"]["stage2_character_description"])
-		create_hash["stage3_tf_description"] = word_wrap(params["transformation"]["stage2_tf_description"])
-		create_hash["stage3_tf_picture"] = word_wrap(params["transformation"]["stage2_tf_picture"])
+		create_hash["stage3_character_description"] = (params["transformation"]["stage2_character_description"])
+		create_hash["stage3_tf_description"] = (params["transformation"]["stage2_tf_description"])
+		create_hash["stage3_tf_picture"] = (params["transformation"]["stage2_tf_picture"])
 
-		create_hash["stage4_character_description"] = word_wrap(params["transformation"]["stage2_character_description"])
-		create_hash["stage4_tf_description"] = word_wrap(params["transformation"]["stage2_tf_description"])
+		create_hash["stage4_character_description"] = (params["transformation"]["stage2_character_description"])
+		create_hash["stage4_tf_description"] = (params["transformation"]["stage2_tf_description"])
 		create_hash["stage4_tf_picture"] = params["transformation"]["stage2_tf_picture"]
 
-		create_hash["stage5_character_description"] = word_wrap(params["transformation"]["stage3_character_description"])
-		create_hash["stage5_tf_description"] = word_wrap(params["transformation"]["stage3_tf_description"])
-		create_hash["stage5_tf_picture"] = word_wrap(params["transformation"]["stage3_tf_picture"])
+		create_hash["stage5_character_description"] = (params["transformation"]["stage3_character_description"])
+		create_hash["stage5_tf_description"] = (params["transformation"]["stage3_tf_description"])
+		create_hash["stage5_tf_picture"] = (params["transformation"]["stage3_tf_picture"])
 
-		create_hash["stage6_character_description"] = word_wrap(params["transformation"]["stage3_character_description"])
-		create_hash["stage6_tf_description"] = word_wrap(params["transformation"]["stage3_tf_description"])
+		create_hash["stage6_character_description"] = (params["transformation"]["stage3_character_description"])
+		create_hash["stage6_tf_description"] = (params["transformation"]["stage3_tf_description"])
 		create_hash["stage6_tf_picture"] = params["transformation"]["stage3_tf_picture"]
 
-		create_hash["stage7_character_description"] = word_wrap(params["transformation"]["stage4_character_description"])
-		create_hash["stage7_tf_description"] = word_wrap(params["transformation"]["stage4_tf_description"])
+		create_hash["stage7_character_description"] = (params["transformation"]["stage4_character_description"])
+		create_hash["stage7_tf_description"] = (params["transformation"]["stage4_tf_description"])
 		create_hash["stage7_tf_picture"] = params["transformation"]["stage4_tf_picture"]
 
-		create_hash["stage8_character_description"] = word_wrap(params["transformation"]["stage4_character_description"])
-		create_hash["stage8_tf_description"] = word_wrap(params["transformation"]["stage4_tf_description"])
+		create_hash["stage8_character_description"] = (params["transformation"]["stage4_character_description"])
+		create_hash["stage8_tf_description"] = (params["transformation"]["stage4_tf_description"])
 		create_hash["stage8_tf_picture"] = params["transformation"]["stage4_tf_picture"]
 
-		create_hash["stage9_character_description"] = word_wrap(params["transformation"]["stage5_character_description"])
-		create_hash["stage9_tf_description"] = word_wrap(params["transformation"]["stage5_tf_description"])
+		create_hash["stage9_character_description"] = (params["transformation"]["stage5_character_description"])
+		create_hash["stage9_tf_description"] = (params["transformation"]["stage5_tf_description"])
 		create_hash["stage9_tf_picture"] = params["transformation"]["stage5_tf_picture"]
 
-		create_hash["stage10_character_description"] = word_wrap(params["transformation"]["stage5_character_description"])
-		create_hash["stage10_tf_description"] = word_wrap(params["transformation"]["stage5_tf_description"])
+		create_hash["stage10_character_description"] = (params["transformation"]["stage5_character_description"])
+		create_hash["stage10_tf_description"] = (params["transformation"]["stage5_tf_description"])
 		create_hash["stage10_tf_picture"] = params["transformation"]["stage5_tf_picture"]
 
 		create_hash["epilogue"] = params["transformation"]["epilogue"]
@@ -857,44 +859,44 @@ class TransformationController < ApplicationController
 
 		create_hash = {}
 		#Get Text/Picture URLS
-		create_hash["stage1_character_description"] = word_wrap(params["transformation"]["stage1_character_description"])
-		create_hash["stage1_tf_description"] = word_wrap(params["transformation"]["stage1_tf_description"])
+		create_hash["stage1_character_description"] = (params["transformation"]["stage1_character_description"])
+		create_hash["stage1_tf_description"] = (params["transformation"]["stage1_tf_description"])
 		create_hash["stage1_tf_picture"] = params["transformation"]["stage1_tf_picture"]
 
-		create_hash["stage2_character_description"] = word_wrap(params["transformation"]["stage2_character_description"])
-		create_hash["stage2_tf_description"] = word_wrap(params["transformation"]["stage2_tf_description"])
+		create_hash["stage2_character_description"] = (params["transformation"]["stage2_character_description"])
+		create_hash["stage2_tf_description"] = (params["transformation"]["stage2_tf_description"])
 		create_hash["stage2_tf_picture"] = params["transformation"]["stage2_tf_picture"]
 
-		create_hash["stage3_character_description"] = word_wrap(params["transformation"]["stage3_character_description"])
-		create_hash["stage3_tf_description"] = word_wrap(params["transformation"]["stage3_tf_description"])
-		create_hash["stage3_tf_picture"] = word_wrap(params["transformation"]["stage3_tf_picture"])
+		create_hash["stage3_character_description"] = (params["transformation"]["stage3_character_description"])
+		create_hash["stage3_tf_description"] = (params["transformation"]["stage3_tf_description"])
+		create_hash["stage3_tf_picture"] = (params["transformation"]["stage3_tf_picture"])
 
-		create_hash["stage4_character_description"] = word_wrap(params["transformation"]["stage4_character_description"])
-		create_hash["stage4_tf_description"] = word_wrap(params["transformation"]["stage4_tf_description"])
+		create_hash["stage4_character_description"] = (params["transformation"]["stage4_character_description"])
+		create_hash["stage4_tf_description"] = (params["transformation"]["stage4_tf_description"])
 		create_hash["stage4_tf_picture"] = params["transformation"]["stage4_tf_picture"]
 
-		create_hash["stage5_character_description"] = word_wrap(params["transformation"]["stage5_character_description"])
-		create_hash["stage5_tf_description"] = word_wrap(params["transformation"]["stage5_tf_description"])
-		create_hash["stage5_tf_picture"] = word_wrap(params["transformation"]["stage5_tf_picture"])
+		create_hash["stage5_character_description"] = (params["transformation"]["stage5_character_description"])
+		create_hash["stage5_tf_description"] = (params["transformation"]["stage5_tf_description"])
+		create_hash["stage5_tf_picture"] = (params["transformation"]["stage5_tf_picture"])
 
-		create_hash["stage6_character_description"] = word_wrap(params["transformation"]["stage6_character_description"])
-		create_hash["stage6_tf_description"] = word_wrap(params["transformation"]["stage6_tf_description"])
+		create_hash["stage6_character_description"] = (params["transformation"]["stage6_character_description"])
+		create_hash["stage6_tf_description"] = (params["transformation"]["stage6_tf_description"])
 		create_hash["stage6_tf_picture"] = params["transformation"]["stage6_tf_picture"]
 
-		create_hash["stage7_character_description"] = word_wrap(params["transformation"]["stage7_character_description"])
-		create_hash["stage7_tf_description"] = word_wrap(params["transformation"]["stage7_tf_description"])
+		create_hash["stage7_character_description"] = (params["transformation"]["stage7_character_description"])
+		create_hash["stage7_tf_description"] = (params["transformation"]["stage7_tf_description"])
 		create_hash["stage7_tf_picture"] = params["transformation"]["stage7_tf_picture"]
 
-		create_hash["stage8_character_description"] = word_wrap(params["transformation"]["stage8_character_description"])
-		create_hash["stage8_tf_description"] = word_wrap(params["transformation"]["stage8_tf_description"])
+		create_hash["stage8_character_description"] = (params["transformation"]["stage8_character_description"])
+		create_hash["stage8_tf_description"] = (params["transformation"]["stage8_tf_description"])
 		create_hash["stage8_tf_picture"] = params["transformation"]["stage8_tf_picture"]
 
-		create_hash["stage9_character_description"] = word_wrap(params["transformation"]["stage9_character_description"])
-		create_hash["stage9_tf_description"] = word_wrap(params["transformation"]["stage9_tf_description"])
+		create_hash["stage9_character_description"] = (params["transformation"]["stage9_character_description"])
+		create_hash["stage9_tf_description"] = (params["transformation"]["stage9_tf_description"])
 		create_hash["stage9_tf_picture"] = params["transformation"]["stage9_tf_picture"]
 
-		create_hash["stage10_character_description"] = word_wrap(params["transformation"]["stage10_character_description"])
-		create_hash["stage10_tf_description"] = word_wrap(params["transformation"]["stage10_tf_description"])
+		create_hash["stage10_character_description"] = (params["transformation"]["stage10_character_description"])
+		create_hash["stage10_tf_description"] = (params["transformation"]["stage10_tf_description"])
 		create_hash["stage10_tf_picture"] = params["transformation"]["stage10_tf_picture"]
 
 		create_hash["epilogue"] = params["transformation"]["epilogue"]
@@ -1038,10 +1040,13 @@ class TransformationController < ApplicationController
 
 	def remove_all_html_tags_and_replace_with_bb_tags
 		tfs = Transformation.all
+		#binding.pry
 		tfs.each do |tf|
 			character = Character.find_by_name(tf.character_name)
-			if !(character.nil?)
-			  character.description = Transformation::replace_html_tag_with_bb_code(character.description)
+			if !(tf.character.nil?)
+			  #binding.pry
+			  tf.character.description = Transformation::replace_html_tag_with_bb_code(character.description)
+			  tf.character.save
 			end
 			tf.stage1_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage1_tf_description)
 			tf.stage1_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage1_character_description) 
@@ -1070,39 +1075,12 @@ class TransformationController < ApplicationController
 		redirect_to tf_admin_path
 	end
 
-	def remove_all_html_tags_and_replace_with_bb_tags
+	def remove_all_bb_tags_and_replace_with_bb_tags
 		tfs = Transformation.all
-		tfs.each do |tf|
-			character = Character.find_by_name(tf.character_name)
-			if !(character.nil?)
-			  character.description = Transformation::replace_html_tag_with_bb_code(character.description)
-			end
-			tf.stage1_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage1_tf_description)
-			tf.stage1_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage1_character_description) 
-			tf.stage2_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage2_tf_description)
-			tf.stage2_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage2_character_description) 
-			tf.stage3_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage3_tf_description)
-			tf.stage3_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage3_character_description) 
-			tf.stage4_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage4_tf_description)
-			tf.stage4_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage4_character_description) 
-			tf.stage5_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage5_tf_description)
-			tf.stage5_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage5_character_description) 
-			tf.stage6_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage6_tf_description)
-			tf.stage6_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage6_character_description) 
-			tf.stage7_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage7_tf_description)
-			tf.stage7_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage7_character_description) 
-			tf.stage8_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage8_tf_description)
-			tf.stage8_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage8_character_description) 
-			tf.stage9_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage9_tf_description)
-			tf.stage9_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage9_character_description) 
-			tf.stage10_tf_description = Transformation::replace_html_tag_with_bb_code(tf.stage10_tf_description)
-			tf.stage10_character_description = Transformation::replace_html_tag_with_bb_code(tf.stage10_character_description) 
-			tf.epilogue = Transformation::replace_html_tag_with_bb_code(tf.epilogue)
-			tf.save
-		end
-		flash[:notice] = "All HTML Tags Removed and Replaced with BB Code Tags"
-		redirect_to tf_admin_path
+
 	end
+
+	
 
 		def sanitize_all
 		tfs = Transformation.all
