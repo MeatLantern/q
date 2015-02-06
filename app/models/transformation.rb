@@ -145,7 +145,7 @@ class Transformation < ActiveRecord::Base
   			recent_tf = recent_tf + "#{game.player2_character} has turned back to normal!"
   		else
   			#recent_tf = recent_tf + game.player2_last_tf
-        recent_tf = Transformation::multiple_step_assembler(character2.transformation, previous_p2_stage, game.player2_stage)
+        recent_tf = recent_tf + Transformation::multiple_step_assembler(character2.transformation, previous_p2_stage, game.player2_stage)
   		end 
   	end  	
 
@@ -170,7 +170,7 @@ class Transformation < ActiveRecord::Base
     tf_message = ""
     range.each do |i|
       if !(tf_message).include? array[i]
-        tf_message = tf_message + array[i] + "<br><br>"
+        tf_message = tf_message + array[i] + "[br][br]"
       end
     end
 
@@ -399,7 +399,7 @@ class Transformation < ActiveRecord::Base
     string = string.gsub('<b>', '[b]')
     string = string.gsub('</b>', '[/b]')
     string = string.gsub('<br />', '')
-    string = string.gsub("\n", '')
+    string = string.gsub("\n", ' ')
     string = string.gsub("\r\n", '')
     string = string.gsub("\r", '')
 
