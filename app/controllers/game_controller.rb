@@ -499,12 +499,12 @@ class GameController < ApplicationController
       redirect_to game_rules_path
     else
       if player_username == test_game.player1
-        new_message = test_game.player1_message + "<b>" + params["message"]["Your Message"] + "</b><br>"
+        new_message = test_game.player1_message + "[b]" + params["message"]["Your Message"] + "[/b][br]"
         test_game.player1_message = new_message
         test_game.save
         redirect_to game_show_path
       elsif player_username == test_game.player2
-        new_message = test_game.player1_message + "<i>" + params["message"]["Your Message"] + "</i><br>"
+        new_message = test_game.player1_message + "[i]" + params["message"]["Your Message"] + "[/i][br]"
         test_game.player1_message = new_message
         test_game.save
         redirect_to game_show_path
