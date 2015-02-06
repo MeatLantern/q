@@ -10,6 +10,16 @@ class UsersController < ApplicationController
   def create
   end
 
+  def set_friends_list_empty
+    users = User.all
+    users.each do |user|
+      user.friends_list = ""
+      user.save
+    end
+    flash[:notice] = "Friends Lists Set to Empty String"
+    redirect_to users_admin_path
+  end
+
   def view
     
     x = session["warden.user.user.key"]
@@ -92,4 +102,6 @@ class UsersController < ApplicationController
       redirect_to users_url
     end
   end
+
+  
 end

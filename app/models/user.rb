@@ -9,5 +9,15 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
     
   validates_uniqueness_of :username
+
+  acts_as_messageable
+
+  def name
+  	return current_user.username
+  end
+
+  def mailboxer_email
+  	return current_user.email
+  end
   
 end

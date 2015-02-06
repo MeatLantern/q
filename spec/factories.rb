@@ -1,4 +1,7 @@
-FactoryGirl.define do  factory :suggestion do
+FactoryGirl.define do  factory :message do
+    
+  end
+  factory :suggestion do
     
   end
   factory :comment do

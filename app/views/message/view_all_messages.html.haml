@@ -1,0 +1,45 @@
+%h1 All Messages
+
+%table.table
+  %thead 
+    %tr
+      %th Sender
+      %th Subject
+      %th Unread?
+      %th View
+      %th Delete
+  %tbody
+    -@messages.each do |message|
+      %tr
+        %td= message.sender
+        %td= message.subject
+        %td
+          -if message.is_read
+            ="Read"
+          -else
+            = "Unread"
+        %td= link_to 'View',view_message_path(:id => message.id), :method => :get
+        %td= link_to 'Delete?',delete_message_path(:id => message.id), :method => :post, data: { :confirm => "Are You Sure You Want to Delete this Message? It CAN NOT be undone."}
+%h2 Sent Messages
+%table.table
+  %thead 
+    %tr
+      %th Receiver
+      %th Subject
+      %th Unread?
+      %th View
+      %th Edit?
+      %th Delete
+  %tbody
+    -@messages.each do |message|
+      %tr
+        %td= message.receiver
+        %td= message.subject
+        %td
+          -if message.is_unread
+            ="Unread"
+          -else
+            = "Read"
+        %td= link_to 'View',view_message_path(:id => message.id), :method => :get
+        %td- link_to 'Edit', edit_message_path(:id => message.id), :method => :get
+        %td= link_to 'Delete?',delete_message_path(:id => message.id), :method => :post, data: { :confirm => "Are You Sure You Want to Delete this Message? It CAN NOT be undone."}

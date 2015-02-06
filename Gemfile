@@ -49,6 +49,9 @@ gem 'haml'
 # Use pry for Debugging
 gem 'pry'
 
+#Testing out New Messaging System
+gem 'mailboxer'
+
 gem 'sanitize'
 
 gem 'ruby-bbcode'

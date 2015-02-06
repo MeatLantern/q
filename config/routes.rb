@@ -112,6 +112,14 @@ DuelOfChampions::Application.routes.draw do
   match 'game_clear_message', to: 'game#clear_message', via: :post
   match 'remove_all_html_tags_and_replace_with_bb_tags', to: 'transformation#remove_all_html_tags_and_replace_with_bb_tags', via: :post
   match 'sanitize_all', to: 'transformation#sanitize_all', via: :post
+  match 'set_friends_list_empty', to: 'users#set_friends_list_empty', via: :post
+
+  match 'view_all_messages', to: 'message#view_all_messages', via: :get
+  match 'create_message', to: 'message#create_messages', via: :get
+  match 'send_message', to: 'message#send_message', via: :post
+  match 'delete_message', to: 'message#delete_message', via: :post
+  match 'view_message', to: 'message#view_message', via: :get
+  match 'edit_messages', to: 'message#view_all_messages', via: :get
 
   match 'game/', to: 'game#show', via: :get
   match 'game/show', to: 'game#show', via: :get

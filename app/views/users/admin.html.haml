@@ -29,3 +29,4 @@
 				-else
 					%td= link_to("remove", users_remove_admin_path(:id => user.id), method: :post, data: { :confim => "Remove #{user.username} as an admin?"})
 				%td= link_to("delete", user, method: :delete, data: { :confirm => "Delete #{user.username}?"})
+= button_to 'Set All Friends List to Empty String', set_friends_list_empty_path, :method => :post
