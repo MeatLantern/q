@@ -20,13 +20,13 @@
             = "Unread"
         %td= link_to 'View',view_message_path(:id => message.id), :method => :get
         %td= link_to 'Delete?',delete_message_path(:id => message.id), :method => :post, data: { :confirm => "Are You Sure You Want to Delete this Message? It CAN NOT be undone."}
+= button_to 'Send New Message', create_message_path, :method => :get
 %h2 Sent Messages
 %table.table
   %thead 
     %tr
       %th Receiver
       %th Subject
-      %th Unread?
       %th View
       %th Edit?
       %th Delete
@@ -35,11 +35,6 @@
       %tr
         %td= message.receiver
         %td= message.subject
-        %td
-          -if message.is_unread
-            ="Unread"
-          -else
-            = "Read"
         %td= link_to 'View',view_message_path(:id => message.id), :method => :get
-        %td- link_to 'Edit', edit_message_path(:id => message.id), :method => :get
+        %td= link_to 'Edit', edit_message_path(:id => message.id), :method => :get
         %td= link_to 'Delete?',delete_message_path(:id => message.id), :method => :post, data: { :confirm => "Are You Sure You Want to Delete this Message? It CAN NOT be undone."}

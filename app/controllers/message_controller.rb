@@ -12,25 +12,27 @@ class MessageController < ApplicationController
 
 	def create_message
 		@sender = current_user.username
-		if ! (params[:reciever].nil?)
+		if ! (params[:receiver].nil?)
 			@receiver = params[:receiver]
 		end
 		if !(params[:old_subject]).nil?
-			@old_subject = params[:old_subject]
+			@old_subject = "re:" + params[:old_subject]
 		end
 		@reply_content = params[:reply_content]
-
+		#binding.pry
 	end
 
 	def send_message
 		create_hash = {}
-		create_hash[:sender] = params[:sender]
-		create_hash[:receiver] = params[:receiver]
+		create_hash[:sender] = current_user.username
+		create_hash[:receiver] = params[:transformation][:receiver]
 		create_hash[:subject] = params[:transformation][:subject]
-		create_hash[:message] = params[:transformation][:message]
+		create_hash[:message] = Sanitize.fragment(params[:transformation][:message], Sanitize::Config::RESTRICTED)
 		create_hash[:is_read] = false
+		#binding.pry
 		#Check if Receiver Exists and if it is a Friend
 		rec = User.find_by_username(create_hash[:receiver])
+		#binding.pry
 		if rec.nil?
 			flash[:alert] = "The Message Could Not Be Sent. The Receiver was not found."
 			redirect_to view_all_messages_path
@@ -54,6 +56,8 @@ class MessageController < ApplicationController
 		redirect_to view_all_messages_path
 		else
 			Message.delete(message)
+			flash[:notice] = "Message Deleted"
+			redirect_to view_all_messages_path
 		end
 	end
 
@@ -65,6 +69,8 @@ class MessageController < ApplicationController
 		else
 			@reply_content = @message.message
 		end
+		@receiver = @message.receiver
+		@old_subject = @message.subject
 	end
 
 	def view_message
@@ -75,6 +81,7 @@ class MessageController < ApplicationController
 		else
 			@message.is_read = true
 			@message.save
+			#binding.pry
 		end
 	end
 

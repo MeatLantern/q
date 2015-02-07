@@ -1,0 +1,16 @@
+%h2 View message
+%h4
+  From:
+  = @message.sender
+%h4
+  To:
+  = @message.receiver
+%h3
+  Subject:
+  = @message.subject
+%p
+  %h3 Message:
+  = @message.message.bbcode_to_html.html_safe
+
+= link_to "Send Reply", create_message_path(:receiver => @message.sender, :old_subject => @message.subject, :reply_content => @message.message), :method => :get
+

@@ -1,0 +1,12 @@
+%h3 Send Message
+= form_tag send_message_path do
+  = label :transformation, :receiver, 'Send To:'
+  = text_field :transformation, 'receiver', :value => @receiver
+  = label :transformation, :subject, 'Subject:'
+  = text_field :transformation, 'subject', :value => @old_subject
+  = label :transformation, :message, 'Message'
+  -if !@reply_content.nil?
+    = text_area :transformation, 'message', :size => "40x4", :value => "[quote]" + @reply_content + '[/quote]'
+  -else
+    = text_area :transformation, 'message', :size => "80x8"
+  = submit_tag "Send Message"
