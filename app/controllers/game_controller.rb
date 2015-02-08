@@ -472,6 +472,11 @@ class GameController < ApplicationController
         else
             session[:current_game] = nil 
         end
+    search_hash = {}
+    search_hash[:is_read] = false
+    search_hash[:receiver] = current_user.username 
+    unread_messages = Message.where(search_hash)
+    session[:unread] = "View Messages (#{unread_messages.count})"
     end
  end
 
