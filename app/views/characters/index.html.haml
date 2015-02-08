@@ -83,6 +83,8 @@
       This Character has No Transformation, and thus cannot be used in games until there is one. If you are the creator, please go to "View Profile" and click "Update Transformation" to add a transformation.
 -else
    Currently in Game: Please Finish Your Current Game Before Starting a New One
+%h3 Creator Profile
+=link_to 'View Creator Profile',view_public_profile_path(:username => @character.creator), :method => :get
 %h3 Recent Comments
 %table.table
    %thead 
