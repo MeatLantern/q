@@ -58,6 +58,10 @@ module DuelOfChampions
     config.to_prepare do
         Devise::SessionsController.skip_before_filter :set_unread_messages
         Devise::SessionsController.skip_before_filter :check_if_in_game
+        Devise::RegistrationsController.skip_before_filter :set_unread_messages
+        Devise::RegistrationsController.skip_before_filter :check_if_in_game
+        Devise::PasswordsController.skip_before_filter :check_if_in_game
+        Devise::PasswordsController.skip_before_filter :set_unread_messages
     end
 
 
