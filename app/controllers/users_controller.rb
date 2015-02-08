@@ -10,6 +10,16 @@ class UsersController < ApplicationController
   def create
   end
 
+  def set_profiles_to_no_profile
+    users = User.all
+    users.each do |user|
+      user.profile = "No Profile"
+      user.save
+    end
+    flash[:alert] = "Profiles Set to No Profile"
+    redirect_to game_rules_path
+  end
+
   def set_friends_list_empty
     users = User.all
     users.each do |user|

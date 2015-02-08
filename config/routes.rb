@@ -110,6 +110,7 @@ DuelOfChampions::Application.routes.draw do
   match 'view_public_profile', to: 'users#public_profile', via: :get
   match 'view_all_players', to: 'users#view_all_players', via: :get
   match 'update_profile', to: 'users#update_profile', via: :post
+  match 'set_profiles_to_no_profile', to: 'users#set_profiles_to_no_profile', via: :get
 
   match 'tf_tag_descriptions', to: 'transformation#tf_tag_descriptions', via: :get
   match 'game_clear_message', to: 'game#clear_message', via: :post
