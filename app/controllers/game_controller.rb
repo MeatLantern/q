@@ -5,6 +5,12 @@ class GameController < ApplicationController
   skip_before_filter :authenticate_user! , :only => :check_18
   skip_before_filter :check_18!, :only => :check_18
   skip_before_filter :check_18!, :only => :authorize_18
+  skip_before_filter :check_if_in_game, :only => :check_18
+  skip_before_filter :check_if_in_game, :only => :rules
+  skip_before_filter :check_if_in_game, :only => :authorize_18
+  skip_before_filter :set_unread_messages, :only => :check_18
+  skip_before_filter :set_unread_messages, :only => :rules
+  skip_before_filter :set_unread_messages, :only => :authorize_18
   #def new
   #end
 
@@ -449,7 +455,24 @@ class GameController < ApplicationController
   end
 
  def rules
-
+    if !(current_user.nil?)
+      game_name = current_user.currentgame
+        #binding.pry
+        if !(game_name.nil?)
+          current_game = Game.find_by_game_name(game_name)
+          if(current_game.nil?)
+            #redirect_to game_game_not_found_path
+            flash[:alert] = "Your Game Has Ended. Your Opponent may have Left the Game."
+            current_user.currentgame = nil
+            current_user.save
+            session[:current_game] = nil
+          else
+            session[:current_game] = current_game.game_name
+          end
+        else
+            session[:current_game] = nil 
+        end
+    end
  end
 
  def abilities

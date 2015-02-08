@@ -55,6 +55,11 @@ module DuelOfChampions
 
     # Enable the asset pipeline
     config.assets.enabled = true
+    config.to_prepare do
+        Devise::SessionsController.skip_before_filter :set_unread_messages
+        Devise::SessionsController.skip_before_filter :check_if_in_game
+    end
+
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
