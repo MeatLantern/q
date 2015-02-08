@@ -17,9 +17,9 @@
         %td= link_to "Send Private Message", create_message_path(:receiver => admin.username), :method=> :get
         %td
           -if current_user.friends_list.include?(admin.username)
-            Remove From Friends List
+            = button_to 'Remove from Friends List', remove_from_friends_list_path(:username => admin.username), :method => :post
           -else
-            Add to Friends List
+            = button_to 'Add to Friends List', add_to_friends_list_path(:username => admin.username), :method => :post
 %h3 Friends
 %table.table
   %thead
