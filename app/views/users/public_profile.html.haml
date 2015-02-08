@@ -1,0 +1,32 @@
+%h1
+  Profile for: 
+  =@user.username
+
+%h3 Profile
+= @user.profile.bbcode_to_html.html_safe
+%h4
+  RP Preferences: 
+  = @user.rp_pref
+%h4
+  Favorite From of Transformation: 
+  = @user.fave_tf
+%strong Friend Settings
+-if current_user.friends_list.include?(@user.username)
+  = button_to 'Remove from Friends List', remove_from_friends_list_path(:username => @user.username), :method => :post
+-else
+  = button_to 'Add to Friends List', add_to_friends_list_path(:username => @user.username), :method => :post
+%h4 Send Private Message?
+= link_to "Send Private Message", create_message_path(:receiver => @user.username), :method=> :get
+%h3
+  Characters Created by 
+  =@user.username
+%table#characters
+  %thead
+    %tr
+      %th Name  	  
+      %th Character Sheet 
+  %tbody
+    - @characters.each do |character|
+      %tr 
+        %td= character.name
+        %td= link_to "#{character.name}'s Character Sheet", characters_path(:name => character.name), :method=> :get

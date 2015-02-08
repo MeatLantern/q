@@ -449,34 +449,6 @@ class GameController < ApplicationController
   end
 
  def rules
-    x = session["warden.user.user.key"]
-
-    #binding.pry
-
-    if(not x.nil?)
-      y = User.find(x[0])
-      z = y[0]
-      #binding.pry
-      game_name = z["currentgame"]
-      #binding.pry
-      #binding.pry
-      if(not game_name.nil?)
-        current_game = Game.find_by_game_name(game_name)
-        if(current_game.nil?)
-          #redirect_to game_game_not_found_path
-          z.currentgame = nil
-          z.save
-          session[:current_game] = nil
-        else
-          session[:current_game] = current_game.game_name
-        end
-      else
-          #binding.pry
-          session[:current_game] = nil 
-      end
-    else
-      session[:current_game] = nil
-    end
 
  end
 

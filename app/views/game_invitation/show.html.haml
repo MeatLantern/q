@@ -24,8 +24,12 @@
           = link_to ' Leave Game ', leave_invite_path(:invite_id => @invite.id), :method => :post, :confirm => 'Are you sure you want to leave this game?'
         -else
           Game Filled
-      %td= link_to ' Choose character ', multiplayer_select_character_path(:player_name => @invite.player1_username, :invite_id => @invite.id, :character => 1, :transformation => @tf_hash, :pref => @pref), :method => :get
-      %td= link_to ' Choose character ', multiplayer_select_character_path(:player_name => @invite.player2_username, :invite_id => @invite.id, :character => 2, :transformation => @tf_hash, :pref => @pref), :method => :get
+      %td
+        -if current_user.username == @invite.player1_username
+          = link_to ' Choose character ', multiplayer_select_character_path(:player_name => @invite.player1_username, :invite_id => @invite.id, :character => 1, :transformation => @tf_hash, :pref => @pref), :method => :get
+      %td
+        - if current_user.username == @invite.player2_username
+          = link_to ' Choose character ', multiplayer_select_character_path(:player_name => @invite.player2_username, :invite_id => @invite.id, :character => 2, :transformation => @tf_hash, :pref => @pref), :method => :get
 -if @invite.ready == true
   = button_to 'Start Game?', multiplayer_start_game_path(:invite_id => @invite.id), :method => :post, :confirm => 'Are you sure you want to start the game?'
 

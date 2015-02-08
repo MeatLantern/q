@@ -59,7 +59,7 @@
 -if @current_game.player2 != "AI"
   %h4 
     Last Message or Action:
-    = time_ago_in_words(Time.now - @current_game.updated_at)
+    = time_ago_in_words( @current_game.updated_at)
 %p
   %strong
     = @current_game.flavor_message.bbcode_to_html.html_safe

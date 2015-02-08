@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150206220618) do
+ActiveRecord::Schema.define(:version => 20150207233520) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(:version => 20150206220618) do
     t.integer  "upvotes"
   end
 
+  add_index "characters", ["name"], :name => "index_characters_on_name"
+
   create_table "comments", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -67,6 +69,8 @@ ActiveRecord::Schema.define(:version => 20150206220618) do
     t.binary   "ready"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+    t.string   "rp_pref"
+    t.text     "fave_tf"
   end
 
   create_table "games", :force => true do |t|
@@ -108,6 +112,8 @@ ActiveRecord::Schema.define(:version => 20150206220618) do
     t.text     "tf_message",           :limit => 255
   end
 
+  add_index "games", ["game_name"], :name => "index_games_on_game_name"
+
   create_table "invitation_preferences", :force => true do |t|
     t.integer  "game_invitation_id"
     t.boolean  "is_adult"
@@ -135,59 +141,6 @@ ActiveRecord::Schema.define(:version => 20150206220618) do
     t.datetime "updated_at",         :null => false
   end
 
-  create_table "mailboxer_conversation_opt_outs", :force => true do |t|
-    t.integer "unsubscriber_id"
-    t.string  "unsubscriber_type"
-    t.integer "conversation_id"
-  end
-
-  add_index "mailboxer_conversation_opt_outs", ["conversation_id"], :name => "index_mailboxer_conversation_opt_outs_on_conversation_id"
-  add_index "mailboxer_conversation_opt_outs", ["unsubscriber_id", "unsubscriber_type"], :name => "index_mailboxer_conversation_opt_outs_on_unsubscriber_id_type"
-
-  create_table "mailboxer_conversations", :force => true do |t|
-    t.string   "subject",    :default => ""
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
-  end
-
-  create_table "mailboxer_notifications", :force => true do |t|
-    t.string   "type"
-    t.text     "body"
-    t.string   "subject",              :default => ""
-    t.integer  "sender_id"
-    t.string   "sender_type"
-    t.integer  "conversation_id"
-    t.boolean  "draft",                :default => false
-    t.string   "notification_code"
-    t.integer  "notified_object_id"
-    t.string   "notified_object_type"
-    t.string   "attachment"
-    t.datetime "updated_at",                              :null => false
-    t.datetime "created_at",                              :null => false
-    t.boolean  "global",               :default => false
-    t.datetime "expires"
-  end
-
-  add_index "mailboxer_notifications", ["conversation_id"], :name => "index_mailboxer_notifications_on_conversation_id"
-  add_index "mailboxer_notifications", ["notified_object_id", "notified_object_type"], :name => "index_mailboxer_notifications_on_notified_object_id_and_type"
-  add_index "mailboxer_notifications", ["sender_id", "sender_type"], :name => "index_mailboxer_notifications_on_sender_id_and_sender_type"
-  add_index "mailboxer_notifications", ["type"], :name => "index_mailboxer_notifications_on_type"
-
-  create_table "mailboxer_receipts", :force => true do |t|
-    t.integer  "receiver_id"
-    t.string   "receiver_type"
-    t.integer  "notification_id",                                  :null => false
-    t.boolean  "is_read",                       :default => false
-    t.boolean  "trashed",                       :default => false
-    t.boolean  "deleted",                       :default => false
-    t.string   "mailbox_type",    :limit => 25
-    t.datetime "created_at",                                       :null => false
-    t.datetime "updated_at",                                       :null => false
-  end
-
-  add_index "mailboxer_receipts", ["notification_id"], :name => "index_mailboxer_receipts_on_notification_id"
-  add_index "mailboxer_receipts", ["receiver_id", "receiver_type"], :name => "index_mailboxer_receipts_on_receiver_id_and_receiver_type"
-
   create_table "messages", :force => true do |t|
     t.string   "sender"
     t.string   "receiver"
@@ -198,6 +151,9 @@ ActiveRecord::Schema.define(:version => 20150206220618) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "messages", ["receiver"], :name => "index_messages_on_receiver"
+  add_index "messages", ["sender"], :name => "index_messages_on_sender"
 
   create_table "reports", :force => true do |t|
     t.string   "character_name"
@@ -294,6 +250,8 @@ ActiveRecord::Schema.define(:version => 20150206220618) do
     t.string   "creator"
   end
 
+  add_index "transformations", ["character_name"], :name => "index_transformations_on_character_name"
+
   create_table "users", :force => true do |t|
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
@@ -313,9 +271,13 @@ ActiveRecord::Schema.define(:version => 20150206220618) do
     t.string   "multi_ready"
     t.text     "upvote_checker"
     t.text     "friends_list"
+    t.text     "profile"
+    t.string   "rp_pref"
+    t.text     "fave_tf"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["username"], :name => "index_users_on_username"
 
 end

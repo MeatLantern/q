@@ -1,7 +1,7 @@
 %h1 Current Games
 
 = flash[:warning]
-
+All Players Shown in Gold are on Your Friends List. This will only be shown for Player 1.
 -if (session[:current_game].nil?)
   %p
     You are not currently in a game.
@@ -15,11 +15,19 @@
       %th Player 1
       %th Player 2
       %th More Info
+      %th RP Preferences
+      %th Favorite TF Type
   %tbody
     - @invites.each do |invite|
       %tr
-        %td= invite.player1_username
+        %td
+          -if current_user.friends_list.include?(invite.player1_username)
+            = "[color=gold]#{invite.player1_username}[/color]".bbcode_to_html.html_safe
+          -else
+            = invite.player1_username
         %td= invite.player2_username
         %td= link_to "Show Invite", game_invitation_show_path(:invite => invite)
+        %td= invite.rp_pref
+        %td= invite.fave_tf
 
 = link_to 'Add New Invitation', new_game_invitation_path

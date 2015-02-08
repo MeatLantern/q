@@ -107,12 +107,19 @@ DuelOfChampions::Application.routes.draw do
   match 'view', to: 'users#view', via: :post
   match 'view', to: 'users#view', via: :get
   match 'users/index', to: 'users#index', via: :post
+  match 'view_public_profile', to: 'users#public_profile', via: :get
+  match 'view_all_players', to: 'users#view_all_players', via: :get
+  match 'update_profile', to: 'users#update_profile', via: :post
 
   match 'tf_tag_descriptions', to: 'transformation#tf_tag_descriptions', via: :get
   match 'game_clear_message', to: 'game#clear_message', via: :post
   match 'remove_all_html_tags_and_replace_with_bb_tags', to: 'transformation#remove_all_html_tags_and_replace_with_bb_tags', via: :post
   match 'sanitize_all', to: 'transformation#sanitize_all', via: :post
   match 'set_friends_list_empty', to: 'users#set_friends_list_empty', via: :post
+  match 'add_to_friends_list', to: 'users#add_to_friends_list', via: :post
+  match 'remove_from_friends_list', to: 'users#remove_from_friends_list', via: :post
+  match 'edit_rp_pref', to: 'users#edit_rp_pref', via: :post
+  match 'edit_fave_tf', to: 'users#edit_fave_tf', via: :post
 
   match 'view_all_messages', to: 'message#view_all_messages', via: :get
   match 'create_message', to: 'message#create_message', via: :get

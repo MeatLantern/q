@@ -1,0 +1,77 @@
+%h1 View All Players
+%p
+  All Players are shown here in alphabetical order. If looking for a particular player, you may wish to use (ctrl-f). Players on your friends list are displayed in gold.
+%h3 Admins
+%table.table
+  %thead
+    %tr
+      %th Name  	  
+      %th View Profile 
+      %th Send Private Message
+      %th Add To Friends List
+  %tbody
+    - @admins.each do |admin|
+      %tr 
+        %td= admin.username
+        %td= link_to "#{admin.username}'s Profile", view_public_profile_path(:username => admin.username), :method=> :get
+        %td= link_to "Send Private Message", create_message_path(:receiver => admin.username), :method=> :get
+        %td
+          -if current_user.friends_list.include?(admin.username)
+            Remove From Friends List
+          -else
+            Add to Friends List
+%h3 Friends
+%table.table
+  %thead
+    %tr
+      %th Name  	  
+      %th View Profile 
+      %th Send Private Message
+      %th Add To Friends List
+      %th Favorite TF Type
+      %th RP Preferences
+  %tbody
+    - @friends.each do |admin|
+      %tr 
+        %td
+          -if current_user.friends_list.include?(admin.username)
+            = "[color=gold]#{admin.username}[/color]".bbcode_to_html.html_safe
+          -else
+            = admin.username
+        %td= link_to "#{admin.username}'s Profile", view_public_profile_path(:username => admin.username), :method=> :get
+        %td= link_to "Send Private Message", create_message_path(:receiver => admin.username), :method=> :get
+        %td
+          -if current_user.friends_list.include?(admin.username)
+            = button_to 'Remove from Friends List', remove_from_friends_list_path(:username => admin.username), :method => :post
+          -else
+            = button_to 'Add to Friends List', add_to_friends_list_path(:username => admin.username), :method => :post
+        %td= admin.fave_tf
+        %td= admin.rp_pref
+
+%h3 All Players
+%table.table
+  %thead
+    %tr
+      %th Name  	  
+      %th View Profile 
+      %th Send Private Message
+      %th Add To Friends List
+      %th Favorite TF Type
+      %th RP Preferences
+  %tbody
+    - @players.each do |admin|
+      %tr 
+        %td
+          -if current_user.friends_list.include?(admin.username)
+            = "[color=gold]#{admin.username}[/color]".bbcode_to_html.html_safe
+          -else
+            = admin.username
+        %td= link_to "#{admin.username}'s Profile", view_public_profile_path(:username => admin.username), :method=> :get
+        %td= link_to "Send Private Message", create_message_path(:receiver => admin.username), :method=> :get
+        %td
+          -if current_user.friends_list.include?(admin.username)
+            = button_to 'Remove from Friends List', remove_from_friends_list_path(:username => admin.username), :method => :post
+          -else
+            = button_to 'Add to Friends List', add_to_friends_list_path(:username => admin.username), :method => :post
+        %td= admin.fave_tf
+        %td= admin.rp_pref

@@ -30,6 +30,30 @@
   Characters Upvoted: 
   = current_user.upvote_checker
 
+%h3 
+  Public Profile
+%p
+  = current_user.profile.bbcode_to_html.html_safe
+%p
+  %h4 Update Public Profile (Allows BBCodes)
+  = form_tag update_profile_path do
+    = label :transformation, :profile, 'New Profile'
+    = text_area :transformation, 'profile', :size => "60x6", :value => current_user.profile
+    = submit_tag "Submit New Profile"
+%h3 RP Preferences
+%strong
+  = current_user.rp_pref
+= form_tag edit_rp_pref_path do
+  = label :transformation, :rp_pref, 'RP Preferences'
+  = select :transformation, :rp_pref, ["No RP","Neutral","Loves to RP"], :value => current_user.rp_pref
+  = submit_tag 'Edit Rp Preferences'
+%h3 Favorite TF Genre
+%strong
+  = current_user.fave_tf
+= form_tag edit_fave_tf_path do
+  = label :transformation, :fave_tf, 'Favorite TF'
+  = text_field :transformation, :fave_tf, :value => current_user.fave_tf
+  = submit_tag 'Edit Favorite TF'
 %h3 Admin Reports
 -if ! (@reports.nil?)
   %table#characters

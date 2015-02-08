@@ -17,7 +17,7 @@ class GameInvitationController < ApplicationController
     	y = User.find(x[0])
     	z = y[0]
     	player1_username = z["username"]
-    	create_hash = {"player1_username" => player1_username, "player2_username" => nil, "player1_character" => nil, "player2_character" => nil, "ready" => false}
+    	create_hash = {"player1_username" => player1_username, "player2_username" => nil, "player1_character" => nil, "player2_character" => nil, "ready" => false, "rp_pref" => current_user.rp_pref, "fave_tf" => current_user.fave_tf}
     	game = GameInvitation.create!(create_hash)
     	create_hash = {:is_adult => true, :is_M2F => true, :is_F2M => true, :is_race_change => true, :is_age_reg => true, :is_age_pro => true, :is_furry => true, :is_animal => true, :is_futa => true, :is_mind => true, :is_bdsm => true, :is_pregnant => true, :is_inanimate => true, :is_growth => true, :is_shrink => true, :is_weight_gain => true, :is_fantasy => true, :is_bimbo => true, :is_robot => true, :is_monster_girl => true, :is_bizarre => true }
     	game.invitation_preferences = InvitationPreferences.create!(create_hash)

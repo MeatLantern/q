@@ -8,6 +8,8 @@ class MessageController < ApplicationController
 		search_hash = {}
 		search_hash[:sender] = current_user.username
 		@sent_messages = Message.where(search_hash)
+		@sent_messages = @sent_messages.order("created_at DESC")
+		#binding.pry
 	end
 
 	def create_message

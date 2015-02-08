@@ -23,8 +23,9 @@
                 #logout-button
                   = button_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'
                   = button_to "Rules Page", game_rules_path, :method => :get
-                  = button_to "View Profile", view_path, :current => true
+                  = button_to "View My Profile", view_path, :current => true
                   = button_to session[:unread], view_all_messages_path, :method => :get
+                  = button_to "View All Players", view_all_players_path, :method => :get
                 -if current_user.is_admin
                   = button_to "Users Admin Controls", users_admin_path, :method => :post
                   = button_to "Game Admin Controls", game_admin_path, :method => :get

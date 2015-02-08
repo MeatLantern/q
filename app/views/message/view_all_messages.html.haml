@@ -31,7 +31,7 @@
       %th Edit?
       %th Delete
   %tbody
-    -@messages.each do |message|
+    -@sent_messages.each do |message|
       %tr
         %td= message.receiver
         %td= message.subject
