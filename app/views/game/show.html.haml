@@ -244,6 +244,21 @@
       .col-sm-4.col-md-4.col-lg-4
         = button_to "Leave Game?", "game/destroy_current_game", :confirm => "Are you sure you want to quit the game? NOTE: You will NOT be able to come back to this game.", :method => :post
   .row
+    -if @player2 != "AI" 
+      -if @player1 == @player_username
+        -if current_user.friends_list.include?(@player2)
+          = button_to 'Remove from Friends List', remove_from_friends_list_path(:username => @player2), :method => :post
+        -else
+          = button_to 'Add to Friends List', add_to_friends_list_path(:username => @player2), :method => :post
+        = link_to "Send Private Message", create_message_path(:receiver => @player2), :method=> :get
+      -else
+        -if current_user.friends_list.include?(@player1)
+          = button_to 'Remove from Friends List', remove_from_friends_list_path(:username => @player1), :method => :post
+        -else
+          = button_to 'Add to Friends List', add_to_friends_list_path(:username => @player1), :method => :post
+        = link_to "Send Private Message", create_message_path(:receiver => @player1), :method=> :get
+
+  .row
     %table.table
       %thead
         %tr
