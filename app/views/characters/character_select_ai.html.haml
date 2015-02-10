@@ -1,3 +1,4 @@
+= javascript_include_tag 'application.js'
 -if (session[:current_game].nil?)
 
   %h2 Can't Find Your Character?
@@ -61,6 +62,11 @@
   %p
     %strong Including Search Type: 
     For the Including Search type, by checking on a TF Tag, you are saying you ONLY want character that include that tag. For example, if you click on the "Male to Female" tag, only characters with the "Male to Female" tag will appear in your list. For example, if Bob has the "Male to Female" and "Furry" tags, he will appear in your revised list. NOTE: If you put in multiple tags, the characters must include ALL of the tags. For example, if you choose to include "Male to Female", "Complete", and "Fully Illustrated" as your checks, any character without all THREE tags will not be shown. For example, if Bob has the "Male to Female", "Furry", and Complete" tags, then he will NOT be shown in the list since he doesn't have the "Fully Illustrated" tag.
+  %p
+    %strong Check/Uncheck All Buttons
+    For the "Check All" and "Uncheck All" buttons, they will simply change the checkboxes. You must press "Edit Preferences" to actually affect change the search preferences. Thanks!
+  = button_to "Check All", check_all_boxes_path(:origin => "single")
+  = button_to "Uncheck All", uncheck_all_boxes_path(:origin => "single")
 
   = form_tag character_character_select_ai_path do
     %table.table
@@ -193,3 +199,9 @@
   = button_to "Back to Current Game", game_show_path, :method => :get
 %p
   = button_to 'Create a New Character',  new_character_path, :method => :get, :id => 'new_character'
+
+:javascript
+  $('#check_all').on("click", function(){ $('input[type="checkbox"]').click(); });
+  var toggleChecked = function() { $('input[type="checkbox"]').click(); });
+  $('.select-all').live('click', function(){
+ 

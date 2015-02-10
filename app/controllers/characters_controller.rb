@@ -432,32 +432,34 @@ class CharactersController < ApplicationController
       search_hash["is_completed"] = true
       @characters = Transformation.where(search_hash)
       #Transformation::initial_button_preferences
-      button_hash = {}
-      button_hash['is_adult'] = true
-      button_hash['is_M2F'] = true
-      button_hash['is_F2M'] = true
-      button_hash['is_race_change'] = true
-      button_hash['is_age_reg'] = true
-      button_hash['is_age_pro'] = true
-      button_hash['is_furry'] = true
-      button_hash['is_animal'] = true
-      button_hash['is_futa'] = true
-      button_hash['is_mind'] = true
-      button_hash['is_bdsm'] = true
-      button_hash['is_pregnant'] = true
-      button_hash['is_inanimate'] = true
-      button_hash['is_growth'] = true
-      button_hash['is_shrink'] = true
-      button_hash['is_weight_gain'] = true
-      button_hash['is_fantasy'] = true
-      button_hash['is_bizarre'] = true
-      button_hash['is_bimbo'] = true
-      button_hash['is_robot'] = true
-      button_hash['is_monster_girl'] = true
-      button_hash['is_completed'] = true
-      button_hash['is_full_picture'] = true
-      session["button_pref"] = button_hash
-      @button_hash = button_hash
+      if session["button_pref"].nil?
+        button_hash = {}
+        button_hash['is_adult'] = true
+        button_hash['is_M2F'] = true
+        button_hash['is_F2M'] = true
+        button_hash['is_race_change'] = true
+        button_hash['is_age_reg'] = true
+        button_hash['is_age_pro'] = true
+        button_hash['is_furry'] = true
+        button_hash['is_animal'] = true
+        button_hash['is_futa'] = true
+        button_hash['is_mind'] = true
+        button_hash['is_bdsm'] = true
+        button_hash['is_pregnant'] = true
+        button_hash['is_inanimate'] = true
+        button_hash['is_growth'] = true
+        button_hash['is_shrink'] = true
+        button_hash['is_weight_gain'] = true
+        button_hash['is_fantasy'] = true
+        button_hash['is_bizarre'] = true
+        button_hash['is_bimbo'] = true
+        button_hash['is_robot'] = true
+        button_hash['is_monster_girl'] = true
+        button_hash['is_completed'] = true
+        button_hash['is_full_picture'] = true
+        session["button_pref"] = button_hash
+      end
+      @button_hash = session["button_pref"]
     else
       #@characters = Transformation.all
       if params["transformation"].nil?
@@ -468,13 +470,16 @@ class CharactersController < ApplicationController
         if @button_hash.nil?
           @button_hash = {}
         end
-        preferences.each do |key, value|
-          if value == "0"
-            @button_hash[key] = false
-          elsif value == "1"
-            @button_hash[key] = true
+        if params[:all_button].nil?
+          preferences.each do |key, value|
+            if value == "0"
+              @button_hash[key] = false
+            elsif value == "1"
+              @button_hash[key] = true
+            end
           end
         end
+        #binding.pry
         session["button_pref"] = button_hash
       else
         preferences = params["transformation"]
@@ -587,7 +592,9 @@ class CharactersController < ApplicationController
       button_hash['is_monster_girl'] = true
       button_hash['is_completed'] = true
       button_hash['is_full_picture'] = true
-      session["button_pref"] = button_hash
+      if session["button_pref"].nil?
+        session["button_pref"] = button_hash
+      end
       @button_hash = button_hash
     else
       #@characters = Transformation.all
@@ -599,13 +606,15 @@ class CharactersController < ApplicationController
         if @button_hash.nil?
           @button_hash = {}
         end
-        preferences.each do |key, value|
-          if value == "0"
-            @button_hash[key] = false
-          elsif value == "1"
-            @button_hash[key] = true
+        if params[:all_button].nil?
+          preferences.each do |key, value|
+            if value == "0"
+              @button_hash[key] = false
+            elsif value == "1"
+              @button_hash[key] = true
+            end
           end
-        end
+       end
         session["button_pref"] = button_hash
       else
         preferences = params["transformation"]
@@ -697,5 +706,84 @@ class CharactersController < ApplicationController
     else
       @tag_list = Transformation::get_tag_list(@character.transformation)
     end
+  end
+
+  def check_all_boxes
+     button_hash = {}
+      button_hash['is_adult'] = true
+      button_hash['is_M2F'] = true
+      button_hash['is_F2M'] = true
+      button_hash['is_race_change'] = true
+      button_hash['is_age_reg'] = true
+      button_hash['is_age_pro'] = true
+      button_hash['is_furry'] = true
+      button_hash['is_animal'] = true
+      button_hash['is_futa'] = true
+      button_hash['is_mind'] = true
+      button_hash['is_bdsm'] = true
+      button_hash['is_pregnant'] = true
+      button_hash['is_inanimate'] = true
+      button_hash['is_growth'] = true
+      button_hash['is_shrink'] = true
+      button_hash['is_weight_gain'] = true
+      button_hash['is_fantasy'] = true
+      button_hash['is_bizarre'] = true
+      button_hash['is_bimbo'] = true
+      button_hash['is_robot'] = true
+      button_hash['is_monster_girl'] = true
+      button_hash['is_completed'] = true
+      button_hash['is_full_picture'] = true
+      session["button_pref"] = button_hash
+      origin = params[:origin]
+      if (origin == "single")
+        redirect_to character_character_select_ai_path(:all_button => true)
+      elsif (origin == "choose_opponent")
+        redirect_to select_opponent_ai_path(:name => params[:name], :all_button => true), :method => :post
+      elsif (origin == "multiplayer")
+        redirect_to multiplayer_select_character_path(:all_button => true, :player_name => params[:player_name], :invite_id => params[:invite_id], :character => params[:character], :rules => params[:rules], :pref => params[:pref])
+      else
+        flash[:alert] = "There was a Problem Checking All Boxes. Please Try Again."
+        redirect_to game_rules_path
+      end
+  end
+
+  def uncheck_all_boxes
+     button_hash = {}
+      button_hash['is_adult'] = false
+      button_hash['is_M2F'] = false
+      button_hash['is_F2M'] = false
+      button_hash['is_race_change'] = false
+      button_hash['is_age_reg'] = false
+      button_hash['is_age_pro'] = false
+      button_hash['is_furry'] = false
+      button_hash['is_animal'] = false
+      button_hash['is_futa'] = false
+      button_hash['is_mind'] = false
+      button_hash['is_bdsm'] = false
+      button_hash['is_pregnant'] = false
+      button_hash['is_inanimate'] = false
+      button_hash['is_growth'] = false
+      button_hash['is_shrink'] = false
+      button_hash['is_weight_gain'] = false
+      button_hash['is_fantasy'] = false
+      button_hash['is_bizarre'] = false
+      button_hash['is_bimbo'] = false
+      button_hash['is_robot'] = false
+      button_hash['is_monster_girl'] = false
+      button_hash['is_completed'] = false
+      button_hash['is_full_picture'] = false
+      session["button_pref"] = button_hash
+      origin = params[:origin]
+      #binding.pry
+      if (origin == "single")
+        redirect_to character_character_select_ai_path(:all_button => true)
+      elsif (origin == "choose_opponent")
+        redirect_to select_opponent_ai_path(:name => params[:name], :all_button => true), :method => :post
+      elsif (origin == "multiplayer")
+        redirect_to multiplayer_select_character_path(:all_button => true, :player_name => params[:player_name], :invite_id => params[:invite_id], :character => params[:character], :rules => params[:rules], :pref => params[:pref])
+      else
+        flash[:alert] = "There was a Problem with Unchecking All Boxes. Please Try Again."
+        redirect_to game_rules_path
+      end
   end
 end

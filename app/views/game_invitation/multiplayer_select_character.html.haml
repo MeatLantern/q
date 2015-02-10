@@ -57,6 +57,12 @@
           %td= character.creator
           %td= character.upvotes
   %h3 Select TF Types
+
+  %p
+    %strong Check/Uncheck All Buttons
+    For the "Check All" and "Uncheck All" buttons, they will simply change the checkboxes. You must press "Edit Preferences" to actually affect change the search preferences. Thanks!
+  = button_to "Check All", check_all_boxes_path(:origin => "multiplayer", :player_name => @name, :invite_id => @invite_id, :character => @c, :rules => @rules, :pref => @pref)
+  = button_to "Uncheck All", uncheck_all_boxes_path(:origin => "multiplayer", :player_name => @name, :invite_id => @invite_id, :character => @c, :rules => @rules, :pref => @pref)
   To prevent a type of TF from appearing in your list, uncheck the box and click "Edit Preferences"
   = form_tag multiplayer_select_character_path(:player_name => @name, :invite_id => @invite_id, :character => @c, :rules => @rules, :pref => @pref) do
     %table.table

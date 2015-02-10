@@ -13,7 +13,9 @@ class UsersController < ApplicationController
   def set_profiles_to_no_profile
     users = User.all
     users.each do |user|
-      user.profile = "No Profile"
+      if user.profile.nil?
+        user.profile = "No Profile"
+      end
       user.save
     end
     flash[:alert] = "Profiles Set to No Profile"
@@ -59,6 +61,14 @@ class UsersController < ApplicationController
 
     @reports = Report.where(:reporter => @current_username)
 
+    if current_user.profile.nil?
+      current_user.profile = "No Profile"
+      current_user.save
+    end
+    if current_user.rp_pref.nil?  
+      current_user.rp_pref = "Neutral"
+      current_user.save
+    end
   end
 
   def edit

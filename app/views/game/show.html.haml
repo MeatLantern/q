@@ -78,7 +78,10 @@
         %div
           %p
             Player Name:
-            = @player1
+            -if current_user.friends_list.include? (@player1)
+              = "[color=gold]#{@player1}[/color]".bbcode_to_html.html_safe
+            -else
+              =@player1
           %p
             Character:
             = @p1_name
@@ -125,7 +128,12 @@
         %div
           %p
             Player Name:
-            = @player2
+            -if current_user.friends_list.include? (@player2)
+              = "[color=gold]#{@player2}[/color]".bbcode_to_html.html_safe
+            -elsif @player2 == "AI"
+              = "[color=red]AI[/color]".bbcode_to_html.html_safe
+            -else
+              =@player2
           %p
             Character:
             = @p2_name

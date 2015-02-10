@@ -96,7 +96,9 @@ class GameInvitationController < ApplicationController
       		button_hash['is_monster_girl'] = true
       		button_hash['is_completed'] = true
       		button_hash['is_full_picture'] = true
-      		session["button_pref"] = button_hash
+          if session["button_pref"].nil?
+      		  session["button_pref"] = button_hash
+          end
       		@button_hash = button_hash
       	else
 	       #@characters = Transformation.all
@@ -108,11 +110,13 @@ class GameInvitationController < ApplicationController
         if @button_hash.nil?
           @button_hash = {}
         end
-        preferences.each do |key, value|
-          if value == "0"
-            @button_hash[key] = false
-          elsif value == "1"
-            @button_hash[key] = true
+        if params[:all_button].nil?
+          preferences.each do |key, value|
+            if value == "0"
+              @button_hash[key] = false
+            elsif value == "1"
+              @button_hash[key] = true
+            end
           end
         end
         session["button_pref"] = button_hash
