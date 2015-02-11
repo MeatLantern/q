@@ -58,6 +58,10 @@ class GameController < ApplicationController
         @p1_turn = false
       end
 
+      if current_user.friends_list.nil?
+        current_user.friends_list = ""
+        current_user.save
+      end
       #test_game = Game.find(1)
       @player1 = test_game.player1
       @player2 = test_game.player2
