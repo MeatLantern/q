@@ -182,14 +182,14 @@
           %h3 Character Epilogue
           %p
             %strong
-              = @p1_character.transformation.epilogue
+              = @p1_character.transformation.epilogue.bbcode_to_html.html_safe
         = link_to "View #{@p1_character.name}'s Full Transformation", transformation_show_path(:name => @p1_character.name), :method => :get
       -if @p2_hp <= 0
         -if @p2_character.transformation.epilogue != "No Description"
           %h2 Character Epilogue
           %p
             %strong
-              = @p2_character.transformation.epilogue
+              = @p2_character.transformation.epilogue.bbcode_to_html.html_safe
         = link_to "View #{@p2_character.name}'s Full Transformation", transformation_show_path(:name => @p2_character.name), :method => :get
       -if @player2 != "AI"
         = button_to "Reset Game?", "game/cpu_reset_game", :confirm => "Are you sure you want to restart the game?", :method => :post
