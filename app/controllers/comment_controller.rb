@@ -62,7 +62,9 @@ class CommentController < ApplicationController
 			search_hash = {}
 			search_hash[:flag] = true
 			@comments = Comment.where(search_hash)
-			@all_comments = Comment.all
+			search_hash = {}
+			@all_comments = Comment.where(search_hash)
+			@all_comments = @all_comments.order("created_at ASC")
 		else
 			redirect_to game_rules_path
 		end
