@@ -1378,7 +1378,7 @@ class Game < ActiveRecord::Base
     if alt == false
       answer = {"ability_name" => current_character.action_3_name, "ability_flavor" => current_character.action_3_flavor}
     else
-       answer = {"ability_name" => current_character.transformation.alt_attack3_name, "ability_flavor" => current_character.transformation.alt_attack4_description}
+       answer = {"ability_name" => current_character.transformation.alt_attack3_name, "ability_flavor" => current_character.transformation.alt_attack3_description}
     end
     return answer
   end
