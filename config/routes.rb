@@ -11,6 +11,9 @@ DuelOfChampions::Application.routes.draw do
   post "users/remove_admin"
   match 'users/admin', to: 'users#admin', via: :post
 
+  match 'turn_off_effects', to: 'game#turn_off_effects', via: :post
+  match 'turn_on_effects', to: 'game#turn_on_effects', via: :post
+
   resources :characters
   match 'create_suggestion', to: 'suggestion#create', via: :post
   match 'view_suggestion', to: 'suggestion#view', via: :get

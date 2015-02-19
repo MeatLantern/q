@@ -138,21 +138,17 @@ class GameController < ApplicationController
       @p1_effect = test_game.p1_effect
       @p2_effect = test_game.p2_effect
 
-      if !(test_game.p1_use_effects) && (current_user.username == test_game.player1)
-        @p1_effect = nil
-        @p2_effect = nil
-      else 
-        @p1_effect = test_game.p1_effect
-        @p2_effect = test_game.p2_effect
-      end
-
-      if !(test_game.p2_use_effects) && (current_user.username == test_game.player2)
-        @p1_effect = nil
-        @p2_effect = nil
-      else 
-        @p1_effect = test_game.p1_effect
-        @p2_effect = test_game.p2_effect
-      end
+     if current_user.username = test_game.player1
+       if !test_game.p1_use_effects
+         @p1_effect = nil
+         @p2_effect = nil
+       end
+     else
+       if !test_game.p2_use_effects
+         @p1_effect = nil
+         @p2_effect = nil
+       end
+     end
             
       #@p1_effect = 'https://cdn.tutsplus.com/vector/uploads/legacy/tuts/48_Triumph_Shield/Picture-16.jpg'
 
@@ -588,5 +584,39 @@ class GameController < ApplicationController
     end
     flash[:notice] = "All Games Deleted"
     redirect_to game_admin_path
+ end
+
+ def turn_on_effects
+    game = Game.find_by_game_name(session[:current_game])
+    if game.nil?
+      flash[:alert] = "Game not Found."
+      redirect_to game_rules_path
+    else
+      if current_user.username == game.player1
+        game.p1_use_effects = true
+        game.save
+      else
+        game.p2_use_effects = true
+        game.save
+      end
+      redirect_to game_show_path
+    end
+ end
+
+ def turn_off_effects
+    game = Game.find_by_game_name(session[:current_game])
+    if game.nil?
+      flash[:alert] = "Game not Found."
+      redirect_to game_rules_path
+    else
+      if current_user.username == game.player1
+        game.p1_use_effects = false
+        game.save
+      else
+        game.p2_use_effects = false
+        game.save
+      end
+      redirect_to game_show_path
+    end
  end
 end

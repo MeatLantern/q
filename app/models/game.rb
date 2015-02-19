@@ -1220,7 +1220,7 @@ class Game < ActiveRecord::Base
   	#binding.pry
 
   	#Check if hit
-  	if(attack_roll > 8 + defense_bonus)
+  	if(attack_roll > 7 + defense_bonus)
   		#Determine Damage
   		damage = 2 + rand(10) + power_bonus - armor_bonus
   		if damage < 0

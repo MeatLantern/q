@@ -306,11 +306,11 @@ class TransformationController < ApplicationController
 	def edit
 		@character_name = params["character_name"]
 		@transformation = Transformation.find_by_character_name(@character_name)
-		@basic_effect = @transformation.alt_basic_effect
-		@effect1 = @transformation.alt_effect1
-		@effect2 = @transformation.alt_effect2
-		@effect3 = @transformation.alt_effect3
-		@effect4 = @transformation.alt_effect4
+		@basic_effect = Character::name_from_picture(@transformation.alt_basic_effect)
+		@effect1 = Character::name_from_picture(@transformation.alt_effect1)
+		@effect2 = Character::name_from_picture(@transformation.alt_effect2)
+		@effect3 = Character::name_from_picture(@transformation.alt_effect3)
+		@effect4 = Character::name_from_picture(@transformation.alt_effect4)
 
 		#binding.pry
 	end
@@ -499,7 +499,7 @@ class TransformationController < ApplicationController
 			create_hash["character_name"] = character_name
 			create_hash["upvotes"] = 0
 			create_hash["creator"] = current_user.username
-					
+
 			create_hash['alt_basic_effect'] = Character::get_picture_name(params["transformation"]["alt_basic_effect"])
 			create_hash['alt_effect1'] = Character::get_picture_name(params["transformation"]["alt_effect1"])
 			create_hash['alt_effect2'] = Character::get_picture_name(params["transformation"]["alt_effect2"])
