@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150207233520) do
+ActiveRecord::Schema.define(:version => 20150218025203) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -47,6 +47,11 @@ ActiveRecord::Schema.define(:version => 20150207233520) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.integer  "upvotes"
+    t.string   "basic_effect"
+    t.string   "effect1"
+    t.string   "effect2"
+    t.string   "effect3"
+    t.string   "effect4"
   end
 
   add_index "characters", ["name"], :name => "index_characters_on_name"
@@ -110,6 +115,10 @@ ActiveRecord::Schema.define(:version => 20150207233520) do
     t.string   "player1_picture"
     t.string   "player2_picture"
     t.text     "tf_message",           :limit => 255
+    t.string   "p1_effect"
+    t.string   "p2_effect"
+    t.boolean  "p1_use_effects"
+    t.boolean  "p2_use_effects"
   end
 
   add_index "games", ["game_name"], :name => "index_games_on_game_name"
@@ -248,6 +257,11 @@ ActiveRecord::Schema.define(:version => 20150207233520) do
     t.text     "alt_summon_attack"
     t.string   "alt_summon_picture"
     t.string   "creator"
+    t.string   "alt_basic_effect"
+    t.string   "alt_effect1"
+    t.string   "alt_effect2"
+    t.string   "alt_effect3"
+    t.string   "alt_effect4"
   end
 
   add_index "transformations", ["character_name"], :name => "index_transformations_on_character_name"

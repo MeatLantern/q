@@ -143,6 +143,12 @@ class CharactersController < ApplicationController
     @summon_picture = params[:character][:summon_picture]
     @summon_attack = params[:character][:summon_attack] 
 
+    @basic_effect = Character::get_picture_name(params[:character][:basic_effect])
+    @action_1_effect = Character::get_picture_name(params[:character][:action_1_effect])
+    @action_2_effect = Character::get_picture_name(params[:character][:action_2_effect])
+    @action_3_effect = Character::get_picture_name(params[:character][:action_3_effect])
+    @action_4_effect = Character::get_picture_name(params[:character][:action_4_effect])
+
     @main_image = params[:character][:main_image]
     @actions = @action_1_name + ", " + @action_2_name + ", " + @action_3_name + ", " + @action_4_name
     #binding.pry
@@ -213,7 +219,7 @@ class CharactersController < ApplicationController
       flash[:alert] = "ERROR: " + @string1+@string2+@string3+@string4+@string5+@string6+@string7+@string8+@string9+@string10+@string11+@string12+@string13+@string14+@string15
       redirect_to new_character_path 
     else
-      create_hash = {:name => @name, :description => @description, :max_hp => @max_hp, :max_mp => @max_mp, :base_attack => @base_attack, :base_power => @base_power, :base_defense => @base_defense, :base_armor => @base_armor, :actions => @actions, :main_image => @main_image, :action_1_id => @action_1_id, :action_1_name => @action_1_name, :action_1_flavor => @action_1_flavor, :action_1_rules => @action_1_rules, :action_2_id => @action_2_id, :action_2_name => @action_2_name, :action_2_flavor => @action_2_flavor, :action_2_rules => @action_2_rules, :action_3_id => @action_3_id, :action_3_name => @action_3_name, :action_3_flavor => @action_3_flavor, :action_3_rules => @action_3_rules, :action_4_id => @action_4_id, :action_4_name => @action_4_name, :action_4_flavor => @action_4_flavor, :action_4_rules => @action_4_rules, :summon_name => @summon_name, :summon_attack => @summon_attack, :summon_picture => @summon_picture, :creator => player1_username, :upvotes => 0}
+      create_hash = {:name => @name, :description => @description, :max_hp => @max_hp, :max_mp => @max_mp, :base_attack => @base_attack, :base_power => @base_power, :base_defense => @base_defense, :base_armor => @base_armor, :actions => @actions, :main_image => @main_image, :action_1_id => @action_1_id, :action_1_name => @action_1_name, :action_1_flavor => @action_1_flavor, :action_1_rules => @action_1_rules, :action_2_id => @action_2_id, :action_2_name => @action_2_name, :action_2_flavor => @action_2_flavor, :action_2_rules => @action_2_rules, :action_3_id => @action_3_id, :action_3_name => @action_3_name, :action_3_flavor => @action_3_flavor, :action_3_rules => @action_3_rules, :action_4_id => @action_4_id, :action_4_name => @action_4_name, :action_4_flavor => @action_4_flavor, :action_4_rules => @action_4_rules, :summon_name => @summon_name, :summon_attack => @summon_attack, :summon_picture => @summon_picture, :creator => player1_username, :upvotes => 0, :basic_effect => @basic_effect, :effect1 => @action_1_effect, :effect2 => @action_2_effect, :effect3 => @action_3_effect, :effect4 => @action_4_effect}
       #binding.pry
       Character.create!(create_hash)
       redirect_to select_num_stages_path(:character_name => @name)
@@ -306,7 +312,11 @@ class CharactersController < ApplicationController
     @main_image = params[:character][:main_image]
     @actions = @action_1_name + ", " + @action_2_name + ", " + @action_3_name + ", " + @action_4_name
     #binding.pry
-
+    @basic_effect = Character::get_picture_name(params[:character][:basic_effect])
+    @action_1_effect = Character::get_picture_name(params[:character][:effect1])
+    @action_2_effect = Character::get_picture_name(params[:character][:effect2])
+    @action_3_effect = Character::get_picture_name(params[:character][:effect3])
+    @action_4_effect = Character::get_picture_name(params[:character][:effect4])
     #if(!Character.find_by_name(@name).nil?)
       #@valid = false
       #@string15 = "That character already exists"
@@ -374,7 +384,7 @@ class CharactersController < ApplicationController
       flash[:alert] = "ERROR: " + @string1+@string2+@string3+@string4+@string5+@string6+@string7+@string8+@string9+@string10+@string11+@string12+@string13+@string14+@string15
       redirect_to character_edit_path 
     else
-      create_hash = {:name => @name,:description => @description, :max_hp => @max_hp, :max_mp => @max_mp, :base_attack => @base_attack, :base_power => @base_power, :base_defense => @base_defense, :base_armor => @base_armor, :actions => @actions, :main_image => @main_image, :action_1_id => @action_1_id, :action_1_name => @action_1_name, :action_1_flavor => @action_1_flavor, :action_1_rules => @action_1_rules, :action_2_id => @action_2_id, :action_2_name => @action_2_name, :action_2_flavor => @action_2_flavor, :action_2_rules => @action_2_rules, :action_3_id => @action_3_id, :action_3_name => @action_3_name, :action_3_flavor => @action_3_flavor, :action_3_rules => @action_3_rules, :action_4_id => @action_4_id, :action_4_name => @action_4_name, :action_4_flavor => @action_4_flavor, :action_4_rules => @action_4_rules, :summon_name => @summon_name, :summon_attack => @summon_attack, :summon_picture => @summon_picture}
+      create_hash = {:name => @name,:description => @description, :max_hp => @max_hp, :max_mp => @max_mp, :base_attack => @base_attack, :base_power => @base_power, :base_defense => @base_defense, :base_armor => @base_armor, :actions => @actions, :main_image => @main_image, :action_1_id => @action_1_id, :action_1_name => @action_1_name, :action_1_flavor => @action_1_flavor, :action_1_rules => @action_1_rules, :action_2_id => @action_2_id, :action_2_name => @action_2_name, :action_2_flavor => @action_2_flavor, :action_2_rules => @action_2_rules, :action_3_id => @action_3_id, :action_3_name => @action_3_name, :action_3_flavor => @action_3_flavor, :action_3_rules => @action_3_rules, :action_4_id => @action_4_id, :action_4_name => @action_4_name, :action_4_flavor => @action_4_flavor, :action_4_rules => @action_4_rules, :summon_name => @summon_name, :summon_attack => @summon_attack, :summon_picture => @summon_picture, :basic_effect => @basic_effect, :effect1 => @action_1_effect, :effect2 => @action_2_effect, :effect3 => @action_3_effect, :effect4 => @action_4_effect}
       #binding.pry
       current_character = Character.find_by_name(@name)
       current_character.update_attributes(create_hash)
@@ -504,7 +514,6 @@ class CharactersController < ApplicationController
       end
 
       search_hash = {}
-      #
       preferences.each do |key, value|
         if value == "0"
           if !params["Edit Preferences: Excluding Search"].nil? 
@@ -695,6 +704,13 @@ class CharactersController < ApplicationController
 
   def edit
     @character = Character.find_by_name(params[:name])
+    @effect1 = Character::name_from_picture(@character.effect1)
+    @effect2 = Character::name_from_picture(@character.effect2)
+    @effect3 = Character::name_from_picture(@character.effect3)
+    @effect4 = Character::name_from_picture(@character.effect4)
+    @basic_effect = Character::name_from_picture(@character.basic_effect)
+   #binding.pry
+
   end
 
   def show

@@ -306,6 +306,12 @@ class TransformationController < ApplicationController
 	def edit
 		@character_name = params["character_name"]
 		@transformation = Transformation.find_by_character_name(@character_name)
+		@basic_effect = @transformation.alt_basic_effect
+		@effect1 = @transformation.alt_effect1
+		@effect2 = @transformation.alt_effect2
+		@effect3 = @transformation.alt_effect3
+		@effect4 = @transformation.alt_effect4
+
 		#binding.pry
 	end
 
@@ -313,18 +319,36 @@ class TransformationController < ApplicationController
 		#binding.pry
 		#render "new_tf"
 		@character_name = params["character_name"]
+		character = Character.find_by_name(@character_name)
+		@basic_effect = character.basic_effect
+		@effect1 = character.effect1
+		@effect2 = character.effect2
+		@effect3 = character.effect3
+		@effect4 = character.effect4
 	end
 
 	def new_tf3
 		#binding.pry
 		#render "new_tf"
 		@character_name = params["character_name"]
+		character = Character.find_by_name(@character_name)
+		@basic_effect = character.basic_effect
+		@effect1 = character.effect1
+		@effect2 = character.effect2
+		@effect3 = character.effect3
+		@effect4 = character.effect4
 	end
 
 	def new_tf5
 		#binding.pry
 		#render "new_tf"
 		@character_name = params["character_name"]
+		character = Character.find_by_name(@character_name)
+		@basic_effect = character.basic_effect
+		@effect1 = character.effect1
+		@effect2 = character.effect2
+		@effect3 = character.effect3
+		@effect4 = character.effect4
 	end
 
 	def add_to_character
@@ -475,6 +499,12 @@ class TransformationController < ApplicationController
 			create_hash["character_name"] = character_name
 			create_hash["upvotes"] = 0
 			create_hash["creator"] = current_user.username
+					
+			create_hash['alt_basic_effect'] = Character::get_picture_name(params["transformation"]["alt_basic_effect"])
+			create_hash['alt_effect1'] = Character::get_picture_name(params["transformation"]["alt_effect1"])
+			create_hash['alt_effect2'] = Character::get_picture_name(params["transformation"]["alt_effect2"])
+			create_hash['alt_effect3'] = Character::get_picture_name(params["transformation"]["alt_effect3"])
+			create_hash['alt_effect4'] = Character::get_picture_name(params["transformation"]["alt_effect4"])
 
 			current_character = Character.find_by_name(character_name)
 			if(Character.nil?)
@@ -564,7 +594,6 @@ class TransformationController < ApplicationController
 		create_hash["alt_stage"] = params["transformation"]["alt_stage"]
 		
 		
-		
 		valid = true
 		create_hash.each do |key, value|
 			if value.blank?
@@ -649,6 +678,12 @@ class TransformationController < ApplicationController
 			create_hash["character_name"] = character_name
 			create_hash["upvotes"] = 0
 			create_hash["creator"] = current_user.username
+
+			create_hash['alt_basic_effect'] = Character::get_picture_name(params["transformation"]["alt_basic_effect"])
+			create_hash['alt_effect1'] = Character::get_picture_name(params["transformation"]["alt_effect1"])
+			create_hash['alt_effect2'] = Character::get_picture_name(params["transformation"]["alt_effect2"])
+			create_hash['alt_effect3'] = Character::get_picture_name(params["transformation"]["alt_effect3"])
+			create_hash['alt_effect4'] = Character::get_picture_name(params["transformation"]["alt_effect4"])
 
 			current_character = Character.find_by_name(character_name)
 			if(Character.nil?)
@@ -737,6 +772,8 @@ class TransformationController < ApplicationController
 		create_hash["alt_summon_attack"] = params["transformation"]["alt_summon_attack"]
 		create_hash["alt_summon_picture"] = params["transformation"]["alt_summon_picture"]
 		create_hash["alt_stage"] = params["transformation"]["alt_stage"]
+
+		
 		
 		
 		
@@ -825,7 +862,13 @@ class TransformationController < ApplicationController
 			create_hash["upvotes"] = 0
 			create_hash["creator"] = current_user.username
 
-			puts create_hash
+			create_hash['alt_basic_effect'] = Character::get_picture_name(params["transformation"]["alt_basic_effect"])
+			create_hash['alt_effect1'] = Character::get_picture_name(params["transformation"]["alt_effect1"])
+			create_hash['alt_effect2'] = Character::get_picture_name(params["transformation"]["alt_effect2"])
+			create_hash['alt_effect3'] = Character::get_picture_name(params["transformation"]["alt_effect3"])
+			create_hash['alt_effect4'] = Character::get_picture_name(params["transformation"]["alt_effect4"])
+
+			#puts create_hash
 
 			current_character = Character.find_by_name(character_name)
 			if(Character.nil?)
@@ -999,6 +1042,13 @@ class TransformationController < ApplicationController
 
 			create_hash["character_name"] = character_name
 			create_hash["upvotes"] = 0
+
+			create_hash['alt_basic_effect'] = Character::get_picture_name(params["transformation"]["alt_basic_effect"])
+			create_hash['alt_effect1'] = Character::get_picture_name(params["transformation"]["alt_effect1"])
+			create_hash['alt_effect2'] = Character::get_picture_name(params["transformation"]["alt_effect2"])
+			create_hash['alt_effect3'] = Character::get_picture_name(params["transformation"]["alt_effect3"])
+			create_hash['alt_effect4'] = Character::get_picture_name(params["transformation"]["alt_effect4"])
+			#binding.pry
 
 			
 			if(Character.nil?)

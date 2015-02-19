@@ -66,6 +66,11 @@
           = select :character, :base_armor, [3,4,5,6,7]
       %tr
         %td
+          = label :character, :basic_effect, 'Basic Attack Animation'
+        %td
+          = select :character, :basic_effect, ['None', 'Slash', 'Bullet', 'Claw', 'Dark Magic', 'Fireball', 'Punch', 'Shield', 'Ice', 'Light Magic', 'Lightning', 'Magic', 'Mana', 'Poison', 'Potion', 'Red Cross', 'Sunlight Burst', 'Sunlight', 'Up Arrow', 'Whirlwind'] 
+      %tr
+        %td
           = label :character, :action_1_name, '1st Action Name'
         %td
           = text_field :character, 'action_1_name'
@@ -79,6 +84,11 @@
           = label :character, :action_1_rules, '1st Action Type'
         %td
           = select :character, :action_1_rules, ['Accurate Attack', 'Powerful Attack', 'Reckless Attack', 'Overwhelming Attack', 'Focusing Action', 'Defense Boost', 'Attack Boost', 'Armor Boost', 'Power Boost', 'Poisoning Attack', 'Silencing Attack', 'Confusing Attack', 'Locking Attack', 'Guard Break Attack', 'Armor Break Attack', 'Attack Break Attack', 'Power Break Attack', 'Charge', 'Summon Ally', 'Heal'] 
+      %tr
+        %td
+          = label :character, :action_1_effect, '1st Action Animation'
+        %td
+          = select :character, :action_1_effect, ['None', 'Slash', 'Bullet', 'Claw', 'Dark Magic', 'Fireball', 'Punch', 'Shield', 'Ice', 'Light Magic', 'Lightning', 'Magic', 'Mana', 'Poison', 'Potion', 'Red Cross', 'Sunlight Burst', 'Sunlight', 'Up Arrow', 'Whirlwind'] 
       %tr
         %td
           = label :character, :action_2_name, '2nd Action Name'
@@ -96,6 +106,11 @@
           = select :character, :action_2_rules, ['Accurate Attack', 'Powerful Attack', 'Reckless Attack', 'Overwhelming Attack', 'Focusing Action', 'Defense Boost', 'Attack Boost', 'Armor Boost', 'Power Boost', 'Poisoning Attack', 'Silencing Attack', 'Confusing Attack', 'Locking Attack', 'Guard Break Attack', 'Armor Break Attack', 'Attack Break Attack', 'Power Break Attack', 'Charge', 'Summon Ally', 'Heal'] 
       %tr
         %td
+          = label :character, :action_2_effect, '2nd Action Animation'
+        %td
+          = select :character, :action_2_effect, ['None', 'Slash', 'Bullet', 'Claw', 'Dark Magic', 'Fireball', 'Punch', 'Shield', 'Ice', 'Light Magic', 'Lightning', 'Magic', 'Mana', 'Poison', 'Potion', 'Red Cross', 'Sunlight Burst', 'Sunlight', 'Up Arrow', 'Whirlwind'] 
+      %tr
+        %td
           = label :character, :action_3_name, '3rd Action Name'
         %td
           = text_field :character, 'action_3_name'
@@ -111,6 +126,11 @@
           = select :character, :action_3_rules, ['Accurate Attack', 'Powerful Attack', 'Reckless Attack', 'Overwhelming Attack', 'Focusing Action', 'Defense Boost', 'Attack Boost', 'Armor Boost', 'Power Boost', 'Poisoning Attack', 'Silencing Attack', 'Confusing Attack', 'Locking Attack', 'Guard Break Attack', 'Armor Break Attack', 'Attack Break Attack', 'Power Break Attack', 'Charge', 'Summon Ally', 'Heal'] 
       %tr
         %td
+          = label :character, :action_3_effect, '3rd Action Animation'
+        %td
+          = select :character, :action_3_effect, ['None', 'Slash', 'Bullet', 'Claw', 'Dark Magic', 'Fireball', 'Punch', 'Shield', 'Ice', 'Light Magic', 'Lightning', 'Magic', 'Mana', 'Poison', 'Potion', 'Red Cross', 'Sunlight Burst', 'Sunlight', 'Up Arrow', 'Whirlwind'] 
+      %tr
+        %td
           = label :character, :action_4_name, '4th Action Name'
         %td
           = text_field :character, 'action_4_name'
@@ -124,6 +144,11 @@
           = label :character, :action_4_rules, '4th Action Type'
         %td
           = select :character, :action_4_rules, ['Accurate Attack', 'Powerful Attack', 'Reckless Attack', 'Overwhelming Attack', 'Focusing Action', 'Defense Boost', 'Attack Boost', 'Armor Boost', 'Power Boost', 'Poisoning Attack', 'Silencing Attack', 'Confusing Attack', 'Locking Attack', 'Guard Break Attack', 'Armor Break Attack', 'Attack Break Attack', 'Power Break Attack', 'Charge', 'Summon Ally', 'Heal'] 
+      %tr
+        %td
+          = label :character, :action_4_effect, '4th Action Animation'
+        %td
+          = select :character, :action_4_effect, ['None', 'Slash', 'Bullet', 'Claw', 'Dark Magic', 'Fireball', 'Punch', 'Shield', 'Ice', 'Light Magic', 'Lightning', 'Magic', 'Mana', 'Poison', 'Potion', 'Red Cross', 'Sunlight Burst', 'Sunlight', 'Up Arrow', 'Whirlwind'] 
       %tr
         %td
           = label :character, :main_image, 'URL for Character Image'

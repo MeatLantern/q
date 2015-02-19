@@ -481,4 +481,80 @@ class Transformation < ActiveRecord::Base
       tf.save
   end
 
+  def Transformation::effect_handler(test_game, character, flavor, current_user, results, action_id)
+      if character.name == test_game.player1_character
+        if results.include? ("Miss")
+          test_game.p1_effect = nil
+          test_game.p2_effect = "Miss.png"
+        else
+          if action_id == "1"
+            test_game.p1_effect = nil
+            if test_game.player1_stage > character.transformation.alt_stage
+              test_game.p2_effect = character.transformation.alt_basic_effect
+            else
+              test_game.p2_effect = character.basic_effect
+            end
+          elsif action_id == "2"
+            test_game.p1_effect = "Guard.png"
+            test_game.p2_effect = nil
+          elsif action_id == "3"
+            test_game.p1_effect = "Mana.png"
+            test_game.p2_effect = nil
+          else
+            buff_array = ["8","9","10","11","12","21","22"]
+            not_buff = true
+            buff_array.each do |buff|
+              if action_id == buff
+                not_buff = false
+              end
+            end
+            if not_buff
+              test_game.p1_effect = nil
+              test_game.p2_effect = flavor["effect"]
+            else
+              test_game.p1_effect = flavor["effect"]
+              test_game.p2_effect = nil
+            end
+          end
+        end
+      else
+        if results.include? ("Miss")
+          test_game.p2_effect = nil
+          test_game.p1_effect = "Miss.png"
+        else
+          if action_id == "1"
+            test_game.p2_effect = nil
+            if test_game.player2_stage > character.transformation.alt_stage
+              test_game.p1_effect = character.transformation.alt_basic_effect
+            else
+              test_game.p1_effect = character.basic_effect
+            end
+          elsif action_id == "2"
+            test_game.p2_effect = "Guard.png"
+            test_game.p1_effect = nil
+          elsif action_id == "3"
+            test_game.p2_effect = "Mana.png"
+            test_game.p1_effect = nil
+          else
+            buff_array = ["8","9","10","11","12","21","22"]
+            not_buff = true
+            buff_array.each do |buff|
+              if action_id == buff
+                not_buff = false
+              end
+            end
+            if not_buff
+              test_game.p2_effect = nil
+              test_game.p1_effect = flavor["effect"]
+            else
+              test_game.p2_effect = flavor["effect"]
+              test_game.p1_effect = nil
+            end
+          end
+        end
+      end
+
+      test_game.save
+  end
+
 end

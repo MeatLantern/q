@@ -1243,7 +1243,7 @@ class Game < ActiveRecord::Base
   		end
   		results = "Attack Successful! #{damage} damage dealt!"
   	else
-  		results = "Attack Failed! No damage dealt."
+  		results = "Attack Missed! No damage dealt."
   	end
   	#binding.pry
   	current_game.save
@@ -1358,36 +1358,36 @@ class Game < ActiveRecord::Base
 
   if "#{current_character.action_1_id}" == "#{action_id}"
     if alt == false
-      answer = {"ability_name" => current_character.action_1_name, "ability_flavor" => current_character.action_1_flavor}
+      answer = {"ability_name" => current_character.action_1_name, "ability_flavor" => current_character.action_1_flavor, "effect" => current_character.effect1}
     else
-       answer = {"ability_name" => current_character.transformation.alt_attack1_name, "ability_flavor" => current_character.transformation.alt_attack1_description}
+       answer = {"ability_name" => current_character.transformation.alt_attack1_name, "ability_flavor" => current_character.transformation.alt_attack1_description, "effect" => current_character.transformation.alt_effect1}
     end
     return answer
   end
    
   if "#{current_character.action_2_id}" == "#{action_id}"
     if alt == false
-      answer = {"ability_name" => current_character.action_2_name, "ability_flavor" => current_character.action_2_flavor}
+      answer = {"ability_name" => current_character.action_2_name, "ability_flavor" => current_character.action_2_flavor, "effect" => current_character.effect2}
     else
-       answer = {"ability_name" => current_character.transformation.alt_attack2_name, "ability_flavor" => current_character.transformation.alt_attack2_description}
+       answer = {"ability_name" => current_character.transformation.alt_attack2_name, "ability_flavor" => current_character.transformation.alt_attack2_description, "effect" => current_character.transformation.alt_effect2}
     end
     return answer
   end
 
   if "#{current_character.action_3_id}" == "#{action_id}"
     if alt == false
-      answer = {"ability_name" => current_character.action_3_name, "ability_flavor" => current_character.action_3_flavor}
+      answer = {"ability_name" => current_character.action_3_name, "ability_flavor" => current_character.action_3_flavor, "effect" => current_character.effect3}
     else
-       answer = {"ability_name" => current_character.transformation.alt_attack3_name, "ability_flavor" => current_character.transformation.alt_attack3_description}
+       answer = {"ability_name" => current_character.transformation.alt_attack3_name, "ability_flavor" => current_character.transformation.alt_attack3_description, "effect" => current_character.transformation.alt_effect3}
     end
     return answer
   end
 
   if "#{current_character.action_4_id}" == "#{action_id}"
     if alt == false
-      answer = {"ability_name" => current_character.action_4_name, "ability_flavor" => current_character.action_4_flavor}
+      answer = {"ability_name" => current_character.action_4_name, "ability_flavor" => current_character.action_4_flavor, "effect" => current_character.effect4}
     else
-       answer = {"ability_name" => current_character.transformation.alt_attack4_name, "ability_flavor" => current_character.transformation.alt_attack4_description}
+       answer = {"ability_name" => current_character.transformation.alt_attack4_name, "ability_flavor" => current_character.transformation.alt_attack4_description, "effect" => current_character.transformation.alt_effect4}
     end
     return answer
   end

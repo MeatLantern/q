@@ -97,6 +97,8 @@
           #portrait
             Portrait:
             = image_tag(@this_game.player1_picture)
+            %div.some{:style => "position: relative; top: -300px;"}
+              = image_tag(@p1_effect, :id => 'effect1')
           -if(@this_game.player1_buff == "Summon")
             %p
               Summon:
@@ -148,6 +150,8 @@
           %p
             Portrait:
             = image_tag(@this_game.player2_picture)
+            %div.some{:style => "position: relative; top: -300px;"}
+              = image_tag(@p2_effect, :id => 'effect2')
           -if(@this_game.player2_buff == "Summon")
             %p
               Summon:
@@ -291,3 +295,6 @@
     document.title = "Transformation-Arena Game"
     timedRefresh(120000);
   });
+
+  window.setTimeout("document.getElementById('effect1').style.display='none';", 3000);
+  window.setTimeout("document.getElementById('effect2').style.display='none';", 3000);

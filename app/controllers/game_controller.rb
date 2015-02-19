@@ -135,6 +135,27 @@ class GameController < ApplicationController
       @p2_mp_cost3 = Game::get_MP_cost(@p2_character.action_3_id)
       @p2_mp_cost4 = Game::get_MP_cost(@p2_character.action_4_id)
 
+      @p1_effect = test_game.p1_effect
+      @p2_effect = test_game.p2_effect
+
+      if !(test_game.p1_use_effects) && (current_user.username == test_game.player1)
+        @p1_effect = nil
+        @p2_effect = nil
+      else 
+        @p1_effect = test_game.p1_effect
+        @p2_effect = test_game.p2_effect
+      end
+
+      if !(test_game.p2_use_effects) && (current_user.username == test_game.player2)
+        @p1_effect = nil
+        @p2_effect = nil
+      else 
+        @p1_effect = test_game.p1_effect
+        @p2_effect = test_game.p2_effect
+      end
+            
+      #@p1_effect = 'https://cdn.tutsplus.com/vector/uploads/legacy/tuts/48_Triumph_Shield/Picture-16.jpg'
+
       #Format Descriptions etc
       #@player1_description = word_wrap(test_game.player1_description)
 
@@ -180,6 +201,9 @@ class GameController < ApplicationController
       #flash[:results] = results_string
       test_game.flavor_message = flavor_string
       test_game.results_message = results_string
+      #Set Up Effects
+
+      Transformation::effect_handler(test_game, character, flavor, current_user, results_string, action_id)
       #Transformation Stuff
       test_game.tf_message = Transformation::transformation_handler(test_game)
     	test_game.save
@@ -221,6 +245,12 @@ class GameController < ApplicationController
     end
   end
 
+  if test_game.player2_debuff == 'Charge'
+    if action == "3"
+      action = "1"
+    end
+  end
+
    character = Character.find_by_name(test_game.player2_character)
    character_name = test_game.player2_character
 
@@ -240,6 +270,7 @@ class GameController < ApplicationController
    #flash[:results] = results_string
    test_game.flavor_message = flavor_string
    test_game.results_message = results_string
+   Transformation::effect_handler(test_game, character, flavor, current_user, results_string, action)
    test_game.tf_message = Transformation::transformation_handler(test_game)
  	 test_game.save
  	 redirect_to game_show_path
@@ -298,6 +329,8 @@ class GameController < ApplicationController
     current_game.player1_picture = character1.main_image
     current_game.player2_picture = character2.main_image
     current_game.tf_message = " "
+    current_game.p1_effect = nil
+    current_game.p2_effect = nil
     #REMOVE THIS SOON
     #current_game.player1_debuff = "Poison"
     #current_game.player1_debuff_start = 1
@@ -411,7 +444,7 @@ class GameController < ApplicationController
 
     z.save
 
-    create_hash = {:game_name => game_name, :player1 => username, :player2 => "AI", :player1_character => character_choice, :player2_character => opponent_character.name, :player1_message => "", :player2_message => "", :current_turn => 1, :player1_buff => "None", :player1_buff_start => 0, :player2_buff => "None", :player2_buff_start => 0, :player1_debuff => "None", :player1_debuff_start => 0, :player2_debuff => "None", :player2_debuff_start => 0, :p1_hp => player_character.max_hp, :p2_hp => opponent_character.max_hp, :p1_mp => player_character.max_mp, :p2_mp => opponent_character.max_mp, :p1_guard => false, :p2_guard => false, :game_over => false, :player1_description => player_character.description, :player2_description => opponent_character.description, :player1_last_tf => "None",  :player2_last_tf => "None", :player1_stage => 0, :player2_stage => 0, :player1_picture => player_character.main_image, :player2_picture => opponent_character.main_image, :flavor_message => "", :tf_message => ""}
+    create_hash = {:game_name => game_name, :player1 => username, :player2 => "AI", :player1_character => character_choice, :player2_character => opponent_character.name, :player1_message => "", :player2_message => "", :current_turn => 1, :player1_buff => "None", :player1_buff_start => 0, :player2_buff => "None", :player2_buff_start => 0, :player1_debuff => "None", :player1_debuff_start => 0, :player2_debuff => "None", :player2_debuff_start => 0, :p1_hp => player_character.max_hp, :p2_hp => opponent_character.max_hp, :p1_mp => player_character.max_mp, :p2_mp => opponent_character.max_mp, :p1_guard => false, :p2_guard => false, :game_over => false, :player1_description => player_character.description, :player2_description => opponent_character.description, :player1_last_tf => "None",  :player2_last_tf => "None", :player1_stage => 0, :player2_stage => 0, :player1_picture => player_character.main_image, :player2_picture => opponent_character.main_image, :flavor_message => "", :tf_message => "", :p1_use_effects => true, :p2_use_effects => true}
     Game.create!(create_hash)
 
     session[:current_game] = game_name

@@ -204,11 +204,21 @@
           = label :transformation, :alt_name, 'Alternate Name for Character'
         %td
           = text_field :transformation, 'alt_name'
+       %tr
+        %td
+          = label :transformation, :alt_basic_effect, 'Alt Basic Animation'
+        %td
+          = select :transformation, :alt_basic_effect, ['None', 'Slash', 'Bullet', 'Claw', 'Dark Magic', 'Fireball', 'Punch', 'Shield', 'Ice', 'Light Magic', 'Lightning', 'Magic', 'Mana', 'Poison', 'Potion', 'Red Cross', 'Sunlight Burst', 'Sunlight', 'Up Arrow', 'Whirlwind'], :selected => @basic_effect
       %tr
         %td
           = label :transformation, :alt_attack1_name, 'Alternate Name for Attack 1'
         %td
           = text_field :transformation, 'alt_attack1_name'
+      %tr
+        %td
+          = label :transformation, :action_1_effect, 'Alt 1st Action Animation'
+        %td
+          = select :transformation, :alt_effect1, ['None', 'Slash', 'Bullet', 'Claw', 'Dark Magic', 'Fireball', 'Punch', 'Shield', 'Ice', 'Light Magic', 'Lightning', 'Magic', 'Mana', 'Poison', 'Potion', 'Red Cross', 'Sunlight Burst', 'Sunlight', 'Up Arrow', 'Whirlwind'], :selected => @effect1
       %tr
         %td
           = label :transformation, :alt_attack1_description, 'Alternate Description for Attack 1'
@@ -226,6 +236,11 @@
           = text_area :transformation, 'alt_attack2_description', :size => "40x4"
       %tr
         %td
+          = label :transformation, :action_2_effect, 'Alt 2nd Action Animation'
+        %td
+          = select :transformation, :alt_effect2, ['None', 'Slash', 'Bullet', 'Claw', 'Dark Magic', 'Fireball', 'Punch', 'Shield', 'Ice', 'Light Magic', 'Lightning', 'Magic', 'Mana', 'Poison', 'Potion', 'Red Cross', 'Sunlight Burst', 'Sunlight', 'Up Arrow', 'Whirlwind'], :selected => @effect2
+      %tr
+        %td
           = label :transformation, :alt_attack3_name, 'Alternate Name for Attack 3'
         %td
           = text_field :transformation, 'alt_attack3_name'
@@ -236,6 +251,11 @@
           = text_area :transformation, 'alt_attack3_description', :size => "40x4"
       %tr
         %td
+          = label :transformation, :action_3_effect, 'Alt 3rd Action Animation'
+        %td
+          = select :transformation, :alt_effect3, ['None', 'Slash', 'Bullet', 'Claw', 'Dark Magic', 'Fireball', 'Punch', 'Shield', 'Ice', 'Light Magic', 'Lightning', 'Magic', 'Mana', 'Poison', 'Potion', 'Red Cross', 'Sunlight Burst', 'Sunlight', 'Up Arrow', 'Whirlwind'], :selected => @effect3
+      %tr
+        %td
           = label :transformation, :alt_attack4_name, 'Alternate Name for Attack 4'
         %td
           = text_field :transformation, 'alt_attack4_name'
@@ -244,6 +264,11 @@
           = label :transformation, :alt_attack4_description, 'Alternate Description for Attack 4'
         %td
           = text_area :transformation, 'alt_attack4_description', :size => "40x4"
+      %tr
+        %td
+          = label :transformation, :action_4_effect, 'Alt 4th Action Animation'
+        %td
+          = select :transformation, :alt_effect4, ['None', 'Slash', 'Bullet', 'Claw', 'Dark Magic', 'Fireball', 'Punch', 'Shield', 'Ice', 'Light Magic', 'Lightning', 'Magic', 'Mana', 'Poison', 'Potion', 'Red Cross', 'Sunlight Burst', 'Sunlight', 'Up Arrow', 'Whirlwind'], :selected => @effect4
       %tr
         %td
           = label :transformation, :alt_summon_name, 'Alternate Summon Name (if Applicable)'
