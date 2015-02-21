@@ -124,6 +124,9 @@ DuelOfChampions::Application.routes.draw do
   match 'set_friends_list_empty', to: 'users#set_friends_list_empty', via: :post
   match 'add_to_friends_list', to: 'users#add_to_friends_list', via: :post
   match 'remove_from_friends_list', to: 'users#remove_from_friends_list', via: :post
+  match 'set_favorites_list_empty', to: 'users#set_favorites_list_empty', via: :post
+  match 'add_to_favorites_list', to: 'users#add_to_favorites_list', via: :post
+  match 'remove_from_favorites_list', to: 'users#remove_from_favorites_list', via: :post
   match 'edit_rp_pref', to: 'users#edit_rp_pref', via: :post
   match 'edit_fave_tf', to: 'users#edit_fave_tf', via: :post
 

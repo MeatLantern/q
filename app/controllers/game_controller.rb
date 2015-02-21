@@ -223,29 +223,29 @@ class GameController < ApplicationController
     end
    action_temp = action_array.sample
    action = "#{action_temp}"
-  if (action == "23")
-    if (test_game.p2_hp > (ai_character.max_hp - 10))
-      action_temp = action_array.sample
-      action = "#{action_temp}"
+    if (action == "23")
+      if (test_game.p2_hp > (ai_character.max_hp - 10))
+        action_temp = action_array.sample
+        action = "#{action_temp}"
+      end
     end
-  end
-  if(test_game.p2_mp < 20 && test_game.player2_debuff != "Mana Lock")
-    action = "3"
-  end
-  buff_array = ["8","9","10","11","12","21","22"]
-  if !(test_game.player2_buff == "None")
-    buff_array.each do |buff|
-      if action == buff
+    if(test_game.p2_mp < 20 && test_game.player2_debuff != "Mana Lock")
+      action = "3"
+    end
+    buff_array = ["8","9","10","11","12","21","22"]
+    if !(test_game.player2_buff == "None")
+      buff_array.each do |buff|
+        if action == buff
+          action = "1"
+        end
+      end
+    end
+
+    if test_game.player2_debuff == 'Charge'
+      if action == "3"
         action = "1"
       end
     end
-  end
-
-  if test_game.player2_debuff == 'Charge'
-    if action == "3"
-      action = "1"
-    end
-  end
 
    character = Character.find_by_name(test_game.player2_character)
    character_name = test_game.player2_character
@@ -258,82 +258,82 @@ class GameController < ApplicationController
     end
 
 
-   flavor = Game::get_ability_info(action, test_game.player2_character, alt)
-   action_results = Game::take_action(action, test_game)
-  #binding.pry
-   flavor_string = "#{character_name} uses #{flavor["ability_name"]}! #{flavor["ability_flavor"]}"
-   results_string = "#{action_results}"
-   #flash[:results] = results_string
-   test_game.flavor_message = flavor_string
-   test_game.results_message = results_string
-   Transformation::effect_handler(test_game, character, flavor, current_user, results_string, action)
-   test_game.tf_message = Transformation::transformation_handler(test_game)
- 	 test_game.save
- 	 redirect_to game_show_path
+     flavor = Game::get_ability_info(action, test_game.player2_character, alt)
+     action_results = Game::take_action(action, test_game)
+    #binding.pry
+     flavor_string = "#{character_name} uses #{flavor["ability_name"]}! #{flavor["ability_flavor"]}"
+     results_string = "#{action_results}"
+     #flash[:results] = results_string
+     test_game.flavor_message = flavor_string
+     test_game.results_message = results_string
+     Transformation::effect_handler(test_game, character, flavor, current_user, results_string, action)
+     test_game.tf_message = Transformation::transformation_handler(test_game)
+   	 test_game.save
+   	 redirect_to game_show_path
  end
 
  def cpu_reset_game
 
-  #binding.pry
+    #binding.pry
 
-  current_game = Game.find_by_game_name(session[:current_game])
+    current_game = Game.find_by_game_name(session[:current_game])
 
-  if(current_game.nil?)
-    x = session["warden.user.user.key"]
-    y = User.find(x[0])
-    z = y[0]
-    game_name = z["currentgame"]
-    current_game = Game.find_by_game_name(game_name)
     if(current_game.nil?)
-      flash[:alert] = "Your game was not found. Your opponent may have left the game. Please start a new one."
- 	    redirect_to game_game_not_found_path
+      x = session["warden.user.user.key"]
+      y = User.find(x[0])
+      z = y[0]
+      game_name = z["currentgame"]
+      current_game = Game.find_by_game_name(game_name)
+      if(current_game.nil?)
+        flash[:alert] = "Your game was not found. Your opponent may have left the game. Please start a new one."
+   	    redirect_to game_game_not_found_path
+      else
+        session[:current_game] = current_game
+      end
     else
-      session[:current_game] = current_game
-    end
-  else
-   	character1 = Character.find_by_name(current_game.player1_character)
-   	character2 = Character.find_by_name(current_game.player2_character)
-   	current_game.p1_hp = character1.max_hp
-   	current_game.p2_hp = character2.max_hp
-   	current_game.p1_mp = character1.max_mp
-   	current_game.p2_mp = character2.max_mp
-   	current_game.current_turn = 1
-   	current_game.game_over = false
-    #Remove Any Status Effects
-    current_game.player1_buff = "None"
-    current_game.player1_buff_start = -50
-    current_game.player1_debuff = "None"
-    current_game.player1_debuff_start = -50
-    current_game.player2_buff = "None"
-    current_game.player2_buff_start = -50
-    current_game.player2_debuff = "None"
-    current_game.player2_debuff_start = -50
+     	character1 = Character.find_by_name(current_game.player1_character)
+     	character2 = Character.find_by_name(current_game.player2_character)
+     	current_game.p1_hp = character1.max_hp
+     	current_game.p2_hp = character2.max_hp
+     	current_game.p1_mp = character1.max_mp
+     	current_game.p2_mp = character2.max_mp
+     	current_game.current_turn = 1
+     	current_game.game_over = false
+      #Remove Any Status Effects
+      current_game.player1_buff = "None"
+      current_game.player1_buff_start = -50
+      current_game.player1_debuff = "None"
+      current_game.player1_debuff_start = -50
+      current_game.player2_buff = "None"
+      current_game.player2_buff_start = -50
+      current_game.player2_debuff = "None"
+      current_game.player2_debuff_start = -50
 
-    #Change to Previous Flavor and Previous Turn
-    current_game.flavor_message = " "
-    current_game.results_message = " "
-    #Change Player 1 and Player 2 Messages
-    current_game.player1_message = " "
-    current_game.player2_message = " "
+      #Change to Previous Flavor and Previous Turn
+      current_game.flavor_message = " "
+      current_game.results_message = " "
+      #Change Player 1 and Player 2 Messages
+      current_game.player1_message = " "
+      current_game.player2_message = " "
 
-    current_game.player1_last_tf = " "
-    current_game.player2_last_tf = " "
-    current_game.player1_description = character1.description
-    current_game.player2_description = character2.description
-    current_game.player1_stage = 0
-    current_game.player2_stage = 0
-    current_game.player1_picture = character1.main_image
-    current_game.player2_picture = character2.main_image
-    current_game.tf_message = " "
-    current_game.p1_effect = nil
-    current_game.p2_effect = nil
-    #REMOVE THIS SOON
-    #current_game.player1_debuff = "Poison"
-    #current_game.player1_debuff_start = 1
-   	current_game.save
-   	redirect_to game_show_path
-    end 
-  end
+      current_game.player1_last_tf = " "
+      current_game.player2_last_tf = " "
+      current_game.player1_description = character1.description
+      current_game.player2_description = character2.description
+      current_game.player1_stage = 0
+      current_game.player2_stage = 0
+      current_game.player1_picture = character1.main_image
+      current_game.player2_picture = character2.main_image
+      current_game.tf_message = " "
+      current_game.p1_effect = nil
+      current_game.p2_effect = nil
+      #REMOVE THIS SOON
+      #current_game.player1_debuff = "Poison"
+      #current_game.player1_debuff_start = 1
+     	current_game.save
+     	redirect_to game_show_path
+      end 
+ end
 
 
   def create_ai_game
@@ -404,48 +404,48 @@ class GameController < ApplicationController
   end
 
   def create_choose_ai_game
-     #binding.pry
+       #binding.pry
 
-    x = session["warden.user.user.key"]
-    y = User.find(x[0])
-    z = y[0]
+        x = session["warden.user.user.key"]
+        y = User.find(x[0])
+        z = y[0]
 
-    #binding.pry
+        #binding.pry
 
-    username = z["username"]    
+        username = z["username"]    
 
 
-    character_choice = params[:player1name]
-    
-    #Get character
-    player_character = Character.find_by_name(character_choice)
-    #opponent_character = Character.offset(rand(Character.count)).first
-    
+        character_choice = params[:player1name]
+        
+        #Get character
+        player_character = Character.find_by_name(character_choice)
+        #opponent_character = Character.offset(rand(Character.count)).first
+        
 
-    opponent_character = Character.find_by_name(params[:player2name])
+        opponent_character = Character.find_by_name(params[:player2name])
 
-    #binding.pry
+        #binding.pry
 
-    #opponent_character = Character.find_by_name(opponent_tf.character_name)
-    #binding.pry
+        #opponent_character = Character.find_by_name(opponent_tf.character_name)
+        #binding.pry
 
-    game_name = SecureRandom.base64()
+        game_name = SecureRandom.base64()
 
-    if !(z.currentgame.nil?)
-      delete = Game.find_by_game_name(z.currentgame)
-      Game.delete(delete)
-    end
+        if !(z.currentgame.nil?)
+          delete = Game.find_by_game_name(z.currentgame)
+          Game.delete(delete)
+        end
 
-    z.currentgame = game_name
+        z.currentgame = game_name
 
-    z.save
+        z.save
 
-    create_hash = {:game_name => game_name, :player1 => username, :player2 => "AI", :player1_character => character_choice, :player2_character => opponent_character.name, :player1_message => "", :player2_message => "", :current_turn => 1, :player1_buff => "None", :player1_buff_start => 0, :player2_buff => "None", :player2_buff_start => 0, :player1_debuff => "None", :player1_debuff_start => 0, :player2_debuff => "None", :player2_debuff_start => 0, :p1_hp => player_character.max_hp, :p2_hp => opponent_character.max_hp, :p1_mp => player_character.max_mp, :p2_mp => opponent_character.max_mp, :p1_guard => false, :p2_guard => false, :game_over => false, :player1_description => player_character.description, :player2_description => opponent_character.description, :player1_last_tf => "None",  :player2_last_tf => "None", :player1_stage => 0, :player2_stage => 0, :player1_picture => player_character.main_image, :player2_picture => opponent_character.main_image, :flavor_message => "", :tf_message => "", :p1_use_effects => true, :p2_use_effects => true}
-    Game.create!(create_hash)
+        create_hash = {:game_name => game_name, :player1 => username, :player2 => "AI", :player1_character => character_choice, :player2_character => opponent_character.name, :player1_message => "", :player2_message => "", :current_turn => 1, :player1_buff => "None", :player1_buff_start => 0, :player2_buff => "None", :player2_buff_start => 0, :player1_debuff => "None", :player1_debuff_start => 0, :player2_debuff => "None", :player2_debuff_start => 0, :p1_hp => player_character.max_hp, :p2_hp => opponent_character.max_hp, :p1_mp => player_character.max_mp, :p2_mp => opponent_character.max_mp, :p1_guard => false, :p2_guard => false, :game_over => false, :player1_description => player_character.description, :player2_description => opponent_character.description, :player1_last_tf => "None",  :player2_last_tf => "None", :player1_stage => 0, :player2_stage => 0, :player1_picture => player_character.main_image, :player2_picture => opponent_character.main_image, :flavor_message => "", :tf_message => "", :p1_use_effects => true, :p2_use_effects => true}
+        Game.create!(create_hash)
 
-    session[:current_game] = game_name
- 
-    redirect_to game_show_path
+        session[:current_game] = game_name
+     
+        redirect_to game_show_path
   end
 
   def game_not_found
@@ -510,6 +510,14 @@ class GameController < ApplicationController
     search_hash[:receiver] = current_user.username 
     unread_messages = Message.where(search_hash)
     session[:unread] = "View Messages (#{unread_messages.count})"
+    if current_user.friends_list.nil?
+      current_user.friends_list = ""
+      current_user.save
+    end
+    if current_user.favorites_list.nil?
+      current_user.favorites_list = ""
+      current_user.save
+    end
     end
  end
 

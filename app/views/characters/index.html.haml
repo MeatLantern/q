@@ -8,6 +8,8 @@
    %h3 View Transformation
    This is Only Visible to the Creator of the Character. This allows you to make sure your HTML and Pictures are Functioning Correctly. It's also shown when the character loses a match. Use this to check if your character is working correctly. Thanks!
    = link_to "View Transformation", transformation_show_path(:name => @character.name), :method => :get
+   %h4 Number of Favorites (Only Visible to creator)
+   = @character.num_favorites
 
 %p
    Creator:
@@ -72,7 +74,11 @@
          %td= @character.action_4_name
          %td= @character.action_4_rules
          %td= @character.action_4_flavor
-
+%h4 Add to Favorites 
+-if current_user.favorites_list.include?("#{@character.name};")
+   = button_to 'Remove From List', remove_from_favorites_list_path(:name => @character.name)
+-else
+   = button_to 'Add To List', add_to_favorites_list_path(:name => @character.name)
 
 %h3 Play as Character?
 -if session[:current_game].nil? 

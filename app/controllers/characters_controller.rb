@@ -478,6 +478,10 @@ class CharactersController < ApplicationController
 
   def character_select_ai
     #binding.pry
+    if current_user.favorites_list.nil? 
+      current_user.favorites_list = ""
+      current_user.save
+    end
     if params["transformation"].nil? && session["preferences"].nil?
       search_hash = {}
       search_hash["is_completed"] = true
@@ -611,6 +615,10 @@ class CharactersController < ApplicationController
   end
 
   def select_opponent
+    if current_user.favorites_list.nil? 
+      current_user.favorites_list = ""
+      current_user.save
+    end
     @player1_character = params[:name]
     #binding.pry
     if params["transformation"].nil? && session["preferences"].nil?

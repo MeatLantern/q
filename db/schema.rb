@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150218025203) do
+ActiveRecord::Schema.define(:version => 20150221210749) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -44,14 +44,15 @@ ActiveRecord::Schema.define(:version => 20150218025203) do
     t.string   "summon_picture"
     t.text     "summon_attack"
     t.string   "creator"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.integer  "upvotes"
     t.string   "basic_effect"
     t.string   "effect1"
     t.string   "effect2"
     t.string   "effect3"
     t.string   "effect4"
+    t.integer  "num_favorites",   :default => 0
   end
 
   add_index "characters", ["name"], :name => "index_characters_on_name"
@@ -288,6 +289,7 @@ ActiveRecord::Schema.define(:version => 20150218025203) do
     t.text     "profile"
     t.string   "rp_pref"
     t.text     "fave_tf"
+    t.text     "favorites_list"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

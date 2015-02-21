@@ -6,6 +6,8 @@
   %h2 Can't Find Your Character?
   %p
     There was a recent change to the game, adding two new Tags: "Completed" and "Fully Illustrated". All characters had their "Completed" tag set to false. Characters without the "Complete" tag will not appear on the character select screen unless the option is checked below. If your character is ready for public release, please go to "View Profile" and Update your transformation to include the "Complete" tag. If your character has pictures for all or most stages, please update the "Fully Illustrated" Tag as well. Sorry for the inconvenience as improvements are made to the system. You can visit the Rules Page for more information.
+  %h3 Favorites List
+  = current_user.favorites_list
 
   %h2 Character Select
   -if session['pref2'] == 'Edit Preferences: Excluding Search'

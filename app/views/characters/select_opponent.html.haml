@@ -4,6 +4,9 @@
   %strong
     = @player1_character
 
+  %h3 Favorites List
+  = current_user.favorites_list
+
 
   %h2 Character Select
   -if session['pref2'] == 'Edit Preferences: Excluding Search'

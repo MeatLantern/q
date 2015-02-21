@@ -38,7 +38,7 @@ class UsersController < ApplicationController
       user.favorites_list = ""
       user.save
     end
-    flash[:notice] = "Friends Lists Set to Empty String"
+    flash[:notice] = "Favorites Lists Set to Empty String"
     redirect_to users_admin_path
   end
 
@@ -165,8 +165,9 @@ class UsersController < ApplicationController
     search_hash = {}
     @players = User.where(search_hash)
     @players = @players.order('username ASC')
-    friends_array = current_user.friends_list.split(" ")
-    #binding.pry
+    friends_array = current_user.friends_list.split("; ")
+    friends_array.last.chop!
+    friends_array.first.slice!(0)
     @friends = []
     i = 0 
     friends_array.each do |friend|
@@ -176,6 +177,7 @@ class UsersController < ApplicationController
         i = i + 1
       end
     end
+    #binding.pry
     #@friends = @friends.order('username ASC')
     #binding.pry
 
@@ -191,9 +193,52 @@ class UsersController < ApplicationController
         flash[:alert] = "This Player is Already on Your Friends List"
         redirect_to(:back)
       else
-        current_user.friends_list = current_user.friends_list + " " + user.username
+        current_user.friends_list = current_user.friends_list + " " + user.username + ";"
         current_user.save
         flash[:notice] = "#{user.username} has been added to your Friends List!"
+        redirect_to(:back)
+      end
+    end
+  end
+
+  def add_to_favorites_list
+    character = Character.find_by_name(params[:name])
+    if character.nil?
+      flash[:alert] = "Character Not Found."
+      redirect_to(:back)
+    else
+      if current_user.favorites_list.include?("#{character.name};")
+        flash[:alert] = "This Character is Already on Your Favorites List"
+        redirect_to(:back)
+      else
+        current_user.favorites_list = current_user.favorites_list + " " + character.name + ';'
+        current_user.save
+        flash[:notice] = "#{character.name} has been added to your Favorites List!"
+        character.num_favorites = (character.num_favorites + 1)
+        character.save
+        redirect_to(:back)
+      end
+    end
+  end
+
+   def remove_from_favorites_list
+    character = Character.find_by_name(params[:name])
+    if character.nil?
+      flash[:alert] = "Character Not Found."
+      redirect_to(:back)
+    else
+      if current_user.favorites_list.include?(character.name)
+        flash[:notice] = "The Character has been removed from your Favorites List"
+        current_user.favorites_list = current_user.favorites_list.gsub(" #{character.name};", '')
+        current_user.save
+        character.num_favorites = (character.num_favorites - 1)
+        if character.num_favorites < 0
+          character.num_favorites = 0
+        end
+        character.save
+        redirect_to(:back)
+      else
+        flash[:alert] = "#{character.name} is not on your friends list."
         redirect_to(:back)
       end
     end
@@ -206,7 +251,7 @@ class UsersController < ApplicationController
       redirect_to(:back) 
     else
       if current_user.friends_list.include?(user.username)
-        current_user.friends_list = current_user.friends_list.gsub(user.username, '')
+        current_user.friends_list = current_user.friends_list.gsub(" #{user.username};", '')
         current_user.save
         flash[:notice] = "#{user.username} has been removed from your Friends List."
         redirect_to(:back)

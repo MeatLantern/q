@@ -2,11 +2,15 @@
 = flash[:warning]
 %h1 News/Updates
 %p
-  1. Multiplayer Update: I've made a lot of changes to improve player interaction between and during games. You know have a customizable Public Profile that you can change by clicking "View My Profile". In multiplayer games you can now see the time of the last action or message, so you can figure out if you need to leave the game early. I've added a friends list system as well as a tag (configurable on View My Profile) to indicate your RP preferences. 
+  You can go to the discussion thread shown below for more information.
 %p
-  2. There is now a Private Messaging System! You can now send Private messages to other players to discuss games and more! 
+  1. Animations: The game now features basic "animations" for character attacks! All current characters have had their attacks set to "None". The "animations" essentially just flash an icon in front of the portrait. You can customize what animation is used for your character's attacks by clicking "View Profile" and "Update Character". When in battle, go to the bottom of the page if you want to turn on or turn off animations. 
 %p
-  3. IMPORTANT: I have now added support for all Standard BBCodes for characters. BBCodes are more or less standard for forums everywhere. This will allow you to do many cool tags, like "[b]" for bold and [i] for italics, or change colors! With this change, there are a couple of important details to understand:
+  2. Favorites List: I've added a "Favorites List" to your profile. This allows you to add Characters to your Favorites list from their character sheet. Use this to show your appreciation for a character, keep track of which characters you've liked/already played, or anything else! It is also visible whenever you select a character. 
+%p
+  3. Friends Lists: I've made some small changes to the Friends List system. Unfortunately, this also means I had to delete all current Friends Lists. Sorry for the inconvenience. 
+%p
+  4. IMPORTANT: I have now added support for all Standard BBCodes for characters. BBCodes are more or less standard for forums everywhere. This will allow you to do many cool tags, like "[b]" for bold and [i] for italics, or change colors! With this change, there are a couple of important details to understand:
   %p
     a. PLEASE go to your character sheet and click "View Transformation". With this change, it is possible some of your text might appear strange. Please modify it if neccessary. If everything is fine, than that's cool too.
   %p
@@ -26,7 +30,7 @@
       2.Game Balance Problems or Suggestions (for example X ability is too strong, y ability takes too much mana etc)
     %p
       3.Game Bug Reports
-  DO NOT try to suggest Character Concepts/Ideas for the Admin to create. This isn't the place for that. This is for suggestions about the game itself. Feel free to give whatever feedback you want!
+  DO NOT try to suggest Character Concepts/Ideas for the Admin to create. This isn't the place for that. This is for suggestions about the game itself. Feel free to give whatever feedback you want! If you have a personal issue, feel free to click "View All Players" and send a message to the Admin. Thanks!
 = form_tag create_suggestion_path do
   = label :transformation, :suggestion, 'Suggestion'
   = text_area :transformation, 'suggestion', :size => "40x4"
