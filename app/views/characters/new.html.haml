@@ -28,146 +28,146 @@
         %td
           = label :character, :name, 'Name'
         %td
-          = text_field :character, 'name'
+          = text_field :character, 'name', :value => @name
       %tr
         %td
           = label :character, :description, 'Description'
         %td
-          =  text_area :character, 'description', size: "40x6"
+          =  text_area :character, 'description', size: "40x6", :value => @description
       %tr 
         %td
           = label :character, :max_hp, 'Maximum HP'
         %td
-          = select :character, :max_hp, [40,50,60,70,80,90,100,110]
+          = select :character, :max_hp, [40,50,60,70,80,90,100,110], :selected => @max_hp
       %tr
         %td
           = label :character, :max_mp, 'Maximum MP'
         %td
-          = select :character, :max_mp, [40,50,60,70,80,90,100,110]
+          = select :character, :max_mp, [40,50,60,70,80,90,100,110], :selected => @max_mp
       %tr
         %td
           = label :character, :base_attack, 'Base Attack'
         %td
-          = select :character, :base_attack, [3,4,5,6,7]
+          = select :character, :base_attack, [3,4,5,6,7], :selected => @base_attack
       %tr
         %td
           = label :character, :base_power, 'Base Power'
         %td
-          = select :character, :base_power, [3,4,5,6,7]
+          = select :character, :base_power, [3,4,5,6,7], :selected => @base_power
       %tr
         %td
           = label :character, :base_defense, 'Base Defense'
         %td
-          = select :character, :base_defense, [3,4,5,6,7]
+          = select :character, :base_defense, [3,4,5,6,7], :selected => @base_defense
       %tr
         %td
           = label :character, :base_armor, 'Base Armor'
         %td
-          = select :character, :base_armor, [3,4,5,6,7]
+          = select :character, :base_armor, [3,4,5,6,7], :selected => @base_armor
       %tr
         %td
           = label :character, :basic_effect, 'Basic Attack Animation'
         %td
-          = select :character, :basic_effect, ['None', 'Slash', 'Bullet', 'Claw', 'Dark Magic', 'Fireball', 'Punch', 'Shield', 'Ice', 'Light Magic', 'Lightning', 'Magic', 'Mana', 'Poison', 'Potion', 'Red Cross', 'Sunlight Burst', 'Sunlight', 'Up Arrow', 'Whirlwind'] 
+          = select :character, :basic_effect, ['None', 'Slash', 'Bullet', 'Claw', 'Dark Magic', 'Fireball', 'Punch', 'Shield', 'Ice', 'Light Magic', 'Lightning', 'Magic', 'Mana', 'Poison', 'Potion', 'Red Cross', 'Sunlight Burst', 'Sunlight', 'Up Arrow', 'Whirlwind'], :selected => @basic_effect
       %tr
         %td
           = label :character, :action_1_name, '1st Action Name'
         %td
-          = text_field :character, 'action_1_name'
+          = text_field :character, 'action_1_name', :value => @action_1_name
       %tr
         %td
           = label :character, :action_1_flavor, '1st Action Description'
         %td
-          = text_field :character, 'action_1_flavor'
+          = text_field :character, 'action_1_flavor', :value => @action_1_flavor
       %tr
         %td
           = label :character, :action_1_rules, '1st Action Type'
         %td
-          = select :character, :action_1_rules, ['Accurate Attack', 'Powerful Attack', 'Reckless Attack', 'Overwhelming Attack', 'Focusing Action', 'Defense Boost', 'Attack Boost', 'Armor Boost', 'Power Boost', 'Poisoning Attack', 'Silencing Attack', 'Confusing Attack', 'Locking Attack', 'Guard Break Attack', 'Armor Break Attack', 'Attack Break Attack', 'Power Break Attack', 'Charge', 'Summon Ally', 'Heal'] 
+          = select :character, :action_1_rules, ['Accurate Attack', 'Powerful Attack', 'Reckless Attack', 'Overwhelming Attack', 'Focusing Action', 'Defense Boost', 'Attack Boost', 'Armor Boost', 'Power Boost', 'Poisoning Attack', 'Silencing Attack', 'Confusing Attack', 'Locking Attack', 'Guard Break Attack', 'Armor Break Attack', 'Attack Break Attack', 'Power Break Attack', 'Charge', 'Summon Ally', 'Heal'], :selected => @action_1_rules
       %tr
         %td
           = label :character, :action_1_effect, '1st Action Animation'
         %td
-          = select :character, :action_1_effect, ['None', 'Slash', 'Bullet', 'Claw', 'Dark Magic', 'Fireball', 'Punch', 'Shield', 'Ice', 'Light Magic', 'Lightning', 'Magic', 'Mana', 'Poison', 'Potion', 'Red Cross', 'Sunlight Burst', 'Sunlight', 'Up Arrow', 'Whirlwind'] 
+          = select :character, :action_1_effect, ['None', 'Slash', 'Bullet', 'Claw', 'Dark Magic', 'Fireball', 'Punch', 'Shield', 'Ice', 'Light Magic', 'Lightning', 'Magic', 'Mana', 'Poison', 'Potion', 'Red Cross', 'Sunlight Burst', 'Sunlight', 'Up Arrow', 'Whirlwind'], :selected => @action_1_rules
       %tr
         %td
           = label :character, :action_2_name, '2nd Action Name'
         %td
-          = text_field :character, 'action_2_name'
+          = text_field :character, 'action_2_name', :value => @action_2_name
       %tr
         %td
           = label :character, :action_2_flavor, '2nd Action Description'
         %td
-          = text_field :character, 'action_2_flavor'
+          = text_field :character, 'action_2_flavor', :value => @action_2_flavor
       %tr
         %td
           = label :character, :action_2_rules, '2nd Action Type'
         %td
-          = select :character, :action_2_rules, ['Accurate Attack', 'Powerful Attack', 'Reckless Attack', 'Overwhelming Attack', 'Focusing Action', 'Defense Boost', 'Attack Boost', 'Armor Boost', 'Power Boost', 'Poisoning Attack', 'Silencing Attack', 'Confusing Attack', 'Locking Attack', 'Guard Break Attack', 'Armor Break Attack', 'Attack Break Attack', 'Power Break Attack', 'Charge', 'Summon Ally', 'Heal'] 
+          = select :character, :action_2_rules, ['Accurate Attack', 'Powerful Attack', 'Reckless Attack', 'Overwhelming Attack', 'Focusing Action', 'Defense Boost', 'Attack Boost', 'Armor Boost', 'Power Boost', 'Poisoning Attack', 'Silencing Attack', 'Confusing Attack', 'Locking Attack', 'Guard Break Attack', 'Armor Break Attack', 'Attack Break Attack', 'Power Break Attack', 'Charge', 'Summon Ally', 'Heal'], :selected => @action_2_rules
       %tr
         %td
           = label :character, :action_2_effect, '2nd Action Animation'
         %td
-          = select :character, :action_2_effect, ['None', 'Slash', 'Bullet', 'Claw', 'Dark Magic', 'Fireball', 'Punch', 'Shield', 'Ice', 'Light Magic', 'Lightning', 'Magic', 'Mana', 'Poison', 'Potion', 'Red Cross', 'Sunlight Burst', 'Sunlight', 'Up Arrow', 'Whirlwind'] 
+          = select :character, :action_2_effect, ['None', 'Slash', 'Bullet', 'Claw', 'Dark Magic', 'Fireball', 'Punch', 'Shield', 'Ice', 'Light Magic', 'Lightning', 'Magic', 'Mana', 'Poison', 'Potion', 'Red Cross', 'Sunlight Burst', 'Sunlight', 'Up Arrow', 'Whirlwind'], :selected => @action_2_effect
       %tr
         %td
           = label :character, :action_3_name, '3rd Action Name'
         %td
-          = text_field :character, 'action_3_name'
+          = text_field :character, 'action_3_name', :value => @action_3_name
       %tr
         %td
           = label :character, :action_3_flavor, '3rd Action Description'
         %td
-          = text_field :character, 'action_3_flavor'
+          = text_field :character, 'action_3_flavor', :value => @action_3_flavor
       %tr
         %td
           = label :character, :action_3_rules, '3rd Action Type'
         %td
-          = select :character, :action_3_rules, ['Accurate Attack', 'Powerful Attack', 'Reckless Attack', 'Overwhelming Attack', 'Focusing Action', 'Defense Boost', 'Attack Boost', 'Armor Boost', 'Power Boost', 'Poisoning Attack', 'Silencing Attack', 'Confusing Attack', 'Locking Attack', 'Guard Break Attack', 'Armor Break Attack', 'Attack Break Attack', 'Power Break Attack', 'Charge', 'Summon Ally', 'Heal'] 
+          = select :character, :action_3_rules, ['Accurate Attack', 'Powerful Attack', 'Reckless Attack', 'Overwhelming Attack', 'Focusing Action', 'Defense Boost', 'Attack Boost', 'Armor Boost', 'Power Boost', 'Poisoning Attack', 'Silencing Attack', 'Confusing Attack', 'Locking Attack', 'Guard Break Attack', 'Armor Break Attack', 'Attack Break Attack', 'Power Break Attack', 'Charge', 'Summon Ally', 'Heal'], :selected => @action_3_rules
       %tr
         %td
           = label :character, :action_3_effect, '3rd Action Animation'
         %td
-          = select :character, :action_3_effect, ['None', 'Slash', 'Bullet', 'Claw', 'Dark Magic', 'Fireball', 'Punch', 'Shield', 'Ice', 'Light Magic', 'Lightning', 'Magic', 'Mana', 'Poison', 'Potion', 'Red Cross', 'Sunlight Burst', 'Sunlight', 'Up Arrow', 'Whirlwind'] 
+          = select :character, :action_3_effect, ['None', 'Slash', 'Bullet', 'Claw', 'Dark Magic', 'Fireball', 'Punch', 'Shield', 'Ice', 'Light Magic', 'Lightning', 'Magic', 'Mana', 'Poison', 'Potion', 'Red Cross', 'Sunlight Burst', 'Sunlight', 'Up Arrow', 'Whirlwind'], :selected => @action_3_effect 
       %tr
         %td
           = label :character, :action_4_name, '4th Action Name'
         %td
-          = text_field :character, 'action_4_name'
+          = text_field :character, 'action_4_name', :value => @action_4_name
       %tr
         %td
           = label :character, :action_4_flavor, '4th Action Description'
         %td
-          = text_field :character, 'action_4_flavor'
+          = text_field :character, 'action_4_flavor', :value => @action_4_flavor
       %tr
         %td
           = label :character, :action_4_rules, '4th Action Type'
         %td
-          = select :character, :action_4_rules, ['Accurate Attack', 'Powerful Attack', 'Reckless Attack', 'Overwhelming Attack', 'Focusing Action', 'Defense Boost', 'Attack Boost', 'Armor Boost', 'Power Boost', 'Poisoning Attack', 'Silencing Attack', 'Confusing Attack', 'Locking Attack', 'Guard Break Attack', 'Armor Break Attack', 'Attack Break Attack', 'Power Break Attack', 'Charge', 'Summon Ally', 'Heal'] 
+          = select :character, :action_4_rules, ['Accurate Attack', 'Powerful Attack', 'Reckless Attack', 'Overwhelming Attack', 'Focusing Action', 'Defense Boost', 'Attack Boost', 'Armor Boost', 'Power Boost', 'Poisoning Attack', 'Silencing Attack', 'Confusing Attack', 'Locking Attack', 'Guard Break Attack', 'Armor Break Attack', 'Attack Break Attack', 'Power Break Attack', 'Charge', 'Summon Ally', 'Heal'] , :selected => @action_4_rules
       %tr
         %td
           = label :character, :action_4_effect, '4th Action Animation'
         %td
-          = select :character, :action_4_effect, ['None', 'Slash', 'Bullet', 'Claw', 'Dark Magic', 'Fireball', 'Punch', 'Shield', 'Ice', 'Light Magic', 'Lightning', 'Magic', 'Mana', 'Poison', 'Potion', 'Red Cross', 'Sunlight Burst', 'Sunlight', 'Up Arrow', 'Whirlwind'] 
+          = select :character, :action_4_effect, ['None', 'Slash', 'Bullet', 'Claw', 'Dark Magic', 'Fireball', 'Punch', 'Shield', 'Ice', 'Light Magic', 'Lightning', 'Magic', 'Mana', 'Poison', 'Potion', 'Red Cross', 'Sunlight Burst', 'Sunlight', 'Up Arrow', 'Whirlwind'], :selected => @action_4_effect 
       %tr
         %td
           = label :character, :main_image, 'URL for Character Image'
         %td
-          = text_field :character, 'main_image'
+          = text_field :character, 'main_image', :value => @main_image
       %tr
         %td
           = label :character, :summon_name, 'Name for Summoned Ally (if applicable)'
         %td
-          = text_field :character, 'summon_name'
+          = text_field :character, 'summon_name', :value => @summon_name
       %tr
         %td
           = label :character, :summon_picture, 'URL for picture of Summoned Ally (if applicable)'
         %td
-          = text_field :character, 'summon_picture'
+          = text_field :character, 'summon_picture', :value => @summon_picture
       %tr
         %td
           = label :character, :summon_attack, 'Description of Attack for Summoned Ally (if applicable)'
         %td
-          = text_field :character, 'summon_attack'
+          = text_field :character, 'summon_attack', :value => @summon_attack
 
   = submit_tag 'Create Character'

@@ -248,14 +248,14 @@
             %td= @p2_mp_cost1
   %p
     .row
-      .col-sm-4.col-md-4.col-lg-2
+      .col-sm-4.col-md-4.col-lg-3
         = button_to "Reload Page", game_show_path, :method => :get
       -if @player2 == "AI"
-        .col-sm-4.col-md-4.col-lg-2
+        .col-sm-4.col-md-4.col-lg-3
           = button_to "Reset Game?", "game/cpu_reset_game", :confirm => "Are you sure you want to restart the game?", :method => :post
-      .col-sm-4.col-md-4.col-lg-2
+      .col-sm-4.col-md-4.col-lg-3
         = button_to "Leave Game?", "game/destroy_current_game", :confirm => "Are you sure you want to quit the game? NOTE: You will NOT be able to come back to this game.", :method => :post
-      .col-sm-4.col-md-4.col-lg-2
+      .col-sm-4.col-md-4.col-lg-3
         -if @player1 == @player_username
           -if @this_game.p1_use_effects
             = button_to "Turn Off Animations", turn_off_effects_path, :method => :post
@@ -307,5 +307,5 @@
     timedRefresh(120000);
   });
 
-  window.setTimeout("document.getElementById('effect1').style.display='none';", 3000);
-  window.setTimeout("document.getElementById('effect2').style.display='none';", 3000);
+  window.setTimeout("document.getElementById('effect1').style.display='none';", 2500);
+  window.setTimeout("document.getElementById('effect2').style.display='none';", 2500);

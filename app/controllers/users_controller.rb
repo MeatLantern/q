@@ -32,6 +32,16 @@ class UsersController < ApplicationController
     redirect_to users_admin_path
   end
 
+  def set_favorites_list_empty
+    users = User.all
+    users.each do |user|
+      user.favorites_list = ""
+      user.save
+    end
+    flash[:notice] = "Friends Lists Set to Empty String"
+    redirect_to users_admin_path
+  end
+
   def view
     
     x = session["warden.user.user.key"]

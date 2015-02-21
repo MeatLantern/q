@@ -45,7 +45,7 @@
   = current_user.rp_pref
 = form_tag edit_rp_pref_path do
   = label :transformation, :rp_pref, 'RP Preferences'
-  = select :transformation, :rp_pref, ["No RP","Neutral","Loves to RP"], :value => current_user.rp_pref
+  = select :transformation, :rp_pref, ["No RP","Neutral","Loves to RP"], :selected => current_user.rp_pref
   = submit_tag 'Edit Rp Preferences'
 %h3 Favorite TF Genre
 %strong

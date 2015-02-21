@@ -320,11 +320,11 @@ class TransformationController < ApplicationController
 		#render "new_tf"
 		@character_name = params["character_name"]
 		character = Character.find_by_name(@character_name)
-		@basic_effect = character.basic_effect
-		@effect1 = character.effect1
-		@effect2 = character.effect2
-		@effect3 = character.effect3
-		@effect4 = character.effect4
+		@basic_effect = Character::name_from_picture(character.basic_effect)
+		@effect1 = Character::name_from_picture(character.effect1)
+		@effect2 = Character::name_from_picture(character.effect2)
+		@effect3 = Character::name_from_picture(character.effect3)
+		@effect4 = Character::name_from_picture(character.effect4)
 	end
 
 	def new_tf3
@@ -332,11 +332,11 @@ class TransformationController < ApplicationController
 		#render "new_tf"
 		@character_name = params["character_name"]
 		character = Character.find_by_name(@character_name)
-		@basic_effect = character.basic_effect
-		@effect1 = character.effect1
-		@effect2 = character.effect2
-		@effect3 = character.effect3
-		@effect4 = character.effect4
+		@basic_effect = Character::name_from_picture(character.basic_effect)
+		@effect1 = Character::name_from_picture(character.effect1)
+		@effect2 = Character::name_from_picture(character.effect2)
+		@effect3 = Character::name_from_picture(character.effect3)
+		@effect4 = Character::name_from_picture(character.effect4)
 	end
 
 	def new_tf5
@@ -344,11 +344,11 @@ class TransformationController < ApplicationController
 		#render "new_tf"
 		@character_name = params["character_name"]
 		character = Character.find_by_name(@character_name)
-		@basic_effect = character.basic_effect
-		@effect1 = character.effect1
-		@effect2 = character.effect2
-		@effect3 = character.effect3
-		@effect4 = character.effect4
+		@basic_effect = Character::name_from_picture(character.basic_effect)
+		@effect1 = Character::name_from_picture(character.effect1)
+		@effect2 = Character::name_from_picture(character.effect2)
+		@effect3 = Character::name_from_picture(character.effect3)
+		@effect4 = Character::name_from_picture(character.effect4)
 	end
 
 	def add_to_character
