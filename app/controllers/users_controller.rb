@@ -166,7 +166,7 @@ class UsersController < ApplicationController
     @players = User.where(search_hash)
     @players = @players.order('username ASC')
     friends_array = current_user.friends_list.split("; ")
-    if !(friends_array.nil?)
+    if !(friends_array.empty?)
       friends_array.last.chop!
       friends_array.first.slice!(0)
       @friends = []
