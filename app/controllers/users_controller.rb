@@ -166,15 +166,17 @@ class UsersController < ApplicationController
     @players = User.where(search_hash)
     @players = @players.order('username ASC')
     friends_array = current_user.friends_list.split("; ")
-    friends_array.last.chop!
-    friends_array.first.slice!(0)
-    @friends = []
-    i = 0 
-    friends_array.each do |friend|
-      f = User.find_by_username(friend)
-      if !(f.nil?)
-        @friends[i] = f
-        i = i + 1
+    if !(friends_array.nil?)
+      friends_array.last.chop!
+      friends_array.first.slice!(0)
+      @friends = []
+      i = 0 
+      friends_array.each do |friend|
+        f = User.find_by_username(friend)
+        if !(f.nil?)
+          @friends[i] = f
+          i = i + 1
+        end
       end
     end
     #binding.pry
