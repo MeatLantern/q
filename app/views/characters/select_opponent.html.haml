@@ -51,7 +51,11 @@
     %tbody
       - @characters.each do |character|
         %tr 
-          %td= character.character_name
+          %td
+            -if current_user.favorites_list.include?("#{character.character_name};")
+              = "[color=gold]#{character.character_name}[/color]".bbcode_to_html.html_safe
+            -else
+              = character.character_name
           %td= link_to "#{character.character_name}'s Character Sheet", characters_path(:name => character.character_name), :method=> :get#character/show/?name=#{character.name}',{:controller => "characters", :action => "show", :name => character.name}
           %td= link_to "Select #{character.character_name}", select_opponent_game_path(:player2name => character.character_name, :player1name => @player1_character), :method=> :post
           %td= character.character.creator
