@@ -306,11 +306,16 @@ class TransformationController < ApplicationController
 	def edit
 		@character_name = params["character_name"]
 		@transformation = Transformation.find_by_character_name(@character_name)
-		@basic_effect = Character::name_from_picture(@transformation.alt_basic_effect)
-		@effect1 = Character::name_from_picture(@transformation.alt_effect1)
-		@effect2 = Character::name_from_picture(@transformation.alt_effect2)
-		@effect3 = Character::name_from_picture(@transformation.alt_effect3)
-		@effect4 = Character::name_from_picture(@transformation.alt_effect4)
+		if @transformation.nil?
+			flash[:notice] = "Your Character Doesn't have a Transformation Yet. You will now create a new one."
+			redirect_to select_num_stages_path(:character_name => @character_name)
+		else
+			@basic_effect = Character::name_from_picture(@transformation.alt_basic_effect)
+			@effect1 = Character::name_from_picture(@transformation.alt_effect1)
+			@effect2 = Character::name_from_picture(@transformation.alt_effect2)
+			@effect3 = Character::name_from_picture(@transformation.alt_effect3)
+			@effect4 = Character::name_from_picture(@transformation.alt_effect4)
+		end
 
 		#binding.pry
 	end
