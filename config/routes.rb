@@ -41,6 +41,7 @@ DuelOfChampions::Application.routes.draw do
   match 'flag_comment', to: 'comment#flag', via: :post
   match 'manual_password_reset', to: 'users#manual_password_reset', via: :post
   match 'set_up_reset', to: 'users#set_up_reset', via: :get
+  match 'set_up_reset2', to: 'users#set_up_reset', via: :get
 
 
   resources :transformation
