@@ -50,7 +50,7 @@ gem 'haml'
 gem 'pry'
 
 #Testing out New Messaging System
-gem 'mailboxer'
+#gem 'mailboxer'
 
 gem 'sanitize'
 

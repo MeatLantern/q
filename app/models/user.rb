@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
     
   validates_uniqueness_of :username
 
-  acts_as_messageable
+  #acts_as_messageable
 
   def name
   	return current_user.username

@@ -62,6 +62,8 @@ module DuelOfChampions
         Devise::RegistrationsController.skip_before_filter :check_if_in_game
         Devise::PasswordsController.skip_before_filter :check_if_in_game
         Devise::PasswordsController.skip_before_filter :set_unread_messages
+        UsersController.skip_before_filter :manual_reset_password
+        UsersController.skip_before_filter :set_up_reset
     end
 
 

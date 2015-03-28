@@ -1,0 +1,8 @@
+%h1 Reset Password
+
+%h3 Enter in Email Address
+
+= form_tag manual_password_reset_path do
+  = label :email, :email, 'Enter in Email'
+  = text_field :email, :email 
+  = submit_tag 'Reset Password'

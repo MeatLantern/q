@@ -10,6 +10,21 @@ class UsersController < ApplicationController
   def create
   end
 
+  def set_up_reset
+    
+  end
+
+  def manual_password_reset
+    user = User.find_by_email(params[:email])
+    if user
+      redirect_to password_path(params[:email])
+    else
+      flash[:alert] = "Your Email Address Was Not Found."
+      redirect_to game_rules_path
+    end
+
+  end
+
   def set_profiles_to_no_profile
     users = User.all
     users.each do |user|

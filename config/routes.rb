@@ -39,6 +39,8 @@ DuelOfChampions::Application.routes.draw do
   match 'delete_comment', to: 'comment#delete', via: :post
   match 'comment_admin', to: 'comment#admin', via: :get
   match 'flag_comment', to: 'comment#flag', via: :post
+  match 'manual_password_reset', to: 'users#manual_password_reset', via: :post
+  match 'set_up_reset', to: 'users#set_up_reset', via: :get
 
 
   resources :transformation
